@@ -6,13 +6,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/classes" path="target/generated-sources/xjc-CM">
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="target/generated-sources/xjc-CM">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/classes" path="target/generated-sources/xjc-M1">
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="target/generated-sources/xjc-M1">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
