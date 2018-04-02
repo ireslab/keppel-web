@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/xjc-CM"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/xjc-M1"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/xjc-CMR"/>
         <property name="context-root" value="keppel-consumer"/>
         <property name="java-output-path" value="/keppel-consumer/target/classes"/>
     </wb-module>

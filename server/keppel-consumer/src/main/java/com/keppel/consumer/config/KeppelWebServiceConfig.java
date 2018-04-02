@@ -42,7 +42,16 @@ public class KeppelWebServiceConfig {
 		return webServiceTemplate;
 	}
 	
-
+	@Bean(name = "CMRECPLAN")
+	public WebServiceTemplate webServiceTemplateCMRECPLAN() throws KeyManagementException, NoSuchAlgorithmException {
+		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRECPLAN());
+		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRECPLAN());
+		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CMRECPLAN");
+		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
+		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
+		return webServiceTemplate;
+	}
 
 	@Bean
 	Jaxb2Marshaller jaxb2MarshallerCMRETPERMTY() {
@@ -59,6 +68,15 @@ public class KeppelWebServiceConfig {
 
 		return jaxb2Marshaller;
 	}
+	
+	@Bean
+	Jaxb2Marshaller jaxb2MarshallerCMRECPLAN() {
+		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+		jaxb2Marshaller.setContextPath("com.keppelCMR.CMRECPLAN");
+
+		return jaxb2Marshaller;
+	}
+	
 	
 	
 /*	@Bean(name = "CREATEINCIDENTWS")

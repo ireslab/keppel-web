@@ -1,6 +1,6 @@
 package com.keppel.consumer.controller;
 
-
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.keppel.consumer.service.ActivityAuditService;
 import com.keppel.consumer.service.KeppelConsumerService;
+import com.keppelCMR.CMRECPLAN.CMRECPLAN;
 
 @RestController
 @RequestMapping(value = "/v1/*", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,7 +33,7 @@ public class KeppelConsumerController {
 	 * Path for method:
 	 * "<server address>/mfp/api/adapters/SpringAdapterSample/resource"
 	 */
-	
+
 	public String getDD() {
 		// log message to server log
 		logger.info("Logging info message...");
@@ -40,9 +41,13 @@ public class KeppelConsumerController {
 		return "Hello from 123 resource";
 	}
 
-/*
-	@ApiOperation(value = "Returns 'Hello from resource'", notes = "A basic example of a resource returning a constant string.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Hello message returned") })*/
+	/*
+	 * @ApiOperation(value = "Returns 'Hello from resource'", notes =
+	 * "A basic example of a resource returning a constant string.")
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 200, message =
+	 * "Hello message returned") })
+	 */
 	@RequestMapping(value = "getResourceData", method = RequestMethod.GET)
 	public String getResourceData() {
 		// log message to server log
@@ -257,16 +262,31 @@ public class KeppelConsumerController {
 	//
 	// }
 	//
-	/*@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })*/
+	/*
+	 * @ApiOperation(value = "Unprotected Resource", notes =
+	 * "Example of an unprotected resource, this resource is accessible without a valid token."
+	 * )
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 200, message =
+	 * "A constant string is returned") })
+	 */
 	@RequestMapping(value = "getDwellingTypes", method = RequestMethod.GET)
 	// @OAuthSecurity(enabled = false)
 	public String getDwellingTypes() {
 		logger.info("Request info for getDwellingTypes ");
-		//logger.warning("Request warning  for getDwellingTypes ");
-		//logger.log(Level.SEVERE, "Error from subm");
+		// logger.warning("Request warning for getDwellingTypes ");
+		// logger.log(Level.SEVERE, "Error from subm");
 		keppelConsumerService.getDwellingTypes();
 		return null;
+	}
+
+	@RequestMapping(value = "getPlans", method = RequestMethod.GET)
+	public String getRecomendedPlans() {
+		logger.info("Request info for getRecomendedPlans ");
+		List<CMRECPLAN.Plans> responeList = keppelConsumerService.getRecomendedPlans();
+		Gson gson = new Gson();
+		String json = gson.toJson(responeList);
+		return json;
 	}
 
 }

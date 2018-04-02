@@ -1,5 +1,6 @@
 package com.keppel.consumer.service.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import com.keppel.consumer.service.KeppelConsumerService;
 import com.keppel.consumer.utils.FTPUtils;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY.Input;
+import com.keppelCMR.CMRECPLAN.CMRECPLAN;
 import com.keppelM1.M1MMCTR.M1MMCTR;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails.ReceiveData;
@@ -31,10 +33,15 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 	@Autowired
 	private WebServiceTemplate webServiceTemplateM1MMCTR;
 	
-	
-/*	@Qualifier("CREATEINCIDENTWS")
+	@Qualifier("CMRECPLAN")
 	@Autowired
-	private WebServiceTemplate webServiceTemplateCREATEINCIDENT;*/
+	private WebServiceTemplate webServiceTemplateCMRECPLAN;
+
+	/*
+	 * @Qualifier("CREATEINCIDENTWS")
+	 * 
+	 * @Autowired private WebServiceTemplate webServiceTemplateCREATEINCIDENT;
+	 */
 
 	@Override
 	public void submitUserData(AccountDto accountDto) {
@@ -87,7 +94,7 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetailsList.add(receiveDetails);
 		m1mmctr.getReceiveDetails().addAll(receiveDetailsList);
 		M1MMCTR m1mmctrResponse = (M1MMCTR) webServiceTemplateM1MMCTR.marshalSendAndReceive(m1mmctr);
-		//submitUserImageData(accountDto);
+		submitUserImageData(accountDto);
 	}
 
 	public void getDwellingTypes() {
@@ -121,6 +128,14 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 			exc.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public List<CMRECPLAN.Plans> getRecomendedPlans() {
+		CMRECPLAN body = new CMRECPLAN();
+		body.setBo("CM-MasterRecomendedPlans");
+		CMRECPLAN respone = (CMRECPLAN) webServiceTemplateCMRECPLAN.marshalSendAndReceive(body);
+		return respone.getPlans();
 	}
 
 }
