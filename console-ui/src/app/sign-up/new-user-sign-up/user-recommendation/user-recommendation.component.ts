@@ -72,7 +72,6 @@ export class UserRecommendationComponent implements OnInit {
                 $(this).next().click();
             });
 
-<<<<<<< .mine
             $('button.selectPropertyTypeButton').on("click", function () {
                 $('button.selectPropertyTypeButton').removeClass("selected");
                 $(this).addClass("selected");
@@ -82,17 +81,6 @@ export class UserRecommendationComponent implements OnInit {
                 $('#Grp-Package').show();
             });
 
-=======
-      $('button.selectPropertyTypeButton').on("click", function () {
-          $('button.selectPropertyTypeButton').removeClass("selected");
-          $(this).addClass("selected");
-          $('#Grp-Package').show();
-          
-      });
-      $("#Grp-DwellingType-MobileSelect").change(function () {
-          $('#Grp-Package').show();
-      });
->>>>>>> .theirs
 
             $("a.kpl-PlanDetailShowHide").on("click", function () {
                 var CurrentText = $(this).html();
