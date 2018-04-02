@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<groupId>com.keppel</groupId>
+	<artifactId>keppel-consumer</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>keppel-consumer</name>
+	<url>http://maven.apache.org</url>
+
+
+
+	<properties>
+		<java.version>1.7</java.version>
+	</properties>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.4.RELEASE</version>
+	</parent>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-support</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			</dependency> -->
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/xml-security/xmlsec -->
+<dependency>
+    <groupId>xml-security</groupId>
+    <artifactId>xmlsec</artifactId>
+    <version>1.3.0</version>
+</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.13.3</version>
+				<executions>
+					<execution>
+						<id>xjc-schema1</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<generatePackage>com.keppelCM.CMRETPERMTY</generatePackage>
+							<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+							<schemaIncludes>
+								<include>dwell_types.wsdl</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-CM</generateDirectory>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>xjc-schema2</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<generatePackage>com.keppelM1.M1MMCTR</generatePackage>
+							<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+							<schemaIncludes>
+								<include>signup.wsdl</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-M1</generateDirectory>
+						</configuration>
+					</execution>
+
+					<!-- <execution> <id>xjc-schema3</id> <phase>generate-sources</phase> 
+						<goals> <goal>generate</goal> </goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> 
+						<generatePackage>com.keppelCI.CreateIncident</generatePackage> <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory> 
+						<schemaIncludes> <include>CreateIncident.wsdl</include> </schemaIncludes> 
+						<generateDirectory>${project.build.directory}/generated-sources/xjc-CI</generateDirectory> 
+						</configuration> </execution> -->
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,3 +1,4 @@
+<<<<<<< .mine
 <app-sidebar></app-sidebar>
 
 <div class="container mainContent">
@@ -71,7 +72,83 @@
             </ul>
           </div>
           <a class="kpl-PlanDetailShowHide" role="button">Show Details (+)</a>
+=======
+<app-sidebar></app-sidebar>
+    
+    <div class="container mainContent">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>
+                    <img src="assets/img/img-NewUserHouse.png" /> Click home type below to select
+                </h2>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
         </div>
+<<<<<<< .mine
       </div>
       <div class="col-xl-3 col-md-6 col-6">
         <div class="PlanDetailCard">
@@ -96,9 +173,196 @@
             </ul>
           </div>
           <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+
+
+
+
+
+
+
+
+
+
+
+=======
+        <form id="Grp-DwellingType" class="row no-gutters">
+            <div class="col" *ngFor="let dwellingType of dwellingTypes">
+                <button (click)="planSelected()" class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">{{dwellingType}}</button>
+            </div>
+            <!-- <div class="col">
+                <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">HDB 3</button>
+            </div> -->
+            <!-- <div class="col">
+                <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">HDB 4</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">HDB 5/EA</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">Condominium</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">Landed Property</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">Others</button>
+            </div> -->
+        </form>
+        <div class="row" id="Grp-DwellingType-Mobile">
+            <div class="col-12">
+                <select class="form-control" id="Grp-DwellingType-MobileSelect">
+                    <option (click)="planSelected()" *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
+                    <!-- <option>HDB 3</option>
+                    <option>HDB 4</option>
+                    <option>HDB 5 EA</option>
+                    <option>Condominium</option>
+                    <option>Landed Property</option>
+                    <option>Others</option> -->
+                </select>
+            </div>
+>>>>>>> .theirs
         </div>
+<<<<<<< .mine
       </div>
       <div class="col-lg-3 col-md-6 col-12">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+        <form id="Grp-Package">
+            <div class="row no-gutters">
+                <div class="col-xl-3 col-12">
+                </div>
+
+                
+                <div class="col-xl-3 col-md-6 col-6">
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>Smart</h3>
+                            <p>allows greater optimisation</p>
+                            <hr/>
+                            <p>Estimated Monthly Bill: S$59*</p>
+                            <h4>17% Less</h4>
+                            <p>than with current SP Tariff</p>
+                        </div>
+                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel">
+                            Details:
+                            <ul>
+                                <li>24 Months</li>
+                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+                                <li>All charges are absorbed</li>
+                                <li>Consumption is loss adjusted</li>
+                            </ul>
+                        </div>
+                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+                </div>
+
+
+
+
+                
+                <div class="col-xl-3 col-md-6 col-6"  *ngFor="let dwlPlans of firstTwoDwlingPlans">
+
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>{{dwlPlans.planName}}</h3>
+                            <p>allows greater optimisation</p>
+                            <hr/>
+                            <p>Estimated Monthly Bill: S{{dwlPlans.monthlyBill}}</p>
+                            <h4>{{dwlPlans.discount}}</h4>
+                            <p>than with current SP Tariff</p>
+                        </div>
+                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel">
+                            Details:
+                            <ul>
+                                <li>24 Months</li>
+                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+                                <li>All charges are absorbed</li>
+                                <li>Consumption is loss adjusted</li>
+                            </ul>
+                        </div>
+                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="col-lg-3 col-md-6 col-12">
+>>>>>>> .theirs
 
       </div>
     </div>
@@ -109,112 +373,112 @@
       <a href="#">here</a> to see applicable T&C and cost/charges components
     </div>
 
-    <div style="text-align: center;">
-      <button class="btn btn-secondary" type="button" id="collapseMorePlansBtn">See more plans
-      </button>
-    </div>
-    <div class="collapse row no-gutters" id="collapseMorePlans">
-      <div class="col-xl-3 col-md-6 col-6">
-        <div class="PlanDetailCard">
-          <div class="PlanDetailSummary">
-            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-            <h3>Smart</h3>
-            <p>allows greater optimisation</p>
-            <hr/>
-            <p>Estimated Monthly Bill: S$59*</p>
-            <h4>17% Less</h4>
-            <p>than with current SP Tariff</p>
-          </div>
-          <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-          <div class="PlanDetailPanel">
-            Details:
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
-          </div>
-          <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6 col-6">
-        <div class="PlanDetailCard">
-          <div class="PlanDetailSummary">
-            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-            <h3>Smart</h3>
-            <p>allows greater optimisation</p>
-            <hr/>
-            <p>Estimated Monthly Bill: S$59*</p>
-            <h4>17% Less</h4>
-            <p>than with current SP Tariff</p>
-          </div>
-          <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-          <div class="PlanDetailPanel">
-            Details:
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
-          </div>
-          <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6 col-6">
-        <div class="PlanDetailCard">
-          <div class="PlanDetailSummary">
-            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-            <h3>Clean</h3>
-            <p>allows greater optimisation</p>
-            <hr/>
-            <p>Estimated Monthly Bill: S$59*</p>
-            <h4>19% Less</h4>
-            <p>than with current SP Tariff</p>
-          </div>
-          <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-          <div class="PlanDetailPanel">
-            Details:
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
-          </div>
-          <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6 col-6">
-        <div class="PlanDetailCard">
-          <div class="PlanDetailSummary">
-            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-            <h3>Smart</h3>
-            <p>allows greater optimisation</p>
-            <hr/>
-            <p>Estimated Monthly Bill: S$59*</p>
-            <h4>17% Less</h4>
-            <p>than with current SP Tariff</p>
-          </div>
-          <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-          <div class="PlanDetailPanel">
-            Details:
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
-          </div>
-          <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
-        </div>
-      </div>
-    </div>
+            <div style="text-align: center;">
+                <button class="btn btn-secondary" type="button" id="collapseMorePlansBtn">See more plans
+                </button>
+            </div>
+            <div class="collapse row no-gutters" id="collapseMorePlans">
+                <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of otherdwlPlans">
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>{{dwlPlans.planName}}</h3>
+                            <p>allows greater optimisation</p>
+                            <hr/>
+                            <p>Estimated Monthly Bill: S{{dwlPlans.monthlyBill}}*</p>
+                            <h4>{{dwlPlans.discount}}</h4>
+                            <p>than with current SP Tariff</p>
+                        </div>
+                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel">
+                            Details:
+                            <ul>
+                                <li>24 Months</li>
+                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+                                <li>All charges are absorbed</li>
+                                <li>Consumption is loss adjusted</li>
+                            </ul>
+                        </div>
+                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+                </div>
+                <!-- <div class="col-xl-3 col-md-6 col-6">
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>Smart</h3>
+                            <p>allows greater optimisation</p>
+                            <hr/>
+                            <p>Estimated Monthly Bill: S$59*</p>
+                            <h4>17% Less</h4>
+                            <p>than with current SP Tariff</p>
+                        </div>
+                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel">
+                            Details:
+                            <ul>
+                                <li>24 Months</li>
+                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+                                <li>All charges are absorbed</li>
+                                <li>Consumption is loss adjusted</li>
+                            </ul>
+                        </div>
+                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+                </div> -->
+                <!-- <div class="col-xl-3 col-md-6 col-6">
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>Clean</h3>
+                            <p>allows greater optimisation</p>
+                            <hr/>
+                            <p>Estimated Monthly Bill: S$59*</p>
+                            <h4>19% Less</h4>
+                            <p>than with current SP Tariff</p>
+                        </div>
+                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel">
+                            Details:
+                            <ul>
+                                <li>24 Months</li>
+                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+                                <li>All charges are absorbed</li>
+                                <li>Consumption is loss adjusted</li>
+                            </ul>
+                        </div>
+                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+                </div> -->
+                <!-- <div class="col-xl-3 col-md-6 col-6">
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>Smart</h3>
+                            <p>allows greater optimisation</p>
+                            <hr/>
+                            <p>Estimated Monthly Bill: S$59*</p>
+                            <h4>17% Less</h4>
+                            <p>than with current SP Tariff</p>
+                        </div>
+                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel">
+                            Details:
+                            <ul>
+                                <li>24 Months</li>
+                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+                                <li>All charges are absorbed</li>
+                                <li>Consumption is loss adjusted</li>
+                            </ul>
+                        </div>
+                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+                </div> -->
+            </div>
 
   </form>
   <form style="margin-top:20px;" id="Grp_IDOTP">
