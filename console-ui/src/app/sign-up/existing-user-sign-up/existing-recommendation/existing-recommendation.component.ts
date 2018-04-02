@@ -3,14 +3,14 @@ import { SidebarService } from '../../../sidebar/sidebar.service';
 
 declare var $: any
 @Component({
-    selector: 'app-user-recommendation',
-    templateUrl: './user-recommendation.component.html',
-    styleUrls: ['./user-recommendation.component.css'],
+    selector: 'app-existing-recommendation',
+    templateUrl: './existing-recommendation.component.html',
+    styleUrls: ['./existing-recommendation.component.css']
 })
-export class UserRecommendationComponent implements OnInit {
+export class ExistingRecommendationComponent implements OnInit {
 
     constructor(private sbService: SidebarService) {
-        this.sbService.getSidebar("newUser")
+        this.sbService.getSidebar("existingUser")
     }
 
     ngOnInit() {

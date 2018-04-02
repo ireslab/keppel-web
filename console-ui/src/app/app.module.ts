@@ -12,12 +12,23 @@ import { BusinessContactDetailsComponent } from './sign-up/business-user-sign-up
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SidebarService } from './sidebar/sidebar.service';
+import { AcknowledgementComponent } from './acknowledgement/acknowledgement.component';
+import { ExistingRecommendationComponent } from './sign-up/existing-user-sign-up/existing-recommendation/existing-recommendation.component';
+import { ExistingContractComponent } from './sign-up/existing-user-sign-up/existing-contract/existing-contract.component';
+import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
 
 const appRoutes: Routes = [
   { path: 'keppel', component: LandingPageComponent },
+  { path: 'aknowledgement', component: AcknowledgementComponent },
   { path: 'new-user-recommendation', component: UserRecommendationComponent },
   { path: 'new-user-contract', component: UserContractComponent },
   { path: 'new-user-confirmation', component: UserConfirmationComponent },
+  { path: 'existing-recommendation', component: ExistingRecommendationComponent },
+  { path: 'existing-contract', component: ExistingContractComponent },
+  { path: 'existing-confirmation', component: ExistingConfirmationComponent },
+  { path: 'business-details', component: BusinessDetailsComponent },
+  { path: 'business-contact', component: BusinessContactDetailsComponent },
+  
  
   {
     path: '',
@@ -38,7 +49,11 @@ const appRoutes: Routes = [
     BusinessDetailsComponent,
     BusinessContactDetailsComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    AcknowledgementComponent,
+    ExistingRecommendationComponent,
+    ExistingContractComponent,
+    ExistingConfirmationComponent
   ],
   imports: [
     BrowserModule,

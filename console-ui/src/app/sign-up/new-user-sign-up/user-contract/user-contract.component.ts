@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../../sidebar/sidebar.service';
 
-
-declare var $:any
+declare var $: any
 @Component({
   selector: 'app-user-contract',
   templateUrl: './user-contract.component.html',
@@ -10,7 +9,7 @@ declare var $:any
 })
 export class UserContractComponent implements OnInit {
 
-  constructor(private sbService:SidebarService) {
+  constructor(private sbService: SidebarService) {
     this.sbService.getSidebar("newUser")
   }
 
