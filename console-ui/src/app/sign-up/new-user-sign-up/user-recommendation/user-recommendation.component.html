@@ -51,7 +51,7 @@
                 </div>
 
                 
-                <div class="col-xl-3 col-md-6 col-6">
+                <!-- <div class="col-xl-3 col-md-6 col-6">
                     <div class="PlanDetailCard">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
@@ -75,15 +75,15 @@
                         </div>
                         <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
-                </div>
+                </div> -->
 
 
 
 
                 
-                <div class="col-xl-3 col-md-6 col-6"  *ngFor="let dwlPlans of firstTwoDwlingPlans">
+                <div class="col-xl-3 col-md-6 col-6"  *ngFor="let dwlPlans of firstTwoDwlingPlans; let i = index;">
 
-                    <div class="PlanDetailCard">
+                    <div (click)="planSelectionBtn(i)" class="PlanDetailCard"  [ngClass]="{'selected': i==selectedFirstIndex}">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
                             <h3>{{dwlPlans.planName}}</h3>
@@ -93,25 +93,21 @@
                             <h4>{{dwlPlans.discount}}</h4>
                             <p>than with current SP Tariff</p>
                         </div>
-                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-                        <div class="PlanDetailPanel">
+                        <button  [ngClass]="{'btn-primary': i==selectedFirstIndex}" class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel"  id="{{i}}">
                             Details:
                             <ul>
-                                <li>24 Months</li>
-                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li *ngFor="let details of dwlPlans.details">{{details}}</li>
+                                <!-- <li>Peak Rate (7am to 11pm): {{dwlPlans.details}}</li>
                                 <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
                                 <li>All charges are absorbed</li>
-                                <li>Consumption is loss adjusted</li>
+                                <li>Consumption is loss adjusted</li> -->
                             </ul>
                         </div>
-                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                        <a (click)="showDetailClicked(i)" id="show{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
 
                 </div>
-
-
-
-
 
                 <div class="col-lg-3 col-md-6 col-12">
 
@@ -129,8 +125,8 @@
                 </button>
             </div>
             <div class="collapse row no-gutters" id="collapseMorePlans">
-                <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of otherdwlPlans">
-                    <div class="PlanDetailCard">
+                <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of otherdwlPlans; let i = index;">
+                    <div (click)="planSlctnBtn(i)" class="PlanDetailCard" [ngClass]="{'selected': i==selectedSecondIndex}">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
                             <h3>{{dwlPlans.planName}}</h3>
@@ -140,18 +136,19 @@
                             <h4>{{dwlPlans.discount}}</h4>
                             <p>than with current SP Tariff</p>
                         </div>
-                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-                        <div class="PlanDetailPanel">
+                        <button [ngClass]="{'btn-primary': i==selectedSecondIndex}" class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel" id="detail{{i}}">
                             Details:
                             <ul>
-                                <li>24 Months</li>
+                                <li *ngFor="let details of dwlPlans.details">{{details}}</li>
+                                <!-- <li>24 Months</li>
                                 <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
                                 <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
                                 <li>All charges are absorbed</li>
-                                <li>Consumption is loss adjusted</li>
+                                <li>Consumption is loss adjusted</li> -->
                             </ul>
                         </div>
-                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                        <a (click)="showHideDetailClicked(i)" id="showHide{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
                 </div>
                 <!-- <div class="col-xl-3 col-md-6 col-6">

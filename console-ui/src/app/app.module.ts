@@ -1,6 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+
+import { ServiceCall } from './network_layer/web_service_call';
+import { localJSON } from './localJSON';
+
+
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -16,6 +23,8 @@ import { AcknowledgementComponent } from './acknowledgement/acknowledgement.comp
 import { ExistingRecommendationComponent } from './sign-up/existing-user-sign-up/existing-recommendation/existing-recommendation.component';
 import { ExistingContractComponent } from './sign-up/existing-user-sign-up/existing-contract/existing-contract.component';
 import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
+
+
 
 const appRoutes: Routes = [
   { path: 'keppel', component: LandingPageComponent },
@@ -56,13 +65,13 @@ const appRoutes: Routes = [
     ExistingConfirmationComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true }
     )
   ],
-  providers: [SidebarService],
+  providers: [SidebarService,ServiceCall,localJSON],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
