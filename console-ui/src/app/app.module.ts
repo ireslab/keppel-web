@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -16,6 +17,7 @@ import { AcknowledgementComponent } from './acknowledgement/acknowledgement.comp
 import { ExistingRecommendationComponent } from './sign-up/existing-user-sign-up/existing-recommendation/existing-recommendation.component';
 import { ExistingContractComponent } from './sign-up/existing-user-sign-up/existing-contract/existing-contract.component';
 import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
+import { recaptcha } from './recaptcha/recaptcha.component';
 
 const appRoutes: Routes = [
   { path: 'keppel', component: LandingPageComponent },
@@ -53,10 +55,12 @@ const appRoutes: Routes = [
     AcknowledgementComponent,
     ExistingRecommendationComponent,
     ExistingContractComponent,
-    ExistingConfirmationComponent
+    ExistingConfirmationComponent,
+    recaptcha
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true }
