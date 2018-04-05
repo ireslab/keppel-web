@@ -5,3 +5,7 @@
 .planDetailPanelShow{
     display: block
 }
+.planBenifit{
+    font-weight: bold;
+    font-size: 20px
+}

@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../../sidebar/sidebar.service';
-import { CommonServices } from '../../../commom_methods/common_service'
+import { CommonServices } from '../../../commom_methods/common_service';
+import { localJSON } from '../../../commom_methods/localJSON';
 
 declare var $: any
+
+
+
+
 @Component({
   selector: 'app-user-contract',
   templateUrl: './user-contract.component.html',
@@ -10,7 +15,11 @@ declare var $: any
 })
 export class UserContractComponent implements OnInit {
 
-  constructor(private sbService: SidebarService, private commonService:CommonServices) {
+  optSelected = [];
+
+
+
+  constructor(private sbService: SidebarService, private commonService: CommonServices, private localjson: localJSON) {
     this.sbService.getSidebar("newUser")
     this.commonService.gotoTopOfView();
   }
@@ -27,9 +36,9 @@ export class UserContractComponent implements OnInit {
         $(this).toggleClass("selected");
       });
 
-      $(".selectOptionalSvcsButton").on("click", function () {
-        $(this).toggleClass("selected");
-      });
+      // $(".selectOptionalSvcsButton").on("click", function () {
+      //   $(this).toggleClass("selected");
+      // });
 
       $(".modal_imgBtn").on("click", function () {
         $(".modal_imgBtn").removeClass("On");
@@ -83,6 +92,15 @@ export class UserContractComponent implements OnInit {
     function TogglePanel() {
       $(".kpl-SummaryCallout, .PremiseInfo, .PanelRevealButton").toggle();
     }
+  }
+
+
+  optPlanSelected(index) 
+  {
+      if(this.optSelected.indexOf(index) == -1)
+           this.optSelected.push(index);
+      else
+           this.optSelected.splice(this.optSelected.indexOf(index), 1);    
   }
 
 

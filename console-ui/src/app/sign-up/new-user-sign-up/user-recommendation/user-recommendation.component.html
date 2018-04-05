@@ -86,22 +86,24 @@
                     <div (click)="planSelectionBtn(i)" class="PlanDetailCard"  [ngClass]="{'selected': i==selectedFirstIndex}">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-                            <h3>{{dwlPlans.planName}}</h3>
-                            <p>allows greater optimisation</p>
+                            <h3>{{dwlPlans.plan}}</h3>
+                            <p>{{dwlPlans.details}}</p>
                             <hr/>
-                            <p>Estimated Monthly Bill: S{{dwlPlans.monthlyBill}}</p>
-                            <h4>{{dwlPlans.discount}}</h4>
-                            <p>than with current SP Tariff</p>
+                            <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index" [ngClass]="{'planBenifit': i==1}">{{benifit}}</label>
+                            <!-- <p>Estimated Monthly Bill: S</p>
+                            {{dwlPlans.monthlyBill}}  {{dwlPlans.discount}}
+                            <h4></h4>
+                            <p>than with current SP Tariff</p> -->
                         </div>
                         <button  [ngClass]="{'btn-primary': i==selectedFirstIndex}" class="btn btn-secondary selectPlanButton" type="button">Select</button>
                         <div class="PlanDetailPanel"  id="{{i}}">
                             Details:
                             <ul>
-                                <li *ngFor="let details of dwlPlans.details">{{details}}</li>
-                                <!-- <li>Peak Rate (7am to 11pm): {{dwlPlans.details}}</li>
-                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-                                <li>All charges are absorbed</li>
-                                <li>Consumption is loss adjusted</li> -->
+                                <!-- <li *ngFor="let details of dwlPlans.details">{{details}}</li> -->
+                                <li>Product Name : {{dwlPlans.product}}</li>
+                                <li>Start Date : {{dwlPlans.startDate}}</li>
+                                <li>Duration :{{dwlPlans.contractDuration}} Months</li>
+                                <li>Charge Type : {{dwlPlans.chargeType}}</li>
                             </ul>
                         </div>
                         <a (click)="showDetailClicked(i)" id="show{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>
@@ -120,7 +122,8 @@
       <a href="#">here</a> to see applicable T&C and cost/charges components
     </div>
 
-            <div style="text-align: center;">
+
+            <div (click) ="moreLessClicked()"style="text-align: center;">
                 <button class="btn btn-secondary" type="button" id="collapseMorePlansBtn">See more plans
                 </button>
             </div>
@@ -129,23 +132,24 @@
                     <div (click)="planSlctnBtn(i)" class="PlanDetailCard" [ngClass]="{'selected': i==selectedSecondIndex}">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-                            <h3>{{dwlPlans.planName}}</h3>
-                            <p>allows greater optimisation</p>
+                            <h3>{{dwlPlans.plan}}</h3>
+                            <p>{{dwlPlans.details}}</p>
                             <hr/>
-                            <p>Estimated Monthly Bill: S{{dwlPlans.monthlyBill}}*</p>
-                            <h4>{{dwlPlans.discount}}</h4>
-                            <p>than with current SP Tariff</p>
+                            <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index" [ngClass]="{'planBenifit': i==2}">{{benifit}}</label>
+                            <!-- <p>Estimated Monthly Bill: S</p>
+                            {{dwlPlans.monthlyBill}}*  {{dwlPlans.discount}}
+                            <h4></h4>
+                            <p>than with current SP Tariff</p> -->
                         </div>
                         <button [ngClass]="{'btn-primary': i==selectedSecondIndex}" class="btn btn-secondary selectPlanButton" type="button">Select</button>
                         <div class="PlanDetailPanel" id="detail{{i}}">
                             Details:
                             <ul>
-                                <li *ngFor="let details of dwlPlans.details">{{details}}</li>
-                                <!-- <li>24 Months</li>
-                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-                                <li>All charges are absorbed</li>
-                                <li>Consumption is loss adjusted</li> -->
+                                <!-- <li *ngFor="let details of dwlPlans.details">{{details}}</li> -->
+                                <li>Product Name : {{dwlPlans.product}}</li>
+                                <li>Start Date : {{dwlPlans.startDate}}</li>
+                                <li>Duration :{{dwlPlans.contractDuration}} Months</li>
+                                <li>Charge Type : {{dwlPlans.chargeType}}</li>
                             </ul>
                         </div>
                         <a (click)="showHideDetailClicked(i)" id="showHide{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>

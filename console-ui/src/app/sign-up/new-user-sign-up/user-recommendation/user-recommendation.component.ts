@@ -24,6 +24,8 @@ export class UserRecommendationComponent implements OnInit {
     dwlTypePlans;
     dwellingTypes;
     firstTwoDwlingPlans:any = [];
+    firstTwoBenifits:any = [];
+    otherBenifits:any = [];
     otherdwlPlans:any = [];
     selectedDwlType;
     selectedFirstIndex:any = -1;
@@ -33,6 +35,7 @@ export class UserRecommendationComponent implements OnInit {
     packageForm:boolean=false;
     public loading = false;
     public onlineOffline: boolean = navigator.onLine;
+    planIndex = 2;
 
     constructor(private sbService:SidebarService,private httpClient: HttpClient,private service:ServiceCall,
                   public localJson:localJSON, private spinnerService:Ng4LoadingSpinnerService)
@@ -53,18 +56,27 @@ export class UserRecommendationComponent implements OnInit {
   firstTwoDwlPlans(){
       for (let index = 0; index < this.localJson.dwlTypePlans.length; index++) {
           if (index < 2){
-            this.firstTwoDwlingPlans[index] = this.localJson.dwlTypePlans[index];
+             this.firstTwoDwlingPlans[index] = this.localJson.dwlTypePlans[index];
+             var benefits = this.firstTwoDwlingPlans[index].benefits
+             this.firstTwoBenifits = benefits.split(",")
+             this.firstTwoDwlingPlans[index]["planBenifits"] = this.firstTwoBenifits;
           }else{
               this.otherdwlPlans[index-2] = this.localJson.dwlTypePlans[index];
+              var benefits = this.otherdwlPlans[index-2].benefits
+              this.otherBenifits = benefits.split(",")
+              this.otherdwlPlans[index-2]["planBenifits"] = this.otherBenifits;
           }
+          console.log(this.firstTwoDwlingPlans[0].plan)
       }
   }
- 
+//   email = "12 Months, 19% Discount Off SP Tariff, Loss"
+
+//   let toArray =  this.email.split(",");
 
   planSelected(index){
       this.selectedDwlType = index;
       if(navigator.onLine){
-        this.spinnerService.show();
+     //   this.spinnerService.show();
         // this.firstTwoDwlPlans();
         this.getPlansCall();
       }else{
@@ -79,8 +91,8 @@ export class UserRecommendationComponent implements OnInit {
         // this.loading = true;
        
   }          
-
   planSelectionBtn(index){
+    
      this.selectedFirstIndex = index;
      this.selectedSecondIndex = -1;
      this.otpForm = true
@@ -128,12 +140,9 @@ export class UserRecommendationComponent implements OnInit {
     // getWriterWithFavBooks() {
         this.service.getYahoo(localURL).subscribe(
             data => { 
-                alert(data.login)
                this.spinnerService.hide();
                this.packageForm = true;
-              // $('#Grp-Package').show();
                this.firstTwoDwlPlans();
-              //  alert('success');
             },(error:any) =>{
                 alert("Something went wrong")
             }
@@ -169,6 +178,20 @@ export class UserRecommendationComponent implements OnInit {
     //     }
     // )
 
+   }
+
+   moreLessClicked(){
+        var PlansDiv = $("#collapseMorePlans");
+        var toggleBtn = $("#collapseMorePlansBtn");
+        if (!PlansDiv.is(':visible')) {
+            toggleBtn.html("See less plans");
+            toggleBtn.addClass("toggle");
+            PlansDiv.css("display", "flex");
+        } else {
+            toggleBtn.html("See more plans");
+            toggleBtn.removeClass("toggle");
+            PlansDiv.hide();
+        }
    }
 
 
@@ -220,19 +243,19 @@ export class UserRecommendationComponent implements OnInit {
 
 
 
-            $("#collapseMorePlansBtn").on("click", function () {
-                var PlansDiv = $("#collapseMorePlans");
-                var toggleBtn = $("#collapseMorePlansBtn");
-                if (!PlansDiv.is(':visible')) {
-                    toggleBtn.html("See less plans");
-                    toggleBtn.addClass("toggle");
-                    PlansDiv.css("display", "flex");
-                } else {
-                    toggleBtn.html("See more plans");
-                    toggleBtn.removeClass("toggle");
-                    PlansDiv.hide();
-                }
-            });
+            // $("#collapseMorePlansBtn").on("click", function () {
+            //     var PlansDiv = $("#collapseMorePlans");
+            //     var toggleBtn = $("#collapseMorePlansBtn");
+            //     if (!PlansDiv.is(':visible')) {
+            //         toggleBtn.html("See less plans");
+            //         toggleBtn.addClass("toggle");
+            //         PlansDiv.css("display", "flex");
+            //     } else {
+            //         toggleBtn.html("See more plans");
+            //         toggleBtn.removeClass("toggle");
+            //         PlansDiv.hide();
+            //     }
+            // });
 
         });
     }
