@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../../sidebar/sidebar.service';
+import { CommonServices } from '../../../commom_methods/common_service'
 
 declare var $: any
 @Component({
@@ -9,8 +10,9 @@ declare var $: any
 })
 export class UserContractComponent implements OnInit {
 
-  constructor(private sbService: SidebarService) {
+  constructor(private sbService: SidebarService, private commonService:CommonServices) {
     this.sbService.getSidebar("newUser")
+    this.commonService.gotoTopOfView();
   }
 
   ngOnInit() {

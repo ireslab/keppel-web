@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { LoadingModule } from 'ngx-loading'
 
 
 import { ServiceCall } from './network_layer/web_service_call';
-import { localJSON } from './localJSON';
+import { localJSON } from './commom_methods/localJSON';
+import { CommonServices } from './commom_methods/common_service'
 
 
 
@@ -65,13 +68,13 @@ const appRoutes: Routes = [
     ExistingConfirmationComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule,
+    BrowserModule,HttpClientModule,Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true }
-    )
+    ),LoadingModule
   ],
-  providers: [SidebarService,ServiceCall,localJSON],
+  providers: [SidebarService,ServiceCall,localJSON,CommonServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

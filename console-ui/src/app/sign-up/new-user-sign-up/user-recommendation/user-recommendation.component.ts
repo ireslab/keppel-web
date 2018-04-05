@@ -5,7 +5,13 @@ import { ServiceCall } from '../../../network_layer/web_service_call';
 // import { Http } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Headers,Http,RequestOptions } from '@angular/http';
-import { localJSON } from '../../../localJSON';
+import { localJSON } from '../../../commom_methods/localJSON';
+import { Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+import { LoadingModule } from 'ngx-loading'
+
+
+
+
 
 declare var $: any
 @Component({
@@ -19,18 +25,30 @@ export class UserRecommendationComponent implements OnInit {
     dwellingTypes;
     firstTwoDwlingPlans:any = [];
     otherdwlPlans:any = [];
+    selectedDwlType;
     selectedFirstIndex:any = -1;
     selectedSecondIndex:any = -1;
     showDetails:boolean= false;
-    show:boolean=false
+    otpForm:boolean=false;
+    packageForm:boolean=false;
+    public loading = false;
+    public onlineOffline: boolean = navigator.onLine;
 
     constructor(private sbService:SidebarService,private httpClient: HttpClient,private service:ServiceCall,
-                  public localJson:localJSON) {
+                  public localJson:localJSON, private spinnerService:Ng4LoadingSpinnerService)
+     {
         this.sbService.getSidebar("newUser")
+        document.documentElement.scrollTop = 0;
        this.dwlTypePlans = this.localJson.dwlTypePlans;
-       this.dwellingTypes = this.localJson.dwellingTypes
+       this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type
+       
     }
 
+
+    // dropDownSelect(){
+    //     this.planSelected('');
+    //     //$('#Grp-Package').show();
+    // }
   
   firstTwoDwlPlans(){
       for (let index = 0; index < this.localJson.dwlTypePlans.length; index++) {
@@ -43,20 +61,36 @@ export class UserRecommendationComponent implements OnInit {
   }
  
 
-  planSelected(){
-       this.firstTwoDwlPlans();
-      // this.getPlansCall();
+  planSelected(index){
+      this.selectedDwlType = index;
+      if(navigator.onLine){
+        this.spinnerService.show();
+        // this.firstTwoDwlPlans();
+        this.getPlansCall();
+      }else{
+          alert('Please Check Internet Connection')
+      }
+       
+     
+       
+    //   setTimeout(function() {
+    //     this.spinnerService.hide();
+    //   }.bind(this), 10000);
+        // this.loading = true;
+       
   }          
 
   planSelectionBtn(index){
      this.selectedFirstIndex = index;
      this.selectedSecondIndex = -1;
-     $("#Grp_IDOTP").show();
+     this.otpForm = true
+    //  $("#Grp_IDOTP").show();
   }
   planSlctnBtn(index){
     this.selectedSecondIndex = index;
     this.selectedFirstIndex = -1;
-    $("#Grp_IDOTP").show();
+    this.otpForm = true
+    // $("#Grp_IDOTP").show();
   }
 
 
@@ -86,14 +120,22 @@ export class UserRecommendationComponent implements OnInit {
 
    
    getPlansCall(){
+      
     let _url = ApiConstants.GET_PLANS_URL;
 
-    let localURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+    let localURL ="https://api.github.com/users/AkshayKumar-123" //"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
     
     // getWriterWithFavBooks() {
         this.service.getYahoo(localURL).subscribe(
             data => { 
-                alert('success');
+                alert(data.login)
+               this.spinnerService.hide();
+               this.packageForm = true;
+              // $('#Grp-Package').show();
+               this.firstTwoDwlPlans();
+              //  alert('success');
+            },(error:any) =>{
+                alert("Something went wrong")
             }
             );
     //   } 
@@ -153,28 +195,30 @@ export class UserRecommendationComponent implements OnInit {
     //             $("#Grp_IDOTP").show();
     //         });
 
-            $(".PlanDetailSummary").on("click", function () {
-                $(this).next().click();
-            });
+            // $(".PlanDetailSummary").on("click", function () {
+            //     $(this).next().click();
+            // });
 
-            $('button.selectPropertyTypeButton').on("click", function () {
-                $('button.selectPropertyTypeButton').removeClass("selected");
-                $(this).addClass("selected");
-                $('#Grp-Package').show();
-            });
-            $("#Grp-DwellingType-MobileSelect").change(function () {
-                $('#Grp-Package').show();
-            });
+            // $('button.selectPropertyTypeButton').on("click", function () {
+            //     $('button.selectPropertyTypeButton').removeClass("selected");
+            //     $(this).addClass("selected");
+            //     $('#Grp-Package').show();
+            // });
+            // $("#Grp-DwellingType-MobileSelect").change(function () {
+            //     $('#Grp-Package').show();
+            // });
 
 
-            $("a.kpl-PlanDetailShowHide").on("click", function () {
-                var CurrentText = $(this).html();
-                if (CurrentText == "Show Details (+)") {
-                    $(this).html("Hide Details (-)");
-                }
-                else $(this).html("Show Details (+)");
-                $(this).prev().toggle();
-            });
+            // $("a.kpl-PlanDetailShowHide").on("click", function () {
+            //     var CurrentText = $(this).html();
+            //     if (CurrentText == "Show Details (+)") {
+            //         $(this).html("Hide Details (-)");
+            //     }
+            //     else $(this).html("Show Details (+)");
+            //     $(this).prev().toggle();
+            // });
+
+
 
             $("#collapseMorePlansBtn").on("click", function () {
                 var PlansDiv = $("#collapseMorePlans");

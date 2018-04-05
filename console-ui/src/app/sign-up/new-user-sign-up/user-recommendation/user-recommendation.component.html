@@ -10,8 +10,8 @@
 
         </div>
         <form id="Grp-DwellingType" class="row no-gutters">
-            <div class="col" *ngFor="let dwellingType of dwellingTypes">
-                <button (click)="planSelected()" class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">{{dwellingType}}</button>
+            <div class="col" *ngFor="let dwellingType of dwellingTypes; let i=index">
+                <button (click)="planSelected(i)" [ngClass]="{'selected': i==selectedDwlType}" class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">{{dwellingType}}</button>
             </div>
             <!-- <div class="col">
                 <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">HDB 3</button>
@@ -34,8 +34,8 @@
         </form>
         <div class="row" id="Grp-DwellingType-Mobile">
             <div class="col-12">
-                <select class="form-control" id="Grp-DwellingType-MobileSelect">
-                    <option (click)="planSelected()" *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
+                <select class="form-control" (change)="planSelected('')" id="Grp-DwellingType-MobileSelect">
+                    <option  *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
                     <!-- <option>HDB 3</option>
                     <option>HDB 4</option>
                     <option>HDB 5 EA</option>
@@ -45,7 +45,7 @@
                 </select>
             </div>
         </div>
-        <form id="Grp-Package">
+        <form *ngIf="packageForm" id="Grp-Package">
             <div class="row no-gutters">
                 <div class="col-xl-3 col-12">
                 </div>
@@ -229,7 +229,7 @@
             </div>
 
   </form>
-  <form style="margin-top:20px;" id="Grp_IDOTP">
+  <form *ngIf="otpForm" style="margin-top:20px;" id="Grp_IDOTP">
     <div class="row">
       <div class="col-12 col-md-3"></div>
       <div class="col-md-6">
@@ -270,5 +270,9 @@
     </div>
   </form>
 </div>
-
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    
+</div>
+<ng4-loading-spinner> </ng4-loading-spinner>
 <app-footer></app-footer>
