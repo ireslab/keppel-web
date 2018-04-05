@@ -1,6 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+<<<<<<< .mine
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+=======
+import { HttpClientModule } from '@angular/common/http';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { LoadingModule } from 'ngx-loading'
+>>>>>>> .theirs
+
+
+import { ServiceCall } from './network_layer/web_service_call';
+import { localJSON } from './commom_methods/localJSON';
+import { CommonServices } from './commom_methods/common_service'
+
+
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -16,6 +32,9 @@ import { AcknowledgementComponent } from './acknowledgement/acknowledgement.comp
 import { ExistingRecommendationComponent } from './sign-up/existing-user-sign-up/existing-recommendation/existing-recommendation.component';
 import { ExistingContractComponent } from './sign-up/existing-user-sign-up/existing-contract/existing-contract.component';
 import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
+import { recaptcha } from './recaptcha/recaptcha.component';
+
+
 
 const appRoutes: Routes = [
   { path: 'keppel', component: LandingPageComponent },
@@ -53,16 +72,18 @@ const appRoutes: Routes = [
     AcknowledgementComponent,
     ExistingRecommendationComponent,
     ExistingContractComponent,
-    ExistingConfirmationComponent
+    ExistingConfirmationComponent,
+    recaptcha
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,HttpClientModule,Ng4LoadingSpinnerModule.forRoot(),
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true }
-    )
+    ),LoadingModule
   ],
-  providers: [SidebarService],
+  providers: [SidebarService,ServiceCall,localJSON,CommonServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

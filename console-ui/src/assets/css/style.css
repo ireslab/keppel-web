@@ -1,8 +1,14 @@
+.form-control.ng-invalid.ng-touched{
+    border-left: 2px solid red;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+}
 
-#Grp-Package,
+
+/* #Grp-Package,
 #Grp_IDOTP {
     display: none;
-}
+} */
 
 
 
