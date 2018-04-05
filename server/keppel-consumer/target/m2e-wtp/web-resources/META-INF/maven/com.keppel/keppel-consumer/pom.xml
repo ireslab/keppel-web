@@ -130,7 +130,7 @@
 							<generatePackage>com.keppelM1.M1MMCTR</generatePackage>
 							<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
 							<schemaIncludes>
-								<include>signup.wsdl</include>
+								<include>new_user_signup.wsdl</include>
 							</schemaIncludes>
 							<generateDirectory>${project.build.directory}/generated-sources/xjc-M1</generateDirectory>
 						</configuration>
@@ -152,6 +152,42 @@
 							<generateDirectory>${project.build.directory}/generated-sources/xjc-CMR</generateDirectory>
 						</configuration>
 					</execution>
+					
+					<execution>
+						<id>xjc-schema4</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<generatePackage>com.keppelCMRET.CMRetSDAmt</generatePackage>
+							<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+							<schemaIncludes>
+								<include>security_deposit.wsdl</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-CMRET</generateDirectory>
+						</configuration>
+					</execution>
+					
+					
+					<execution>
+						<id>xjc-schema5</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<generatePackage>com.keppelCMPROMO.CmPromotionCodeGenerationBS</generatePackage>
+							<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+							<schemaIncludes>
+								<include>get_promo_code.wsdl</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-CMPROMO</generateDirectory>
+						</configuration>
+					</execution>
+					
 
 					<!-- <execution> <id>xjc-schema3</id> <phase>generate-sources</phase> 
 						<goals> <goal>generate</goal> </goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> 

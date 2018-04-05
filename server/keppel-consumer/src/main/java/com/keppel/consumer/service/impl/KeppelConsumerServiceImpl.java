@@ -1,6 +1,5 @@
 package com.keppel.consumer.service.impl;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -11,11 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.keppel.consumer.dto.AccountDto;
+import com.keppel.consumer.dto.SecurityDeposit;
 import com.keppel.consumer.service.KeppelConsumerService;
 import com.keppel.consumer.utils.FTPUtils;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY.Input;
 import com.keppelCMR.CMRECPLAN.CMRECPLAN;
+import com.keppelCMRET.CMRetSDAmt.CMRetSDAmt;
 import com.keppelM1.M1MMCTR.M1MMCTR;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails.ReceiveData;
@@ -32,10 +33,18 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 	@Qualifier("M1MMCTR")
 	@Autowired
 	private WebServiceTemplate webServiceTemplateM1MMCTR;
-	
+
 	@Qualifier("CMRECPLAN")
 	@Autowired
 	private WebServiceTemplate webServiceTemplateCMRECPLAN;
+
+	@Qualifier("CMRET")
+	@Autowired
+	private WebServiceTemplate webServiceTemplateCMRET;
+	
+	@Qualifier("CMPROMO")
+	@Autowired
+	private WebServiceTemplate webServiceTemplateCMPROMO;
 
 	/*
 	 * @Qualifier("CREATEINCIDENTWS")
@@ -44,7 +53,7 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 	 */
 
 	@Override
-	public void submitUserData(AccountDto accountDto) {
+	public M1MMCTR submitNewResidentialSignupData(AccountDto accountDto) {
 
 		M1MMCTR m1mmctr = new M1MMCTR();
 		if (accountDto.getPremiseId() != null) {
@@ -79,11 +88,18 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetail.setPremiseAddress2(accountDto.getPremiseAddress2());
 		receiveDetail.setPremiseType(accountDto.getPremiseType());
 		receiveDetail.setPromoCode(accountDto.getPromoCode());
-		receiveDetail.setRecommendedPlans(accountDto.getRecommendedPlans());
+		receiveDetail.setRecommendedPlans(accountDto.getSelectedPlan());
 		receiveDetail.setRemarks(accountDto.getRemarks());
 		receiveDetail.setServiceStartDate(accountDto.getServiceStartDate());
 		receiveDetail.setTenantorOwner(accountDto.getTenantOrOwner());
-
+		receiveDetail.setRecommendedPlanVersion(accountDto.getSelectedPlanVersion());
+		receiveDetail.setPastMonthConsumptionDetails(accountDto.getPastMonthConsumptionDetail());
+		receiveDetail.setMarketingEmail(accountDto.getMarketingEmail());
+		receiveDetail.setMarketingPhone(accountDto.getMarketingPhone());
+		receiveDetail.setMarketingSMS(accountDto.getMarketingSMS());
+ 		receiveDetail.setTC(accountDto.getTC());
+		receiveDetail.setPDPA(accountDto.getPDPA());
+ 
 		ReceiveData receiveData = new ReceiveData();
 		receiveData.setReceiveDetail(receiveDetail);
 
@@ -95,7 +111,47 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		m1mmctr.getReceiveDetails().addAll(receiveDetailsList);
 		M1MMCTR m1mmctrResponse = (M1MMCTR) webServiceTemplateM1MMCTR.marshalSendAndReceive(m1mmctr);
 		submitUserImageData(accountDto);
+		
+		return m1mmctrResponse;
 	}
+
+	// premiseAddress = getStreetNo().getValue().toString() + " ";
+	// premiseAddress = premiseAddress + getStreetName().getValue().toString() + "
+	// ";
+	// premiseAddress = premiseAddress + "#" + getLevelNo().getValue().toString() +
+	// " ";
+	// premiseAddress = premiseAddress +
+	// getPremiseBuildingName().getValue().toString();
+
+	// billingAddress = getBillingSNo().getValue().toString() + " ";
+
+	// billingAddress = billingAddress + "#" + getBillingLN().getValue().toString()
+	// + " ";
+
+	// billingAddress = billingAddress +
+	// getBillingBuildingName().getValue().toString();
+
+	// bPostalCode = getBillingPC().getValue().toString();
+
+	// consumerRecevieDetail.setPremiseAddress(premiseAddress);
+
+	// consumerRecevieDetail.setBillingAddress(premiseAddress.trim());
+	// consumerRecevieDetail.setBillingPostalcode(postalCode);
+
+	// consumerRecevieDetail.setCity("Singapore");
+
+	// consumerRecevieDetail.setPostcode(postalCode);
+
+	// consumerRecevieDetail.setCustomerType("RESI");
+	// consumerRecevieDetail.setRecommendedPlanVersion(rpVersion);
+	//
+	// consumerRecevieDetail.setTC(getTc1().getValue().toString());
+
+	// consumerRecevieDetail.setEMA(getTc2().getValue().toString());
+
+	// consumerRecevieDetail.setPDPA(getTc3().getValue().toString());
+
+	// consumerRecevieDetail.setPDPA("false");
 
 	public void getDwellingTypes() {
 
@@ -136,6 +192,28 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		body.setBo("CM-MasterRecomendedPlans");
 		CMRECPLAN respone = (CMRECPLAN) webServiceTemplateCMRECPLAN.marshalSendAndReceive(body);
 		return respone.getPlans();
+	}
+
+	@Override
+	public SecurityDeposit.SecurityDepositResponse getSecutityDeposit(SecurityDeposit deposits) {
+		CMRetSDAmt body = new CMRetSDAmt();
+		CMRetSDAmt.Input input = new CMRetSDAmt.Input();
+		input.setIdType(deposits.getIdType());
+		input.setPayMethod(deposits.getPayMethod());
+		input.setPremiseType(deposits.getPremiseType());
+		body.setInput(input);
+		CMRetSDAmt respone = (CMRetSDAmt) webServiceTemplateCMRET.marshalSendAndReceive(body);
+
+		SecurityDeposit.SecurityDepositResponse depositResponse = deposits.new SecurityDepositResponse();
+		if (respone == null || respone.getOutput() == null || respone.getOutput().getSdAmount() == null
+				|| respone.getOutput().getSdAmount().length() <= 0) {
+			depositResponse.setSuccess(false);
+			depositResponse.setSd_amount(null);
+		} else {
+			depositResponse.setSuccess(true);
+			depositResponse.setSd_amount(respone.getOutput().getSdAmount());
+		}
+		return depositResponse;
 	}
 
 }

@@ -52,12 +52,35 @@ public class KeppelWebServiceConfig {
 		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
 		return webServiceTemplate;
 	}
+	
+	@Bean(name = "CMRET")
+	public WebServiceTemplate webServiceTemplateCMRET() throws KeyManagementException, NoSuchAlgorithmException {
+		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRET());
+		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRET());
+		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CM-RetSDAmt");
+		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
+		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
+		return webServiceTemplate;
+	}
+	
+	@Bean(name = "CMPROMO")
+	public WebServiceTemplate webServiceTemplateCMPROMO() throws KeyManagementException, NoSuchAlgorithmException {
+		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRET());
+		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRET());
+		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CmPromotionCodeGenerationBS");
+		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
+		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
+		return webServiceTemplate;
+	}
+	
+	
 
 	@Bean
 	Jaxb2Marshaller jaxb2MarshallerCMRETPERMTY() {
 		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setContextPath("com.keppelCM.CMRETPERMTY");
-
 		return jaxb2Marshaller;
 	}
 
@@ -65,7 +88,6 @@ public class KeppelWebServiceConfig {
 	Jaxb2Marshaller jaxb2MarshallerM1MMCTR() {
 		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setContextPath("com.keppelM1.M1MMCTR");
-
 		return jaxb2Marshaller;
 	}
 	
@@ -73,9 +95,16 @@ public class KeppelWebServiceConfig {
 	Jaxb2Marshaller jaxb2MarshallerCMRECPLAN() {
 		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setContextPath("com.keppelCMR.CMRECPLAN");
-
 		return jaxb2Marshaller;
 	}
+	
+	@Bean
+	Jaxb2Marshaller jaxb2MarshallerCMRET() {
+		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+		jaxb2Marshaller.setContextPath("com.keppelCMRET.CMRetSDAmt");
+		return jaxb2Marshaller;
+	}
+	
 	
 	
 	
