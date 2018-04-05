@@ -1,5 +1,6 @@
 <app-sidebar></app-sidebar>
 
+<<<<<<< .mine
 <div class="container mainContent">
   <div class="row">
     <div class="col-12 text-center">
@@ -15,6 +16,23 @@
       <button (click)="planSelected()" class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">{{dwellingType}}</button>
     </div>
     <!-- <div class="col">
+=======
+        </div>
+        <form id="Grp-DwellingType" class="row no-gutters">
+            <div class="col" *ngFor="let dwellingType of dwellingTypes; let i=index">
+                <button (click)="planSelected(i)" [ngClass]="{'selected': i==selectedDwlType}" class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">{{dwellingType}}</button>
+            </div>
+            <!-- <div class="col">
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
                 <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">HDB 3</button>
             </div> -->
     <!-- <div class="col">
@@ -32,6 +50,7 @@
             <div class="col">
                 <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">Others</button>
             </div> -->
+<<<<<<< .mine
   </div>
   <!-- formReplaced -->
   <div class="row" id="Grp-DwellingType-Mobile">
@@ -39,6 +58,15 @@
       <select class="form-control" id="Grp-DwellingType-MobileSelect">
         <option (click)="planSelected()" *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
         <!-- <option>HDB 3</option>
+=======
+        </form>
+        <div class="row" id="Grp-DwellingType-Mobile">
+            <div class="col-12">
+                <select class="form-control" (change)="planSelected('')" id="Grp-DwellingType-MobileSelect">
+                    <option  *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
+                    <!-- <option>HDB 3</option>
+
+>>>>>>> .theirs
                     <option>HDB 4</option>
                     <option>HDB 5 EA</option>
                     <option>Condominium</option>
@@ -78,14 +106,86 @@
           </div>
           <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
         </div>
+<<<<<<< .mine
       </div>
 
 
 
+=======
+        <form *ngIf="packageForm" id="Grp-Package">
+            <div class="row no-gutters">
+                <div class="col-xl-3 col-12">
+                </div>
+>>>>>>> .theirs
+
+<<<<<<< .mine
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+                
+                <!-- <div class="col-xl-3 col-md-6 col-6">
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>Smart</h3>
+                            <p>allows greater optimisation</p>
+                            <hr/>
+                            <p>Estimated Monthly Bill: S$59*</p>
+                            <h4>17% Less</h4>
+                            <p>than with current SP Tariff</p>
+                        </div>
+                        <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel">
+                            Details:
+                            <ul>
+                                <li>24 Months</li>
+                                <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+                                <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+                                <li>All charges are absorbed</li>
+                                <li>Consumption is loss adjusted</li>
+                            </ul>
+                        </div>
+                        <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+                </div> -->
+>>>>>>> .theirs
+
+
+
+
+<<<<<<< .mine
       <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of firstTwoDwlingPlans">
 
+=======
+                
+                <div class="col-xl-3 col-md-6 col-6"  *ngFor="let dwlPlans of firstTwoDwlingPlans; let i = index;">
+>>>>>>> .theirs
+
+<<<<<<< .mine
         <div class="PlanDetailCard">
           <div class="PlanDetailSummary">
             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
@@ -110,11 +210,36 @@
           <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
         </div>
 
+
+=======
+                    <div (click)="planSelectionBtn(i)" class="PlanDetailCard"  [ngClass]="{'selected': i==selectedFirstIndex}">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+                            <h3>{{dwlPlans.plan}}</h3>
+                            <p>{{dwlPlans.details}}</p>
+                            <hr/>
+                            <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index" [ngClass]="{'planBenifit': i==1}">{{benifit}}</label>
+                            <!-- <p>Estimated Monthly Bill: S</p>
+                            {{dwlPlans.monthlyBill}}  {{dwlPlans.discount}}
+                            <h4></h4>
+                            <p>than with current SP Tariff</p> -->
+                        </div>
+                        <button  [ngClass]="{'btn-primary': i==selectedFirstIndex}" class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel"  id="{{i}}">
+                            Details:
+                            <ul>
+                                <!-- <li *ngFor="let details of dwlPlans.details">{{details}}</li> -->
+                                <li>Product Name : {{dwlPlans.product}}</li>
+                                <li>Start Date : {{dwlPlans.startDate}}</li>
+                                <li>Duration :{{dwlPlans.contractDuration}} Months</li>
+                                <li>Charge Type : {{dwlPlans.chargeType}}</li>
+                            </ul>
+                        </div>
+                        <a (click)="showDetailClicked(i)" id="show{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+>>>>>>> .theirs
+
       </div>
-
-
-
-
 
       <div class="col-lg-3 col-md-6 col-12">
 
@@ -127,6 +252,7 @@
       <a href="#">here</a> to see applicable T&C and cost/charges components
     </div>
 
+<<<<<<< .mine
     <div style="text-align: center;">
       <button class="btn btn-secondary" type="button" id="collapseMorePlansBtn">See more plans
       </button>
@@ -159,8 +285,99 @@
       </div>
       <!-- <div class="col-xl-3 col-md-6 col-6">
                     <div class="PlanDetailCard">
+=======
+
+            <div (click) ="moreLessClicked()"style="text-align: center;">
+                <button class="btn btn-secondary" type="button" id="collapseMorePlansBtn">See more plans
+                </button>
+            </div>
+            <div class="collapse row no-gutters" id="collapseMorePlans">
+                <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of otherdwlPlans; let i = index;">
+                    <div (click)="planSlctnBtn(i)" class="PlanDetailCard" [ngClass]="{'selected': i==selectedSecondIndex}">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+<<<<<<< .mine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+                            <h3>{{dwlPlans.plan}}</h3>
+                            <p>{{dwlPlans.details}}</p>
+                            <hr/>
+                            <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index" [ngClass]="{'planBenifit': i==2}">{{benifit}}</label>
+                            <!-- <p>Estimated Monthly Bill: S</p>
+                            {{dwlPlans.monthlyBill}}*  {{dwlPlans.discount}}
+                            <h4></h4>
+                            <p>than with current SP Tariff</p> -->
+                        </div>
+                        <button [ngClass]="{'btn-primary': i==selectedSecondIndex}" class="btn btn-secondary selectPlanButton" type="button">Select</button>
+                        <div class="PlanDetailPanel" id="detail{{i}}">
+                            Details:
+                            <ul>
+                                <!-- <li *ngFor="let details of dwlPlans.details">{{details}}</li> -->
+                                <li>Product Name : {{dwlPlans.product}}</li>
+                                <li>Start Date : {{dwlPlans.startDate}}</li>
+                                <li>Duration :{{dwlPlans.contractDuration}} Months</li>
+                                <li>Charge Type : {{dwlPlans.chargeType}}</li>
+                            </ul>
+                        </div>
+                        <a (click)="showHideDetailClicked(i)" id="showHide{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                    </div>
+                </div>
+                <!-- <div class="col-xl-3 col-md-6 col-6">
+                    <div class="PlanDetailCard">
+                        <div class="PlanDetailSummary">
+                            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
+>>>>>>> .theirs
                             <h3>Smart</h3>
                             <p>allows greater optimisation</p>
                             <hr/>
@@ -234,9 +451,15 @@
                 </div> -->
     </div>
 
+<<<<<<< .mine
   </div>
   <!-- formReplaced -->
   <form [formGroup]="signUpForm" style="margin-top:20px;" id="Grp_IDOTP">
+=======
+  </form>
+  <form *ngIf="otpForm" style="margin-top:20px;" id="Grp_IDOTP">
+
+>>>>>>> .theirs
     <div class="row">
       <div class="col-12 col-md-3"></div>
       <div class="col-md-6">
@@ -305,5 +528,9 @@
     </div>
   </form>
 </div>
-
+<div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    
+</div>
+<ng4-loading-spinner> </ng4-loading-spinner>
 <app-footer></app-footer>
