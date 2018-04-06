@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../../sidebar/sidebar.service';
-import { CommonServices } from '../../../commom_methods/common_service'
 
 @Component({
   selector: 'app-user-confirmation',
@@ -9,9 +8,8 @@ import { CommonServices } from '../../../commom_methods/common_service'
 })
 export class UserConfirmationComponent implements OnInit {
 
-  constructor(private sbService:SidebarService, private commonservice: CommonServices) {
+  constructor(private sbService:SidebarService) {
     this.sbService.getSidebar("newUser")
-    this.commonservice.gotoTopOfView();
   }
 
   ngOnInit() {

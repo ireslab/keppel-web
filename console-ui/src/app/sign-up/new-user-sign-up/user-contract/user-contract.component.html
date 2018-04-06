@@ -1,6 +1,4 @@
 <app-sidebar></app-sidebar>
-
-
 <div class="container mainContent">
   <!-- <form> -->
     <div class="row">
@@ -17,20 +15,19 @@
               <label>Select Optional Services (if required)</label>
               <small>Click here to see the cost of optional services</small>
             </div>
-
-            <!-- Optional Services -->
             <div class="form-group col-12 vasGroup">
               <div class="row no-gutters">
-                <div class="col-4" *ngFor="let optPlans of localjson.optionalPlans; let i=index">
-                  <!-- <button (click)="optPlanSelected(i)" [ngClass]="{'selected': i==optSelected}" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" type="button">{{optPlans.planName}}<br />{{optPlans.charge}}</button> -->
-                  <button (click)="optPlanSelected(i)" [ngClass]="{'selected': optSelected.indexOf(i) !== -1}" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" type="button">{{optPlans.planName}}<br />{{optPlans.charge}}</button>
+                <div class="col-4">
+                  <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" style="padding-top:15px;" type="button">Paper Bill
+                    <small>(+$1/bill)</small>
+                  </button>
                 </div>
-                <!-- <div class="col-4">
+                <div class="col-4">
                   <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" type="button">VAS #1</button>
                 </div>
                 <div class="col-4">
                   <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" type="button">VAS #2</button>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>

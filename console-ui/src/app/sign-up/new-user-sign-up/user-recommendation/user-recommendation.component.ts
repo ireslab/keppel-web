@@ -1,25 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../../../sidebar/sidebar.service';
-<<<<<<< .mine
-import { recaptcha } from '../../../recaptcha/recaptcha.component';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ValidateNric } from '../../../Utility/nric_validatior'
-
-
-
-
-=======
 import { ApiConstants } from '../../../network_layer/api_constants';
 import { ServiceCall } from '../../../network_layer/web_service_call';
-// import { Http } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Headers,Http,RequestOptions } from '@angular/http';
 import { localJSON } from '../../../commom_methods/localJSON';
 import { Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
-import { LoadingModule } from 'ngx-loading'
->>>>>>> .theirs
-
+import { LoadingModule } from 'ngx-loading';
+import { recaptcha } from '../../../recaptcha/recaptcha.component';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ValidateNric } from '../../../Utility/nric_validatior';
 
 
 
@@ -33,27 +24,6 @@ declare var grecaptcha: any
     providers: [recaptcha]
 })
 export class UserRecommendationComponent implements OnInit {
-<<<<<<< .mine
-
-    dwellingTypes = ['HDB 1/2', 'HDB 3', 'HDB 4', 'HDB 5', 'Condominium', 'Landed Property', 'Others']
-    dwlTypePlans = [
-        { "planName": "SMART", "monthlyBill": "$59*", "discount": "17% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] },
-        { "planName": "CLEAN", "monthlyBill": "$59*", "discount": "19% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] },
-        { "planName": "SMART", "monthlyBill": "$59*", "discount": "17% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] },
-        { "planName": "CLEAN", "monthlyBill": "$59*", "discount": "19% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] },
-        { "planName": "SMART", "monthlyBill": "$59*", "discount": "17% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] },
-        { "planName": "CLEAN", "monthlyBill": "$59*", "discount": "19% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] },
-        { "planName": "SMART", "monthlyBill": "$59*", "discount": "17% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] },
-        { "planName": "CLEAN", "monthlyBill": "$59*", "discount": "19% LESS", "details": ['24 Months', 'Peak Rate (7am to 11pm): $0.1/kwh', 'Off Peak Rate(11pm to 7am): $0.01/kwh', 'All charges are absorbed', 'Consumption is loss adjusted'] }
-    ]
-    firstTwoDwlingPlans: any = [];
-    otherdwlPlans: any = [];
-    captcha: any;
-    signUpForm: FormGroup;
-    isValidCaptcha: boolean = false;
-    captchaErr: boolean = false;
-    todayDateTime: Date;
-=======
     
     dwlTypePlans;
     dwellingTypes;
@@ -61,19 +31,6 @@ export class UserRecommendationComponent implements OnInit {
     firstTwoBenifits:any = [];
     otherBenifits:any = [];
     otherdwlPlans:any = [];
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
     selectedDwlType;
     selectedFirstIndex:any = -1;
     selectedSecondIndex:any = -1;
@@ -82,95 +39,24 @@ export class UserRecommendationComponent implements OnInit {
     packageForm:boolean=false;
     public loading = false;
     public onlineOffline: boolean = navigator.onLine;
+    captcha: any;
+    signUpForm: FormGroup;
+    isValidCaptcha: boolean = false;
+    captchaErr: boolean = false;
+    todayDateTime: Date;
     planIndex = 2;
 
-<<<<<<< .mine
-    constructor(private sbService: SidebarService, private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router) {
-
-
-=======
     constructor(private sbService:SidebarService,private httpClient: HttpClient,private service:ServiceCall,
-                  public localJson:localJSON, private spinnerService:Ng4LoadingSpinnerService)
+                  public localJson:localJSON, private spinnerService:Ng4LoadingSpinnerService, private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router)
      {
->>>>>>> .theirs
         this.sbService.getSidebar("newUser")
-<<<<<<< .mine
-        
-
-
-
-=======
         document.documentElement.scrollTop = 0;
        this.dwlTypePlans = this.localJson.dwlTypePlans;
        this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type
        
->>>>>>> .theirs
     }
 
-<<<<<<< .mine
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-
-    // dropDownSelect(){
-    //     this.planSelected('');
-    //     //$('#Grp-Package').show();
-    // }
   
   firstTwoDwlPlans(){
       for (let index = 0; index < this.localJson.dwlTypePlans.length; index++) {
@@ -188,9 +74,7 @@ export class UserRecommendationComponent implements OnInit {
           console.log(this.firstTwoDwlingPlans[0].plan)
       }
   }
-//   email = "12 Months, 19% Discount Off SP Tariff, Loss"
 
-//   let toArray =  this.email.split(",");
 
   planSelected(index){
       this.selectedDwlType = index;
@@ -215,28 +99,14 @@ export class UserRecommendationComponent implements OnInit {
      this.selectedFirstIndex = index;
      this.selectedSecondIndex = -1;
      this.otpForm = true
-    //  $("#Grp_IDOTP").show();
   }
   planSlctnBtn(index){
     this.selectedSecondIndex = index;
     this.selectedFirstIndex = -1;
     this.otpForm = true
-    // $("#Grp_IDOTP").show();
   }
->>>>>>> .theirs
 
 
-<<<<<<< .mine
-    firstTwoDwlPlans() {
-        for (let index = 0; index < this.dwlTypePlans.length; index++) {
-            if (index < 2) {
-                this.firstTwoDwlingPlans[index] = this.dwlTypePlans[index];
-            } else {
-                this.otherdwlPlans[index - 2] = this.dwlTypePlans[index];
-            }
-        }
-    }
-=======
   showDetailClicked(index){
        var a = document.getElementById('show'+index).innerText
     if (a == "SHOW DETAILS (+)") {
@@ -246,19 +116,7 @@ export class UserRecommendationComponent implements OnInit {
     }
    $("#"+index).toggle();
   }
->>>>>>> .theirs
 
-<<<<<<< .mine
-    planSelected() {
-        this.firstTwoDwlPlans();
-    }
-
-
-
-
-
-
-=======
   showHideDetailClicked(index){
     var a = document.getElementById('showHide'+index).innerText
     if (a == "SHOW DETAILS (+)") {
@@ -268,92 +126,11 @@ export class UserRecommendationComponent implements OnInit {
     }
    $("#"+"detail"+index).toggle();
  }
->>>>>>> .theirs
 
 
 
    
 
-<<<<<<< .mine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
    
    getPlansCall(){
       
@@ -424,63 +201,24 @@ export class UserRecommendationComponent implements OnInit {
 
 
   ngOnInit() {
+   
+    this.signUpForm = this.fb.group({
+            idNumber: ['', [Validators.required, ValidateNric]],
+            mobileNumber: ['', [Validators.required, Validators.pattern('(8|9)[0-9]{7}$')]],
+        })
     
-    $(document).ready(function () {
+  //  $(document).ready(function () {
       //Script on Page Load
     //   $('button.selectPlanButton').on("click", function () {
     //       //Reset the selections
     //       $('button.selectPlanButton').removeClass("btn-primary");
     //       $('button.selectPlanButton').addClass("btn-secondary");
     //       $(".PlanDetailCard").removeClass("selected");
->>>>>>> .theirs
 
-<<<<<<< .mine
-
-
-
-    ngOnInit() {
-        this.signUpForm = this.fb.group({
-            idNumber: ['', [Validators.required, ValidateNric]],
-            mobileNumber: ['', [Validators.required, Validators.pattern('(8|9)[0-9]{7}$')]],
-        })
-
-
-        $(document).ready(function () {
-            //Script on Page Load
-            $('button.selectPlanButton').on("click", function () {
-                //Reset the selections
-                $('button.selectPlanButton').removeClass("btn-primary");
-                $('button.selectPlanButton').addClass("btn-secondary");
-                $(".PlanDetailCard").removeClass("selected");
-
-                //Highlight the correct panel
-                $(this).parent().addClass("selected");
-                $(this).removeClass("btn-secondary");
-                $(this).addClass("btn-primary");
-=======
     //             //Highlight the correct panel
     //             $(this).parent().addClass("selected");
     //             $(this).removeClass("btn-secondary");
     //             $(this).addClass("btn-primary");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
 
     //             //Show next step
     //             $("#Grp_IDOTP").show();
@@ -525,10 +263,8 @@ export class UserRecommendationComponent implements OnInit {
             //     }
             // });
 
-        });
-    } // <!--onInit-->
-
-
+     //   });
+    }
     getCapthaToken(event) {
         if (this.captchaErr == true) {
             document.getElementById('verified_captcha').style.display = 'none';

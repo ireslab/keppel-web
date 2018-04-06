@@ -1,41 +1,22 @@
 <app-sidebar></app-sidebar>
+    
+    <div class="container mainContent">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>
+                    <img src="assets/img/img-NewUserHouse.png" /> Click home type below to select
+                </h2>
+            </div>
 
-<<<<<<< .mine
-<div class="container mainContent">
-  <div class="row">
-    <div class="col-12 text-center">
-      <h2>
-        <img src="assets/img/img-NewUserHouse.png" /> Click home type below to select
-      </h2>
-    </div>
-
-  </div>
-  <div id="Grp-DwellingType" class="row no-gutters">
-    <!-- formReplaced -->
-    <div class="col" *ngFor="let dwellingType of dwellingTypes">
-      <button (click)="planSelected()" class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">{{dwellingType}}</button>
-    </div>
-    <!-- <div class="col">
-=======
         </div>
-        <form id="Grp-DwellingType" class="row no-gutters">
+        <div id="Grp-DwellingType" class="row no-gutters">
             <div class="col" *ngFor="let dwellingType of dwellingTypes; let i=index">
                 <button (click)="planSelected(i)" [ngClass]="{'selected': i==selectedDwlType}" class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">{{dwellingType}}</button>
             </div>
             <!-- <div class="col">
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
                 <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">HDB 3</button>
             </div> -->
-    <!-- <div class="col">
+            <!-- <div class="col">
                 <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">HDB 4</button>
             </div>
             <div class="col">
@@ -50,102 +31,25 @@
             <div class="col">
                 <button class="btn btn-block btn-secondary selectPropertyTypeButton btn-Option" type="button">Others</button>
             </div> -->
-<<<<<<< .mine
-  </div>
-  <!-- formReplaced -->
-  <div class="row" id="Grp-DwellingType-Mobile">
-    <div class="col-12">
-      <select class="form-control" id="Grp-DwellingType-MobileSelect">
-        <option (click)="planSelected()" *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
-        <!-- <option>HDB 3</option>
-=======
-        </form>
+        </div>
         <div class="row" id="Grp-DwellingType-Mobile">
             <div class="col-12">
                 <select class="form-control" (change)="planSelected('')" id="Grp-DwellingType-MobileSelect">
                     <option  *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
                     <!-- <option>HDB 3</option>
-
->>>>>>> .theirs
                     <option>HDB 4</option>
                     <option>HDB 5 EA</option>
                     <option>Condominium</option>
                     <option>Landed Property</option>
                     <option>Others</option> -->
-      </select>
-    </div>
-  </div>
-  <div id="Grp-Package">
-    <!-- formReplaced -->
-    <div class="row no-gutters">
-      <div class="col-xl-3 col-12">
-      </div>
-
-
-      <div class="col-xl-3 col-md-6 col-6">
-        <div class="PlanDetailCard">
-          <div class="PlanDetailSummary">
-            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-            <h3>Smart</h3>
-            <p>allows greater optimisation</p>
-            <hr/>
-            <p>Estimated Monthly Bill: S$59*</p>
-            <h4>17% Less</h4>
-            <p>than with current SP Tariff</p>
-          </div>
-          <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-          <div class="PlanDetailPanel">
-            Details:
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
-          </div>
-          <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
+                </select>
+            </div>
         </div>
-<<<<<<< .mine
-      </div>
-
-
-
-=======
-        <form *ngIf="packageForm" id="Grp-Package">
+        <div *ngIf="packageForm" id="Grp-Package">
             <div class="row no-gutters">
                 <div class="col-xl-3 col-12">
                 </div>
->>>>>>> .theirs
 
-<<<<<<< .mine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
                 
                 <!-- <div class="col-xl-3 col-md-6 col-6">
                     <div class="PlanDetailCard">
@@ -172,46 +76,13 @@
                         <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
                 </div> -->
->>>>>>> .theirs
 
 
 
 
-<<<<<<< .mine
-      <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of firstTwoDwlingPlans">
-
-=======
                 
                 <div class="col-xl-3 col-md-6 col-6"  *ngFor="let dwlPlans of firstTwoDwlingPlans; let i = index;">
->>>>>>> .theirs
 
-<<<<<<< .mine
-        <div class="PlanDetailCard">
-          <div class="PlanDetailSummary">
-            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-            <h3>{{dwlPlans.planName}}</h3>
-            <p>allows greater optimisation</p>
-            <hr/>
-            <p>Estimated Monthly Bill: S{{dwlPlans.monthlyBill}}</p>
-            <h4>{{dwlPlans.discount}}</h4>
-            <p>than with current SP Tariff</p>
-          </div>
-          <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-          <div class="PlanDetailPanel">
-            Details:
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
-          </div>
-          <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
-        </div>
-
-
-=======
                     <div (click)="planSelectionBtn(i)" class="PlanDetailCard"  [ngClass]="{'selected': i==selectedFirstIndex}">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
@@ -237,11 +108,10 @@
                         </div>
                         <a (click)="showDetailClicked(i)" id="show{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
->>>>>>> .theirs
 
-      </div>
+                </div>
 
-      <div class="col-lg-3 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12">
 
       </div>
     </div>
@@ -252,40 +122,6 @@
       <a href="#">here</a> to see applicable T&C and cost/charges components
     </div>
 
-<<<<<<< .mine
-    <div style="text-align: center;">
-      <button class="btn btn-secondary" type="button" id="collapseMorePlansBtn">See more plans
-      </button>
-    </div>
-    <div class="collapse row no-gutters" id="collapseMorePlans">
-      <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of otherdwlPlans">
-        <div class="PlanDetailCard">
-          <div class="PlanDetailSummary">
-            <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-            <h3>{{dwlPlans.planName}}</h3>
-            <p>allows greater optimisation</p>
-            <hr/>
-            <p>Estimated Monthly Bill: S{{dwlPlans.monthlyBill}}*</p>
-            <h4>{{dwlPlans.discount}}</h4>
-            <p>than with current SP Tariff</p>
-          </div>
-          <button class="btn btn-secondary selectPlanButton" type="button">Select</button>
-          <div class="PlanDetailPanel">
-            Details:
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
-          </div>
-          <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
-        </div>
-      </div>
-      <!-- <div class="col-xl-3 col-md-6 col-6">
-                    <div class="PlanDetailCard">
-=======
 
             <div (click) ="moreLessClicked()"style="text-align: center;">
                 <button class="btn btn-secondary" type="button" id="collapseMorePlansBtn">See more plans
@@ -294,62 +130,8 @@
             <div class="collapse row no-gutters" id="collapseMorePlans">
                 <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of otherdwlPlans; let i = index;">
                     <div (click)="planSlctnBtn(i)" class="PlanDetailCard" [ngClass]="{'selected': i==selectedSecondIndex}">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
-<<<<<<< .mine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
                             <h3>{{dwlPlans.plan}}</h3>
                             <p>{{dwlPlans.details}}</p>
                             <hr/>
@@ -377,7 +159,6 @@
                     <div class="PlanDetailCard">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
->>>>>>> .theirs
                             <h3>Smart</h3>
                             <p>allows greater optimisation</p>
                             <hr/>
@@ -399,7 +180,7 @@
                         <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
                 </div> -->
-      <!-- <div class="col-xl-3 col-md-6 col-6">
+                <!-- <div class="col-xl-3 col-md-6 col-6">
                     <div class="PlanDetailCard">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
@@ -424,7 +205,7 @@
                         <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
                 </div> -->
-      <!-- <div class="col-xl-3 col-md-6 col-6">
+                <!-- <div class="col-xl-3 col-md-6 col-6">
                     <div class="PlanDetailCard">
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
@@ -449,17 +230,11 @@
                         <a class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
                 </div> -->
-    </div>
+            </div>
 
-<<<<<<< .mine
-  </div>
-  <!-- formReplaced -->
-  <form [formGroup]="signUpForm" style="margin-top:20px;" id="Grp_IDOTP">
-=======
-  </form>
-  <form *ngIf="otpForm" style="margin-top:20px;" id="Grp_IDOTP">
+        </div>
 
->>>>>>> .theirs
+  <form *ngIf="otpForm" [formGroup]="signUpForm" style="margin-top:20px;" id="Grp_IDOTP">
     <div class="row">
       <div class="col-12 col-md-3"></div>
       <div class="col-md-6">
@@ -528,9 +303,9 @@
     </div>
   </form>
 </div>
+
 <div class="my-container">
-    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-    
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>  
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <app-footer></app-footer>
