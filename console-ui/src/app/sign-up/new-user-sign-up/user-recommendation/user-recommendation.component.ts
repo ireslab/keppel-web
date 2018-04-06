@@ -265,5 +265,63 @@ export class UserRecommendationComponent implements OnInit {
 
      //   });
     }
+    getCapthaToken(event) {
+        if (this.captchaErr == true) {
+            document.getElementById('verified_captcha').style.display = 'none';
+        }
+        this.isValidCaptcha = true;
+        this.captcha = event.token;
+    }
+
+    resetCaptcha() {
+        this.isValidCaptcha = false;
+        this.captchaErr = false;
+        grecaptcha.reset()
+    }
+
+    userSignUp() {
+        if (this.signUpForm.invalid) {
+            for (let control in this.signUpForm.controls) {
+                this.signUpForm.get(control).markAsTouched();
+                this.signUpForm.get(control).invalid;
+                this.signUpForm.get(control).updateValueAndValidity();
+            }
+            console.error("form is not valid")
+            return;
+        } if (this.isValidCaptcha == false) {
+            this.captchaErr = true;
+            return;
+        } else {
+            let _url = "";
+            let reqJson = JSON.stringify({
+                "idNumber": this.signUpForm.controls['idNumber'].value,
+                "mobileNumber": this.signUpForm.controls['mobileNumber'].value,
+                "captcha": this.captcha,
+            });
+            console.log(reqJson);
+            this.todayDateTime = new Date
+            $('#OTPModal').modal('show');
+            this.resetCaptcha();
+            // this.signUpForm.reset();
+
+
+            // this.router.navigateByUrl('');
+            // this.httpPostCall(_url, reqJson).subscribe(
+            //     (data) => {
+            //         this.resetCaptcha();
+            //         console.log(data)
+            //     },
+            //     (error) => {
+            //         this.resetCaptcha();
+            //         console.log(error)
+            //     });
+            // data-toggle="modal" data-target="#OTPModal"
+        }
+
+
+    }
+
+    get idNumber() { return this.signUpForm.get('idNumber'); }
+    get mobileNumber() { return this.signUpForm.get('mobileNumber'); }
 
 }
