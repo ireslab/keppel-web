@@ -19,6 +19,7 @@ import { ExistingContractComponent } from './sign-up/existing-user-sign-up/exist
 import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
 import { recaptcha } from './recaptcha/recaptcha.component';
 
+
 const appRoutes: Routes = [
   { path: 'keppel', component: LandingPageComponent },
   { path: 'aknowledgement', component: AcknowledgementComponent },
