@@ -1,18 +1,28 @@
 package com.keppel.consumer.controller;
 
-
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
+import com.keppel.consumer.dto.AccountDto;
+import com.keppel.consumer.dto.RESPONSE_CODE;
+import com.keppel.consumer.dto.ResponseDto;
+import com.keppel.consumer.dto.SecurityDeposit;
 import com.keppel.consumer.service.ActivityAuditService;
 import com.keppel.consumer.service.KeppelConsumerService;
+import com.keppelCMR.CMRECPLAN.CMRECPLAN;
+import com.keppelM1.M1MMCTR.M1MMCTR;
 
 @RestController
 @RequestMapping(value = "/v1/*", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,7 +42,7 @@ public class KeppelConsumerController {
 	 * Path for method:
 	 * "<server address>/mfp/api/adapters/SpringAdapterSample/resource"
 	 */
-	
+
 	public String getDD() {
 		// log message to server log
 		logger.info("Logging info message...");
@@ -40,9 +50,13 @@ public class KeppelConsumerController {
 		return "Hello from 123 resource";
 	}
 
-/*
-	@ApiOperation(value = "Returns 'Hello from resource'", notes = "A basic example of a resource returning a constant string.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Hello message returned") })*/
+	/*
+	 * @ApiOperation(value = "Returns 'Hello from resource'", notes =
+	 * "A basic example of a resource returning a constant string.")
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 200, message =
+	 * "Hello message returned") })
+	 */
 	@RequestMapping(value = "getResourceData", method = RequestMethod.GET)
 	public String getResourceData() {
 		// log message to server log
@@ -174,99 +188,143 @@ public class KeppelConsumerController {
 	// @Consumes(MediaType.APPLICATION_JSON)
 	// // @OAuthSecurity(enabled = false)
 	// @OAuthSecurity(scope = "keppelcustomescope")
-	// public ResponseDto submitUserData(AccountDto accountDto) {
-	// logger.info("Request for submitUserData " + gson.toJson(accountDto));
-	// System.out.println("Request for submitUserData- " +
-	// accountDto.getFirstName());
-	// ResponseDto responseDto = new ResponseDto<>();
-	//
-	// accountDto.setActivityType(ActivityRequestType.SIGN_UP.name());
-	// activityAuditService.saveActivityAudit(accountDto);
-	// try {
-	// keppelConsumerService.submitUserData(accountDto);
-	// responseDto.setResponseCode(RESPONSE_CODE.SUCCESS.getCode());
-	// responseDto.setResponseDescription(RESPONSE_CODE.SUCCESS.name());
-	// logger.info("Respone for submitUserData- " + gson.toJson(responseDto));
-	// } catch (Exception exception) {
-	// exception.printStackTrace();
-	// logger.log(Level.SEVERE, "Error from submitUserData Service:- " +
-	// ExceptionUtils.getStackTrace(exception));
-	//
-	// responseDto.setResponseCode(RESPONSE_CODE.FAIL.getCode());
-	// responseDto.setResponseDescription(RESPONSE_CODE.FAIL.name());
-	//
-	// /*
-	// * if (exception instanceof SoapFaultClientException) {
-	// SoapFaultClientException
-	// * serviceFault = (SoapFaultClientException) exception;
-	// * responseDto.setResponseCode(serviceFault.getFaultCode().toString());
-	// * responseDto.setResponseDescription(serviceFault.getFaultStringOrReason());
-	// *
-	// * final SoapFault soapFault = serviceFault.getSoapFault(); final
-	// * SoapFaultDetail faultDetail = soapFault.getFaultDetail();
-	// *
-	// * for (final Iterator<SoapFaultDetailElement> detailEntryItr = faultDetail
-	// * .getDetailEntries(); detailEntryItr.hasNext();) { final
-	// * SoapFaultDetailElement detailEntry = detailEntryItr.next(); final Source
-	// * source = detailEntry.getSource();
-	// * logger.info("Request for track gps activity " + gson.toJson(accountDto));
-	// *
-	// * // TODO Once PS adds a namespace declaration to the fault // document
-	// * unmarshaller can be used to pull out the error // message // final Object
-	// * result = // this.unmarshaller.unmarshal(source);
-	// *
-	// * }
-	// *
-	// * TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	// * Transformer transformer = null; try { transformer =
-	// * transformerFactory.newTransformer(); } catch
-	// * (TransformerConfigurationException e) { // TODO Auto-generated catch block
-	// * e.printStackTrace(); } DOMResult result = new DOMResult(); try {
-	// * transformer.transform(serviceFault.getSoapFault().getSource(), result); }
-	// * catch (TransformerException e) { // TODO Auto-generated catch block
-	// * e.printStackTrace(); } NodeList nl = ((Document)
-	// * result.getNode()).getElementsByTagName("detail");
-	// *
-	// * }
-	// */
-	// }
-	//
-	// return responseDto;
-	// }
-	//
+	@RequestMapping(value = "submitNewUserSignup", method = RequestMethod.POST)
+	public ResponseDto submitUserData(AccountDto accountDto) {
+		// logger.info("Request for submitUserData " + gson.toJson(accountDto));
+		// System.out.println("Request for submitUserData- " +
+		// accountDto.getFirstName());
+		ResponseDto responseDto = new ResponseDto<>();
+
+		// accountDto.setActivityType(ActivityRequestType.SIGN_UP.name());
+		// activityAuditService.saveActivityAudit(accountDto);
+		// try {
+		keppelConsumerService.submitNewResidentialSignupData(accountDto);
+		// responseDto.setResponseCode(RESPONSE_CODE.SUCCESS.getCode());
+		// responseDto.setResponseDescription(RESPONSE_CODE.SUCCESS.name());
+		// logger.info("Respone for submitUserData- " + gson.toJson(responseDto));
+		// } catch (Exception exception) {
+		// exception.printStackTrace();
+		// //logger.log(Level.SEVERE, "Error from submitUserData Service:- " +
+		// ExceptionUtils.getStackTrace(exception));
+		// responseDto.setResponseCode(RESPONSE_CODE.FAIL.getCode());
+		// responseDto.setResponseDescription(RESPONSE_CODE.FAIL.name());
+
+		/*
+		 * if (exception instanceof SoapFaultClientException) { SoapFaultClientException
+		 * serviceFault = (SoapFaultClientException) exception;
+		 * responseDto.setResponseCode(serviceFault.getFaultCode().toString());
+		 * responseDto.setResponseDescription(serviceFault.getFaultStringOrReason());
+		 *
+		 * final SoapFault soapFault = serviceFault.getSoapFault(); final
+		 * SoapFaultDetail faultDetail = soapFault.getFaultDetail();
+		 *
+		 * for (final Iterator<SoapFaultDetailElement> detailEntryItr = faultDetail
+		 * .getDetailEntries(); detailEntryItr.hasNext();) { final
+		 * SoapFaultDetailElement detailEntry = detailEntryItr.next(); final Source
+		 * source = detailEntry.getSource();
+		 * logger.info("Request for track gps activity " + gson.toJson(accountDto));
+		 *
+		 * // TODO Once PS adds a namespace declaration to the fault // document
+		 * unmarshaller can be used to pull out the error // message // final Object
+		 * result = // this.unmarshaller.unmarshal(source);
+		 *
+		 * }
+		 *
+		 * TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		 * Transformer transformer = null; try { transformer =
+		 * transformerFactory.newTransformer(); } catch
+		 * (TransformerConfigurationException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } DOMResult result = new DOMResult(); try {
+		 * transformer.transform(serviceFault.getSoapFault().getSource(), result); }
+		 * catch (TransformerException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } NodeList nl = ((Document)
+		 * result.getNode()).getElementsByTagName("detail");
+		 *
+		 * }
+		 */
+		// }
+
+		return responseDto;
+	}
+
+	// //
 	// @POST
 	// @Path("/submitUserImageData")
 	// @Produces(MediaType.APPLICATION_JSON)
 	// @Consumes(MediaType.APPLICATION_JSON)
 	// @OAuthSecurity(enabled = false)
-	// public ResponseDto submitUserImageData(AccountDto accountDto) {
-	// logger.info("Request for submitUserImageData " + gson.toJson(accountDto));
-	// System.out.println("Request for submitUserImageData- " +
-	// accountDto.getFirstName());
-	// ResponseDto responseDto = new ResponseDto<>();
-	// responseDto.setResponseCode(RESPONSE_CODE.SUCCESS.getCode());
-	// responseDto.setResponseDescription(RESPONSE_CODE.SUCCESS.name());
-	// try {
-	// keppelConsumerService.submitUserImageData(accountDto);
-	// } catch (Exception e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// logger.info("Respone for submitUserData- " + gson.toJson(responseDto));
-	// return responseDto;
-	//
-	// }
-	//
-	/*@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })*/
+	@RequestMapping(value = "submitNewUserBill", method = RequestMethod.POST)
+	public ResponseDto submitUserImageData(AccountDto accountDto) {
+		logger.info("Request for submitUserImageData " + gson.toJson(accountDto));
+		System.out.println("Request for submitUserImageData- " + accountDto.getFirstName());
+		ResponseDto responseDto = new ResponseDto<>();
+		responseDto.setResponseCode(RESPONSE_CODE.SUCCESS.getCode());
+		responseDto.setResponseDescription(RESPONSE_CODE.SUCCESS.name());
+		try {
+			keppelConsumerService.submitUserImageData(accountDto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("Respone for submitUserData- " + gson.toJson(responseDto));
+		return responseDto;
+
+	}
+
+	/*
+	 * @ApiOperation(value = "Unprotected Resource", notes =
+	 * "Example of an unprotected resource, this resource is accessible without a valid token."
+	 * )
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 200, message =
+	 * "A constant string is returned") })
+	 */
 	@RequestMapping(value = "getDwellingTypes", method = RequestMethod.GET)
 	// @OAuthSecurity(enabled = false)
 	public String getDwellingTypes() {
 		logger.info("Request info for getDwellingTypes ");
-		//logger.warning("Request warning  for getDwellingTypes ");
-		//logger.log(Level.SEVERE, "Error from subm");
+		// logger.warning("Request warning for getDwellingTypes ");
+		// logger.log(Level.SEVERE, "Error from subm");
 		keppelConsumerService.getDwellingTypes();
 		return null;
+	}
+
+	@RequestMapping(value = "getPlans", method = RequestMethod.GET)
+	public String getRecomendedPlans() {
+		logger.info("Request info for getRecomendedPlans ");
+		List<CMRECPLAN.Plans> responeList = keppelConsumerService.getRecomendedPlans();
+		Gson gson = new Gson();
+		String json = gson.toJson(responeList);
+		return json;
+	}
+
+	/**
+	 * This API gets security deposit.
+	 * 
+	 * @return
+	 * @throws JsonProcessingException
+	 */
+	@RequestMapping(value = "getSecutityDeposit", method = RequestMethod.POST)
+	public ResponseEntity<SecurityDeposit.SecurityDepositResponse> getSecutityDeposit(
+			@RequestBody SecurityDeposit deposits) {
+
+		SecurityDeposit.SecurityDepositResponse depositResponse = keppelConsumerService.getSecutityDeposit(deposits);
+		return new ResponseEntity<>(depositResponse, HttpStatus.OK);
+	}
+
+	/**
+	 * This API gets security deposit.
+	 * 
+	 * @return
+	 * @throws JsonProcessingException
+	 */
+	@RequestMapping(value = "newResiSignup", method = RequestMethod.POST)
+	public String newResidentialUserSignup(@RequestBody AccountDto signUpData) {
+		M1MMCTR res = keppelConsumerService.submitNewResidentialSignupData(signUpData);
+		Gson gson = new Gson();
+		String json = gson.toJson(res.getReceiveDetails());
+		logger.info("Response data =====================>" + json);
+		return json;
 	}
 
 }
