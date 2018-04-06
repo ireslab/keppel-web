@@ -33,6 +33,9 @@ manifest.yml
 overridedb.*
 settings.xml
 target
+target/*
+generated*
+apache-tomcat-*
 transaction-logs
 .flattened-pom.xml
 secrets.yml
