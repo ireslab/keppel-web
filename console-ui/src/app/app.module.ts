@@ -2,6 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { LoadingModule } from 'ngx-loading'
+
+
+import { ServiceCall } from './network_layer/web_service_call';
+import { localJSON } from './commom_methods/localJSON';
+import { CommonServices } from './commom_methods/common_service'
+
+
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -18,6 +28,8 @@ import { ExistingRecommendationComponent } from './sign-up/existing-user-sign-up
 import { ExistingContractComponent } from './sign-up/existing-user-sign-up/existing-contract/existing-contract.component';
 import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
 import { recaptcha } from './recaptcha/recaptcha.component';
+//import { DataShare } from './Utility/data_share.service';
+
 
 const appRoutes: Routes = [
   { path: 'keppel', component: LandingPageComponent },
@@ -61,12 +73,14 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true }
-    )
+    ),LoadingModule
   ],
-  providers: [SidebarService],
+  providers: [SidebarService,ServiceCall,localJSON,CommonServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
