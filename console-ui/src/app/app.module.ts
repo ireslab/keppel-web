@@ -29,6 +29,7 @@ import { ExistingContractComponent } from './sign-up/existing-user-sign-up/exist
 import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
 import { recaptcha } from './recaptcha/recaptcha.component';
 import { DataShare } from './Utility/data_share.service';
+import { HttpModule } from '@angular/http';
 
 
 
@@ -74,7 +75,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule,HttpModule,
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,

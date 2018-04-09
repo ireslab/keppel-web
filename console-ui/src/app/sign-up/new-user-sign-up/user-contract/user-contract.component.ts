@@ -4,6 +4,8 @@ import { DataShare } from '../../../Utility/data_share.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ValidateNric } from '../../../Utility/nric_validatior';
 import { Router } from '@angular/router';
+import { CommonServices } from '../../../commom_methods/common_service'
+
 
 declare var $: any
 @Component({
@@ -27,8 +29,10 @@ export class UserContractComponent implements OnInit {
   formIsNotValid: boolean = false;
   // itemCount:any;
 
-  constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder,private router:Router) {
+  constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder,
+    private router:Router, private commonService: CommonServices) {
     this.sbService.getSidebar("newUser");
+    this.commonService.gotoTopOfView()
     this.optionalServices = [
       { "serviceName": "vas#1", "serviceCost": "1" },
       { "serviceName": "vas#2", "serviceCost": "2" },

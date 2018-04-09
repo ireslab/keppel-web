@@ -80,7 +80,7 @@
           </dl>
           <dl>
             <dt>Billing Address</dt>
-            <dd>{{_usderDetailObj.billingPostalcode}}
+            <dd>{{_usderDetailObj.postcodeBill}}
               <br/>{{_usderDetailObj.billingAddress}}
               <br/>{{_usderDetailObj.billingAddress2}}</dd>
           </dl>
@@ -194,7 +194,7 @@
       <div class="row">
         <div class="col-12">
           <div class="form-group text-center" style="margin-top:20px;">
-            <button type="button" class="btn btn-primary" routerLink="/new-user-aknowledgement">Confirm</button>
+            <button type="button" class="btn btn-primary" (click)="confirmClicked()">Confirm</button>
           </div>
         </div>
       </div>

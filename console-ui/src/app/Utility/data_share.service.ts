@@ -6,8 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataShare {
   // selectedPlanObj:any;
   usderDetailObj = {
-    "selectedPlanObj":'',
-    
+    "selectedPlanObj":{},    
     "serviceStartDate": "",
     "optionalService1": "",
     "optionalService2": "",
@@ -36,7 +35,7 @@ export class DataShare {
     
     "billingAddress": "",
     "billingAddress2": "",
-    
+    "premiseType":"",
     "tenantOrOwner": "",
   }
 

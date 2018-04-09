@@ -51,7 +51,7 @@ export class UserRecommendationComponent implements OnInit {
         public localJson: localJSON, private spinnerService: Ng4LoadingSpinnerService, private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router, private datashare: DataShare) {
         this.sbService.getSidebar("newUser")
         document.documentElement.scrollTop = 0;
-        this.dwlTypePlans = this.localJson.dwlTypePlans;
+        // this.dwlTypePlans = this.localJson.dwlTypePlans;
         this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type
 
     }
@@ -59,14 +59,14 @@ export class UserRecommendationComponent implements OnInit {
 
 
     firstTwoDwlPlans() {
-        for (let index = 0; index < this.localJson.dwlTypePlans.length; index++) {
+        for (let index = 0; index < this.dwlTypePlans.length; index++) {
             if (index < 2) {
-                this.firstTwoDwlingPlans[index] = this.localJson.dwlTypePlans[index];
+                this.firstTwoDwlingPlans[index] = this.dwlTypePlans[index];
                 var benefits = this.firstTwoDwlingPlans[index].benefits
                 this.firstTwoBenifits = benefits.split(",")
                 this.firstTwoDwlingPlans[index]["planBenifits"] = this.firstTwoBenifits;
             } else {
-                this.otherdwlPlans[index - 2] = this.localJson.dwlTypePlans[index];
+                this.otherdwlPlans[index - 2] = this.dwlTypePlans[index];
                 var benefits = this.otherdwlPlans[index - 2].benefits
                 this.otherBenifits = benefits.split(",")
                 this.otherdwlPlans[index - 2]["planBenifits"] = this.otherBenifits;
@@ -76,10 +76,11 @@ export class UserRecommendationComponent implements OnInit {
     }
 
 
-    planSelected(index) {
+    planSelected(index,dwlType) {
         this.selectedDwlType = index;
         if (navigator.onLine) {
-            //   this.spinnerService.show();
+               this.spinnerService.show();
+               this.datashare.usderDetailObj.premiseType = dwlType;
             // this.firstTwoDwlPlans();
             this.getPlansCall();
         } else {
@@ -136,11 +137,12 @@ export class UserRecommendationComponent implements OnInit {
 
         let _url = ApiConstants.GET_PLANS_URL;
 
-        let localURL = "https://api.github.com/users/AkshayKumar-123" //"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+        let localURL = "http://192.168.0.4:7001/keppelconsumer/v1/getPlans"  //"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
         // getWriterWithFavBooks() {
-        this.service.getYahoo(localURL).subscribe(
+        this.service.getPlans(localURL).subscribe(
             data => {
+                this.dwlTypePlans = data;
                 this.spinnerService.hide();
                 this.packageForm = true;
                 this.firstTwoDwlPlans();
