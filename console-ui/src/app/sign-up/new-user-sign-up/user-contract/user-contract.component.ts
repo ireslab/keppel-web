@@ -3,6 +3,7 @@ import { SidebarService } from '../../../sidebar/sidebar.service';
 import { DataShare } from '../../../Utility/data_share.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ValidateNric } from '../../../Utility/nric_validatior';
+import { Router } from '@angular/router';
 
 declare var $: any
 @Component({
@@ -15,8 +16,8 @@ export class UserContractComponent implements OnInit {
 
   optionalServices = [];
   selectedOptionalServices = [];
-  tenantOrOwner: string = '';
-  paymentMethod: string = '';
+  tenantOrOwner: string = this.datashare.usderDetailObj.tenantOrOwner;
+  paymentMethod: string = this.datashare.usderDetailObj.paymentMethod;
   paymentMessage: boolean = false;
   ownershipMessage: boolean = false;
   sameAddress: boolean = true;
@@ -26,7 +27,7 @@ export class UserContractComponent implements OnInit {
   formIsNotValid: boolean = false;
   // itemCount:any;
 
-  constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder) {
+  constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder,private router:Router) {
     this.sbService.getSidebar("newUser");
     this.optionalServices = [
       { "serviceName": "vas#1", "serviceCost": "1" },
@@ -250,6 +251,7 @@ export class UserContractComponent implements OnInit {
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
+      this.router.navigateByUrl("new-user-confirmation");
       // let reqJson = JSON.stringify({
       //   "serviceStartDate": this.contractForm.controls['serviceStartDate'].value,
       //   "optionalService1": optionalService1,

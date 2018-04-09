@@ -4,8 +4,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 
 export class DataShare {
-  selectedPlanObj={}
+  selectedPlanObj:any;
   usderDetailObj = {
+    "selectedPlanObj":this.selectedPlanObj,
     "serviceStartDate": "",
     "optionalService1": "",
     "optionalService2": "",
