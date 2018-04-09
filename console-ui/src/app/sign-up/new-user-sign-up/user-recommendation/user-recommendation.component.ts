@@ -11,7 +11,7 @@ import { recaptcha } from '../../../recaptcha/recaptcha.component';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidateNric } from '../../../Utility/nric_validatior';
-
+import { CommonServices } from '../../../commom_methods/common_service';
 
 
 
@@ -47,13 +47,14 @@ export class UserRecommendationComponent implements OnInit {
     planIndex = 2;
 
     constructor(private sbService:SidebarService,private httpClient: HttpClient,private service:ServiceCall,
-                  public localJson:localJSON, private spinnerService:Ng4LoadingSpinnerService, private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router)
+                  public localJson:localJSON, private spinnerService:Ng4LoadingSpinnerService, 
+                  private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router,
+                   private commonService: CommonServices)
      {
         this.sbService.getSidebar("newUser")
-        document.documentElement.scrollTop = 0;
-       this.dwlTypePlans = this.localJson.dwlTypePlans;
-       this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type
-       
+        this.commonService.gotoTopOfView();
+        this.dwlTypePlans = this.localJson.dwlTypePlans;
+        this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type; 
     }
 
 
