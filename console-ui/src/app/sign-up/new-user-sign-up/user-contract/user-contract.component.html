@@ -1,378 +1,465 @@
 <app-sidebar></app-sidebar>
 <div class="container mainContent">
   <!-- <form> -->
-    <div class="row">
-      <div class="col-xl-9  kpl-inputForm">
-        <!-- <form> -->
-          <div class="row">
-            <div class="col-12">
-              <div class="form-group StartDateGroup text-center">
-                <label for="dt_ServiceStartDate">Select Start Date</label>
-                <input type="date" class="form-control normal dateInput text-center" id="dt_ServiceStartDate">
+  <div class="row">
+    <div class="col-xl-9  kpl-inputForm">
+      <form [formGroup]="contractForm">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group StartDateGroup text-center">
+              <label for="dt_ServiceStartDate">Select Start Date</label>
+              <input type="date" class="form-control normal dateInput text-center" id="dt_ServiceStartDate" formControlName="serviceStartDate">
+            </div>
+          </div>
+          <div class="col-12 text-center form-group">
+            <label>Select Optional Services (if required)</label>
+            <small>Click here to see the cost of optional services</small>
+          </div>
+          <div class="form-group col-12 vasGroup">
+            <div class="row no-gutters">
+              <div class="col-4" *ngFor="let optService of optionalServices ; let i = index">
+                <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(optService)"
+                  style="padding-top:15px;" type="button">{{optService.serviceName}}
+                  <small>(+${{optService.serviceCost}}/bill)</small>
+                </button>
               </div>
-            </div>
-            <div class="col-12 text-center form-group">
-              <label>Select Optional Services (if required)</label>
-              <small>Click here to see the cost of optional services</small>
-            </div>
-            <div class="form-group col-12 vasGroup">
-              <div class="row no-gutters">
-                <div class="col-4">
-                  <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" style="padding-top:15px;" type="button">Paper Bill
-                    <small>(+$1/bill)</small>
-                  </button>
-                </div>
-                <div class="col-4">
+              <!-- <div class="col-4">
                   <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" type="button">VAS #1</button>
                 </div>
                 <div class="col-4">
                   <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" type="button">VAS #2</button>
-                </div>
-              </div>
+                </div> -->
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-              <div class="form-group">
-                <input type="email" class="form-control promoCode" id="txt_PromoCode" aria-describedby="txt_PromoCode" placeholder="Input Promo / Referral Code (if any)">
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="col-lg-2s"></div>
-          </div>
-          <div class="row">
-            <div class="col-12 text-center form-group PaymentModeLabel">
-              <label>Select payment mode</label>
-              <small>Select Giro and IDDA for greater savings</small>
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 col-6">
-              <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button">Giro
-                <small>2% off your total bill</small>
-              </button>
-            </div>
-            <div class="col-sm-4 col-6">
-              <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button">IDDA (DBS)
-                <small>2% off your total bill</small>
-              </button>
-            </div>
-            <div class="col-sm-2"></div>
-          </div>
-          <div class="row">
-            <div class="col-12 text-center form-group">
-              <small>Alternative payment modes available for your selection</small>
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 col-6">
-              <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button">Recurring
-                <small>(Debit/Credit Card)</small>
-              </button>
-            </div>
-            <div class="col-sm-4 col-6">
-              <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button">Other
-              </button>
-            </div>
-            <div class="col-sm-2"></div>
-          </div>
-          <div class="row" style="margin-top:50px;">
-            <div class="col-md-6">
-              <div class="form-group">
-                <select name="Opt_idType" id="Opt_idType" class="form-control IDType" value="">
-                  <option value="" disabled selected hidden>ID Type*</option>
-                  <option>FIN</option>
-                  <option>NRIC</option>
-                </select>
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control IDNumber" id="txt_IDNumber" placeholder="ID Number*">
-                <div class="line"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control Name" id="txt_firstName" aria-describedby="txt_firstName" placeholder="First Name*">
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control Name" id="txt_LastName" aria-describedby="txt_LastName" placeholder="Last Name*">
-                <div class="line"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="email" class="form-control Email" id="txt_UserEmail" aria-describedby="txt_UserEmail" placeholder="Email*">
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="number" class="form-control PostalCode" id="int_PostalCode" aria-describedby="" placeholder="Postal Code*">
-                <div class="line"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control Street" id="txt_StreetName" aria-describedby="" placeholder="Street Name*">
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="number" class="form-control BlockNumber" id="int_StreetNumber" aria-describedby="" placeholder="Block / Street No*">
-                <div class="line"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" class="form-control BuildingName" id="txt_BuildingName" aria-describedby="" placeholder="Building Name">
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="number" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*">
-                <div class="line"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row" style="margin-top:40px;">
-            <div class="col-12 text-center form-group">
-              <label>Select Ownership Type</label>
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4 col-6">
-              <button class="btn btn-lg btn-block btn-secondary selectOwnerTypeButton btn-Option" type="button">Owner
-              </button>
-            </div>
-            <div class="col-sm-4 col-6">
-              <button class="btn btn-lg btn-block btn-secondary selectOwnerTypeButton btn-Option" type="button">Tenant
-              </button>
-            </div>
-            <div class="col-sm-2"></div>
-          </div>
-          <div class="form-group text-center">
-            <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="bool_isSameBillingAddress" checked>
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">
-                <small style="text-transform:initial;">My billing address is same as my premise address above</small>
-              </span>
-            </label>
-          </div>
-          <div class="container text-center" id="BillingAddress">
-            <h6>
-              <img src="assets/img/ico-BillingAddress.png" /> Input Billing Address</h6>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="number" class="form-control PostalCode" id="int_PostalCode" aria-describedby="" placeholder="Postal Code*">
-                  <div class="line"></div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="text" class="form-control Street" id="txt_StreetName" aria-describedby="" placeholder="Street Name*">
-                  <div class="line"></div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="number" class="form-control BlockNumber" id="int_StreetNumber" aria-describedby="" placeholder="Block / Street No*">
-                  <div class="line"></div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="text" class="form-control BuildingName" id="txt_BuildingName" aria-describedby="" placeholder="Building Name">
-                  <div class="line"></div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="number" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*">
-                  <div class="line"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 text-center form-group" style="margin-top:40px;">
-            <label>Optional</label>
-            <small>You may provide now or subsequently via email to us</small>
-          </div>
-          <div class="container" id="OptionalSection">
-            <div class="row kpl-AddressUpload-Mobile d-md-none">
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
-                <div class="form-group StartCamera">
-                  <label class="custom-file">
-                    <input type="file" accept="image/*" id="file_RecentBill" capture="camera" class="custom-file-input" placeholder="">
-                    <span class="custom-file-control" id="SelectedFile">Take a photo of past month's bill</span>
-                  </label>
-                  <div class="line"></div>
-                </div>
-              </div>
-              <div class="col-md-2"></div>
-              <div class="col-12 text-center form-group">
-                <label>Or</label>
-              </div>
-            </div>
-            <div class="row kpl-AddressUpload-PC">
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
-                <div class="form-group FileUpload">
-                  <label class="custom-file">
-                    <input type="file" accept="image/*" id="file_RecentBill" class="custom-file-input" placeholder="">
-                    <span class="custom-file-control" id="SelectedFile">Upload Past Month's Bill</span>
-                  </label>
-                  <div class="line"></div>
-                </div>
-              </div>
-              <div class="col-md-2"></div>
-            </div>
-            <div class="row">
-              <div class="col-12 text-center form-group">
-                <label>Or</label>
-              </div>
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <input type="number" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number">
-                  <div class="line"></div>
-                </div>
-              </div>
-              <div class="col-md-2"></div>
-            </div>
-          </div>
-          <div class="row CTArow">
-            <div class="col-md-2"></div>
-            <div class="col-md-5 col-8">
-              <div class="form-group">
-                <button type="button" class="btn btn-secondary btn-block" id="btn_AddNewPremise" data-toggle="modal" data-target="#AddNewPremiseModal"
-                  onclick="">+ Add Another Premise</button>
-              </div>
-            </div>
-            <div class="col-md-3 col-4">
-              <div class="form-group">
-                <button type="button" class="btn btn-primary btn-block" routerLink="/new-user-confirmation">Checkout</button>
-              </div>
-            </div>
-            <div class="col-md-2"></div>
-          </div>
-        <!-- </form> -->
-      </div>
-      <div class="col-10 col-md-5 col-sm-6 col-xl-3 PremiseSection">
-        <button class="PanelRevealButton" type="button">Selection Summary</button>
-        <div class="kpl-SummaryCallout">
-          <h4>Selection Summary</h4>
-          <div class="kpl-premise">
-            <h5>
-              <img src="assets/img/img-PlanIcon.png" /> Clean</h5>
-            <hr>
-            <p>Estimated Monthly Bill: S$56*</p>
-            <h1>19% Less</h1>
-            <p>
-              than current SP Tariff
-            </p>
-          </div>
-          <button class="PanelClose-Top" type="button">
-            <img src="assets/img/ico-PanelArrow.png" />
-          </button>
-          <button class="PanelClose-Bottom" type="button">
-            <img src="assets/img/ico-PanelArrow.png" />
-          </button>
         </div>
-        <div class="PremiseInfo">
-          <div class="kpl-summaryPanelSection">
-            <p class="PanelScrollNotice d-block d-lg-none">Scroll down to see more information</p>
-            <h6>Details:</h6>
-            <ul>
-              <li>24 Months</li>
-              <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-              <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-              <li>All charges are absorbed</li>
-              <li>Consumption is loss adjusted</li>
-            </ul>
+        <div class="row">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8">
+            <div class="form-group">
+              <input type="email" class="form-control promoCode" id="txt_PromoCode" aria-describedby="txt_PromoCode" placeholder="Input Promo / Referral Code (if any)"
+                formControlName="promoCode" maxlength="10">
+              <div class="line"></div>
+            </div>
           </div>
+          <div class="col-lg-2s"></div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center form-group PaymentModeLabel" [ngClass]="{'has-error':paymentMessage}">
+            <label class="control-label">Select payment mode</label>
+            <small>Select Giro and IDDA for greater savings</small>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4 col-6">
+            <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button" [ngClass]="{selected:datashare.usderDetailObj.paymentMethod == 'Giro'}"
+              (click)="getPayment('Giro')">Giro
+              <small>2% off your total bill</small>
+            </button>
+          </div>
+          <div class="col-sm-4 col-6">
+            <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button" [ngClass]="{selected:datashare.usderDetailObj.paymentMethod == 'IDDA (DBS)'}"
+              (click)="getPayment('IDDA (DBS)')">IDDA (DBS)
+              <small>2% off your total bill</small>
+            </button>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center form-group">
+            <small>Alternative payment modes available for your selection</small>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4 col-6">
+            <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button" [ngClass]="{selected:datashare.usderDetailObj.paymentMethod == 'Recurring'}"
+              (click)="getPayment('Recurring')">Recurring
+              <small>(Debit/Credit Card)</small>
+            </button>
+          </div>
+          <div class="col-sm-4 col-6">
+            <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button" [ngClass]="{selected:datashare.usderDetailObj.paymentMethod == 'Other'}"
+              (click)="getPayment('Other')">Other
+            </button>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+        <div class="row" style="margin-top:50px;">
+          <div class="col-md-6">
+            <div class="form-group">
+              <select name="Opt_idType" id="Opt_idType" class="form-control IDType" formControlName="icNumberType">
+                <option value="" disabled selected hidden>ID Type*</option>
+                <option value="FIN">FIN</option>
+                <option value="NRIC">NRIC</option>
+              </select>
+              <div class="line"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control IDNumber" id="txt_IDNumber" placeholder="ID Number*" formControlName="icNumber" maxlength="9">
+              <div *ngIf="icNumber.invalid && icNumber.touched" class=" text-danger text-left">
+                <!-- <div *ngIf="icNumber.errors?.required">
+                  ID number is required.
+                </div> -->
+                <div *ngIf="icNumber.errors?.validNric && !icNumber.errors?.required">
+                  Invalid ID number.
+                </div>
+              </div>
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control Name" id="txt_firstName" aria-describedby="txt_firstName" placeholder="First Name*"
+                formControlName="firstName" maxlength="50">
+              <div *ngIf="firstName.invalid && firstName.touched" class=" text-danger text-left">
+                <!-- <div *ngIf="firstName.errors?.required">
+                  First Name is required.
+                </div> -->
+                <div *ngIf="firstName.errors?.pattern && !firstName.errors?.required">
+                  Accepts alphabets only.
+                </div>
+              </div>
+              <div class="line"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control Name" id="txt_LastName" aria-describedby="txt_LastName" placeholder="Last Name*" formControlName="lastName"
+                maxlength="50">
+              <div *ngIf="lastName.invalid && lastName.touched" class=" text-danger text-left">
+                <!-- <div *ngIf="lastName.errors?.required">
+                  Last Name is required.
+                </div> -->
+                <div *ngIf="lastName.errors?.pattern && !lastName.errors?.required">
+                  Accepts alphabets only.
+                </div>
+              </div>
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control Email" id="txt_UserEmail" aria-describedby="txt_UserEmail" placeholder="Email*" formControlName="eMail"
+                maxlength="50">
+              <div *ngIf="eMail.invalid && eMail.touched" class=" text-danger text-left">
+                <!-- <div *ngIf="eMail.errors?.required">
+                  Email is required.
+                </div> -->
+                <div *ngIf="eMail.errors?.pattern && !eMail.errors?.required">
+                  Accepts valid email only.
+                </div>
+              </div>
+              <div class="line"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control PostalCode" id="int_PostalCode" aria-describedby="" placeholder="Postal Code*" formControlName="postcode"
+                maxlength="6">
+              <div *ngIf="postcode.invalid && postcode.touched" class=" text-danger text-left">
+                <!-- <div *ngIf="postcode.errors?.required">
+                  Postal code is required.
+                </div> -->
+                <div *ngIf="postcode.errors?.pattern && !postcode.errors?.required">
+                  Accepts numbers only.
+                </div>
+              </div>
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control Street" id="txt_StreetName" aria-describedby="" placeholder="Street Name*" formControlName="streetName"
+                maxlength="100">
+              <!-- <div *ngIf="streetName.invalid && streetName.touched" class=" text-danger text-left">
+                <div *ngIf="streetName.errors?.required">
+                  Postal code is required.
+                </div>
+              </div> -->
+              <div class="line"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control BlockNumber" id="int_StreetNumber" aria-describedby="" placeholder="Block / Street No*"
+                formControlName="block" maxlength="100">
+              <!-- <div *ngIf="block.invalid && block.touched" class=" text-danger text-left">
+                  <div *ngIf="block.errors?.required">
+                    Postal code is required.
+                  </div>
+                </div> -->
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control BuildingName" id="txt_BuildingName" aria-describedby="" placeholder="Building Name"
+                formControlName="buildingName" maxlength="150">
+              <div class="line"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevel"
+                maxlength="100">
+              <!-- <div *ngIf="floorLevel.invalid && floorLevel.touched" class=" text-danger text-left">
+                  <div *ngIf="floorLevel.errors?.required">
+                    Postal code is required.
+                  </div>
+                </div> -->
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:40px;">
+          <div class="col-12 text-center form-group" [ngClass]="{'has-error':ownershipMessage}">
+            <label class="control-label">Select Ownership Type</label>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4 col-6">
+            <button class="btn btn-lg btn-block btn-secondary selectOwnerTypeButton btn-Option" type="button" [ngClass]="{selected:datashare.usderDetailObj.tenantOrOwner == 'owner'}"
+              (click)="getOwnership('owner')">Owner</button>
+          </div>
+          <div class="col-sm-4 col-6">
+            <button class="btn btn-lg btn-block btn-secondary selectOwnerTypeButton btn-Option" type="button" [ngClass]="{selected:datashare.usderDetailObj.tenantOrOwner == 'tenent'}"
+              (click)="getOwnership('tenent')">Tenant</button>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+        <div class="form-group text-center">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="bool_isSameBillingAddress" checked (click)=findSameAddress($event)>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">
+              <small style="text-transform:initial;">My billing address is same as my premise address above</small>
+            </span>
+          </label>
+        </div>
+        <div class="container text-center" id="BillingAddress">
+          <h6>
+            <img src="assets/img/ico-BillingAddress.png" /> Input Billing Address</h6>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control PostalCode" id="int_PostalCode" aria-describedby="" placeholder="Postal Code*" formControlName="postcodeBill"
+                  maxlength="6">
+                <div class="line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control Street" id="txt_StreetName" aria-describedby="" placeholder="Street Name*" formControlName="streetNameBill"
+                  maxlength="100">
+                <div class="line"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control BlockNumber" id="int_StreetNumber" aria-describedby="" placeholder="Block / Street No*"
+                  formControlName="blockBill" maxlength="100">
+                <div class="line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control BuildingName" id="txt_BuildingName" aria-describedby="" placeholder="Building Name"
+                  formControlName="buildingNameBill" maxlength="150">
+                <div class="line"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevelBill"
+                  maxlength="100">
+                <div class="line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-center form-group" style="margin-top:40px;">
+          <label>Optional</label>
+          <small>You may provide now or subsequently via email to us</small>
+        </div>
+        <div class="container" id="OptionalSection">
+          <div class="row kpl-AddressUpload-Mobile d-md-none">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="form-group StartCamera">
+                <label class="custom-file">
+                  <input type="file" accept="image/*" id="file_RecentBill" capture="camera" class="custom-file-input" placeholder="">
+                  <span class="custom-file-control" id="SelectedFile">Take a photo of past month's bill</span>
+                </label>
+                <div class="line"></div>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-12 text-center form-group">
+              <label>Or</label>
+            </div>
+          </div>
+          <div class="row kpl-AddressUpload-PC">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="form-group FileUpload">
+                <label class="custom-file">
+                  <input type="file" accept="image/*" id="file_RecentBill" class="custom-file-input" placeholder="">
+                  <span class="custom-file-control" id="SelectedFile">Upload Past Month's Bill</span>
+                </label>
+                <div class="line"></div>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center form-group">
+              <label>Or</label>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <input type="number" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number">
+                <div class="line"></div>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-12 text-danger text-center">
+            <div *ngIf="formIsNotValid">
+              * Please fill all required fields to proceed.
+            </div>
+            <div *ngIf="paymentMessage">
+              * Please select payment method to proceed.
+            </div>
+            <div *ngIf="ownershipMessage">
+              * Please select ownership type to proceed.
+            </div>
+          </div>
+        </div>
+        <div class="row CTArow">
+          <div class="col-md-2"></div>
+          <div class="col-md-5 col-8">
+            <div class="form-group">
+              <button type="button" class="btn btn-secondary btn-block" id="btn_AddNewPremise" data-toggle="modal" data-target="#AddNewPremiseModal"
+                onclick="">+ Add Another Premise</button>
+            </div>
+          </div>
+          <div class="col-md-3 col-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-block" (click)="submitContractDetails()">Checkout</button>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </form>
+    </div>
+    <div class="col-10 col-md-5 col-sm-6 col-xl-3 PremiseSection">
+      <button class="PanelRevealButton" type="button">Selection Summary</button>
+      <div class="kpl-SummaryCallout">
+        <h4>Selection Summary</h4>
+        <div class="kpl-premise">
+          <h5>
+            <img src="assets/img/img-PlanIcon.png" /> Clean</h5>
+          <hr>
+          <p>Estimated Monthly Bill: S$56*</p>
+          <h1>19% Less</h1>
+          <p>
+            than current SP Tariff
+          </p>
+        </div>
+        <button class="PanelClose-Top" type="button">
+          <img src="assets/img/ico-PanelArrow.png" />
+        </button>
+        <button class="PanelClose-Bottom" type="button">
+          <img src="assets/img/ico-PanelArrow.png" />
+        </button>
+      </div>
+      <div class="PremiseInfo">
+        <div class="kpl-summaryPanelSection">
+          <p class="PanelScrollNotice d-block d-lg-none">Scroll down to see more information</p>
+          <h6>Details:</h6>
+          <ul>
+            <li>24 Months</li>
+            <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+            <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+            <li>All charges are absorbed</li>
+            <li>Consumption is loss adjusted</li>
+          </ul>
+        </div>
 
-          <div class="kpl-summaryPanelSection">
-            <h5>Products Charges</h5>
-            <hr>
-            <dl>
-              <dt>Consumption will be</dt>
-              <dd>Loss Adjusted</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Additional Services</h5>
-            <hr>
-            <dl>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Promotion</h5>
-            <hr>
-            <dl>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Miscellaneous</h5>
-            <hr>
-            <dl>
-              <dt>Security Deposit</dt>
-              <dd>[Insert SD]</dd>
-              <dt>[Insert other Misc.]</dt>
-              <dd>[Insert Charge]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <hr>
-            <dl>
-              <dt style="width:100%;">*Based on average dwelling type consumption</dt>
-            </dl>
-          </div>
+        <div class="kpl-summaryPanelSection">
+          <h5>Products Charges</h5>
+          <hr>
+          <dl>
+            <dt>Consumption will be</dt>
+            <dd>Loss Adjusted</dd>
+            <dt>[Insert Energy Type]</dt>
+            <dd>[Insert Rate]</dd>
+            <dt>[Insert Energy Type]</dt>
+            <dd>[Insert Rate]</dd>
+            <dt>[Insert Pass through Cost]</dt>
+            <dd>As Charged</dd>
+            <dt>[Insert Pass through Cost]</dt>
+            <dd>As Charged</dd>
+          </dl>
+        </div>
+        <div class="kpl-summaryPanelSection">
+          <h5>Additional Services</h5>
+          <hr>
+          <dl>
+            <dt>[Insert VAS]</dt>
+            <dd>[Insert Cost/unit]</dd>
+            <dt>[Insert VAS]</dt>
+            <dd>[Insert Cost/unit]</dd>
+          </dl>
+        </div>
+        <div class="kpl-summaryPanelSection">
+          <h5>Promotion</h5>
+          <hr>
+          <dl>
+            <dt>[Insert Promo]</dt>
+            <dd>[Insert discount]</dd>
+            <dt>[Insert Promo]</dt>
+            <dd>[Insert discount]</dd>
+          </dl>
+        </div>
+        <div class="kpl-summaryPanelSection">
+          <h5>Miscellaneous</h5>
+          <hr>
+          <dl>
+            <dt>Security Deposit</dt>
+            <dd>[Insert SD]</dd>
+            <dt>[Insert other Misc.]</dt>
+            <dd>[Insert Charge]</dd>
+          </dl>
+        </div>
+        <div class="kpl-summaryPanelSection">
+          <hr>
+          <dl>
+            <dt style="width:100%;">*Based on average dwelling type consumption</dt>
+          </dl>
         </div>
       </div>
     </div>
+  </div>
 
   <!-- </form> -->
 </div>

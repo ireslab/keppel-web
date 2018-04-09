@@ -4,14 +4,48 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 
 export class DataShare {
+  selectedPlanObj={}
+  usderDetailObj = {
+    "serviceStartDate": "",
+    "optionalService1": "",
+    "optionalService2": "",
+    "optionalService3": "",
+    "promoCode": "",
+    "paymentMethod": "",
+    "icNumberType": "",
+    "icNumber": "",
+    "mobileNumber":"",
+    "firstName": "",
+    "lastName": "",
+    "eMail": "",
+    "postcode": "",
+    "streetName":"",
+    "block":"",
+    "buildingName":"",
+    "floorLevel":"",
+    "postcodeBill": "",
+    "streetNameBill":"",
+    "blockBill":"",
+    "buildingNameBill":"",
+    "floorLevelBill":"",
 
-  private contractDetails = new BehaviorSubject<any>('');
+    "premiseAddress": "",
+    "premiseAddress2": "",
+    
+    "billingAddress": "",
+    "billingAddress2": "",
+    
+    "tenantOrOwner": "",
+  }
+
+
+  contractDetails = new BehaviorSubject<any>(this.usderDetailObj,);
   userDetails = this.contractDetails.asObservable();
 
   constructor() { }
 
-  getUserDetails(userDetails) {
-    this.contractDetails.next(userDetails)
+  getUserDetails() {
+    this.contractDetails.next(this.usderDetailObj)
   }
 
 }
