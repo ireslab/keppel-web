@@ -11,7 +11,6 @@ import { recaptcha } from '../../../recaptcha/recaptcha.component';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidateNric } from '../../../Utility/nric_validatior';
-import { CommonServices } from '../../../commom_methods/common_service';
 import { DataShare } from '../../../Utility/data_share.service';
 
 
@@ -48,15 +47,13 @@ export class UserRecommendationComponent implements OnInit {
     todayDateTime: Date;
     planIndex = 2;
 
-    constructor(private sbService:SidebarService,private httpClient: HttpClient,private service:ServiceCall,
-                  public localJson:localJSON, private spinnerService:Ng4LoadingSpinnerService, 
-                  private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router,
-                   private commonService: CommonServices,private datashare: DataShare)
-     {
+    constructor(private sbService: SidebarService, private httpClient: HttpClient, private service: ServiceCall,
+        public localJson: localJSON, private spinnerService: Ng4LoadingSpinnerService, private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router, private datashare: DataShare) {
         this.sbService.getSidebar("newUser")
-        this.commonService.gotoTopOfView();
+        document.documentElement.scrollTop = 0;
         this.dwlTypePlans = this.localJson.dwlTypePlans;
-        this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type; 
+        this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type
+
     }
 
 
@@ -270,7 +267,7 @@ export class UserRecommendationComponent implements OnInit {
     }
 
     getPlan(plan) {
-        this.datashare.selectedPlanObj;
+        this.datashare.usderDetailObj.selectedPlanObj = plan;
     }
 
     getCapthaToken(event) {
@@ -315,6 +312,7 @@ export class UserRecommendationComponent implements OnInit {
             this.todayDateTime = new Date
             $('#OTPModal').modal('show');
             this.resetCaptcha();
+            this.datashare.getUserDetails()
             // this.signUpForm.reset();
 
 

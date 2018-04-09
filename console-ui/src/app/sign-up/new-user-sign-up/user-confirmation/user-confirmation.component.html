@@ -11,106 +11,6 @@
     </div>
   </div>
   <div class="itemSection">
-    <div class="row kpl-ConfirmPageItem">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-3 order-lg-2 PremiseSection">
-        <div class="PremiseInfo">
-          <div class="kpl-summaryPanelSection">
-            <h5>Products Charges</h5>
-            <hr>
-            <dl>
-              <dt>Consumption will be</dt>
-              <dd>Loss Adjusted</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Additional Services</h5>
-            <hr>
-            <dl>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Promotion</h5>
-            <hr>
-            <dl>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Miscellaneous</h5>
-            <hr>
-            <dl>
-              <dt>Security Deposit</dt>
-              <dd>[Insert SD]</dd>
-              <dt>[Insert other Misc.]</dt>
-              <dd>[Insert Charge]</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8 order-lg-1 ConfirmSection">
-        <!-- formReplaced -->
-
-        <div class="kpl-SummaryPageSection">
-          <dl>
-            <dt>
-              <h4>Premise #1 Details</h4>
-            </dt>
-            <dd>
-              <button type="button" class="btn-secondary btn">Edit Details</button>
-            </dd>
-            <dt>Premise Address</dt>
-            <dd>[Insert Premise Address]</dd>
-          </dl>
-          <dl>
-            <dt>Billing Address</dt>
-            <dd>[Insert Billing Address]</dd>
-          </dl>
-          <dl>
-            <dt>Ownership Type</dt>
-            <dd>[Insert Ownership Type]</dd>
-            <dt>SP Account Number</dt>
-            <dd>[SP Account Number]</dd>
-            <dt>Premise Details Attachment</dt>
-            <dd>[Attach Document]</dd>
-            <dt>Electricity Plan Selection</dt>
-            <dd>[Insert Plan Selected]</dd>
-            <dt>Contract Period</dt>
-            <dd>[Insert Contract Period]</dd>
-            <dt>Service Start Date</dt>
-            <dd>[Insert Service Start Date]</dd>
-            <dt>Additional Services</dt>
-            <dd>VAS #1
-              <br/>VAS#2</dd>
-            <dt>Payment Mode</dt>
-            <dd>[Insert Payment Mode]</dd>
-            <dt>Credit Terms</dt>
-            <dd>[Insert #] Days from Invoice Due</dd>
-            <dt>Charging Period</dt>
-            <dd>Monthly (As per MSSL Billing Period)</dd>
-            <dt>Early Termination & Other Charges</dt>
-            <dd>As stated in Terms & Conditions</dd>
-          </dl>
-        </div>
-      </div>
-      <!-- formReplaced -->
-
-    </div>
 
     <div class="row kpl-ConfirmPageItem">
       <div class="col-lg-1"></div>
@@ -165,8 +65,6 @@
         </div>
       </div>
       <div class="col-lg-8 order-lg-1 ConfirmSection">
-        <!-- formReplaced -->
-
         <div class="kpl-SummaryPageSection">
           <dl>
             <dt>
@@ -194,9 +92,9 @@
             <dt>Premise Details Attachment</dt>
             <dd>[Attach Document]</dd>
             <dt>Electricity Plan Selection</dt>
-            <dd>[Insert Plan Selected]</dd>
+            <dd>{{_usderDetailObj.selectedPlanObj.plan}}</dd>
             <dt>Contract Period</dt>
-            <dd>[Insert Contract Period]</dd>
+            <dd>{{_usderDetailObj.selectedPlanObj.contractDuration}}</dd>
             <dt>Service Start Date</dt>
             <dd>{{_usderDetailObj.serviceStartDate}}</dd>
             <dt>Additional Services</dt>
@@ -214,109 +112,8 @@
           </dl>
         </div>
       </div>
-      <!-- formReplaced -->
-
     </div>
-    <div class="row kpl-ConfirmPageItem">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-3 order-lg-2 PremiseSection">
-        <div class="PremiseInfo">
-          <div class="kpl-summaryPanelSection">
-            <h5>Products Charges</h5>
-            <hr>
-            <dl>
-              <dt>Consumption will be</dt>
-              <dd>Loss Adjusted</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Additional Services</h5>
-            <hr>
-            <dl>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Promotion</h5>
-            <hr>
-            <dl>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Miscellaneous</h5>
-            <hr>
-            <dl>
-              <dt>Security Deposit</dt>
-              <dd>[Insert SD]</dd>
-              <dt>[Insert other Misc.]</dt>
-              <dd>[Insert Charge]</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-8 order-lg-1 ConfirmSection">
-        <!-- formReplaced -->
-
-        <div class="kpl-SummaryPageSection">
-          <dl>
-            <dt>
-              <h4>Premise #1 Details</h4>
-            </dt>
-            <dd>
-              <button type="button" class="btn-secondary btn">Edit Details</button>
-            </dd>
-            <dt>Premise Address</dt>
-            <dd>[Insert Premise Address]</dd>
-          </dl>
-          <dl>
-            <dt>Billing Address</dt>
-            <dd>[Insert Billing Address]</dd>
-          </dl>
-          <dl>
-            <dt>Ownership Type</dt>
-            <dd>[Insert Ownership Type]</dd>
-            <dt>SP Account Number</dt>
-            <dd>[SP Account Number]</dd>
-            <dt>Premise Details Attachment</dt>
-            <dd>[Attach Document]</dd>
-            <dt>Electricity Plan Selection</dt>
-            <dd>[Insert Plan Selected]</dd>
-            <dt>Contract Period</dt>
-            <dd>[Insert Contract Period]</dd>
-            <dt>Service Start Date</dt>
-            <dd>[Insert Service Start Date]</dd>
-            <dt>Additional Services</dt>
-            <dd>VAS #1
-              <br/>VAS#2</dd>
-            <dt>Payment Mode</dt>
-            <dd>[Insert Payment Mode]</dd>
-            <dt>Credit Terms</dt>
-            <dd>[Insert #] Days from Invoice Due</dd>
-            <dt>Charging Period</dt>
-            <dd>Monthly (As per MSSL Billing Period)</dd>
-            <dt>Early Termination & Other Charges</dt>
-            <dd>As stated in Terms & Conditions</dd>
-          </dl>
-        </div>
-      </div>
-      <!-- formReplaced -->
-
-    </div>
+    
 
   </div>
   <div class="PersonalDetails row">
@@ -339,7 +136,7 @@
           <dt>Email</dt>
           <dd>{{_usderDetailObj.eMail}}</dd>
           <dt>Contact</dt>
-          <dd>[Insert Contact]</dd>
+          <dd>{{_usderDetailObj.mobileNumber}}</dd>
         </dl>
       </div>
       <small>

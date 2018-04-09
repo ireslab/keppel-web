@@ -240,7 +240,7 @@
       <div class="col-md-6">
         <div class="kpl-panel">
           <div class="form-group IDIcon">
-            <input type="text" class="form-control" id="txt_IDNumber" placeholder="Input your ID Number" formControlName="idNumber">
+            <input type="text" class="form-control" id="txt_IDNumber" placeholder="Input your ID Number" formControlName="idNumber" maxlength="9">
             <div *ngIf="idNumber.invalid && idNumber.touched" class=" text-danger text-left">
               <div *ngIf="idNumber.errors?.required">
                 ID number is required.
@@ -251,7 +251,7 @@
             </div>
           </div>
           <div class="form-group mobileIcon">
-            <input type="text" class="form-control" placeholder="Input your Mobile Number" aria-label="txt_PhoneNumber" id="txt_PhoneNumber"
+            <input type="text" class="form-control" placeholder="Input your Mobile Number" aria-label="txt_PhoneNumber" id="txt_PhoneNumber" maxlength="8"
               formControlName="mobileNumber">
             <div *ngIf="mobileNumber.invalid && mobileNumber.touched" class=" text-danger text-left">
               <div *ngIf="mobileNumber.errors?.required">

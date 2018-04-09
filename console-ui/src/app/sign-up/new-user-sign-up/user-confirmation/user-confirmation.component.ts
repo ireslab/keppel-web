@@ -17,7 +17,7 @@ export class UserConfirmationComponent implements OnInit {
     this.DS.userDetails.subscribe(
       (value) => {
         this._usderDetailObj = value
-        console.log(value.selectedPlanObj)
+        console.log(JSON.stringify(value))
       }
     )
   }
