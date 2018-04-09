@@ -148,6 +148,7 @@ export class UserRecommendationComponent implements OnInit {
                 this.firstTwoDwlPlans();
             }, (error: any) => {
                 alert("Something went wrong")
+                this.spinnerService.hide();
             }
         );
         //   } 

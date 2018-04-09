@@ -35,6 +35,7 @@ export class UserConfirmationComponent implements OnInit {
 
   confirmClicked() {
     if (navigator.onLine) {
+      this.spinner.show();
       var rqst_json = {
         "icNumber": this.DS.usderDetailObj.icNumber,
         "icNumberType": this.DS.usderDetailObj.icNumberType,
@@ -75,24 +76,31 @@ export class UserConfirmationComponent implements OnInit {
         "TC": "",
         "PDPA": ""
       }
-      this.spinner.show();
-      var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup" //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
-      ServiceCall.httpPostCall(rqst_json, localURL, this.http).subscribe(
-        (data) => {
-          console.log(data[0].messageId)
-          if(data[0].messageId!=''){
-            this.router.navigateByUrl("aknowledgement");
-
-          }else{
-            alert("Something went wrong");
-          }
-        }, (error: any) => {
-          console.log(error)
-        })
+      this.makeServerCall(rqst_json);
+      
     } else {
       alert("Please Check Internet Connection")
     }
   }
 
+  makeServerCall(rqst_json){
+    var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup" //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
+      ServiceCall.httpPostCall(rqst_json, localURL, this.http).subscribe(
+        (data) => {
+          console.log(data[0].messageId)
+          if(data[0].messageId!=''){
+            this.router.navigateByUrl("aknowledgement");
+              this.spinner.hide()
+          }else{
+            alert("Something went wrong");
+            this.spinner.hide();
+
+          }
+        }, (error: any) => {
+          alert('Service Failed')
+          this.spinner.hide()
+        })
+    
+  }
   // S5416486F
 }
