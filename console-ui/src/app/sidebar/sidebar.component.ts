@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from './sidebar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit {
   business: boolean = false;
 
 
-  constructor(private sbService: SidebarService) { }
+  constructor(private sbService: SidebarService, private router:Router) { }
 
   ngOnInit() {
     this.sbService.sideBar.subscribe(

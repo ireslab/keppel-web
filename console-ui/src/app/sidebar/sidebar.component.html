@@ -180,9 +180,9 @@
     <div class="col-lg-6 text-lg-right text-center" *ngIf="existingUser || newUser">
       <nav>
         <ul class="kpl-progressBar">
-          <li routerLinkActive="active">
+          <li [ngClass]="{active:this.router.url == '/new-user-recommendation'}">
             Step
-            <a role="button" routerLink="/new-user-recommendation" *ngIf="newUser">
+            <a  *ngIf="newUser">
               <span>1</span>
             </a>
             <a role="button" routerLink="/existing-recommendation" *ngIf="existingUser">
@@ -190,9 +190,9 @@
             </a>
             Recommendation
           </li>
-          <li routerLinkActive="active">
+          <li [ngClass]="{active:this.router.url == '/new-user-contract'}">
             Step
-            <a role="button" routerLink="/new-user-contract" *ngIf="newUser">
+            <a *ngIf="newUser">
               <span>2</span>
             </a>
             <a role="button" routerLink="/existing-contract" *ngIf="existingUser">
@@ -200,9 +200,9 @@
             </a>
             Contract
           </li>
-          <li routerLinkActive="active">
+          <li [ngClass]="{active:this.router.url == '/new-user-confirmation'}">
             Step
-            <a role="button" routerLink="/new-user-confirmation" *ngIf="newUser">
+            <a  *ngIf="newUser">
               <span>3</span>
             </a>
             <a role="button" routerLink="/existing-confirmation" *ngIf="existingUser">
