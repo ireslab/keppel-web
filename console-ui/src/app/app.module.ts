@@ -28,7 +28,8 @@ import { ExistingRecommendationComponent } from './sign-up/existing-user-sign-up
 import { ExistingContractComponent } from './sign-up/existing-user-sign-up/existing-contract/existing-contract.component';
 import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/existing-confirmation/existing-confirmation.component';
 import { recaptcha } from './recaptcha/recaptcha.component';
-//import { DataShare } from './Utility/data_share.service';
+import { DataShare } from './Utility/data_share.service';
+import { HttpModule } from '@angular/http';
 
 
 
@@ -74,14 +75,14 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule,HttpModule,
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true }
     ),LoadingModule
   ],
-  providers: [SidebarService,ServiceCall,localJSON,CommonServices],
+  providers: [SidebarService,ServiceCall,localJSON,CommonServices,DataShare],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

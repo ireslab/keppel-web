@@ -4,7 +4,9 @@
     border-bottom-left-radius: 1px;
 }
 
-
+.has-error .control-label {
+    color:red;
+}
 /* #Grp-Package,
 #Grp_IDOTP {
     display: none;
@@ -666,6 +668,7 @@ ul.kpl-progressBar li a{
 
 ul.kpl-progressBar li.active a span{
     border: 5px solid #a63553;
+    color:#fff
 }
 
 ul.kpl-progressBar li a span{
