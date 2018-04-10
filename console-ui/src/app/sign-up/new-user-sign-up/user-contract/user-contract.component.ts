@@ -237,7 +237,7 @@ export class UserContractComponent implements OnInit {
     if (_postCode.length != 6) {
       return;
     } else {
-      this.spinnerService.show();
+     // this.spinnerService.show();
       let _url = "https://developers.onemap.sg/commonapi/search?searchVal=" + _postCode + "&returnGeom=N&getAddrDetails=Y&pageNum=1";
       console.log(_url)
       this.serverCall.getPlans(_url).subscribe(
