@@ -137,10 +137,10 @@ export class UserRecommendationComponent implements OnInit {
 
         let _url = ApiConstants.GET_PLANS_URL;
 
-        let localURL = "http://192.168.0.4:7001/keppelconsumer/v1/getPlans"  //"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+       // let localURL = "http://192.168.0.4:7001/keppelconsumer/v1/getPlans"  //"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
         // getWriterWithFavBooks() {
-        this.service.getPlans(localURL).subscribe(
+        this.service.getPlans(_url).subscribe(
             data => {
                 this.dwlTypePlans = data;
                 this.spinnerService.hide();

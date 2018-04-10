@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CommonServices } from '../../../commom_methods/common_service';
 import { ServiceCall } from '../../../network_layer/web_service_call';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { element } from 'protractor';
 
 
 declare var $: any
@@ -31,7 +32,9 @@ export class UserContractComponent implements OnInit {
   formIsNotValid: boolean = false;
   postalError: boolean = false;
   postalBillError: boolean = false;
-  // itemCount:any;
+  optionalServiceOne:any;
+  optionalServiceTwo:any;
+  optionalServiceThree:any;
 
   _postcode: string = '';
   _streetName: string = '';
@@ -40,28 +43,70 @@ export class UserContractComponent implements OnInit {
   _floorLevel: string = '';
 
   constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder,
-    private router: Router, private commonService: CommonServices, private serverCall: ServiceCall, private spinnerService: Ng4LoadingSpinnerService) {
+    private router: Router, private commonService: CommonServices, private serverCall: ServiceCall, 
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView()
+    
     this.optionalServices = [
       { "serviceName": "vas#1", "serviceCost": "1" },
       { "serviceName": "vas#2", "serviceCost": "2" },
       { "serviceName": "vas#3", "serviceCost": "3" },
     ]
+    this.optionalServiceOne = { "serviceName": "vas#1", "serviceCost": "1" };
+    this.optionalServiceTwo = { "serviceName": "vas#2", "serviceCost": "2" };
+    this.optionalServiceThree = { "serviceName": "vas#3", "serviceCost": "3" };
+
   }
 
-  selectedServices(optService) {
-    if (this.selectedOptionalServices.indexOf(optService) == -1) {
-      this.selectedOptionalServices.push(optService)
+  // selectedServices(optService) {
+  //   if (this.selectedOptionalServices.indexOf(optService) == -1) {
+  //     this.selectedOptionalServices.push(optService)
+  //   } else {
+  //     this.selectedOptionalServices.splice(this.selectedOptionalServices.indexOf(optService), 1);
+  //   }
+  //   console.log(this.selectedOptionalServices);
+  // }
+  selectedServices(index){
+    if(index == 1){
+      if(this.datashare.usderDetailObj.optionalService1 != ""){
+        this.datashare.usderDetailObj.optionalService1 = ""
+      } else {
+        this.datashare.usderDetailObj.optionalService1 = this.optionalServiceOne.serviceName
+      }
+      
+    } else if(index == 2){
+      if(this.datashare.usderDetailObj.optionalService1 != ""){
+        this.datashare.usderDetailObj.optionalService2 = ""
+      } else {
+        this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo.serviceName
+      }
     } else {
-      this.selectedOptionalServices.splice(this.selectedOptionalServices.indexOf(optService), 1);
+      if(this.datashare.usderDetailObj.optionalService3 != ""){
+        this.datashare.usderDetailObj.optionalService3 = ""
+      } else {
+        this.datashare.usderDetailObj.optionalService3 = this.optionalServiceThree.serviceName
+      }
     }
-    console.log(this.selectedOptionalServices)
+  }
+  showSelectedOptService(){
+    if(this.datashare.usderDetailObj.optionalService1 != ""){
+      document.getElementById("btnOne").className = 'btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option selected';
+    }
+    if(this.datashare.usderDetailObj.optionalService2 != ""){
+      document.getElementById("btnTwo").className = 'btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option selected';
+    }
+    if(this.datashare.usderDetailObj.optionalService3 != ""){
+      document.getElementById("btnThree").className = 'btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option selected';
+    }
+
   }
 
 
 
   ngOnInit() {
+    this.showSelectedOptService();
+
     this.contractForm = this.fb.group({
       serviceStartDate: [this.datashare.usderDetailObj.serviceStartDate, Validators.required],
       promoCode: [this.datashare.usderDetailObj.promoCode, [Validators.pattern('[A-Za-z0-9]*$')]],
@@ -313,9 +358,9 @@ export class UserContractComponent implements OnInit {
       }
 
       this.datashare.usderDetailObj.serviceStartDate = this.contractForm.controls['serviceStartDate'].value;
-      this.datashare.usderDetailObj.optionalService1 = optionalService1;
-      this.datashare.usderDetailObj.optionalService2 = optionalService2;
-      this.datashare.usderDetailObj.optionalService3 = optionalService3;
+      // this.datashare.usderDetailObj.optionalService1 = optionalService1;
+      // this.datashare.usderDetailObj.optionalService2 = optionalService2;
+      // this.datashare.usderDetailObj.optionalService3 = optionalService3;
       this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
       this.datashare.usderDetailObj.paymentMethod = this.paymentMethod;
       this.datashare.usderDetailObj.icNumberType = this.contractForm.controls['icNumberType'].value;

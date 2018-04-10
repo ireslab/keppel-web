@@ -6,6 +6,8 @@ import { ServiceCall } from '../../../network_layer/web_service_call';
 import { Http, Response, Headers } from '@angular/http';
 import { CommonServices } from '../../../commom_methods/common_service'
 import { Router } from '@angular/router';
+import { ApiConstants } from '../../../network_layer/api_constants';
+
 
 
 
@@ -18,7 +20,7 @@ export class UserConfirmationComponent implements OnInit {
   _usderDetailObj;
   constructor(private sbService: SidebarService, private DS: DataShare, private spinner: Ng4LoadingSpinnerService,
     private serverCall: ServiceCall, private http: Http, private commonService: CommonServices,
-     private router:Router) {
+    private router: Router) {
     this.sbService.getSidebar("newUser")
     this.commonService.gotoTopOfView();
   }
@@ -77,30 +79,29 @@ export class UserConfirmationComponent implements OnInit {
         "PDPA": ""
       }
       this.makeServerCall(rqst_json);
-      
+
     } else {
       alert("Please Check Internet Connection")
     }
   }
 
-  makeServerCall(rqst_json){
-    var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup" //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
-      ServiceCall.httpPostCall(rqst_json, localURL, this.http).subscribe(
-        (data) => {
-          console.log(data[0].messageId)
-          if(data[0].messageId!=''){
-            this.router.navigateByUrl("aknowledgement");
-              this.spinner.hide()
-          }else{
-            alert("Something went wrong");
-            this.spinner.hide();
-
-          }
-        }, (error: any) => {
-          alert('Service Failed')
+  makeServerCall(rqst_json) {
+    // var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup"  //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
+    let _url = ApiConstants.NEW_USER_SIGNUP;
+    ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(
+      (data) => {
+        console.log(data[0].messageId)
+        if (data[0].messageId != '') {
+          this.router.navigateByUrl("aknowledgement");
           this.spinner.hide()
-        })
-    
+        } else {
+          alert("Something went wrong");
+          this.spinner.hide();
+        }
+      }, (error: any) => {
+        alert('Service Failed')
+        this.spinner.hide()
+      })
   }
   // S5416486F
 }
