@@ -4,7 +4,9 @@ import { DataShare } from '../../../Utility/data_share.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ValidateNric } from '../../../Utility/nric_validatior';
 import { Router } from '@angular/router';
-import { CommonServices } from '../../../commom_methods/common_service'
+import { CommonServices } from '../../../commom_methods/common_service';
+import { ServiceCall } from '../../../network_layer/web_service_call';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 
 declare var $: any
@@ -27,10 +29,18 @@ export class UserContractComponent implements OnInit {
   billingAddress: string;
   billingAddress2: string;
   formIsNotValid: boolean = false;
+  postalError: boolean = false;
+  postalBillError: boolean = false;
   // itemCount:any;
 
+  _postcode: string = '';
+  _streetName: string = '';
+  _block: string = '';
+  _buildingName: string = '';
+  _floorLevel: string = '';
+
   constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder,
-    private router:Router, private commonService: CommonServices) {
+    private router: Router, private commonService: CommonServices, private serverCall: ServiceCall, private spinnerService: Ng4LoadingSpinnerService) {
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView()
     this.optionalServices = [
@@ -176,6 +186,83 @@ export class UserContractComponent implements OnInit {
     this.tenantOrOwner = ownership
   }
 
+  getAddressPostcode(e) {
+    this.postalError = false;
+    let _postCode = e.target.value
+    if (_postCode.length != 6) {
+      return;
+    } else {
+      this.spinnerService.show();
+      let _url = "https://developers.onemap.sg/commonapi/search?searchVal=" + _postCode + "&returnGeom=N&getAddrDetails=Y&pageNum=1";
+      console.log(_url)
+      this.serverCall.getPlans(_url).subscribe(
+        data => {
+          if (data.found == 0) {
+            this.postalError = true;
+            let address = data.results[0];
+            this.contractForm.patchValue({
+              streetName: "",
+              block: "",
+              buildingName: "",
+              floorLevel: ""
+            })
+            return;
+          } else {
+            let address = data.results[0];
+            this.contractForm.patchValue({
+              streetName: address.ROAD_NAME,
+              block: address.BLK_NO,
+              buildingName: address.BUILDING,
+              floorLevel: '',
+            })
+          }
+          this.spinnerService.hide();
+        }, (error: any) => {
+          this.spinnerService.hide();
+          alert("error")
+        }
+      );
+    }
+  }
+  getAddressPostcodeBill(e) {
+    this.postalBillError = false;
+    let _postCode = e.target.value
+    if (_postCode.length != 6) {
+      return;
+    } else {
+      this.spinnerService.show();
+      let _url = "https://developers.onemap.sg/commonapi/search?searchVal=" + _postCode + "&returnGeom=N&getAddrDetails=Y&pageNum=1";
+      console.log(_url)
+      this.serverCall.getPlans(_url).subscribe(
+        data => {
+          if (data.found == 0) {
+            this.postalBillError = true;
+            let address = data.results[0];
+            this.contractForm.patchValue({
+              streetNameBill: "",
+              blockBill: "",
+              buildingNameBill: "",
+              floorLevelBill: "",
+            })
+            return;
+          } else {
+            let address = data.results[0];
+            this.contractForm.patchValue({
+              streetNameBill: address.ROAD_NAME,
+              blockBill: address.BLK_NO,
+              buildingNameBill: address.BUILDING,
+              floorLevelBill: '',
+            })
+          }
+          this.spinnerService.hide();
+        }, (error: any) => {
+          this.spinnerService.hide();
+          alert("error")
+        }
+      );
+    }
+  }
+
   submitContractDetails() {
     this.formIsNotValid = false;
     if (this.contractForm.invalid) {
@@ -210,10 +297,10 @@ export class UserContractComponent implements OnInit {
         }
 
       }
-
+      
       let postcode = this.contractForm.controls['postcode'].value
-      let premiseAddress = this.contractForm.controls['streetName'].value + "," + this.contractForm.controls['block'].value;
-      let premiseAddress2 = this.contractForm.controls['buildingName'].value + "," + this.contractForm.controls['floorLevel'].value;
+      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value;
+      let premiseAddress2 = this.contractForm.controls['buildingName'].value + " " + " " +  this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
 
       if (this.sameAddress == true) {
         this.postcodeBilling = postcode;
@@ -221,8 +308,8 @@ export class UserContractComponent implements OnInit {
         this.billingAddress2 = premiseAddress2;
       } else {
         this.postcodeBilling = this.contractForm.controls['postcodeBill'].value;
-        this.billingAddress = this.contractForm.controls['streetNameBill'].value + "," + this.contractForm.controls['blockBill'].value;
-        this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + "," + this.contractForm.controls['floorLevelBill'].value;
+        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value;
+        this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " +" "+" SINGAPORE " + " " +" "+ this.postcodeBilling;
       }
 
       this.datashare.usderDetailObj.serviceStartDate = this.contractForm.controls['serviceStartDate'].value;

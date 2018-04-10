@@ -162,7 +162,10 @@
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" class="form-control PostalCode" id="int_PostalCode" aria-describedby="" placeholder="Postal Code*" formControlName="postcode"
-                maxlength="6">
+                (input)="getAddressPostcode($event)" maxlength="6">
+              <div *ngIf="postalError || postalError && postcode.errors?.pattern" class=" text-danger text-left">
+                Postal code is invalid.
+              </div>
               <div *ngIf="postcode.invalid && postcode.touched" class=" text-danger text-left">
                 <!-- <div *ngIf="postcode.errors?.required">
                   Postal code is required.
@@ -171,6 +174,8 @@
                   Accepts numbers only.
                 </div>
               </div>
+
+
               <div class="line"></div>
             </div>
           </div>
@@ -178,8 +183,8 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control Street" id="txt_StreetName" aria-describedby="" placeholder="Street Name*" formControlName="streetName"
-                maxlength="100">
+              <input type="text" class="form-control Street" id="txt_StreetName" aria-describedby="" placeholder="Street Name* is required"
+                formControlName="streetName" maxlength="100">
               <!-- <div *ngIf="streetName.invalid && streetName.touched" class=" text-danger text-left">
                 <div *ngIf="streetName.errors?.required">
                   Postal code is required.
@@ -255,7 +260,18 @@
             <div class="col-md-6">
               <div class="form-group">
                 <input type="text" class="form-control PostalCode" id="int_PostalCode" aria-describedby="" placeholder="Postal Code*" formControlName="postcodeBill"
-                  maxlength="6">
+                  (input)="getAddressPostcodeBill($event)" maxlength="6">
+                <div *ngIf="postalBillError && postcodeBill.errors?.pattern || postalBillError" class=" text-danger text-left">
+                  Postal code is invalid.
+                </div>
+                <div *ngIf="postcodeBill.invalid && postcodeBill.touched" class=" text-danger text-left">
+                  <!-- <div *ngIf="postcodeBill.errors?.required">
+                      Postal code is required.
+                    </div> -->
+                  <div *ngIf="postcodeBill.errors?.pattern && !postcodeBill.errors?.required">
+                    Accepts numbers only.
+                  </div>
+                </div>
                 <div class="line"></div>
               </div>
             </div>
