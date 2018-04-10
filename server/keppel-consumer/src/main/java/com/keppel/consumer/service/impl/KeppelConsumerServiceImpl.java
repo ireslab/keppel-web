@@ -110,7 +110,7 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetailsList.add(receiveDetails);
 		m1mmctr.getReceiveDetails().addAll(receiveDetailsList);
 		M1MMCTR m1mmctrResponse = (M1MMCTR) webServiceTemplateM1MMCTR.marshalSendAndReceive(m1mmctr);
-		submitUserImageData(accountDto);
+		//submitUserImageData(accountDto);
 		
 		return m1mmctrResponse;
 	}

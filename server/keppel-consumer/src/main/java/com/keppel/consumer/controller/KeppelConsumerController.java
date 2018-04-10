@@ -1,6 +1,23 @@
 package com.keppel.consumer.controller;
 
+import java.io.OutputStream;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.faces.context.FacesContext;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,11 +37,14 @@ import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.RESPONSE_CODE;
 import com.keppel.consumer.dto.ResponseDto;
 import com.keppel.consumer.dto.SecurityDeposit;
+import com.keppel.consumer.model.Account;
 import com.keppel.consumer.service.ActivityAuditService;
 import com.keppel.consumer.service.KeppelConsumerService;
+import com.keppel.consumer.utils.GeneratePDF;
 import com.keppelCMR.CMRECPLAN.CMRECPLAN;
 import com.keppelM1.M1MMCTR.M1MMCTR;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/v1/*", produces = MediaType.APPLICATION_JSON_VALUE)
 public class KeppelConsumerController {
@@ -318,13 +339,91 @@ public class KeppelConsumerController {
 	 * @return
 	 * @throws JsonProcessingException
 	 */
+	// TODO Replace AccountDto with model Account Class
 	@RequestMapping(value = "newResiSignup", method = RequestMethod.POST)
 	public String newResidentialUserSignup(@RequestBody AccountDto signUpData) {
 		M1MMCTR res = keppelConsumerService.submitNewResidentialSignupData(signUpData);
 		Gson gson = new Gson();
 		String json = gson.toJson(res.getReceiveDetails());
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		OutputStream outputStream= facesContext.getResponseStream();
+		new GeneratePDF().generatePDF(facesContext,  outputStream, signUpData);
+		SendEmailAttachment("123123123", signUpData);
 		logger.info("Response data =====================>" + json);
 		return json;
+	}
+
+	public String SendEmailAttachment(String messageId, AccountDto account) {
+		logger.info("sendEmailAttachment====");
+		String to = account.geteMail(); // change accordingly
+		String from = "noreply@keppelelectric.com"; // change accordingly
+		String host = "10.59.81.244"; // or IP address
+
+		logger.info("To Email Id::: " + to);
+		// Get the session object
+		Properties properties = System.getProperties();
+		properties.setProperty("mail.smtp.host", host);
+		Session session = Session.getDefaultInstance(properties);
+		try {
+			logger.info("in try sendEmailAttachment====");
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			// message.addRecipient(Message.RecipientType.TO, new
+			// InternetAddress("sean.teo@kepinfra.com"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("contracts@keppelelectric.com"));
+			message.setSubject("Your application with Keppel Electric has been received!");
+			Multipart multipart = new MimeMultipart();
+			message.setContent(multipart);
+			DataSource source = new FileDataSource("/u01/FRC/SignUpDocs/SignUp_FOA.pdf");
+			message.setDataHandler(new DataHandler(source));
+			MimeBodyPart messageBodyPart = new MimeBodyPart();
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName("Form of Acceptance.pdf");
+			multipart.addBodyPart(messageBodyPart);
+			message.setContent(multipart);
+			BodyPart htmlPart = new MimeBodyPart();
+			String cantString = "can't";
+			String actString = "(" + "Act" + ")";
+			htmlPart.setContent("Hi " + account.getFirstName() + "," +
+			// "<br/><br/>Thank you for choosing Keppel Electric! We have received your
+			// application and have attached the contract. You can track the status of your
+			// application with your application number" +
+			// "<a
+			// href=https://channel.keppelelectric.com/webcenter/portal/public/pages_trackstatus>
+			// here</a>" + "<br/><br/>Application number: " +
+
+					"<br/><br/>Thank you for choosing Keppel Electric! We have received your application and have attached the contract."
+					+ "<br/><br/>Application number: " +
+
+					"<b>" + messageId + " </b>" + "<br/><br/>Subscription Plan: " + "<b>" + account.getSelectedPlan()
+					+ "</b>" + "<br/><br/>Billing Organisation: " + "<b>Keppel Electric Pte Ltd</b>" +
+
+					"<br/><br/>Bill Reference: " + "<b>" + new Random().nextInt(6) + 1 + " </b>"
+					+ "<br/><br/>If you have not provided your SP account number or a scanned copy of your past month bill, fret not! Simply, send it to "
+					+ "<a href=sales@keppelelectric.com>sales@keppelelectric.com</a>"
+					+ "with your Application Number as the subject title and we will get right on to it!" +
+
+					"<br/><br/> For GIRO (DBS) application, please authorise the payment access through the DBS portal "
+					+ "<a href=https://internet-banking.dbs.com.sg/>here</a>" +
+
+					"<br/><br/>" + cantString + " wait to have you onboard!"
+					+ "<br/><br/><b><i>Life Just Got Brighter,</i></b>"
+					+ "<br/><br/><i>Your Customer Service friend</i>" + "<br/><br/><hr></hr>" + "Application number: "
+					+ "<b>" + messageId + " </b>"
+					+ "<br/><br/>By applying for this application, you confirm that you have read, understood and agreed to be bound by the Personal Data Protection Act 2012 "
+					+ actString + " and Terms and Conditions."
+					+ "<br/><br/>If you have any queries, please do not hesitate to contact our Customer Service at +65 6803 3888 or email to sales@keppelelectric.com",
+					"text/html");
+
+			multipart.addBodyPart(htmlPart);
+			Transport.send(message);
+			logger.info("message sent successfully....");
+		} catch (Exception e) {
+			logger.info("in catch Exception:::::::::" + e);
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
