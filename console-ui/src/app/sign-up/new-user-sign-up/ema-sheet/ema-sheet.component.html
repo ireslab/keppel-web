@@ -1,0 +1,252 @@
+<div class="container mainContent EMAForm">
+    <form>
+        <div class="row ">
+            <div class="col-12 text-center EMAPageHead">
+                <h1>Electricity Supply Contract Fact Sheet</h1>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12 EMAPageText">
+                Note:
+                <ol>
+                    <li>
+                        The Energy Market Authority requires an electricity retailer to provide you this Fact Sheet before you enter into an Electricity
+                        Supply Contract with the retailer. This Fact Sheet aims to provide you with key information about
+                        the contract.
+                    </li>
+                    <li>
+                        If you require any explanation on this Fact Sheet, the retailer is obliged to provide you with the explanation.
+                    </li>
+                    <li>
+                        Unless otherwise stated, all fees and charges stated in this fact sheet are exclusive of GST.
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row  EMAHead">
+            <div class="col-12">
+                <h2>A. General Information</h2>
+            </div>
+        </div>
+        <div class="row  ">
+            <div class="col-md-3  EMALabel">Name of Electricity Retailer:</div>
+            <div class="col-md-3 ">{{this.dataShare.usderDetailObj.firstName}}{{ this.dataShare.usderDetailObj.lastName}}</div>
+            <div class="col-md-3  EMALabel">Fact Sheet Version Date:</div>
+            <div class="col-md-3 ">DD/MM/YYYY</div>
+        </div>
+        <div class="row   EMAHead">
+            <div class="col-12">
+                <h2>B. Electricity Price Plan Information</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3  EMALabel">Name of Price Plan:</div>
+            <div class="col-md-3 "></div>
+            <div class="col-md-3  EMALabel">Type of Price Plan:</div>
+            <div class="col-md-3 ">Standard / Non-Standard</div>
+        </div>
+        <div class="row EMALabel">
+            <div class="col-12">
+                For&nbsp;
+                <u>Standard</u>&nbsp;Plan, the electricity rate payable by you is as follows:*
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12 subinfo">
+                Fixed price plan:
+                <span id="lbl_FixedPricePlan">_____</span> cents/kWh
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 subinfo">Discount-off regulated tariff plan:
+                <span id="lbl_DiscountPercent">__</span> % /
+                <span id="lbl_FixedPricePlan1">__</span> cents/kWh discount</div>
+        </div>
+        <div class="row ">
+            <div class="col-12 subinfo">Peak/off-peak plan:</div>
+        </div>
+        <div class="row ">
+            <div class="col-12 subinfo">i.
+                <span id="lbl_FixedPricePlan2">__</span> cents/kWh for peak periods from
+                <span id="lbl_PeakPeriod">__</span>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12 subinfo">ii.
+                <span id="lbl_FixedPricePlan3">__</span> cents/kWh for off-peak periods from
+                <span id="lbl_OffPeakPeriod">__</span>
+            </div>
+        </div>
+        <div class="row EMALabel">
+            <div class="col-12">
+                For&nbsp;
+                <u>Non-Standard</u>&nbsp;Plan, the electricity rate payable by you is as follows:*
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 EMAFormFreeText" id="nonStandardRatePayable">
+            </div>
+        </div>
+        <div class="row  EMALabel">
+            The electricity retailer should clearly specify any incentives (including the terms and conditions) to be given to you if
+            you contract for the electricity price plan (see footnote 2)*:
+        </div>
+        <div class="row ">
+            <div class="col-md-4 ">
+                <div>Free gifts, promotions, rewards or services:</div>
+            </div>
+            <div class="col-md-8">[free text]</div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 ">
+                <div>Conditional discount:</div>
+            </div>
+            <div class="col-md-8 ">[free text]</div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4  EMALabel">Contract Duration (see footnote 3):</div>
+            <div class="col-md-8 ">
+                <span id="lbl_Months">__</span> months / Not Applicable</div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4  EMALabel">Contract Renewal:*</div>
+            <div class="col-md-8 ">
+                There is no contract renewal clause
+                <br/>Yes: [summary of contract renewal clauses]
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-3  EMALabel">To use smart meter (see footnote 4):*</div>
+            <div class="col-md-3 ">Yes / No</div>
+            <div class="col-md-3  EMALabel">Retailer to bill electricity charges directly (see footnote 5):*</div>
+            <div class="col-md-3 ">Yes / No</div>
+        </div>
+        <div class="row   EMAHead">
+            <div class="col-12">
+                <h2>C. Addtional fees or charges to be borne by you for electricity</h2>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-3  EMALabel">One-time registration fee:</div>
+            <div class="col-md-3 "></div>
+            <div class="col-md-3  EMALabel">Late payment charge:</div>
+            <div class="col-md-3 "></div>
+        </div>
+        <div class="row ">
+            <div class="col-md-3  EMALabel">Early Termination Charges:</div>
+            <div class="col-md-3 "></div>
+            <div class="col-md-3  EMALabel">Prevailing meter charge:</div>
+            <div class="col-md-3 ">$
+                <span id="lbl_MeterCharge">___</span>/meter/month</div>
+        </div>
+        <div class="row ">
+            <div class="col-md-3  EMALabel">Security deposit (see footnote 6):</div>
+            <div class="col-md-9 "></div>
+        </div>
+        <div class="row  EMALabel">
+            <div class="col-12">
+                Any other fees and charges (see footnote 7):*
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 EMAFormFreeText">[free text]</div>
+        </div>
+        <div class="row EMAHead">
+            <div class="col-12">
+                <h2>D. Bundled product or services (see footnote 8)</h2>
+            </div>
+        </div>
+        <div class="row EMALabel">
+            <div class="col-12">
+                There are other products or services bundled with the electricity price plan:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                Yes / No*
+            </div>
+        </div>
+        <div class="row EMALabel">
+            <div class="col-12">
+                If yes, the electricity retailer should specify below what are the bundled products or services. You should discuss the details
+                with the electricity retailer such as the applicable fees and charges as well as the terms and conditions
+                for accepting the bundled products or services:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 EMAFormFreeText">
+                [free text]
+            </div>
+        </div>
+        <div class="row EMAHead">
+            <div class="col-12">
+                <h2>E. Footnotes</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 EMAPageText">
+                <ol>
+                    <li>You can visit the online information platformat http://compare.openelectricitymarkget.sg to easily
+                        compare the standard price plans offered by different electricity retailers.
+                        <p>Standard price plans refer to the following:</p>
+                        <ul>
+                            <li>
+                                <u>Fixed price plan</u> that charges you a single rate for electricity that you consume
+                                throughout your contract duration
+                            </li>
+                            <li>
+                                <u>Discount off regulated tariff plan</u> that charges you a rate that is based on a discount
+                                off the prevailing regulated tariff throughout your contract duration</li>
+                            <li>
+                                <u>Peak/off-peak plan</u> that charges you a single rate for electricity that you use during
+                                peak periods (e.g. day time), and another rate for off-peak periods (e.g night time).</li>
+                        </ul>
+                    </li>
+                    <li>The electricity retailer may offer you incentives in return for contracting for the electricity price
+                        plan. The incentives may include:
+                        <ul>
+                            <li>free gifts, promotions, rewards or services; and/or</li>
+                            <li>conditional discount that reduces your electricity bill if you meet certain conditions such
+                                as making payment promptly or via certain payment modes.</li>
+                        </ul>
+                    </li>
+                    <li>During the contract duration, the electricity retailer will charge you a fee for early termination
+                        of the contract or switching to buy electricity from another retailer or SP Group.</li>
+                    <li>A smart meter is a digital meter capable of measuring your electricity consumption every half-hour.
+                        It can also be read remotely and provide you with timely and useful information on your electricity
+                        consumption. It is &nbsp;
+                        <u>optional</u>&nbsp;to install a smart meter to measure your half-hourly electricity consumption,
+                        unless the price plan you sign up for requires one. Your retailer will advise you on this.
+                    </li>
+                    <li>Under indirect billing, you will receive a&nbsp;
+                        <u>single</u>&nbsp;monthly bill from SP Group covering the charges for electricity supply by the
+                        electricity retailer as well as the charges for other utilities (such as water and gas supply).
+                        With direct billing, the electricity retailer will bill you directly for electricity supply,
+                        and SP Group will issue you a separate bill for the other utilities.
+                    </li>
+                    <li>Electricity retailer requiring you to provide a security deposit shoud indicate the amount of security
+                        deposit for electricity supply. If you are a residential consumer, the maximum amount of security
+                        deposit an electricity retailer is allowed to collect is equivalient to 2 months of your average
+                        monthly electricity bill at the point of contracting, contract renewal or during the term of
+                        the contract.
+                    </li>
+                    <li>The electricity retailer may require you to pay one or more of the prevailing market-related charges.
+                        You may refer to http://www.openelectricitymarket.sg for more information on market-related charges.</li>
+                    <li>The electricity retailer may bundle the supply of electricity with other products and/or serviecs,
+                        such as the provision of phone or internal services, home energy management systems, newspaper
+                        or magazine subscription, etc.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 lastCell">
+                I acknowledge that I have read and understood all key information in this Fact Sheet
+                <div class="form-check d-none">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="" id="Chk_Tnc3">I acknowledge that I have read and understood all key information in this Fact Sheet
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

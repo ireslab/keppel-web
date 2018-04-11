@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.sbService.sideBar.subscribe(
       (value) => {
+        console.log(value)
         if (value == "login") {
           this.login = true;
         } else if (value == "newUser") {
@@ -33,6 +34,7 @@ export class SidebarComponent implements OnInit {
         }else {
           console.log("No value found for sidebar")
         }
+       
       });
   }
 }

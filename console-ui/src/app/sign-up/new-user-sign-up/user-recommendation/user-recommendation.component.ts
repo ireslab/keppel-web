@@ -316,6 +316,8 @@ export class UserRecommendationComponent implements OnInit {
             $('#OTPModal').modal('show');
             this.resetCaptcha();
             this.datashare.getUserDetails()
+
+            window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj))
             // this.signUpForm.reset();
 
 

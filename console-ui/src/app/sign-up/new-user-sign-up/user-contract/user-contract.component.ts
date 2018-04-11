@@ -18,7 +18,8 @@ declare var $: any
 })
 export class UserContractComponent implements OnInit {
   contractForm: FormGroup;
-
+  startDate = new Date();
+ 
   optionalServices = [];
   selectedOptionalServices = [];
   tenantOrOwner: string = this.datashare.usderDetailObj.tenantOrOwner;
@@ -45,8 +46,9 @@ export class UserContractComponent implements OnInit {
   constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall, 
     private spinnerService: Ng4LoadingSpinnerService) {
+     // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this.sbService.getSidebar("newUser");
-    this.commonService.gotoTopOfView()
+    this.commonService.gotoTopOfView();
     
     this.optionalServices = [
       { "serviceName": "vas#1", "serviceCost": "1" },
@@ -125,6 +127,7 @@ export class UserContractComponent implements OnInit {
       blockBill: this.datashare.usderDetailObj.blockBill,
       buildingNameBill: this.datashare.usderDetailObj.buildingNameBill,
       floorLevelBill: this.datashare.usderDetailObj.floorLevelBill,
+      spAccount: this.datashare.usderDetailObj.spAccount,
     })
 
 
@@ -225,6 +228,10 @@ export class UserContractComponent implements OnInit {
   getPayment(paymentMethod) {
     this.paymentMessage = false;
     this.paymentMethod = paymentMethod
+    if(paymentMethod == 'Recurring')
+    {
+      this.router.navigateByUrl("payPal");
+    }
   }
   getOwnership(ownership) {
     this.ownershipMessage = false;
@@ -237,11 +244,12 @@ export class UserContractComponent implements OnInit {
     if (_postCode.length != 6) {
       return;
     } else {
-     // this.spinnerService.show();
+      this.spinnerService.show();
       let _url = "https://developers.onemap.sg/commonapi/search?searchVal=" + _postCode + "&returnGeom=N&getAddrDetails=Y&pageNum=1";
       console.log(_url)
       this.serverCall.getPlans(_url).subscribe(
         data => {
+          this.spinnerService.hide()
           if (data.found == 0) {
             this.postalError = true;
             let address = data.results[0];
@@ -261,7 +269,6 @@ export class UserContractComponent implements OnInit {
               floorLevel: '',
             })
           }
-          this.spinnerService.hide();
         }, (error: any) => {
           this.spinnerService.hide();
           alert("error")
@@ -280,6 +287,7 @@ export class UserContractComponent implements OnInit {
       console.log(_url)
       this.serverCall.getPlans(_url).subscribe(
         data => {
+          this.spinnerService.hide();
           if (data.found == 0) {
             this.postalBillError = true;
             let address = data.results[0];
@@ -299,7 +307,7 @@ export class UserContractComponent implements OnInit {
               floorLevelBill: '',
             })
           }
-          this.spinnerService.hide();
+          
         }, (error: any) => {
           this.spinnerService.hide();
           alert("error")
@@ -307,6 +315,15 @@ export class UserContractComponent implements OnInit {
       );
     }
   }
+  
+
+  getPromoCode() {
+    this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
+  }
+  getSPaccountNumber(){
+    this.datashare.usderDetailObj.spAccount = this.contractForm.controls['spAccount'].value;
+  }
+
 
   submitContractDetails() {
     this.formIsNotValid = false;
@@ -330,18 +347,18 @@ export class UserContractComponent implements OnInit {
       let optionalService2 = "";
       let optionalService3 = "";
 
-      if (this.selectedOptionalServices.length > 0) {
-        for (let i = 0; i < this.selectedOptionalServices.length; i++) {
-          if (i == 0) {
-            optionalService1 = this.selectedOptionalServices[i]
-          } else if (i == 1) {
-            optionalService2 = this.selectedOptionalServices[i]
-          } else {
-            optionalService3 = this.selectedOptionalServices[i]
-          }
-        }
+      // if (this.selectedOptionalServices.length > 0) {
+      //   for (let i = 0; i < this.selectedOptionalServices.length; i++) {
+      //     if (i == 0) {
+      //       optionalService1 = this.selectedOptionalServices[i]
+      //     } else if (i == 1) {
+      //       optionalService2 = this.selectedOptionalServices[i]
+      //     } else {
+      //       optionalService3 = this.selectedOptionalServices[i]
+      //     }
+      //   }
 
-      }
+      // }
       
       let postcode = this.contractForm.controls['postcode'].value
       let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value;
@@ -387,6 +404,7 @@ export class UserContractComponent implements OnInit {
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
+      window.localStorage.setItem('newUserData',JSON.stringify(this.datashare.usderDetailObj));
       this.router.navigateByUrl("new-user-confirmation");
       // let reqJson = JSON.stringify({
       //   "serviceStartDate": this.contractForm.controls['serviceStartDate'].value,

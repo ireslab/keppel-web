@@ -1,0 +1,12 @@
+p {
+    font-size: calc(12px + 0.5vw);
+}
+
+.acknowledgementImage {
+    margin: 30px;
+    width: calc(90px + 2vw);
+}
+
+.emphasis {
+    font-size: 25px;
+}

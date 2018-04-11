@@ -1,0 +1,98 @@
+<div *ngIf="this.router.url == '/new-user-contract'">
+  <button class="PanelRevealButton" type="button">Selection Summary</button>
+  <div class="kpl-SummaryCallout">
+    <h4>Selection Summary</h4>
+    <div class="kpl-premise">
+      <h5>
+        <img src="assets/img/img-PlanIcon.png" /> {{_planDetailObj.plan}}</h5>
+
+      <hr>
+      <!-- <p>Estimated Monthly Bill: S$56*</p> -->
+
+      <!-- <h1>19% Less</h1> -->
+      <p class="text-center">{{_planDetailObj.details}}</p>
+      <p class="text-center" *ngFor="let benifits of _planBenifitArray">
+        {{benifits}}
+      </p>
+    </div>
+    <button class="PanelClose-Top" type="button">
+      <img src="assets/img/ico-PanelArrow.png" />
+    </button>
+    <button class="PanelClose-Bottom" type="button">
+      <img src="assets/img/ico-PanelArrow.png" />
+    </button>
+  </div>
+</div>
+
+<div class="PremiseInfo">
+  <div class="kpl-summaryPanelSection" *ngIf="this.router.url == '/new-user-contract'">
+    <p class="PanelScrollNotice d-block d-lg-none">Scroll down to see more information</p>
+    <h6>Details:</h6>
+    <ul>
+      <!-- <li>24 Months</li>
+      <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
+      <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
+      <li>All charges are absorbed</li>
+      <li>Consumption is loss adjusted</li> -->
+      <li>Product Name : {{_planDetailObj.product}}</li>
+      <li>Start Date : {{_planDetailObj.startDate}}</li>
+      <li>Duration :{{_planDetailObj.contractDuration}} Months</li>
+      <li>Charge Type : {{_planDetailObj.chargeType}}</li>
+    </ul>
+  </div>
+
+  <div class="kpl-summaryPanelSection">
+    <h5>Products Charges</h5>
+    <hr>
+    <dl>
+      <dt>Consumption will be</dt>
+      <dd>Loss Adjusted</dd>
+      <dt>t1</dt>
+      <dd>{{_planDetailObj.t1}}</dd>
+      <dt>t2</dt>
+      <dd>{{_planDetailObj.t2}}</dd>
+      <dt>t3</dt>
+      <dd>{{_planDetailObj.t3}}</dd>
+      <dt>[Insert Pass through Cost]</dt>
+      <dd>As Charged</dd>
+    </dl>
+  </div>
+  <div class="kpl-summaryPanelSection">
+    <h5>Additional Services</h5>
+    <hr>
+    <dl *ngIf="_usderDetailObj.optionalService1== '' && _usderDetailObj.optionalService2== '' && _usderDetailObj.optionalService3 == ''">No optional service is selected</dl>
+    <dl>
+      <dt *ngIf="_usderDetailObj.optionalService1 != ''">{{_usderDetailObj.optionalService1.serviceName}}</dt>
+      <dd *ngIf="_usderDetailObj.optionalService1 != ''">(+${{_usderDetailObj.optionalService1.serviceCost}}/bill)</dd>
+      <dt *ngIf="_usderDetailObj.optionalService2 != ''">{{_usderDetailObj.optionalService2.serviceName}}</dt>
+      <dd *ngIf="_usderDetailObj.optionalService2 != ''">(+${{_usderDetailObj.optionalService2.serviceCost}}/bill)</dd>
+      <dt *ngIf="_usderDetailObj.optionalService3 != ''">{{_usderDetailObj.optionalService3.serviceName}}</dt>
+      <dd *ngIf="_usderDetailObj.optionalService3 != ''">(+${{_usderDetailObj.optionalService3.serviceCost}}/bill)</dd>
+    </dl>
+  </div>
+  <div class="kpl-summaryPanelSection">
+    <h5>Promotion</h5>
+    <hr>
+    <dl *ngIf="_usderDetailObj.promoCode== '' ">No promocode is provided yet</dl>
+    <dl>
+      <dt *ngIf="_usderDetailObj.promoCode != ''">{{_usderDetailObj.promoCode}}</dt>
+      <dd *ngIf="_usderDetailObj.promoCode != ''">[Insert discount]</dd>
+    </dl>
+  </div>
+  <div class="kpl-summaryPanelSection">
+    <h5>Miscellaneous</h5>
+    <hr>
+    <dl>
+      <dt>Security Deposit</dt>
+      <dd>{{_usderDetailObj.sd_amount}}</dd>
+      <dt>[Insert other Misc.]</dt>
+      <dd>[Insert Charge]</dd>
+    </dl>
+  </div>
+  <div class="kpl-summaryPanelSection" *ngIf="this.router.url == '/new-user-contract'">
+    <hr>
+    <dl>
+      <dt style="width:100%;">*Based on average dwelling type consumption</dt>
+    </dl>
+  </div>
+</div>

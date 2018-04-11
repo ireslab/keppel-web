@@ -8,7 +8,7 @@
           <div class="col-12">
             <div class="form-group StartDateGroup text-center">
               <label for="dt_ServiceStartDate">Select Start Date</label>
-              <input type="date" class="form-control normal dateInput text-center" id="dt_ServiceStartDate" formControlName="serviceStartDate">
+              <input type="date" min="{{start != undefined ? start : startDate | date: 'yyyy-MM-dd'}}" class="form-control normal dateInput text-center" id="dt_ServiceStartDate" formControlName="serviceStartDate">
             </div>
           </div>
           <div class="col-12 text-center form-group">
@@ -49,7 +49,7 @@
           <div class="col-lg-8">
             <div class="form-group">
               <input type="email" class="form-control promoCode" id="txt_PromoCode" aria-describedby="txt_PromoCode" placeholder="Input Promo / Referral Code (if any)"
-                formControlName="promoCode" maxlength="10">
+                formControlName="promoCode" maxlength="10" (blur)="getPromoCode()">
               <div class="line"></div>
             </div>
           </div>
@@ -258,7 +258,7 @@
         </div>
         <div class="form-group text-center">
           <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="bool_isSameBillingAddress" checked (click)=findSameAddress($event)>
+            <input type="checkbox" class="custom-control-input" id="bool_isSameBillingAddress" checked (click)=findSameAddress($event)> 
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">
               <small style="text-transform:initial;">My billing address is same as my premise address above</small>
@@ -362,7 +362,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
               <div class="form-group">
-                <input type="number" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number">
+                <input type="number" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number" (blur)="getSPaccountNumber()" maxlength="10" formControlName="spAccount">
                 <div class="line"></div>
               </div>
             </div>
@@ -400,7 +400,7 @@
       </form>
     </div>
     <div class="col-10 col-md-5 col-sm-6 col-xl-3 PremiseSection">
-      <button class="PanelRevealButton" type="button">Selection Summary</button>
+      <!-- <button class="PanelRevealButton" type="button">Selection Summary</button>
       <div class="kpl-SummaryCallout">
         <h4>Selection Summary</h4>
         <div class="kpl-premise">
@@ -485,7 +485,8 @@
             <dt style="width:100%;">*Based on average dwelling type consumption</dt>
           </dl>
         </div>
-      </div>
+      </div> -->
+      <app-summary></app-summary>
     </div>
   </div>
 

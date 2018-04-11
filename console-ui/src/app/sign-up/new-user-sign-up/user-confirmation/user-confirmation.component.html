@@ -15,7 +15,8 @@
     <div class="row kpl-ConfirmPageItem">
       <div class="col-lg-1"></div>
       <div class="col-lg-3 order-lg-2 PremiseSection">
-        <div class="PremiseInfo">
+          <app-summary></app-summary>
+        <!-- <div class="PremiseInfo">
           <div class="kpl-summaryPanelSection">
             <h5>Products Charges</h5>
             <hr>
@@ -62,7 +63,7 @@
               <dd>[Insert Charge]</dd>
             </dl>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col-lg-8 order-lg-1 ConfirmSection">
         <div class="kpl-SummaryPageSection">
@@ -86,7 +87,7 @@
             <dt>Ownership Type</dt>
             <dd>{{_usderDetailObj.tenantOrOwner}}</dd>
             <dt>SP Account Number</dt>
-            <dd>[SP Account Number]</dd>
+            <dd>{{_usderDetailObj.spAccount}}</dd>
             <dt>Premise Details Attachment</dt>
             <dd>[Attach Document]</dd>
             <dt>Electricity Plan Selection</dt>
@@ -96,9 +97,10 @@
             <dt>Service Start Date</dt>
             <dd>{{_usderDetailObj.serviceStartDate}}</dd>
             <dt>Additional Services</dt>
-            <dd>{{_usderDetailObj.optionalService1.serviceName}}
-              <br/>{{_usderDetailObj.optionalService2.serviceName}}
-              <br/>{{_usderDetailObj.optionalService3.serviceName}}</dd>
+            <dd><span *ngIf="_usderDetailObj.optionalService1.serviceName != ''">{{_usderDetailObj.optionalService1.serviceName}}</span>
+              <br/><span *ngIf="_usderDetailObj.optionalService2.serviceName != ''">{{_usderDetailObj.optionalService2.serviceName}}</span>
+              <br/><span *ngIf="_usderDetailObj.optionalService3.serviceName != ''">{{_usderDetailObj.optionalService3.serviceName}}</span>
+              </dd>
             <dt>Payment Mode</dt>
             <dd>{{_usderDetailObj.paymentMethod}}</dd>
             <dt>Credit Terms</dt>
@@ -157,18 +159,18 @@
       <small>
         <div class="form-check" style="margin-top:40px;">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC0">I acknowledge and accept the Terms and Conditions as stated here
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC0" (click)=termConditionOne($event,1)>I acknowledge and accept the Terms and Conditions as stated here
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC1">I acknowledge the EMA Factsheet as stated
-            <a href="EMA.html" target="_blank">here</a>
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC1" (click)=termConditionOne($event,2)>I acknowledge the EMA Factsheet as stated
+            <a routerLink="/emaSheet" target="blank">here</a>
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2">[Insert PDPA acknowledgement here]
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2" (click)=termConditionOne($event,3)>[Insert PDPA acknowledgement here]
           </label>
         </div>
         <div class="form-check">

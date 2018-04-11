@@ -17,3 +17,7 @@ small {
     /* Microsoft Edge */
     color: #58595b;
 }
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}

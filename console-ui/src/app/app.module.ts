@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LoadingModule } from 'ngx-loading'
-
 
 import { ServiceCall } from './network_layer/web_service_call';
 import { localJSON } from './commom_methods/localJSON';
@@ -30,6 +29,9 @@ import { ExistingConfirmationComponent } from './sign-up/existing-user-sign-up/e
 import { recaptcha } from './recaptcha/recaptcha.component';
 import { DataShare } from './Utility/data_share.service';
 import { HttpModule } from '@angular/http';
+import { PayPalComponent } from './payPal/pay-pal/pay-pal.component';
+import { SummaryComponent } from './summary/summary.component';
+import { EmaSheetComponent } from './sign-up/new-user-sign-up/ema-sheet/ema-sheet.component';
 
 
 
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
   { path: 'existing-confirmation', component: ExistingConfirmationComponent },
   { path: 'business-details', component: BusinessDetailsComponent },
   { path: 'business-contact', component: BusinessContactDetailsComponent },
-  
+  { path: 'payPal', component: PayPalComponent },
+  { path: 'emaSheet', component: EmaSheetComponent },
  
   {
     path: '',
@@ -70,10 +73,13 @@ const appRoutes: Routes = [
     ExistingRecommendationComponent,
     ExistingContractComponent,
     ExistingConfirmationComponent,
-    recaptcha
+    recaptcha,
+    PayPalComponent,
+    SummaryComponent,
+    EmaSheetComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,FormsModule,
     ReactiveFormsModule,
     HttpClientModule,HttpModule,
     Ng4LoadingSpinnerModule.forRoot(),
