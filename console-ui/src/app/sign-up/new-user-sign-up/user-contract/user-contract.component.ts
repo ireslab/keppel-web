@@ -43,7 +43,7 @@ export class UserContractComponent implements OnInit {
   _buildingName: string = '';
   _floorLevel: string = '';
 
-  constructor(private sbService: SidebarService, private datashare: DataShare, private fb: FormBuilder,
+  constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall, 
     private spinnerService: Ng4LoadingSpinnerService) {
      // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
