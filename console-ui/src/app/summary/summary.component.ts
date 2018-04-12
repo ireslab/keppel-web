@@ -22,7 +22,7 @@ export class SummaryComponent implements OnInit {
         this._planDetailObj = this._usderDetailObj.selectedPlanObj;
         this._planBenifit = this._planDetailObj.benefits;
         this._planBenifitArray = this._planBenifit.split(",");
-        console.log(this._usderDetailObj)
+        // console.log(this._usderDetailObj)
       }
     )
   }
