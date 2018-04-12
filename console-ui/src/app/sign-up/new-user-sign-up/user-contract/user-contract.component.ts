@@ -8,13 +8,16 @@ import { CommonServices } from '../../../commom_methods/common_service';
 import { ServiceCall } from '../../../network_layer/web_service_call';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { element } from 'protractor';
+import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
+import { pdfMake } from '../../../../assets/js/pdfmake'
 
 
 declare var $: any
+// declare var pdfMake: any
 @Component({
   selector: 'app-user-contract',
   templateUrl: './user-contract.component.html',
-  styleUrls: ['./user-contract.component.css']
+  styleUrls: ['./user-contract.component.css'],
 })
 export class UserContractComponent implements OnInit {
   contractForm: FormGroup;
@@ -25,6 +28,7 @@ export class UserContractComponent implements OnInit {
   minDays: number;
   meterType: any;
 
+  pictureName: string = "Upload Past Month's Bill"
 
   optionalServices = [];
   selectedOptionalServices = [];
@@ -52,7 +56,7 @@ export class UserContractComponent implements OnInit {
 
   constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
-    private spinnerService: Ng4LoadingSpinnerService) {
+    private spinnerService: Ng4LoadingSpinnerService,private giropdf:GiroPdf) {
     // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
@@ -73,7 +77,7 @@ export class UserContractComponent implements OnInit {
   getMinDate() {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var dayAdded = 1;
-    for (let i = 1; i <= this.coolingPeriod +1;) {
+    for (let i = 1; i <= this.coolingPeriod + 1;) {
       this.minDate = new Date(Date.now() + dayAdded * 24 * 60 * 60 * 1000);
       let getday = this.minDate.getDay();
       var dayName = days[getday];
@@ -116,7 +120,7 @@ export class UserContractComponent implements OnInit {
       }
     }
     else {
-      if(this.datashare.usderDetailObj.optionalService2 != ""){
+      if (this.datashare.usderDetailObj.optionalService2 != "") {
         this.datashare.usderDetailObj.optionalService2 = ""
       } else {
         this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo
@@ -270,10 +274,12 @@ export class UserContractComponent implements OnInit {
     this.paymentMethod = paymentMethod
     if (paymentMethod == 'Recurring') {
       this.router.navigateByUrl("payPal");
-    }else if (paymentMethod == 'IDDA (DBS)') {
-      window.open('https://internet-banking.dbs.com.sg/IB/Welcome', '_blank')
+    } else if (paymentMethod == 'IDDA (DBS)') {
+      window.open('https://internet-banking.dbs.com.sg', '_blank');
+      this.getPdf();
     }
   }
+
   getOwnership(ownership) {
     this.ownershipMessage = false;
     this.tenantOrOwner = ownership
@@ -357,13 +363,42 @@ export class UserContractComponent implements OnInit {
     }
   }
 
+  getPicture(e) {
+    // console.log(e.target.files)
+    let uploadFileName = e.target.files[0].name;
+    if (uploadFileName != undefined || uploadFileName != null) {
+      this.pictureName = uploadFileName;
+    } else {
+      this.pictureName = "Upload Past Month's Bill";
+    }
 
+  }
   getPromoCode() {
     this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
   }
   getSPaccountNumber() {
     this.datashare.usderDetailObj.spAccount = this.contractForm.controls['spAccount'].value;
   }
+
+  // getPdf() {
+    getPdf () {
+
+      var base_image = this.giropdf.imageBase64;
+      console.log(base_image)
+     
+      var docDefinition = {
+        
+        background: [
+          { image: base_image, width: 595 }
+        ],
+
+        // pageMargins: [40, 25, 40, 25],
+       
+      };
+      pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
+
+    };
+  // }
 
 
   submitContractDetails() {
