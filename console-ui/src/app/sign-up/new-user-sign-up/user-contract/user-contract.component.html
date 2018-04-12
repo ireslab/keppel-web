@@ -74,7 +74,7 @@
           </div>
           <div class="col-sm-4 col-6">
             <button class="btn btn-lg btn-block btn-secondary selectPaymentMethodButton btn-Option" type="button" [ngClass]="{selected:datashare.usderDetailObj.paymentMethod == 'IDDA (DBS)'}"
-              (click)="getPayment('IDDA (DBS)')">IDDA (DBS)
+              (click)="getPayment('IDDA (DBS)')" href="https://internet-banking.dbs.com.sg/IB/Welcome" >IDDA (DBS)
               <small>2% off your total bill</small>
             </button>
           </div>
@@ -387,19 +387,19 @@
           </div>
         </div>
         <div class="row CTArow">
-          <div class="col-md-2"></div>
-          <div class="col-md-5 col-8">
+          <div class="col-md-4 col-4"></div>
+          <!-- <div class="col-md-5 col-8">
             <div class="form-group">
               <button type="button" class="btn btn-secondary btn-block" id="btn_AddNewPremise" data-toggle="modal" data-target="#AddNewPremiseModal"
                 onclick="">+ Add Another Premise</button>
             </div>
-          </div>
-          <div class="col-md-3 col-4">
+          </div> -->
+          <div class="col-md-4 col-4">
             <div class="form-group">
               <button type="button" class="btn btn-primary btn-block" (click)="submitContractDetails()">Checkout</button>
             </div>
           </div>
-          <div class="col-md-2"></div>
+          <div class="col-md-4 col-4"></div>
         </div>
       </form>
     </div>

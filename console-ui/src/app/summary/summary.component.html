@@ -47,12 +47,12 @@
     <dl>
       <dt>Consumption will be</dt>
       <dd>Loss Adjusted</dd>
-      <dt>t1</dt>
-      <dd>{{_planDetailObj.t1}}</dd>
-      <dt>t2</dt>
-      <dd>{{_planDetailObj.t2}}</dd>
-      <dt>t3</dt>
-      <dd>{{_planDetailObj.t3}}</dd>
+      <dt *ngIf="_planDetailObj.plan != 'Fixed'">t1</dt>
+      <dd *ngIf="_planDetailObj.plan != 'Fixed'">{{_planDetailObj.t1}}</dd>
+      <dt *ngIf="_planDetailObj.plan != 'Fixed'">t2</dt>
+      <dd *ngIf="_planDetailObj.plan != 'Fixed'">{{_planDetailObj.t2}}</dd>
+      <dt *ngIf="_planDetailObj.plan != 'Fixed'">t3</dt>
+      <dd *ngIf="_planDetailObj.plan != 'Fixed'">{{_planDetailObj.t3}}</dd>
       <dt>[Insert Pass through Cost]</dt>
       <dd>As Charged</dd>
     </dl>
@@ -60,14 +60,15 @@
   <div class="kpl-summaryPanelSection">
     <h5>Additional Services</h5>
     <hr>
-    <dl *ngIf="_usderDetailObj.optionalService1== '' && _usderDetailObj.optionalService2== '' && _usderDetailObj.optionalService3 == ''">No optional service is selected</dl>
+    <!-- <dl *ngIf="_usderDetailObj.optionalService1== '' && _usderDetailObj.optionalService2== ''">No optional service is selected</dl> -->
+    <dl *ngIf="_usderDetailObj.optionalService1 == ''">Only electronic bills will be sent</dl>
     <dl>
       <dt *ngIf="_usderDetailObj.optionalService1 != ''">{{_usderDetailObj.optionalService1.serviceName}}</dt>
-      <dd *ngIf="_usderDetailObj.optionalService1 != ''">(+${{_usderDetailObj.optionalService1.serviceCost}}/bill)</dd>
+      <dd *ngIf="_usderDetailObj.optionalService1 != ''">{{_usderDetailObj.optionalService1.serviceCost}}</dd>
       <dt *ngIf="_usderDetailObj.optionalService2 != ''">{{_usderDetailObj.optionalService2.serviceName}}</dt>
-      <dd *ngIf="_usderDetailObj.optionalService2 != ''">(+${{_usderDetailObj.optionalService2.serviceCost}}/bill)</dd>
-      <dt *ngIf="_usderDetailObj.optionalService3 != ''">{{_usderDetailObj.optionalService3.serviceName}}</dt>
-      <dd *ngIf="_usderDetailObj.optionalService3 != ''">(+${{_usderDetailObj.optionalService3.serviceCost}}/bill)</dd>
+      <dd *ngIf="_usderDetailObj.optionalService2 != ''">{{_usderDetailObj.optionalService2.serviceCost}}</dd>
+      <!-- <dt *ngIf="_usderDetailObj.optionalService3 != ''">{{_usderDetailObj.optionalService3.serviceName}}</dt>
+      <dd *ngIf="_usderDetailObj.optionalService3 != ''">{{_usderDetailObj.optionalService3.serviceCost}}</dd> -->
     </dl>
   </div>
   <div class="kpl-summaryPanelSection">

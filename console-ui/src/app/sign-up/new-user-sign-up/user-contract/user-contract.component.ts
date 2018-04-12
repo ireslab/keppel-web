@@ -114,22 +114,21 @@ export class UserContractComponent implements OnInit {
       } else {
         this.datashare.usderDetailObj.optionalService1 = this.optionalServiceOne
       }
-
     }
-    // else if(index == 2){
-    //   if(this.datashare.usderDetailObj.optionalService1 != ""){
-    //     this.datashare.usderDetailObj.optionalService2 = ""
-    //   } else {
-    //     this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo
-    //   }
-    // }
     else {
-      if (this.datashare.usderDetailObj.optionalService3 != "") {
-        this.datashare.usderDetailObj.optionalService3 = ""
+      if(this.datashare.usderDetailObj.optionalService2 != ""){
+        this.datashare.usderDetailObj.optionalService2 = ""
       } else {
-        this.datashare.usderDetailObj.optionalService3 = this.optionalServiceThree
+        this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo
       }
     }
+    // else {
+    //   if (this.datashare.usderDetailObj.optionalService3 != "") {
+    //     this.datashare.usderDetailObj.optionalService3 = ""
+    //   } else {
+    //     this.datashare.usderDetailObj.optionalService3 = this.optionalServiceThree
+    //   }
+    // }
   }
   showSelectedOptService() {
     if (this.datashare.usderDetailObj.optionalService1 != "") {
@@ -271,6 +270,8 @@ export class UserContractComponent implements OnInit {
     this.paymentMethod = paymentMethod
     if (paymentMethod == 'Recurring') {
       this.router.navigateByUrl("payPal");
+    }else if (paymentMethod == 'IDDA (DBS)') {
+      window.open('https://internet-banking.dbs.com.sg/IB/Welcome', '_blank')
     }
   }
   getOwnership(ownership) {
