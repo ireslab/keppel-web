@@ -32,6 +32,7 @@ import { HttpModule } from '@angular/http';
 import { PayPalComponent } from './payPal/pay-pal/pay-pal.component';
 import { SummaryComponent } from './summary/summary.component';
 import { EmaSheetComponent } from './sign-up/new-user-sign-up/ema-sheet/ema-sheet.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 
 
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
   { path: 'business-contact', component: BusinessContactDetailsComponent },
   { path: 'payPal', component: PayPalComponent },
   { path: 'emaSheet', component: EmaSheetComponent },
+  { path: 'contactUs', component: ContactusComponent },
  
   {
     path: '',
@@ -76,7 +78,8 @@ const appRoutes: Routes = [
     recaptcha,
     PayPalComponent,
     SummaryComponent,
-    EmaSheetComponent
+    EmaSheetComponent,
+    ContactusComponent
   ],
   imports: [
     BrowserModule,FormsModule,
