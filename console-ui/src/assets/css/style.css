@@ -295,7 +295,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-image: url('../img/ico-BlockNumber.png');
 }
 .ContactUs {
-    background-image: url('../img/ico-Phone.png');
+    /* background-image: url('../img/ico-Phone.png'); */
 }
 .Email{
     background-image:url('../img/ico-email.png');

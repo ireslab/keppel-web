@@ -21,23 +21,25 @@ export class UserConfirmationComponent implements OnInit {
   termConditionFirst:boolean = false;
   termConditionScnd:boolean = false;
   termConditionThird:boolean = false;
+  editDetails:boolean = false;
 
   constructor(private sbService: SidebarService, private DS: DataShare, private spinner: Ng4LoadingSpinnerService,
     private serverCall: ServiceCall, private http: Http, private commonService: CommonServices,
     private router: Router) {
       this.DS.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
+      this._usderDetailObj = this.DS.usderDetailObj;
     this.sbService.getSidebar("newUser")
     this.commonService.gotoTopOfView();
   }
 
   ngOnInit() {
-    this.DS.userDetails.subscribe(
-      (value) => {
-        this._usderDetailObj = value
-        console.log(JSON.stringify(value))
-        console.log(this._usderDetailObj.selectedPlanObj.plan)
-      }
-    )
+    // this.DS.userDetails.subscribe(
+    //   (value) => {
+    //     this._usderDetailObj = value
+    //     console.log(JSON.stringify(value))
+    //     console.log(this._usderDetailObj.selectedPlanObj.plan)
+    //   }
+    // )
   }
 
   confirmClicked() {

@@ -480,6 +480,7 @@ export class UserContractComponent implements OnInit {
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
+      window.localStorage.clear();
       window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
       this.router.navigateByUrl("new-user-confirmation");
       // let reqJson = JSON.stringify({

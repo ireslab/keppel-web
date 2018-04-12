@@ -34,8 +34,8 @@
         </div>
         <div class="row" id="Grp-DwellingType-Mobile">
             <div class="col-12">
-                <select class="form-control" (change)="planSelected('','')" id="Grp-DwellingType-MobileSelect">
-                    <option  *ngFor="let dwellingType of dwellingTypes">{{dwellingType}}</option>
+                <select class="form-control" (change)="planDropDown($event)" id="Grp-DwellingType-MobileSelect">
+                    <option  *ngFor="let dwellingType of dwellingTypes;let i=index">{{dwellingType}}</option>
                     <!-- <option>HDB 3</option>
                     <option>HDB 4</option>
                     <option>HDB 5 EA</option>
@@ -119,7 +119,7 @@
     <div class="small text-center">
       *Based on average dwelling type consumption
       <br/>Click
-      <a href="#">here</a> to see applicable T&C and cost/charges components
+      <a href="#">here</a> to see applicable <a href="http://portal.keppelelectric.com/termsandconditions" target="_blank"> T&C</a> and cost/charges components
     </div>
 
 

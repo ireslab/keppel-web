@@ -42,7 +42,7 @@ export class localJSON {
             heuc: "false",
             vestingCharge: "false",
         },{
-            plan: "DOT12",
+            plan: "FIXED 24",
             version: "1",
             product: "DOT-TLF",
             startDate: "2017-11-29",
@@ -68,7 +68,7 @@ export class localJSON {
             heuc: "false",
             vestingCharge: "false",
         },{
-            plan: "DOT12",
+            plan: "FIXED",
             version: "1",
             product: "DOT-TLF",
             startDate: "2017-11-29",
@@ -94,7 +94,7 @@ export class localJSON {
             heuc: "false",
             vestingCharge: "false",
         },{
-            plan: "DOT12",
+            plan: "DOT24",
             version: "1",
             product: "DOT-TLF",
             startDate: "2017-11-29",
@@ -120,7 +120,7 @@ export class localJSON {
             heuc: "false",
             vestingCharge: "false",
         },{
-            plan: "DOT12",
+            plan: "DOT+12",
             version: "1",
             product: "DOT-TLF",
             startDate: "2017-11-29",
@@ -146,7 +146,7 @@ export class localJSON {
             heuc: "false",
             vestingCharge: "false",
         },{
-            plan: "DOT12",
+            plan: "DOT-12",
             version: "1",
             product: "DOT-TLF",
             startDate: "2017-11-29",
@@ -171,6 +171,65 @@ export class localJSON {
             usep: "false",
             heuc: "false",
             vestingCharge: "false",
+        }
+    ]
+    recommPlan = [
+        {
+            plan:'DOT12',
+            premiseType: 'HDB1/2',
+            recommendedPlan:true
+        }, {
+            plan:'DOT+12',
+            premiseType: 'HDB1/2',
+            recommendedPlan:false
+        }, {
+            plan:'DOT-12',
+            premiseType: 'HDB1/2',
+            recommendedPlan:false
+        }, {
+            plan:'FIXED',
+            premiseType: 'HDB1/2',
+            recommendedPlan:true
+        }, {
+            plan:'FIXED 24',
+            premiseType: 'HDB1/2',
+            recommendedPlan:false
+        }, {
+            plan:'DOT12',
+            premiseType: 'HDB1/2',
+            recommendedPlan:true
+        }, {
+            plan:'DOT+12',
+            premiseType: 'HDB1/2',
+            recommendedPlan:false
+        }, {
+            plan:'DOT-12',
+            premiseType: 'HDB3',
+            recommendedPlan:false
+        }, {
+            plan:'FIXED',
+            premiseType: 'HDB3',
+            recommendedPlan:true
+        }, {
+            plan:'FIXED 24',
+            premiseType: 'HDB3',
+            recommendedPlan:false
+        }, {
+            plan:'FIXED 24',
+            premiseType: 'HDB4',
+            recommendedPlan:false
+        }, {
+            plan:'DOT12',
+            premiseType: 'HDB4',
+            recommendedPlan:true
+        }, {
+            plan:'DOT+12',
+            premiseType: 'HDB4',
+            recommendedPlan:false
+        }, {
+            plan:'DOT-12',
+            premiseType: 'HDB4',
+            recommendedPlan:false
         }
     ]
 

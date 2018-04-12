@@ -47,54 +47,81 @@ export class UserRecommendationComponent implements OnInit {
     todayDateTime: Date;
     planIndex = 2;
 
+    
+    localRecomPlans: any = [];
+    localPlans;
+    localTwo: any = [];
+
+    recomendedJson;
+    planJson;
+
+    map = new Map();
+
+
     constructor(private sbService: SidebarService, private httpClient: HttpClient, private service: ServiceCall,
         public localJson: localJSON, private spinnerService: Ng4LoadingSpinnerService, private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router, private datashare: DataShare) {
         this.sbService.getSidebar("newUser")
         document.documentElement.scrollTop = 0;
-        // this.dwlTypePlans = this.localJson.dwlTypePlans;
-        this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type
-
+        // // this.dwlTypePlans = this.localJson.dwlTypePlans;
+         this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type;
+        // this.localPlans = this.localJson.dwlTypePlans;
+        // //  this.localRecomPlans = this.localJson.recommPlan;
+        // //this.localRecomPlans = this.localJson.recommPlan;
     }
 
-
+    dataAccToRecomPlan() {
+        for (let i = 0; i < this.recomendedJson.length; i++) {
+            if (this.datashare.usderDetailObj.premiseType == this.recomendedJson[i].premiseType) {
+                this.localRecomPlans.push(this.recomendedJson[i])
+            }
+        }
+        for (let i = 0; i < this.planJson.length; i++) {
+            this.map.set(this.planJson[i].plan, this.planJson[i])
+        }
+        this.firstTwoDwlPlans();
+    }
 
     firstTwoDwlPlans() {
-        for (let index = 0; index < this.dwlTypePlans.length; index++) {
-            if (index < 2) {
-                this.firstTwoDwlingPlans[index] = this.dwlTypePlans[index];
-                var benefits = this.firstTwoDwlingPlans[index].benefits
-                this.firstTwoBenifits = benefits.split(",")
-                this.firstTwoDwlingPlans[index]["planBenifits"] = this.firstTwoBenifits;
+        for (let i = 0; i < this.localRecomPlans.length; i++) {
+            if (this.localRecomPlans[i].recommendedPlan == "true") {
+                // this.localTwo.push(this.map.get(this.localRecomPlans[i].plan))
+                this.firstTwoDwlingPlans.push(this.map.get(this.localRecomPlans[i].plan))// this.dwlTypePlans[index];
             } else {
-                this.otherdwlPlans[index - 2] = this.dwlTypePlans[index];
-                var benefits = this.otherdwlPlans[index - 2].benefits
-                this.otherBenifits = benefits.split(",")
-                this.otherdwlPlans[index - 2]["planBenifits"] = this.otherBenifits;
+                this.otherdwlPlans.push(this.map.get(this.localRecomPlans[i].plan))// = this.dwlTypePlans[index];
             }
-            console.log(this.firstTwoDwlingPlans[0].plan)
+        }
+        this.getBenifitArray();
+    }
+
+    getBenifitArray() {
+        for (let i = 0; i < this.firstTwoDwlingPlans.length; i++) {
+            var benefits = this.firstTwoDwlingPlans[i].benefits
+            this.firstTwoBenifits = benefits.split(",")
+            this.firstTwoDwlingPlans[i]["planBenifits"] = this.firstTwoBenifits;
+        }
+
+        for (let i = 0; i < this.otherdwlPlans.length; i++) {
+            var benefits = this.otherdwlPlans[i].benefits
+            this.otherBenifits = benefits.split(",")
+            this.otherdwlPlans[i]["planBenifits"] = this.otherBenifits;
         }
     }
 
-
-    planSelected(index,dwlType) {
+    planSelected(index, dwlType) {
         this.selectedDwlType = index;
         if (navigator.onLine) {
-               this.spinnerService.show();
-               this.datashare.usderDetailObj.premiseType = dwlType;
-            // this.firstTwoDwlPlans();
+            this.spinnerService.show();
+            this.datashare.usderDetailObj.premiseType = dwlType;
             this.getPlansCall();
         } else {
             alert('Please Check Internet Connection')
         }
-
-
-
-        //   setTimeout(function() {
-        //     this.spinnerService.hide();
-        //   }.bind(this), 10000);
-        // this.loading = true;
-
     }
+
+    planDropDown(event){
+        this.planSelected('',event.target.value)
+    }
+
     planSelectionBtn(index) {
 
         this.selectedFirstIndex = index;
@@ -134,54 +161,31 @@ export class UserRecommendationComponent implements OnInit {
 
 
     getPlansCall() {
-
         let _url = ApiConstants.GET_PLANS_URL;
-
-       // let localURL = "http://192.168.0.4:7001/keppelconsumer/v1/getPlans"  //"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-
-        // getWriterWithFavBooks() {
         this.service.getPlans(_url).subscribe(
             data => {
-                this.dwlTypePlans = data;
+                this.planJson = JSON.parse(data.planJson);
+                this.recomendedJson = JSON.parse(data.recomendedJson);
+                console.log(this.planJson.length)
+                console.log(this.recomendedJson.length)
+                this.map.clear();
+                this.localRecomPlans = [];
+                this.firstTwoDwlingPlans = [];
+                this.otherdwlPlans = [];
                 this.spinnerService.hide();
                 this.packageForm = true;
-                this.firstTwoDwlPlans();
+                this.dataAccToRecomPlan();
             }, (error: any) => {
                 alert("Something went wrong")
                 this.spinnerService.hide();
             }
         );
-        //   } 
 
-
-
-
-        var headers = new HttpHeaders();
-        headers.append('Content-Type', 'application/json; charset=utf-8');
-        headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        headers.append('Access-Control-Allow-Methods', 'GET');
-        headers.append('Access-Control-Allow-Origin', '*');
-
-        // this.httpClient.get(_url,{headers: headers}).subscribe(data => {
-        //     alert('Success')
-        //     console.log(data);
-        // },(error:any) => {
-        //     alert(error.message)
-        // })
-
-
-
-        // ServiceCall.httpGetCall(_url,'').subcribe (
-        //     (data) => {
-        //         alert('Success')
-        //         console.log(data);
-        //     },
-        //     (error: any) => {
-        //         alert('ServiceFail')
-        //         console.log(error);
-        //     }
-        // )
-
+        // var headers = new HttpHeaders();
+        // headers.append('Content-Type', 'application/json; charset=utf-8');
+        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'GET');
+        // headers.append('Access-Control-Allow-Origin', '*');
     }
 
     moreLessClicked() {
@@ -204,12 +208,10 @@ export class UserRecommendationComponent implements OnInit {
 
 
     ngOnInit() {
-
         this.signUpForm = this.fb.group({
             idNumber: ['', [Validators.required, ValidateNric]],
             mobileNumber: ['', [Validators.required, Validators.pattern('(8|9)[0-9]{7}$')]],
         })
-
         //  $(document).ready(function () {
         //Script on Page Load
         //   $('button.selectPlanButton').on("click", function () {
@@ -317,7 +319,7 @@ export class UserRecommendationComponent implements OnInit {
             this.resetCaptcha();
             this.datashare.getUserDetails()
 
-            window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj))
+            // window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj))
             // this.signUpForm.reset();
 
 
