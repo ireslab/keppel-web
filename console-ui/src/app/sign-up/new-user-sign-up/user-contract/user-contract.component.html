@@ -8,12 +8,14 @@
           <div class="col-12">
             <div class="form-group StartDateGroup text-center">
               <label for="dt_ServiceStartDate">Select Start Date</label>
-              <input type="date" min="{{start != undefined ? start : startDate | date: 'yyyy-MM-dd'}}" class="form-control normal dateInput text-center" id="dt_ServiceStartDate" formControlName="serviceStartDate">
+              <input type="date" min="{{start != undefined ? start : minDate | date: 'yyyy-MM-dd'}}" max="{{start != undefined ? start : maxDate | date: 'yyyy-MM-dd'}}" class="form-control normal dateInput text-center"
+                id="dt_ServiceStartDate" formControlName="serviceStartDate">
             </div>
           </div>
           <div class="col-12 text-center form-group">
             <label>Select Optional Services (if required)</label>
-            <small>Click here to see the cost of optional services</small>
+            <!-- <small>Click here to see the cost of optional services</small> -->
+            <small>Smart meter service requires 31 days advance notice</small>
           </div>
           <div class="form-group col-12 vasGroup">
             <div class="row no-gutters">
@@ -23,24 +25,25 @@
                   <small>(+${{optService.serviceCost}}/bill)</small>
                 </button>
               </div> -->
+              <div class="col-2"></div>
               <div class="col-4">
-                  <button id="btnOne" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(1)"
-                    style="padding-top:15px;" type="button">{{optionalServiceOne.serviceName}}
-                    <small>(+${{optionalServiceOne.serviceCost}}/bill)</small>
-                  </button>
-                </div>
-                <div class="col-4">
-                    <button id="btnTwo" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(2)"
-                      style="padding-top:15px;" type="button">{{optionalServiceTwo.serviceName}}
-                      <small>(+${{optionalServiceTwo.serviceCost}}/bill)</small>
-                    </button>
-                  </div>
-                  <div class="col-4">
+                <button id="btnOne" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(1)"
+                  style="padding-top:15px;" type="button" >{{optionalServiceOne.serviceName}}
+                  <small>{{optionalServiceOne.serviceCost}})</small>
+                </button>
+              </div>
+              <div class="col-4">
+                <button id="btnTwo" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(2)"
+                  style="padding-top:15px;" type="button">{{optionalServiceTwo.serviceName}}
+                  <small>{{optionalServiceTwo.serviceCost}})</small>
+                </button>
+              </div>
+              <!-- <div class="col-4">
                       <button id="btnThree" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(3)"
                         style="padding-top:15px;" type="button">{{optionalServiceThree.serviceName}}
                         <small>(+${{optionalServiceThree.serviceCost}}/bill)</small>
                       </button>
-                    </div>
+                    </div> -->
             </div>
           </div>
         </div>
@@ -258,7 +261,7 @@
         </div>
         <div class="form-group text-center">
           <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="bool_isSameBillingAddress" checked (click)=findSameAddress($event)> 
+            <input type="checkbox" class="custom-control-input" id="bool_isSameBillingAddress" checked (click)=findSameAddress($event)>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">
               <small style="text-transform:initial;">My billing address is same as my premise address above</small>
@@ -362,7 +365,8 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
               <div class="form-group">
-                <input type="number" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number" (blur)="getSPaccountNumber()" maxlength="10" formControlName="spAccount">
+                <input type="number" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number"
+                  (blur)="getSPaccountNumber()" maxlength="10" formControlName="spAccount">
                 <div class="line"></div>
               </div>
             </div>
