@@ -38,7 +38,7 @@ export class ServiceCall {
     //  }
      static httpPostCall = function (reqJson: any, url: any, http: any) {
         var headers = new Headers();
-        // headers.append('Content-Type', 'application/json');
+        headers.append('Content-Type', 'application/json');
         // headers.append('Access-Control-Allow-Headers', 'Content-Type');
         // headers.append('Access-Control-Allow-Methods', 'GET,POST');
         // headers.append('Access-Control-Allow-Origin', '*');

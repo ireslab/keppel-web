@@ -321,6 +321,8 @@ export class UserRecommendationComponent implements OnInit {
             $('#OTPModal').modal('show');
             this.resetCaptcha();
             this.datashare.getUserDetails()
+           
+        } 
 
             // window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj))
             // this.signUpForm.reset();
@@ -338,9 +340,6 @@ export class UserRecommendationComponent implements OnInit {
             //     });
             // data-toggle="modal" data-target="#OTPModal"
         }
-
-
-    }
 
     get idNumber() { return this.signUpForm.get('idNumber'); }
     get mobileNumber() { return this.signUpForm.get('mobileNumber'); }

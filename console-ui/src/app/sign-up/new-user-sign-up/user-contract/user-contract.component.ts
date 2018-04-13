@@ -8,7 +8,7 @@ import { CommonServices } from '../../../commom_methods/common_service';
 import { ServiceCall } from '../../../network_layer/web_service_call';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { element } from 'protractor';
-import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
+// import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
 import { ApiConstants } from '../../../network_layer/api_constants';
 import { Http, Response, Headers } from '@angular/http';
 
@@ -21,17 +21,17 @@ declare var pdfMake: any
   selector: 'app-user-contract',
   templateUrl: './user-contract.component.html',
   styleUrls: ['./user-contract.component.css'],
-  providers: [GiroPdf]
+  // providers: [GiroPdf]
 })
 export class UserContractComponent implements OnInit {
   contractForm: FormGroup;
   minDate: Date;
   maxDate: Date;
-  coolingPeriod: number = 5;
+  coolingPeriod: number = 0;
   maxDays: number;
   minDays: number;
-  meterType: any = "SRLP";
-
+  meterType: string;
+  dateError: boolean = false;
   pictureName: string = "Upload Past Month's Bill"
 
   optionalServices = [];
@@ -62,7 +62,7 @@ export class UserContractComponent implements OnInit {
 
   constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
-    private spinnerService: Ng4LoadingSpinnerService, private giropdf: GiroPdf, public http: Http) {
+    private spinnerService: Ng4LoadingSpinnerService, public http: Http) {
     // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
@@ -75,7 +75,7 @@ export class UserContractComponent implements OnInit {
     this.optionalServiceOne = { "serviceName": "Paper Bill", "serviceCost": "(+$2/bill)" };
     this.optionalServiceTwo = { "serviceName": "Smart Meter", "serviceCost": "(+$40 one-time payment, if applicable)" };
     // this.optionalServiceThree = { "serviceName": "vas#3", "serviceCost": "3" };
-
+    this.meterType = "SRLP"
     this.getMinDate();
     this.getMaxDate();
 
@@ -83,34 +83,32 @@ export class UserContractComponent implements OnInit {
   getMinDate() {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var dayAdded = 1;
-    for (let i = 1; i <= this.coolingPeriod + 1;) {
-      this.minDate = new Date(Date.now() + dayAdded * 24 * 60 * 60 * 1000);
-      let getday = this.minDate.getDay();
-      var dayName = days[getday];
-      dayAdded++;
-      if (dayName == "Sunday" || dayName == "Saturday") {
+    if (this.coolingPeriod != 0) {
+      for (let i = 1; i <= this.coolingPeriod + 1;) {
+        this.minDate = new Date(Date.now() + dayAdded * 24 * 60 * 60 * 1000);
+        let getday = this.minDate.getDay();
+        var dayName = days[getday];
+        dayAdded++;
+        if (dayName == "Sunday" || dayName == "Saturday") {
 
-      } else {
-        i++;
+        } else {
+          i++;
+        }
       }
+    } else {
+      this.minDate = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
     }
-    console.log(Date.now())
-    console.log(this.minDate)
-
 
     if (this.meterType == "SRLP") {
       this.minDays = 5;
     } else {
       this.minDays = 30;
     }
-
     this.minDate = new Date(this.minDate.getTime() + this.minDays * 24 * 60 * 60 * 1000);
-    // console.log(this.minDate)
   }
   getMaxDate() {
     this.maxDays = 90;
     this.maxDate = new Date(Date.now() + this.maxDays * 24 * 60 * 60 * 1000);
-    // console.log(this.maxDate);
   }
 
   // selectedServices(optService) {
@@ -143,6 +141,7 @@ export class UserContractComponent implements OnInit {
     //     this.datashare.usderDetailObj.optionalService3 = this.optionalServiceThree
     //   }
     // }
+
   }
   showSelectedOptService() {
     if (this.datashare.usderDetailObj.optionalService1 != "") {
@@ -389,6 +388,7 @@ export class UserContractComponent implements OnInit {
 
 
   getPdf() {
+
     // var base_image = this.giropdf.imageBase64;
     // var docDefinition = {
     //   background: [
@@ -418,6 +418,12 @@ export class UserContractComponent implements OnInit {
       this.formIsNotValid = true;
       console.error("form is not valid")
       return;
+    } else if (this.datashare.usderDetailObj.optionalService2 != "") {
+      this.meterType = "AMI";
+      this.datashare.usderDetailObj.serviceStartDate = "";
+      this.getMinDate();
+      this.dateError = true;
+      return;
     } else if (this.paymentMethod == "") {
       this.paymentMessage = true;
       return;
@@ -441,6 +447,7 @@ export class UserContractComponent implements OnInit {
       //   }
 
       // }
+      
 
       let postcode = this.contractForm.controls['postcode'].value
       let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + +" " + this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
@@ -490,48 +497,29 @@ export class UserContractComponent implements OnInit {
       window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
       if (this.paymentMethod == 'IDDA (DBS)') {
         window.open('https://internet-banking.dbs.com.sg', '_blank');
+      }else if (this.paymentMethod == 'Giro'){
+        window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
       }
-      this.router.navigateByUrl("new-user-confirmation");
+      
 
-      // let reqJson = JSON.stringify({
-      //   "serviceStartDate": this.contractForm.controls['serviceStartDate'].value,
-      //   "optionalService1": optionalService1,
-      //   "optionalService2": optionalService2,
-      //   "optionalService3": optionalService3,
-      //   "promoCode": this.contractForm.controls['promoCode'].value,
-      //   "paymentMethod": this.paymentMethod,
-      //   "icNumberType": this.contractForm.controls['icNumberType'].value,
-      //   "icNumber": this.contractForm.controls['icNumber'].value,
-      //   "firstName": this.contractForm.controls['firstName'].value,
-      //   "lastName": this.contractForm.controls['lastName'].value,
-      //   "eMail": this.contractForm.controls['eMail'].value,
-      //   "postcode": this.contractForm.controls['postcode'].value,
-      //   "premiseAddress": premiseAddress,
-      //   "premiseAddress2": premiseAddress2,
-      //   "billingPostalcode": this.postcodeBilling,
-      //   "billingAddress": this.billingAddress,
-      //   "billingAddress2": this.billingAddress2,
-      // });
-      // console.log(reqJson);
-      if(this.datashare.usderDetailObj.paymentMethod == 'Giro')
-      {
+      if (this.datashare.usderDetailObj.paymentMethod == 'Giro') {
         this._payMethodKey = 'GIRO'
-      } else if(this.datashare.usderDetailObj.paymentMethod == 'IDDA (DBS)'){
+      } else if (this.datashare.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
         this._payMethodKey = 'IDDA'
-      } else if(this.datashare.usderDetailObj.paymentMethod == 'Recuring'){
+      } else if (this.datashare.usderDetailObj.paymentMethod == 'Recuring') {
         this._payMethodKey = 'RECUR'
       } else {
         this._payMethodKey = 'OTH'
       }
-     //this.getSecurityDeposit();
-     this.router.navigateByUrl("new-user-confirmation");
+      this.getSecurityDeposit();
+      //  this.router.navigateByUrl("new-user-confirmation");
     }
 
   }
   getSecurityDeposit() {
     if (navigator.onLine) {
       this.spinnerService.show();
-      var rqst_json =JSON.stringify( {
+      var rqst_json = JSON.stringify({
         "idType": this.datashare.usderDetailObj.icNumberType,
         "payMethod": this._payMethodKey,
         "premiseType": this.datashare.usderDetailObj.premiseType
@@ -540,11 +528,22 @@ export class UserContractComponent implements OnInit {
       let _url = ApiConstants.GET_SECURITY_DEPOSIT;
       ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(
         (data) => {
-          data = JSON.parse(data)
-          console.log(data.success)
-          this.datashare.usderDetailObj.sd_amount = data.sd_amount;
+          // data = JSON.parse(data)
+          console.log(data)
           this.spinnerService.hide()
+          if (data.success == true) {
+            if (data.sd_amount != null) {
+              this.datashare.usderDetailObj.sd_amount = data.sd_amount;
+            } else {
+              this.datashare.usderDetailObj.sd_amount = ""
+            }
+
+          } else {
+            this.datashare.usderDetailObj.sd_amount = " "
+          }
+          this.datashare.getUserDetails();
           this.router.navigateByUrl("new-user-confirmation");
+
         }, (error: any) => {
           console.log(error.success)
           this.datashare.usderDetailObj.sd_amount = error.sd_amount;

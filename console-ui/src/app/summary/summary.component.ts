@@ -13,6 +13,7 @@ export class SummaryComponent implements OnInit {
   _planDetailObj;
   _planBenifitArray: any = [];
   _planBenifit: string;
+  _sd_amount:string;
   constructor(private router: Router, private datashare: DataShare) { }
 
   ngOnInit() {
@@ -22,7 +23,11 @@ export class SummaryComponent implements OnInit {
         this._planDetailObj = this._usderDetailObj.selectedPlanObj;
         this._planBenifit = this._planDetailObj.benefits;
         this._planBenifitArray = this._planBenifit.split(",");
-        // console.log(this._usderDetailObj)
+        if(this._usderDetailObj.sd_amount == ""){
+          this._sd_amount = "00.0";
+        }else{
+          this._sd_amount=this._usderDetailObj.sd_amount
+        }
       }
     )
   }

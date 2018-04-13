@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataShare {
   // selectedPlanObj:any;
   usderDetailObj = {
-    "selectedPlanObj":{
+    "selectedPlanObj": {
       "plan": "DOT12",
       "version": "1",
       "product": "DOT-TLF",
@@ -32,8 +32,8 @@ export class DataShare {
       "usep": "false",
       "heuc": "false",
       "vestingCharge": "false",
-    },   
-    "sd_amount": "100.00",
+    },
+    "sd_amount":"",
     "optionalServiceSelected": "",
 
     "serviceStartDate": "",
@@ -44,32 +44,32 @@ export class DataShare {
     "paymentMethod": "",
     "icNumberType": "",
     "icNumber": "",
-    "mobileNumber":"",
+    "mobileNumber": "",
     "firstName": "",
     "lastName": "",
     "eMail": "",
     "postcode": "",
-    "streetName":"",
-    "block":"",
-    "buildingName":"",
-    "floorLevel":"",
+    "streetName": "",
+    "block": "",
+    "buildingName": "",
+    "floorLevel": "",
     "postcodeBill": "",
-    "streetNameBill":"",
-    "blockBill":"",
-    "buildingNameBill":"",
-    "floorLevelBill":"",
+    "streetNameBill": "",
+    "blockBill": "",
+    "buildingNameBill": "",
+    "floorLevelBill": "",
     "spAccount": "",
     "premiseAddress": "",
     "premiseAddress2": "",
-    
+
     "billingAddress": "",
     "billingAddress2": "",
-    "premiseType":"",
+    "premiseType": "",
     "tenantOrOwner": "",
   }
 
 
-  contractDetails = new BehaviorSubject<any>(this.usderDetailObj,);
+  contractDetails = new BehaviorSubject<any>(this.usderDetailObj, );
   userDetails = this.contractDetails.asObservable();
 
   constructor() { }
