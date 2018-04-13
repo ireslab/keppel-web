@@ -84,7 +84,8 @@ export class UserConfirmationComponent implements OnInit {
         "marketingPhone": "",
         "marketingSMS": "",
         "TC": "",
-        "PDPA": ""
+        "PDPA": "",
+        "securityDeposit":this._usderDetailObj.sd_amount,
       }
       this.makeServerCall(rqst_json);
 
