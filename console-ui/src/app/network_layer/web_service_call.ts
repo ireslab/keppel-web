@@ -38,10 +38,10 @@ export class ServiceCall {
     //  }
      static httpPostCall = function (reqJson: any, url: any, http: any) {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        headers.append('Access-Control-Allow-Methods', 'GET,POST');
-        headers.append('Access-Control-Allow-Origin', '*');
+        // headers.append('Content-Type', 'application/json');
+        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'GET,POST');
+        // headers.append('Access-Control-Allow-Origin', '*');
         // console.log("Req Json===>"+reqJson);
         // console.log("Req URL===>"+url);
         return http.post(url, reqJson, { headers: headers }).map(res => res.json());

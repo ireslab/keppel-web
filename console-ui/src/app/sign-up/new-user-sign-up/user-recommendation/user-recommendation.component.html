@@ -88,8 +88,12 @@
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
                             <h3>{{dwlPlans.plan}}</h3>
                             <p>{{dwlPlans.details}}</p>
+
                             <hr/>
-                            <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index" >{{benifit}}</label>
+                            <p>Estimated Monthly Bill: S${{firstTwoDwlingPlansRP[i].estimatedBillAmount}}*</p>
+                            <h4>{{firstTwoDwlingPlansRP[i].estimatedDiscount}}% Less</h4>
+                            <p>than with current SP Tariff</p>
+                            <!-- <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index" >{{benifit}}</label> -->
                             <!-- <p>Estimated Monthly Bill: S</p>  [ngClass]="{'planBenifit': i==1}"
                             {{dwlPlans.monthlyBill}}  {{dwlPlans.discount}}
                             <h4></h4>
@@ -135,7 +139,10 @@
                             <h3>{{dwlPlans.plan}}</h3>
                             <p>{{dwlPlans.details}}</p>
                             <hr/>
-                            <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index">{{benifit}}</label>
+                            <p>Estimated Monthly Bill: S${{otherdwlPlansRP[i].estimatedBillAmount}}*</p>
+                            <h4>{{otherdwlPlansRP[i].estimatedDiscount}}% Less</h4>
+                            <p>than with current SP Tariff</p>
+                            <!-- <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index">{{benifit}}</label> -->
                             <!-- <p>Estimated Monthly Bill: S</p>
                             {{dwlPlans.monthlyBill}}*  {{dwlPlans.discount}}
                             <h4></h4>
