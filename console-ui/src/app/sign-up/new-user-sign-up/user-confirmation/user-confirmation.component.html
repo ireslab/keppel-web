@@ -95,7 +95,7 @@
             <dt>Contract Period</dt>
             <dd>{{_usderDetailObj.selectedPlanObj.contractDuration}}</dd>
             <dt>Service Start Date</dt>
-            <dd>{{_usderDetailObj.serviceStartDate}}</dd>
+            <dd>{{_usderDetailObj.serviceStartDate | date: 'dd/MM/yyyy'}}</dd>
             <dt>Additional Services</dt>
             <dd><span *ngIf="_usderDetailObj.optionalService1.serviceName != ''">{{_usderDetailObj.optionalService1.serviceName}}</span>
               <br/><span *ngIf="_usderDetailObj.optionalService2.serviceName != ''">{{_usderDetailObj.optionalService2.serviceName}}</span>

@@ -305,7 +305,7 @@ export class UserRecommendationComponent implements OnInit {
         } else {
             this.datashare.usderDetailObj.icNumberType = "NRIC";
             this.datashare.usderDetailObj.icNumber = this.signUpForm.controls['idNumber'].value;
-            this.datashare.usderDetailObj.mobileNumber = this.signUpForm.controls['mobileNumber'].value;
+            this.datashare.usderDetailObj.mobileNumber = '+65' + this.signUpForm.controls['mobileNumber'].value;
 
             let _url = "";
             let reqJson = JSON.stringify({
