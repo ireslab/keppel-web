@@ -27,7 +27,7 @@
               </div> -->
               <div class="col-2"></div>
               <div class="col-4">
-                <button id="btnOne" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(1)"
+                <button id="btnOne" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(1);getPdf()"
                   style="padding-top:15px;" type="button" >{{optionalServiceOne.serviceName}}
                   <small>{{optionalServiceOne.serviceCost}})</small>
                 </button>

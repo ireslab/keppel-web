@@ -13,11 +13,12 @@ import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
 
 
 declare var $: any
-// declare var pdfMake: any
+declare var pdfMake: any
 @Component({
   selector: 'app-user-contract',
   templateUrl: './user-contract.component.html',
   styleUrls: ['./user-contract.component.css'],
+  providers: [GiroPdf]
 })
 export class UserContractComponent implements OnInit {
   contractForm: FormGroup;
@@ -90,7 +91,7 @@ export class UserContractComponent implements OnInit {
     }
     console.log(Date.now())
     console.log(this.minDate)
- 
+
 
     if (this.meterType == "SRLP") {
       this.minDays = 5;
@@ -98,7 +99,7 @@ export class UserContractComponent implements OnInit {
       this.minDays = 30;
     }
 
-     this.minDate = new Date(this.minDate.getTime() + this.minDays * 24 * 60 * 60 * 1000);
+    this.minDate = new Date(this.minDate.getTime() + this.minDays * 24 * 60 * 60 * 1000);
     // console.log(this.minDate)
   }
   getMaxDate() {
@@ -278,9 +279,6 @@ export class UserContractComponent implements OnInit {
     this.paymentMethod = paymentMethod
     if (paymentMethod == 'Recurring') {
       this.router.navigateByUrl("payPal");
-    } else if (paymentMethod == 'IDDA (DBS)') {
-      window.open('https://internet-banking.dbs.com.sg', '_blank');
-      // this.getPdf();
     }
   }
 
@@ -384,25 +382,24 @@ export class UserContractComponent implements OnInit {
     this.datashare.usderDetailObj.spAccount = this.contractForm.controls['spAccount'].value;
   }
 
-  // getPdf() {
-  // getPdf () {
 
-  //   var base_image = this.giropdf.imageBase64;
-  //   console.log(base_image)
+  getPdf() {
+    // var base_image = this.giropdf.imageBase64;
+    // var docDefinition = {
+    //   background: [
+    //     { image: base_image, width: 595 }
+    //   ],
+    //   content: [
+    //   ],
+    //   pageMargins: [40, 25, 40, 25],
+    //   defaultStyle: {
+    //     columnGap: 30,
+    //     color: '#676262',
+    //   }
+    // };
+    // pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
+  };
 
-  //   var docDefinition = {
-
-  //     background: [
-  //       { image: base_image, width: 595 }
-  //     ],
-
-  //     // pageMargins: [40, 25, 40, 25],
-
-  //   };
-  //   pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
-
-  // };
-  // }
 
 
   submitContractDetails() {
@@ -423,9 +420,9 @@ export class UserContractComponent implements OnInit {
       this.ownershipMessage = true;
       return;
     } else {
-      let optionalService1 = "";
-      let optionalService2 = "";
-      let optionalService3 = "";
+      // let optionalService1 = "";
+      // let optionalService2 = "";
+      // let optionalService3 = "";
 
       // if (this.selectedOptionalServices.length > 0) {
       //   for (let i = 0; i < this.selectedOptionalServices.length; i++) {
@@ -441,7 +438,7 @@ export class UserContractComponent implements OnInit {
       // }
 
       let postcode = this.contractForm.controls['postcode'].value
-      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value +" "+ +" "+this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + +" " + this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
       // let premiseAddress2 = this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
 
       if (this.sameAddress == true) {
@@ -450,7 +447,7 @@ export class UserContractComponent implements OnInit {
         // this.billingAddress2 = premiseAddress2;
       } else {
         this.postcodeBilling = this.contractForm.controls['postcodeBill'].value;
-        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value +" "+ " "+this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
+        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value + " " + " " + this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
         // this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
       }
 
@@ -486,7 +483,11 @@ export class UserContractComponent implements OnInit {
       this.datashare.getUserDetails();
       window.localStorage.clear();
       window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
+      if (this.paymentMethod == 'IDDA (DBS)') {
+        window.open('https://internet-banking.dbs.com.sg', '_blank');
+      }
       this.router.navigateByUrl("new-user-confirmation");
+
       // let reqJson = JSON.stringify({
       //   "serviceStartDate": this.contractForm.controls['serviceStartDate'].value,
       //   "optionalService1": optionalService1,
