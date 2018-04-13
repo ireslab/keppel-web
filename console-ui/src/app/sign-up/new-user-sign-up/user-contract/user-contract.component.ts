@@ -9,7 +9,7 @@ import { ServiceCall } from '../../../network_layer/web_service_call';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { element } from 'protractor';
 import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
-import { pdfMake } from '../../../../assets/js/pdfmake'
+// import { pdfMake } from '../../../../assets/js/pdfmake'
 
 
 declare var $: any
@@ -276,7 +276,7 @@ export class UserContractComponent implements OnInit {
       this.router.navigateByUrl("payPal");
     } else if (paymentMethod == 'IDDA (DBS)') {
       window.open('https://internet-banking.dbs.com.sg', '_blank');
-      this.getPdf();
+      // this.getPdf();
     }
   }
 
@@ -381,23 +381,23 @@ export class UserContractComponent implements OnInit {
   }
 
   // getPdf() {
-    getPdf () {
+    // getPdf () {
 
-      var base_image = this.giropdf.imageBase64;
-      console.log(base_image)
+    //   var base_image = this.giropdf.imageBase64;
+    //   console.log(base_image)
      
-      var docDefinition = {
+    //   var docDefinition = {
         
-        background: [
-          { image: base_image, width: 595 }
-        ],
+    //     background: [
+    //       { image: base_image, width: 595 }
+    //     ],
 
-        // pageMargins: [40, 25, 40, 25],
+    //     // pageMargins: [40, 25, 40, 25],
        
-      };
-      pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
+    //   };
+    //   pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
 
-    };
+    // };
   // }
 
 

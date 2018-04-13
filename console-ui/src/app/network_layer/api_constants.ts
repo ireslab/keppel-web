@@ -3,7 +3,8 @@ export class ApiConstants {
 
 
     // public static HOME_URL = "http://192.168.1.109:7001/keppelconsumer/v1/";
-    public static HOME_URL = "http://192.168.0.5:7001/keppel-consumer/v1/"// "http://10.21.32.4:8888/keppel-consumer/v1/";
+    public static HOME_URL = "http://10.21.32.4:8888/keppel-consumer/v1/"
+    // "http://10.21.32.4:8888/keppel-consumer/v1/";
 // http://192.168.1.136:8085/sendx/getExchangeDetails?userCorrelationId=user
 // http://192.168.1.109:7001/keppelconsumer/v1/getPlans
 
