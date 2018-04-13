@@ -26,7 +26,7 @@ export class UserContractComponent implements OnInit {
   coolingPeriod: number = 5;
   maxDays: number;
   minDays: number;
-  meterType: any;
+  meterType: any = "SRLP";
 
   pictureName: string = "Upload Past Month's Bill"
 
@@ -56,7 +56,7 @@ export class UserContractComponent implements OnInit {
 
   constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
-    private spinnerService: Ng4LoadingSpinnerService,private giropdf:GiroPdf) {
+    private spinnerService: Ng4LoadingSpinnerService, private giropdf: GiroPdf) {
     // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
@@ -88,13 +88,17 @@ export class UserContractComponent implements OnInit {
         i++;
       }
     }
-    // if (this.meterType == "SRLP") {
-    //   this.minDays = 5;
-    // } else {
-    //   this.minDays = 30;
-    // }
+    console.log(Date.now())
+    console.log(this.minDate)
+ 
 
-    // this.minDate = new Date(Date.now() + this.minDays * 24 * 60 * 60 * 1000);
+    if (this.meterType == "SRLP") {
+      this.minDays = 5;
+    } else {
+      this.minDays = 30;
+    }
+
+     this.minDate = new Date(this.minDate.getTime() + this.minDays * 24 * 60 * 60 * 1000);
     // console.log(this.minDate)
   }
   getMaxDate() {
@@ -381,23 +385,23 @@ export class UserContractComponent implements OnInit {
   }
 
   // getPdf() {
-    // getPdf () {
+  // getPdf () {
 
-    //   var base_image = this.giropdf.imageBase64;
-    //   console.log(base_image)
-     
-    //   var docDefinition = {
-        
-    //     background: [
-    //       { image: base_image, width: 595 }
-    //     ],
+  //   var base_image = this.giropdf.imageBase64;
+  //   console.log(base_image)
 
-    //     // pageMargins: [40, 25, 40, 25],
-       
-    //   };
-    //   pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
+  //   var docDefinition = {
 
-    // };
+  //     background: [
+  //       { image: base_image, width: 595 }
+  //     ],
+
+  //     // pageMargins: [40, 25, 40, 25],
+
+  //   };
+  //   pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
+
+  // };
   // }
 
 
@@ -437,17 +441,17 @@ export class UserContractComponent implements OnInit {
       // }
 
       let postcode = this.contractForm.controls['postcode'].value
-      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value;
-      let premiseAddress2 = this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value +" "+ +" "+this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      // let premiseAddress2 = this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
 
       if (this.sameAddress == true) {
         this.postcodeBilling = postcode;
         this.billingAddress = premiseAddress;
-        this.billingAddress2 = premiseAddress2;
+        // this.billingAddress2 = premiseAddress2;
       } else {
         this.postcodeBilling = this.contractForm.controls['postcodeBill'].value;
-        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value;
-        this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
+        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value +" "+ " "+this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
+        // this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
       }
 
       this.datashare.usderDetailObj.serviceStartDate = this.contractForm.controls['serviceStartDate'].value;
@@ -473,10 +477,10 @@ export class UserContractComponent implements OnInit {
       this.datashare.usderDetailObj.floorLevelBill = this.contractForm.controls['floorLevelBill'].value;
 
       this.datashare.usderDetailObj.premiseAddress = premiseAddress;
-      this.datashare.usderDetailObj.premiseAddress2 = premiseAddress2;
+      // this.datashare.usderDetailObj.premiseAddress2 = premiseAddress2;
 
       this.datashare.usderDetailObj.billingAddress = this.billingAddress;
-      this.datashare.usderDetailObj.billingAddress2 = this.billingAddress2;
+      // this.datashare.usderDetailObj.billingAddress2 = this.billingAddress2;
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
