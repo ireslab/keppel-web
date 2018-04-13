@@ -31,7 +31,8 @@ export class UserContractComponent implements OnInit {
   maxDays: number;
   minDays: number;
   meterType: string;
-  dateError: boolean = false;
+  dateErrorSrlp: boolean = false;
+  dateErrorAmi: boolean = false;
   pictureName: string = "Upload Past Month's Bill"
 
   optionalServices = [];
@@ -119,6 +120,10 @@ export class UserContractComponent implements OnInit {
   //   }
   //   console.log(this.selectedOptionalServices);
   // }
+  dateValidation(){
+    this.dateErrorAmi = false;
+    this.dateErrorSrlp = false;
+  }
   selectedServices(index) {
     if (index == 1) {
       if (this.datashare.usderDetailObj.optionalService1 != "") {
@@ -130,8 +135,29 @@ export class UserContractComponent implements OnInit {
     else {
       if (this.datashare.usderDetailObj.optionalService2 != "") {
         this.datashare.usderDetailObj.optionalService2 = ""
+        this.meterType = "SRLP";
+        this.getMinDate();
+        
+        if(this.contractForm.controls['serviceStartDate'].value != ""){
+          this.dateErrorSrlp = true;
+          this.dateErrorAmi = false;
+        }
+        this.contractForm.patchValue({
+          serviceStartDate: "",
+        })
+        
       } else {
-        this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo
+        this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo;
+        this.meterType = "AMI";
+        this.getMinDate();
+        
+        if(this.contractForm.controls['serviceStartDate'].value != ""){
+        this.dateErrorAmi = true;
+        this.dateErrorSrlp = false;
+        }
+        this.contractForm.patchValue({
+          serviceStartDate: "",
+        })
       }
     }
     // else {
@@ -418,13 +444,15 @@ export class UserContractComponent implements OnInit {
       this.formIsNotValid = true;
       console.error("form is not valid")
       return;
-    } else if (this.datashare.usderDetailObj.optionalService2 != "") {
-      this.meterType = "AMI";
-      this.datashare.usderDetailObj.serviceStartDate = "";
-      this.getMinDate();
-      this.dateError = true;
-      return;
-    } else if (this.paymentMethod == "") {
+    }
+    //else if (this.datashare.usderDetailObj.optionalService2 != "") {
+    //   this.meterType = "AMI";
+    //   this.datashare.usderDetailObj.serviceStartDate = "";
+    //   this.getMinDate();
+    //   this.dateError = true;
+    //   return;
+    // }
+    else if (this.paymentMethod == "") {
       this.paymentMessage = true;
       return;
     } else if (this.tenantOrOwner == "") {
@@ -447,7 +475,7 @@ export class UserContractComponent implements OnInit {
       //   }
 
       // }
-      
+
 
       let postcode = this.contractForm.controls['postcode'].value
       let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + +" " + this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
@@ -497,10 +525,10 @@ export class UserContractComponent implements OnInit {
       window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
       if (this.paymentMethod == 'IDDA (DBS)') {
         window.open('https://internet-banking.dbs.com.sg', '_blank');
-      }else if (this.paymentMethod == 'Giro'){
+      } else if (this.paymentMethod == 'Giro') {
         window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
       }
-      
+
 
       if (this.datashare.usderDetailObj.paymentMethod == 'Giro') {
         this._payMethodKey = 'GIRO'
@@ -539,7 +567,7 @@ export class UserContractComponent implements OnInit {
             }
 
           } else {
-            this.datashare.usderDetailObj.sd_amount = " "
+            this.datashare.usderDetailObj.sd_amount = ""
           }
           this.datashare.getUserDetails();
           this.router.navigateByUrl("new-user-confirmation");
