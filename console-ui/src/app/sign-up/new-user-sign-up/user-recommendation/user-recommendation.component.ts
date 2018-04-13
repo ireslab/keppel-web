@@ -29,9 +29,11 @@ export class UserRecommendationComponent implements OnInit {
     dwlTypePlans;
     dwellingTypes;
     firstTwoDwlingPlans: any = [];
+    firstTwoDwlingPlansRP: any = [];
     firstTwoBenifits: any = [];
     otherBenifits: any = [];
     otherdwlPlans: any = [];
+    otherdwlPlansRP: any = [];
     selectedDwlType;
     selectedFirstIndex: any = -1;
     selectedSecondIndex: any = -1;
@@ -84,10 +86,11 @@ export class UserRecommendationComponent implements OnInit {
     firstTwoDwlPlans() {
         for (let i = 0; i < this.localRecomPlans.length; i++) {
             if (this.localRecomPlans[i].recommendedPlan == "true") {
-                // this.localTwo.push(this.map.get(this.localRecomPlans[i].plan))
-                this.firstTwoDwlingPlans.push(this.map.get(this.localRecomPlans[i].plan))// this.dwlTypePlans[index];
+                this.firstTwoDwlingPlans.push(this.map.get(this.localRecomPlans[i].plan))
+                this.firstTwoDwlingPlansRP.push(this.localRecomPlans[i]);
             } else {
-                this.otherdwlPlans.push(this.map.get(this.localRecomPlans[i].plan))// = this.dwlTypePlans[index];
+                this.otherdwlPlans.push(this.map.get(this.localRecomPlans[i].plan));
+                this.otherdwlPlansRP.push(this.localRecomPlans[i]);
             }
         }
         this.getBenifitArray();
@@ -305,7 +308,7 @@ export class UserRecommendationComponent implements OnInit {
         } else {
             this.datashare.usderDetailObj.icNumberType = "NRIC";
             this.datashare.usderDetailObj.icNumber = this.signUpForm.controls['idNumber'].value;
-            this.datashare.usderDetailObj.mobileNumber = this.signUpForm.controls['mobileNumber'].value;
+            this.datashare.usderDetailObj.mobileNumber = '+65' + this.signUpForm.controls['mobileNumber'].value;
 
             let _url = "";
             let reqJson = JSON.stringify({

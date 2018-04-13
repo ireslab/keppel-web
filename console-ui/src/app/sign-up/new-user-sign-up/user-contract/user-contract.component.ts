@@ -9,6 +9,9 @@ import { ServiceCall } from '../../../network_layer/web_service_call';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { element } from 'protractor';
 import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
+import { ApiConstants } from '../../../network_layer/api_constants';
+import { Http, Response, Headers } from '@angular/http';
+
 // import { pdfMake } from '../../../../assets/js/pdfmake'
 
 
@@ -54,10 +57,12 @@ export class UserContractComponent implements OnInit {
   _block: string = '';
   _buildingName: string = '';
   _floorLevel: string = '';
+  _securityAmount;
+  _payMethodKey;
 
   constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
-    private spinnerService: Ng4LoadingSpinnerService, private giropdf: GiroPdf) {
+    private spinnerService: Ng4LoadingSpinnerService, private giropdf: GiroPdf, public http: Http) {
     // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
@@ -508,6 +513,46 @@ export class UserContractComponent implements OnInit {
       //   "billingAddress2": this.billingAddress2,
       // });
       // console.log(reqJson);
+      if(this.datashare.usderDetailObj.paymentMethod == 'Giro')
+      {
+        this._payMethodKey = 'GIRO'
+      } else if(this.datashare.usderDetailObj.paymentMethod == 'IDDA (DBS)'){
+        this._payMethodKey = 'IDDA'
+      } else if(this.datashare.usderDetailObj.paymentMethod == 'Recuring'){
+        this._payMethodKey = 'RECUR'
+      } else {
+        this._payMethodKey = 'OTH'
+      }
+     //this.getSecurityDeposit();
+     this.router.navigateByUrl("new-user-confirmation");
+    }
+
+  }
+  getSecurityDeposit() {
+    if (navigator.onLine) {
+      this.spinnerService.show();
+      var rqst_json =JSON.stringify( {
+        "idType": this.datashare.usderDetailObj.icNumberType,
+        "payMethod": this._payMethodKey,
+        "premiseType": this.datashare.usderDetailObj.premiseType
+      })
+      console.log(rqst_json)
+      let _url = ApiConstants.GET_SECURITY_DEPOSIT;
+      ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(
+        (data) => {
+          data = JSON.parse(data)
+          console.log(data.success)
+          this.datashare.usderDetailObj.sd_amount = data.sd_amount;
+          this.spinnerService.hide()
+          this.router.navigateByUrl("new-user-confirmation");
+        }, (error: any) => {
+          console.log(error.success)
+          this.datashare.usderDetailObj.sd_amount = error.sd_amount;
+          this.spinnerService.hide()
+        })
+    }
+    else {
+      alert("Please Check Internet Connection")
     }
   }
 
