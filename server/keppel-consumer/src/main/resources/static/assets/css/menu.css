@@ -1,0 +1,142 @@
+/*Menu Icons*/
+.kpl-MenuItem{
+    background-repeat: no-repeat;
+    background-position: 20px center;
+}
+
+.kpl-MenuItem.On{
+    color:#771947;
+}
+
+.kpl-MenuItem.About{
+    background-image: url(../img/ico-About.png);
+}
+
+.kpl-MenuItem.Login{
+    background-image: url(../img/ico-Login.png);
+}
+
+.kpl-MenuItem.Products{
+    background-image: url(../img/ico-Products.png);
+}
+
+.kpl-MenuItem.Signup{
+    background-image: url(../img/ico-Signup.png);
+}
+
+.kpl-MenuItem.Residential{
+    background-image: url(../img/ico-Residential.png);
+}
+
+.kpl-MenuItem.Business{
+    background-image: url(../img/ico-Business.png);
+}
+
+.kpl-MenuItem.Register{
+    background-image: url(../img/ico-Register.png);
+}
+.kpl-MenuItem.Track{
+    background-image: url(../img/ico-TrackStatus.png);
+}
+.kpl-MenuItem.Help{
+    background-image: url(../img/ico-Help.png);
+}
+.kpl-MenuItem.Dashboard {
+    background-image: url(../img/ico-DashBoard.png);
+}
+.kpl-MenuItem.Logout {
+    background-image: url(../img/ico-Logout.png);
+}
+.kpl-MenuItem.RewardsRef{
+    background-image: url(../img/ico-RewardsRef.png);
+}
+.kpl-MenuItem.Bills {
+    background-image: url(../img/ico-BillsPayments.png);
+}
+.kpl-MenuItem.Consumption {
+    background-image: url(../img/ico-Consumption.png);
+}
+.kpl-MenuItem.Rewards {
+    background-image: url(../img/ico-Rewards.png);
+}
+.kpl-MenuItem.Referral {
+    background-image: url(../img/ico-ReferralCodes.png);
+}
+.kpl-MenuItem.ServiceRequest {
+    background-image: url(../img/ico-ServiceRequest.png);
+}
+.kpl-MenuItem.Contact{
+    background-image: url(../img/ico-Contact.png);
+}
+.kpl-MenuItem.Settings {
+    background-image: url(../img/ico-Settings.png);
+}
+.kpl-MenuItem.Account {
+    background-image: url(../img/ico-AccountSettings.png);
+}
+.kpl-MenuItem.Contract{
+    background-image: url(../img/ico-ContractDetails.png);
+}
+.kpl-MenuItem.Renew {
+    background-image: url(../img/ico-Recontract.png);
+}
+.kpl-MenuItem.ReContract {
+    background-image: url(../img/ico-RecontractSub.png);
+}
+.kpl-MenuItem.NewPremises {
+    background-image: url(../img/ico-NewPremises.png);
+}
+.kpl-MenuItem.Notification {
+    background-image: url(../img/ico-Notifications.png);
+}
+.kpl-MenuItem.TnC{
+    background-image: url(../img/ico-TnC.png);
+}
+.kpl-MenuItem.SiteMap{
+    background-image: url(../img/ico-SiteMap.png);
+}
+.kpl-MenuItem.LiveChat{
+    background-image: url(../img/ico-LiveChat.png);
+}
+.kpl-MenuItem.About.On{
+    background-image: url(../img/ico-About-On.png);
+}
+.kpl-MenuItem.Login.On{
+    background-image: url(../img/ico-Login-On.png);
+}
+
+.kpl-MenuItem.Products.On{
+    background-image: url(../img/ico-Products-On.png);
+}
+
+.kpl-MenuItem.Signup.On{
+    background-image: url(../img/ico-Signup-On.png);
+}
+
+.kpl-MenuItem.Residential.On{
+    background-image: url(../img/ico-Residential-On.png);
+}
+
+.kpl-MenuItem.Business.On{
+    background-image: url(../img/ico-Business-On.png);
+}
+
+.kpl-MenuItem.Track.On{
+    background-image: url(../img/ico-TrackStatus-On.png);
+}
+
+.kpl-MenuItem.Help.On{
+    background-image: url(../img/ico-Help-On.png);
+}
+
+.kpl-MenuItem.Contact.On{
+    background-image: url(../img/ico-Contact-On.png);
+}
+
+.kpl-MenuItem.TnC.On{
+    background-image: url(../img/ico-TnC-On.png);
+}
+
+.kpl-MenuItem.SiteMap.On{
+    background-image: url(../img/ico-SiteMap-On.png);
+}

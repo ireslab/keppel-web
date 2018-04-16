@@ -17,6 +17,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itextpdf.text.Anchor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -69,7 +70,7 @@ public class GeneratePDF {
 			e.printStackTrace();
 		}
 
-		this.downloadPDF(facesContext, outputStream); // Download PDF File
+		this.downloadPDF(facesContext); // Download PDF File
 	}
 
 	/* Merging details and Terms and conditions */
@@ -96,7 +97,7 @@ public class GeneratePDF {
 		outputStream.close();
 	}
 
-	private void downloadPDF(FacesContext facesContext, java.io.OutputStream outputStream) {
+	private void downloadPDF(FacesContext facesContext) {
 
 		FileInputStream fdownload = null;
 		try {
@@ -162,7 +163,7 @@ public class GeneratePDF {
 		}
 	}
 
-	private void generatePDFFile(FacesContext facesContext, java.io.OutputStream outputStream) {
+	private void generatePDFFile(FacesContext facesContext, OutputStream outputStream) {
 
 		FileInputStream fdownload = null;
 		FileOutputStream fdoc = null;
@@ -228,6 +229,7 @@ public class GeneratePDF {
 
 	private void addFOAInfo(Document document) throws DocumentException {
 		try {
+			log.info("File creation ===>addFOAInfo ");
 			Image lineImage = Image.getInstance("/u01/FRC/SignUpDocs/GIRO/line.JPG");
 			Image image = Image.getInstance("/u01/FRC/SignUpDocs/GIRO/keppel_logo.JPG");
 			image.setAlignment(Image.ALIGN_LEFT);
@@ -238,8 +240,10 @@ public class GeneratePDF {
 
 			document.add(formTable);
 			PdfPTable table = new PdfPTable(5);
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 
 			try {
 				table.setWidths(new float[] { 5, 30, 1, 49, 5 });
@@ -258,8 +262,8 @@ public class GeneratePDF {
 			String plansContractDuration = mAccountDto.getContractDuration();
 			String selectedRPlan = mAccountDto.getSelectedPlan();
 			String servStartDateVal = mAccountDto.getServiceStartDate();
-			String additionalServicesVas1 = mAccountDto.getOptionalService1();
-			String additionalServices = mAccountDto.getOptionalService2();
+			String additionalServicesVas1 = mAccountDto.getOptionalService2();
+			String additionalServices = mAccountDto.getOptionalService1();
 			String paymentMethod = mAccountDto.getPaymentMethod();
 			String getIcNumberType = mAccountDto.getIcNumberType();
 			String icIdVal = mAccountDto.getIcNumber();
@@ -270,19 +274,22 @@ public class GeneratePDF {
 			String userId = mAccountDto.getUserId();
 			String promoCodeVal = mAccountDto.getPromoCode();
 			String promoCodeDiscount = "";
-			String securityDeposit = "";
+			String securityDeposit = mAccountDto.getSecurityDeposit();
 
 			addKeppelHeader(table, "Premises Details", "");
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 			if (!"".equals(premiseAddress) && premiseAddress != null) {
 				addKeppelEntry(table, "Premises Address:", premiseAddress + " Singapore " + postalCodeVal);
 			}
 
-			addKeppelEntry(table, "Billing Address:", premiseAddress + " Singapore " + postalCodeVal);
-
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+			addKeppelEntry(table, "Billing Address:", billingAddress + " Singapore " + bPostalCode);
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
 			addKeppelEntry(table, "Ownership Type:", residentalVal);
 
 			if (getAccountNumber != null) {
@@ -306,48 +313,40 @@ public class GeneratePDF {
 
 			log.info("000additionalServices--> " + additionalServices + " additionalServicesVas1--> "
 					+ additionalServicesVas1);
-			// if(additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1")) {
-			// log.info("additionalServicesVas1 eq VAS1---> " +additionalServicesVas1);
-			// addKeppelEntry(table, "Only electronic bills will be sent", "");
-			// }
-			// if(additionalServicesVas1 == null && additionalServices == null) {
-			// log.info("additionalServicesVas1 additionalServices eq null---> "
-			// +additionalServicesVas1);
-			// addKeppelEntry(table, "Only electronic bills will be sent", "");
-			// }
-			//// Code Added by Indira
-			// if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-			// &&
-			// (additionalServices != null && additionalServices.equals("PaperBill"))) {
-			// log.info("2222additionalServices--> " + additionalServices + "
-			// additionalServicesVas1--> " +
-			// additionalServicesVas1);
-			// addKeppelEntry(table, "Additional Services", "Paper Bill($2/Bill), Smart
-			// Meter(One-time $40 if applicable)");
-			//
-			// }
-			// else if (additionalServices != null &&
-			// additionalServices.equals("PaperBill")) {
-			// log.info("3333additionalServices--> " + additionalServices + "
-			// additionalServicesVas1--> " +
-			// additionalServicesVas1);
-			// addKeppelEntry(table, "Additional Services:", "Paper Bill($2/Bill)");
-			// }
-			// else if ((additionalServicesVas1 != null &&
-			// additionalServicesVas1.equals("Vas1"))) {
-			// log.info("1111additionalServices--> " + additionalServices + "
-			// additionalServicesVas1--> " +
-			// additionalServicesVas1);
-			// addKeppelEntry(table, "Additional Services", "Smart Meter(One-time $40 if
-			// applicable)");
-			//
-			// }
-			//
-			// //Code Added by Indira
 
 			// COde Added by Indira-21-3-2018
-			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-					&& (additionalServices != null && !additionalServices.equals("PaperBill"))) {
+			// TODO Put "" check
+//
+//			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
+//					&& (additionalServices != null && !additionalServices.equals("PaperBill"))) {
+//				log.info("additionalServicesVas1 eq VAS1---> " + additionalServicesVas1);
+//				addKeppelEntry(table, "Only electronic bills will be sent", "");
+//			}
+//			if (additionalServicesVas1 == null && additionalServices == null) {
+//				log.info("additionalServicesVas1 additionalServices eq null---> " + additionalServicesVas1);
+//				addKeppelEntry(table, "Only electronic bills will be sent", "");
+//			}
+//			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
+//					&& (additionalServices != null && additionalServices.equals("PaperBill"))) {
+//				log.info("2222additionalServices--> " + additionalServices + " additionalServicesVas1--> "
+//						+ additionalServicesVas1);
+//				addKeppelEntry(table, "Additional Services",
+//						"Paper Bill($2/Bill), Smart Meter(One-time $40 if applicable)");
+//
+//			} else if (additionalServices != null && additionalServices.equals("PaperBill")) {
+//				log.info("3333additionalServices--> " + additionalServices + " additionalServicesVas1--> "
+//						+ additionalServicesVas1);
+//				addKeppelEntry(table, "Additional Services:", "Paper Bill($2/Bill)");
+//			} else if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))) {
+//				log.info("1111additionalServices--> " + additionalServices + " additionalServicesVas1--> "
+//						+ additionalServicesVas1);
+//				addKeppelEntry(table, "Additional Services", "Smart Meter(One-time $40 if applicable)");
+//
+//			}
+			
+			addKeppelHeader(table, "Additional Services", "");
+			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Smart Meter"))
+					&& (additionalServices != null && !additionalServices.equals("Paper Bill"))) {
 				log.info("additionalServicesVas1 eq VAS1---> " + additionalServicesVas1);
 				addKeppelEntry(table, "Only electronic bills will be sent", "");
 			}
@@ -355,25 +354,25 @@ public class GeneratePDF {
 				log.info("additionalServicesVas1 additionalServices eq null---> " + additionalServicesVas1);
 				addKeppelEntry(table, "Only electronic bills will be sent", "");
 			}
-			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-					&& (additionalServices != null && additionalServices.equals("PaperBill"))) {
+			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Smart Meter"))
+					&& (additionalServices != null && additionalServices.equals("Paper Bill"))) {
 				log.info("2222additionalServices--> " + additionalServices + " additionalServicesVas1--> "
 						+ additionalServicesVas1);
 				addKeppelEntry(table, "Additional Services",
 						"Paper Bill($2/Bill), Smart Meter(One-time $40 if applicable)");
 
-			} else if (additionalServices != null && additionalServices.equals("PaperBill")) {
+			} else if (additionalServices != null && additionalServices.equals("Paper Bill")) {
 				log.info("3333additionalServices--> " + additionalServices + " additionalServicesVas1--> "
 						+ additionalServicesVas1);
 				addKeppelEntry(table, "Additional Services:", "Paper Bill($2/Bill)");
-			} else if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))) {
+			} else if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Smart Meter"))) {
 				log.info("1111additionalServices--> " + additionalServices + " additionalServicesVas1--> "
 						+ additionalServicesVas1);
 				addKeppelEntry(table, "Additional Services", "Smart Meter(One-time $40 if applicable)");
 
 			}
+			
 			// COde Added by Indira-21-3-2018
-
 			if (paymentMethod.equals("GIRO")) {
 				addKeppelEntry(table, "Payment Mode:", "Giro");
 
@@ -393,147 +392,62 @@ public class GeneratePDF {
 			addKeppelEntry(table, "Charging Period:", "Monthly (As per MSSL Billing Period)");
 
 			addKeppelEntry(table, "Early Termination & Other Charges:", "As stated in Terms & Conditions");
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 
-			// lineImage.scaleToFit(850, 4);
-			//
-			// document.add(lineImage);
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// document.add(Chunk.NEWLINE);
+			// document.add(Chunk.NEWLINE);
 
-			addKeppelHeader(table, "Product Charges", "");
+			// addKeppelHeader(table, "Product Charges", "");
+			//
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+//			addKeppelHeader(table, "Additional Services", "");
+//			if (additionalServices != null && additionalServices.equals("PaperBill"))
+//				addKeppelEntry(table, "Paper Bill", "($2/Bill)");
+//			if (additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
+//				addKeppelEntry(table, "Smart Meter", "(One-time $40 if applicable)");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			// if (!userId.equals("CHAN") && promoCodeVal != null) {
+			// addKeppelHeader(table, "Promotion", "");
+			// addKeppelEntry(table, "Promo - " + promoCodeVal + ":", "(-$ " +
+			// promoCodeDiscount + "on 1st Bill)");
+			//
+			// }
 
-			// log.info(" :pdfDotAmount in FOA::" + pdfDotAmount);
-			// log.info(" :pdfFppAmount in FOA::" + pdfFppAmount);
-			// String tier1Amount = getRPVersion(selectedRPlan, "t1", activePlanMap);
-			// String tier2Amount = getRPVersion(selectedRPlan, "t2", activePlanMap);
-			// String tier3Amount = getRPVersion(selectedRPlan, "t3", activePlanMap);
-
-			// Code Added for FOA blank inactive Plans -Suresh-22-03-2018
-			// String tier1Amount = null, tier3Amount = null, tier2Amount = null;
-			// tier1Amount = getRPVersion(selectedRPlan, "t1", inActivePlanMap);
-			// log.info("tier1Amount is in inActivePlanMap: " + tier1Amount);
-			// if (tier1Amount == null) {
-			// tier1Amount = getRPVersion(selectedRPlan, "t1", activePlanMap);
-			// log.info("tier1Amount is in activeMap---" + tier1Amount);
-			// }
-			// tier2Amount = getRPVersion(selectedRPlan, "t2", activePlanMap);
-			// log.info("tier2Amount is in activeMap---" + tier2Amount);
-			// if (tier2Amount == null) {
-			// tier2Amount = getRPVersion(selectedRPlan, "t2", inActivePlanMap);
-			// log.info("tier2Amount is in inActivePlanMap---" + tier2Amount);
-			// }
-			//
-			// tier3Amount = getRPVersion(selectedRPlan, "t3", activePlanMap);
-			// log.info("tier3Amount is in activePlanMap: " + tier3Amount);
-			// if (tier3Amount == null) {
-			// tier3Amount = getRPVersion(selectedRPlan, "t3", inActivePlanMap);
-			// log.info("tier3Amount is in inActivePlanMap: " + tier3Amount);
-			// }
-			//
-			// // Code Added for FOA blank inactive Plans -Suresh-22-03-2018
-			//
-			// // Code Added by Indira
-			// if (!"".equals(tier1Amount) && tier1Amount.equals(tier2Amount) &&
-			// tier1Amount.equals(tier3Amount)) {
-			// if (pdfDotAmount != null && productMapKeyVal.equals("DOT")) {
-			// addKeppelEntry(table, "Energy Charges", "" + pdfDotAmount + " % off SP
-			// Tariff");
-			//
-			// } else if (pdfFppAmount != null && productMapKeyVal.equals("FIX")) {
-			// addKeppelEntry(table, "Energy Charges", "" + pdfFppAmount + " cents/kWh");
-			// }
-			// } else {
-			// if (!"".equals(pdfTier1Amount) && pdfTier1Amount != null && pdfPeakValueT1 !=
-			// null
-			// && !"".equals(pdfPeakValueT1)) {
-			// addKeppelEntry(table, "Peak Rate", "" + pdfPeakValueT1 + " " +
-			// pdfTier1Amount);
-			// log.info(" ::tier1Amount and peakValueT1 in pdf::" + pdfTier1Amount + "
-			// peakValueT1--> "
-			// + pdfTier1Amount);
-			// }
-			// if (!"".equals(pdfTier3Amount) && pdfTier3Amount != null && pdfPeakValueT3 !=
-			// null
-			// && !"".equals(pdfPeakValueT3)) {
-			// log.info("--> peakValueT3 in pdf" + pdfPeakValueT3);
-			// addKeppelEntry(table, "Off Peak Rate", "" + pdfPeakValueT3 + " " +
-			// pdfTier3Amount);
-			// }
-			// }
-			//
-			// // Code Added by Indira
-			// addKeppelEntry(table, " ", "Consumption will be Loss Adjusted");
-			//
-			// if (mssBillingCollectionDisValue != null) {
-			// addKeppelEntry(table, mssBillingCollectionDisValue, "");
-			// }
-			// if (mssMeterReadingDataManagementDisValue != null) {
-			// addKeppelEntry(table, mssMeterReadingDataManagementDisValue, "");
-			// }
-			// if (marketDevelopmentSystemChargeDisValue != null) {
-			// addKeppelEntry(table, marketDevelopmentSystemChargeDisValue, "");
-			// }
-			// if (retailSettlementUpliftDisValue != null) {
-			// addKeppelEntry(table, retailSettlementUpliftDisValue, "");
-			// }
-			// if (emcAdminFinalDisValue != null) {
-			// addKeppelEntry(table, emcAdminFinalDisValue, "");
-			//
-			// }
-			// if (posAdminFinalDisValue != null) {
-			// addKeppelEntry(table, posAdminFinalDisValue, "");
-			//
-			// }
-			// if (monthlyEnergyUpliftChargeFinalDisValue != null) {
-			// addKeppelEntry(table, monthlyEnergyUpliftChargeFinalDisValue, "");
-			//
-			// }
-			// if (allocatedRegulationChargeFinalDisValue != null) {
-			// addKeppelEntry(table, allocatedRegulationChargeFinalDisValue, "");
-			//
-			// }
-			// if (usepDisValue != null) {
-			// addKeppelEntry(table, usepDisValue, "");
-			//
-			// }
-			// if (heucDisValue != null) {
-			// addKeppelEntry(table, heucDisValue, "");
-			//
-			// }
-			// if (vestingChargeDisValue != null) {
-			// addKeppelEntry(table, vestingChargeDisValue, "");
-			//
-			// }
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
-			addKeppelHeader(table, "Additional Services", "");
-			if (additionalServices != null && additionalServices.equals("PaperBill"))
-				addKeppelEntry(table, "Paper Bill", "($2/Bill)");
-			if (additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-				addKeppelEntry(table, "Smart Meter", "(One-time $40 if applicable)");
-			addKeppelEntry(table, "", "");
-
-			if (!userId.equals("CHAN") && promoCodeVal != null) {
+			if (promoCodeVal != null && promoCodeVal.length() > 0 && promoCodeDiscount != null
+					&& promoCodeDiscount.length() > 0) {
 				addKeppelHeader(table, "Promotion", "");
 				addKeppelEntry(table, "Promo - " + promoCodeVal + ":", "(-$ " + promoCodeDiscount + "on 1st Bill)");
-
 			}
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 
 			addKeppelHeader(table, "Miscellaneous", "");
-
-			addKeppelEntry(table, "Security Deposit:", "S$ " + securityDeposit);
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+			if (securityDeposit != null && securityDeposit.length() > 0) {
+				addKeppelEntry(table, "Security Deposit:", "S$ " + securityDeposit);
+			}
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 
 			lineImage.scaleAbsolute(500, 4);
 
 			document.add(lineImage);
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 			addKeppelHeader(table, "Personal Details", "");
 			if (getIcNumberType != null) {
 
@@ -565,11 +479,14 @@ public class GeneratePDF {
 			} catch (DocumentException e) {
 				e.printStackTrace();
 			}
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
-			addKeppelEntry(table, "", "");
-
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			// addKeppelEntry(table, "", "");
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 			Anchor anchorKeppel = new Anchor("www.keppelelectric.com");
 			anchorKeppel.setReference("www.keppelelectric.com");
 			addKeppelEntry(table, "", "");
@@ -608,6 +525,10 @@ public class GeneratePDF {
 			// FontFactory.getFont(FontFactory.HELVETICA, 9)));
 
 			// document.add(new Phrase("\n"));
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 			PdfPTable addTable = new PdfPTable(1);
 			addTable.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
 			addTable.setWidthPercentage(100);
