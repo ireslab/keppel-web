@@ -1,0 +1,151 @@
+@media (min-width: 992px) {
+  body {
+    background-color: #000;
+    background-size: contain;
+    background-image: url("../img/oi/bg-tech.png"); } }
+
+.max-fluid {
+  max-width: 1330px; }
+
+.header-section {
+  display: none; }
+  @media (min-width: 992px) {
+    .header-section {
+      display: block;
+      background-image: url("../img/oi/bg-fam.jpg");
+      background-color: #000;
+      background-size: cover;
+      height: 0;
+      padding-bottom: 52.1%;
+      position: relative;
+      margin-bottom: -25%; }
+      .header-section .log-wrapper {
+        position: absolute;
+        width: 100%;
+        margin: 0 auto;
+        top: 90px;
+        padding-right: 50px; }
+      .header-section .log-container {
+        position: relative; }
+      .header-section .log-details {
+        position: absolute;
+        right: 0;
+        text-align: center;
+        font-style: italic; }
+        .header-section .log-details h2, .header-section .log-details .login-name {
+          text-transform: uppercase;
+          color: #585858;
+          font-weight: normal;
+          font-size: 30px;
+          margin-bottom: 0; }
+        .header-section .log-details .login-name {
+          color: #828180; }
+        .header-section .log-details .login-time, .header-section .log-details a {
+          color: #585858; }
+      .header-section + .the-content {
+        position: relative;
+        z-index: 1; }
+      .header-section:after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background: #000; } }
+  @media (min-width: 1200px) {
+    .header-section .log-wrapper {
+      top: 160px; } }
+
+.content-wrapper {
+  padding: 22px 0; }
+  .content-wrapper .notification {
+    position: relative;
+    text-decoration: none; }
+    .content-wrapper .notification .number {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      background: #9e0040;
+      border: 1px solid #5f5f5f;
+      border-radius: 3px;
+      text-align: center;
+      font-weight: bold;
+      min-width: 20px;
+      position: absolute; }
+  .content-wrapper .tool-section .form-inline {
+    justify-content: flex-end; }
+  .content-wrapper .tool-section .form-inline > * + * {
+    margin-left: 20px; }
+  .content-wrapper .title-section > span {
+    font-size: 25px;
+    color: #3d3d3d;
+    text-transform: uppercase;
+    font-weight: bold; }
+  @media (min-width: 992px) {
+    .content-wrapper {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 60px rgba(255, 153, 10, 0.507);
+      min-height: 1000px;
+      border-radius: 20px;
+      padding: 22px 44px 44px; }
+      .content-wrapper .tool-section {
+        float: right; }
+        .content-wrapper .tool-section .form-inline {
+          justify-content: flex-start; } }
+
+.nav-content-wrapper {
+  display: block; }
+  .nav-content-wrapper .nav-wrapper {
+    display: none; }
+  .nav-content-wrapper .content-flex-child {
+    margin-left: 0; }
+  @media (min-width: 992px) {
+    .nav-content-wrapper {
+      display: flex; }
+      .nav-content-wrapper .nav-wrapper {
+        display: block;
+        width: 140px;
+        padding: 20px 20px;
+        background: #9e0040;
+        text-align: center; }
+        .nav-content-wrapper .nav-wrapper > a {
+          color: #fff;
+          text-decoration: none;
+          display: inline-block;
+          font-weight: bold;
+          font-size: 15px;
+          padding: 10px 0;
+          width: 100%;
+          position: relative; }
+          .nav-content-wrapper .nav-wrapper > a span {
+            display: block;
+            padding-top: 5px; }
+          .nav-content-wrapper .nav-wrapper > a + a:before {
+            content: "";
+            height: 2px;
+            width: 100%;
+            display: block;
+            background: #000;
+            box-shadow: 0 1px 0 #fff;
+            opacity: 0.2;
+            position: absolute;
+            top: -5px; }
+      .nav-content-wrapper .nav-flex-child {
+        z-index: 1;
+        width: 140px; }
+      .nav-content-wrapper .content-flex-child {
+        flex: 1;
+        margin-left: -20px; } }
+
+@media (min-width: 992px) {
+  .copyright {
+    color: #fff; }
+  svg .name {
+    display: none; } }
+
+#followme-nav.fixed {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto; }

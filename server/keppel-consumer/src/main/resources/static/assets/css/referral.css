@@ -1,0 +1,201 @@
+.some-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 30px; }
+
+.svg-chart-wrapper {
+  position: relative;
+  padding-bottom: 80%; }
+
+#chart {
+  width: 100%;
+  height: 100%;
+  position: absolute; }
+  #chart .bar {
+    fill: #f1f1f1; }
+  #chart .axis.axis--x-line .tick > line,
+  #chart .axis.axis--x-line .tick > text {
+    display: none; }
+  #chart .axis.axis--x-line .domain {
+    fill: #989898;
+    stroke: #989898 !important; }
+  #chart .axis.axis--x .tick > text {
+    font-size: 16px;
+    font-weight: bold;
+    fill: #a63757; }
+  #chart .axis.axis--x .tick > line, #chart .axis.axis--x .domain {
+    display: none; }
+  #chart .axis.axis--x.grey .tick > text {
+    fill: #989898; }
+  #chart .grey-text {
+    font-size: 16px;
+    fill: #989898;
+    font-family: Arial, Helvetica, sans-serif; }
+  #chart .red-text {
+    font-size: 16px;
+    fill: #a63757;
+    font-family: Arial, Helvetica, sans-serif; }
+  #chart .rank {
+    font-weight: bold;
+    font-size: 42px; }
+  #chart .table {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif; }
+    #chart .table.name {
+      fill: #a63757; }
+    #chart .table.value {
+      fill: #989898; }
+  #chart .your-rank {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    fill: #989898; }
+    #chart .your-rank.number {
+      font-size: 42px;
+      fill: #a63757;
+      font-weight: bold; }
+
+.heavy-border-component {
+  border: 20px solid #a63757;
+  border-radius: 20px;
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  min-height: 400px; }
+  .heavy-border-component .heavy-border-title {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #a63757;
+    background-color: #eeece7;
+    transform: translateX(-50%) translateY(-100%);
+    padding: 0 20px;
+    min-width: 200px;
+    text-align: center; }
+
+.no-gutters {
+  margin-right: 0 !important;
+  margin-left: 0 !important; }
+  .no-gutters > .col,
+  .no-gutters > [class*="col-"] {
+    padding-right: 0 !important;
+    padding-left: 0 !important; }
+
+.referrals-placeholder {
+  min-height: 200px; }
+
+.decorative-wrapper .decorative-ribbon:after, .slider .slider-title:after {
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='7px' height='7px' viewBox='0 0 7 7' enable-background='new 0 0 7 7' xml:space='preserve'%3E %3Cpath fill='%23880D3A' d='M0,7c0-3.869,3.131-7,7-7H0V7z'/%3E %3C/svg%3E"); }
+
+.decorative-wrapper, .slider .slider-detail {
+  border-radius: 15px;
+  background-color: #d6d6d9;
+  box-shadow: 1px 2px 2px #6e6e6e;
+  position: relative;
+  padding: 20px; }
+
+.decorative-wrapper .decorative-ribbon, .slider .slider-title {
+  line-height: 37px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 15px;
+  white-space: nowrap;
+  border-top-left-radius: 7px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#880d3a+12,e41f6a+33,d4145a+100 */
+  background: #880d3a;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #880d3a 12%, #e41f6a 33%, #d4145a 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #880d3a 12%, #e41f6a 33%, #d4145a 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #880d3a 12%, #e41f6a 33%, #d4145a 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#880d3a', endColorstr='#d4145a',GradientType=0 );
+  /* IE6-9 */ }
+  .decorative-wrapper .decorative-ribbon:after, .slider .slider-title:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 7px;
+    height: 7px;
+    left: 100%;
+    top: 0; }
+
+.decorative-wrapper {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 50px 20px 20px;
+  margin-top: 30px; }
+  .decorative-wrapper .decorative-ribbon {
+    position: absolute;
+    left: 50%;
+    top: -6px;
+    display: inline-block;
+    transform: translateX(-50%); }
+  .decorative-wrapper table th {
+    font-weight: bold; }
+  .decorative-wrapper table tr {
+    border-bottom: 2px dashed #939193; }
+  .decorative-wrapper table th, .decorative-wrapper table td {
+    text-align: center;
+    color: #3d3d3d;
+    background-color: transparent !important; }
+  .decorative-wrapper table .you {
+    font-size: 1.5em; }
+    .decorative-wrapper table .you td {
+      color: #a63757;
+      font-weight: bold; }
+
+.slider {
+  text-align: right;
+  margin-top: 60px;
+  margin-right: -20px;
+  position: relative; }
+  .slider .slider-title-wrapper {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%) translateX(-50%);
+    left: 100%; }
+  .slider .slider-title {
+    position: relative;
+    display: inline-block;
+    transform: rotate(90deg) translateY(-34%); }
+    .slider .slider-title span:before, .slider .slider-title span:after {
+      content: "\f107";
+      display: inline-block;
+      margin: 0 3px;
+      font-family: 'FontAwesome'; }
+    .slider .slider-title:hover {
+      cursor: pointer; }
+  .slider .slider-detail-wrapper {
+    overflow: hidden;
+    padding-bottom: 5px; }
+  .slider .slider-detail {
+    text-align: left;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s; }
+    .slider .slider-detail ol {
+      margin: 0; }
+  .slider.open .slider-detail {
+    transform: translateX(0); }
+  .slider.open .slider-title span:before, .slider.open .slider-title span:after {
+    content: "\f106"; }
+
+.input-group-text {
+  background-color: #9194a2;
+  color: #fff;
+  border-color: #9194a2; }
+
+input[type="text"].form-control {
+  background-color: #e5e7e9;
+  box-shadow: 0 1px 1px #fff; }
