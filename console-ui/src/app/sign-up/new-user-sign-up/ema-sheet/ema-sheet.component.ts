@@ -9,10 +9,13 @@ import { DataShare } from '../../../Utility/data_share.service';
 })
 export class EmaSheetComponent implements OnInit {
   _userDetailObj;
+  _emaFactSheetData;
   planType;
   currentDate = new Date();
   constructor(private datashare: DataShare) {
     this._userDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
+    this._emaFactSheetData = JSON.parse(window.localStorage.getItem('emaFactData'));
+
     var planName = this._userDetailObj.selectedPlanObj.plan.substring(0, 5);
     if(planName == "FIXED")
       {

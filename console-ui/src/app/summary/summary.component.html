@@ -6,14 +6,10 @@
       <h5>
         <img src="assets/img/img-PlanIcon.png" /> {{_planDetailObj.plan}}</h5>
 
-      <hr>
-      <!-- <p>Estimated Monthly Bill: S$56*</p> -->
-
-      <!-- <h1>19% Less</h1> -->
-      <p class="text-center">{{_planDetailObj.details}}</p>
-      <p class="text-center" *ngFor="let benifits of _planBenifitArray">
-        {{benifits}}
-      </p>
+      <hr/>
+        <p>Estimated Monthly Bill: S${{selectedRecmData.recomPlans.estimatedBillAmount}}*</p> 
+        <h4>{{selectedRecmData.recomPlans.estimatedDiscount}}% Less</h4>
+        <p>than with current SP Tariff</p>
     </div>
     <button class="PanelClose-Top" type="button">
       <img src="assets/img/ico-PanelArrow.png" />

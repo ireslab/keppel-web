@@ -83,7 +83,7 @@
                 
                 <div class="col-xl-3 col-md-6 col-6"  *ngFor="let dwlPlans of firstTwoDwlingPlans; let i = index;">
 
-                    <div (click)="planSelectionBtn(i)" class="PlanDetailCard"  [ngClass]="{'selected': i==selectedFirstIndex}" (click)="getPlan(dwlPlans)">
+                    <div (click)="planSelectionBtn(i,dwlPlans)" class="PlanDetailCard"  [ngClass]="{'selected': i==selectedFirstIndex}" >
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
                             <h3>{{dwlPlans.plan}}</h3>
@@ -133,13 +133,13 @@
             </div>
             <div class="collapse row no-gutters" id="collapseMorePlans">
                 <div class="col-xl-3 col-md-6 col-6" *ngFor="let dwlPlans of otherdwlPlans; let i = index;" >
-                    <div (click)="planSlctnBtn(i)" class="PlanDetailCard" [ngClass]="{'selected': i==selectedSecondIndex}" (click)="getPlan(dwlPlans)"> 
+                    <div (click)="planSlctnBtn(i,dwlPlans)" class="PlanDetailCard" [ngClass]="{'selected': i==selectedSecondIndex}"> 
                         <div class="PlanDetailSummary">
                             <img class="PlanDetailIcon" src="assets/img/img-PlanIcon.png" />
                             <h3>{{dwlPlans.plan}}</h3>
                             <p>{{dwlPlans.details}}</p>
                             <hr/>
-                            <p>Estimated Monthly Bill: S${{otherdwlPlansRP[i].estimatedBillAmount}}*</p>
+                            <p>Estimated Monthly Bill: S${{otherdwlPlansRP[i].estimatedBillAmount}}*</p> 
                             <h4>{{otherdwlPlansRP[i].estimatedDiscount}}% Less</h4>
                             <p>than with current SP Tariff</p>
                             <!-- <label *ngFor="let benifit of dwlPlans.planBenifits; let i = index">{{benifit}}</label> -->
@@ -305,7 +305,7 @@
           <div class="modal-footer row">
             <button type="button " class="btn btn-secondary ">Get Another OTP</button>
             <!-- <button type="button " class="btn btn-primary " data-dismiss="modal " onclick="location.href='NewUserSignup.2.html' ">Proceed to Sign Up</button> -->
-            <button type="button " class="btn btn-primary " data-dismiss="modal" routerLink="/new-user-contract">Proceed to Sign Up</button>
+            <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="calculateEMIFactSheet()" routerLink="/new-user-contract">Proceed to Sign Up</button>
           </div>
         </div>
       </div>

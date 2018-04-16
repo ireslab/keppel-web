@@ -43,7 +43,7 @@
             <div class="col-md-3  EMALabel">Name of Price Plan:</div>
             <div class="col-md-3 ">{{_userDetailObj.selectedPlanObj.plan}}</div>
             <div class="col-md-3  EMALabel">Type of Price Plan:</div>
-            <div class="col-md-3 ">{{planType}}</div>
+            <div class="col-md-3 ">{{_userDetailObj.selectedPlanObj.product}}</div>
         </div>
         <div class="row EMALabel">
             <div class="col-12">
@@ -54,12 +54,12 @@
         <div class="row ">
             <div class="col-12 subinfo">
                 Fixed price plan:
-                <span id="lbl_FixedPricePlan">_____</span> cents/kWh
+                <span id="lbl_FixedPricePlan">{{_emaFactSheetData.pdfFppAmount}}</span> cents/kWh
             </div>
         </div>
         <div class="row">
             <div class="col-12 subinfo">Discount-off regulated tariff plan:
-                <span id="lbl_DiscountPercent">__</span> % /
+                <span id="lbl_DiscountPercent">{{_emaFactSheetData.pdfDotAmount}}</span> % /
                 <span id="lbl_FixedPricePlan1">__</span> cents/kWh discount</div>
         </div>
         <div class="row ">
@@ -67,14 +67,14 @@
         </div>
         <div class="row ">
             <div class="col-12 subinfo">i.
-                <span id="lbl_FixedPricePlan2">__</span> cents/kWh for peak periods from
-                <span id="lbl_PeakPeriod">__</span>
+                <span id="lbl_FixedPricePlan2">{{_emaFactSheetData.pdfTier1Amount}}</span> cents/kWh for peak periods from
+                <span id="lbl_PeakPeriod">{{_emaFactSheetData.pdfPeakValueT1}}</span>
             </div>
         </div>
         <div class="row ">
             <div class="col-12 subinfo">ii.
-                <span id="lbl_FixedPricePlan3">__</span> cents/kWh for off-peak periods from
-                <span id="lbl_OffPeakPeriod">__</span>
+                <span id="lbl_FixedPricePlan3">{{_emaFactSheetData.pdfTier3Amount}}</span> cents/kWh for off-peak periods from
+                <span id="lbl_OffPeakPeriod">_emaFactSheetData.pdfPeakValueT3</span>
             </div>
         </div>
         <div class="row EMALabel">
@@ -95,13 +95,13 @@
             <div class="col-md-4 ">
                 <div>Free gifts, promotions, rewards or services:</div>
             </div>
-            <div class="col-md-8">[free text]</div>
+            <div class="col-md-8">{{_userDetailObj.promoCode}}</div>
         </div>
         <div class="row ">
             <div class="col-md-4 ">
                 <div>Conditional discount:</div>
             </div>
-            <div class="col-md-8 ">[free text]</div>
+            <div class="col-md-8 "></div>
         </div>
         <div class="row ">
             <div class="col-md-4  EMALabel">Contract Duration (see footnote 3):</div>
@@ -140,7 +140,7 @@
         </div>
         <div class="row ">
             <div class="col-md-3  EMALabel">Security deposit (see footnote 6):</div>
-            <div class="col-md-9 "></div>
+            <div class="col-md-9 ">{{_userDetailObj.sd_amount}}</div>
         </div>
         <div class="row  EMALabel">
             <div class="col-12">
