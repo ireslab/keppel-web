@@ -23,7 +23,7 @@ export class UserConfirmationComponent implements OnInit {
   termConditionFirst:boolean = false;
   termConditionScnd:boolean = false;
   termConditionThird:boolean = false;
-  editDetails:boolean = true;
+  editDetails:boolean = false;
 
   constructor(private sbService: SidebarService, private DS: DataShare, private spinner: Ng4LoadingSpinnerService,
     private serverCall: ServiceCall, private http: Http, private commonService: CommonServices,
@@ -58,7 +58,7 @@ export class UserConfirmationComponent implements OnInit {
       }
     };
  
-    pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
+    pdfMake.createPdf(docDefinition).download("GIRO_IIT_appln_form.pdf");
   };
 
   confirmClicked() {
