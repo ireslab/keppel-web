@@ -37,7 +37,7 @@
               </div> -->
               <div class="col-2"></div>
               <div class="col-4">
-                <button id="btnOne" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(1);getPdf()"
+                <button id="btnOne" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(1)"
                   style="padding-top:15px;" type="button">{{optionalServiceOne.serviceName}}
                   <small>{{optionalServiceOne.serviceCost}})</small>
                 </button>
@@ -397,9 +397,6 @@
             </div>
             <div *ngIf="ownershipMessage">
               * Please select ownership type to proceed.
-            </div>
-            <div *ngIf="dateError">
-              * Selected date is not valid for AMI meter, please select the date again.
             </div>
           </div>
         </div>

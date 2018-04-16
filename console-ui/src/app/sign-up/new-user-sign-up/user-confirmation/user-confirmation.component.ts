@@ -8,24 +8,26 @@ import { CommonServices } from '../../../commom_methods/common_service'
 import { Router } from '@angular/router';
 import { ApiConstants } from '../../../network_layer/api_constants';
 
+import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
 
-
-
+declare var $: any
+declare var pdfMake: any
 @Component({
   selector: 'app-user-confirmation',
   templateUrl: './user-confirmation.component.html',
-  styleUrls: ['./user-confirmation.component.css']
+  styleUrls: ['./user-confirmation.component.css'],
+  providers: [GiroPdf]
 })
 export class UserConfirmationComponent implements OnInit {
   _usderDetailObj;
   termConditionFirst:boolean = false;
   termConditionScnd:boolean = false;
   termConditionThird:boolean = false;
-  editDetails:boolean = false;
+  editDetails:boolean = true;
 
   constructor(private sbService: SidebarService, private DS: DataShare, private spinner: Ng4LoadingSpinnerService,
     private serverCall: ServiceCall, private http: Http, private commonService: CommonServices,
-    private router: Router) {
+    private router: Router, private giropdf: GiroPdf) {
       this.DS.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
       this._usderDetailObj = this.DS.usderDetailObj;
     this.sbService.getSidebar("newUser")
@@ -41,11 +43,35 @@ export class UserConfirmationComponent implements OnInit {
     //   }
     // )
   }
+  getPdf() {
+    var image1 = this.giropdf.giro1Base64;
+    var image2 = this.giropdf.giro2Base64;
+    var docDefinition = {
+      content: [
+        { image: image1, width: 550 },
+        { image: image2, width: 550 }
+      ],
+      pageMargins: [25, 25, 25, 25],
+      defaultStyle: {
+        columnGap: 30,
+        color: '#676262',
+      }
+    };
+ 
+    pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
+  };
 
   confirmClicked() {
   if(this.termConditionOne && this.termConditionScnd && this.termConditionThird){
     if (navigator.onLine) {
       this.spinner.show();
+     
+      if (this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
+        window.open('https://internet-banking.dbs.com.sg', '_blank');
+      } else if (this.DS.usderDetailObj.paymentMethod == 'Giro') {
+        // window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
+        this.getPdf();
+      }
       var rqst_json = {
         "icNumber": this.DS.usderDetailObj.icNumber,
         "icNumberType": this.DS.usderDetailObj.icNumberType,
