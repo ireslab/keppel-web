@@ -120,7 +120,20 @@ export class UserRecommendationComponent implements OnInit {
         this.selectedDwlType = index;
         if (navigator.onLine) {
             this.spinnerService.show();
-            this.datashare.usderDetailObj.premiseType = dwlType;
+            if(dwlType == 'Condominium')
+            {
+                this.datashare.usderDetailObj.premiseType = 'CONDO'
+            } else if (dwlType == 'Landed Property')
+            {
+                this.datashare.usderDetailObj.premiseType = 'LANDPROP'
+            } else if (dwlType == 'Others')
+            {
+                this.datashare.usderDetailObj.premiseType = 'OTHER'
+            } else
+            {
+                this.datashare.usderDetailObj.premiseType = dwlType;
+            }
+    
             this.getPlansCall();
         } else {
             alert('Please Check Internet Connection')
