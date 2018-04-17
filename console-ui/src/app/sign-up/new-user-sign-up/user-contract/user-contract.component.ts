@@ -203,7 +203,7 @@ export class UserContractComponent implements OnInit {
       spAccount: this.datashare.usderDetailObj.spAccount,
     })
 
-
+    
 
     $(document).ready(function () {
       $(".selectPaymentMethodButton").on("click", function () {
@@ -501,9 +501,7 @@ export class UserContractComponent implements OnInit {
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
-      window.localStorage.clear();
-      window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
-      window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
+     
       // if (this.paymentMethod == 'IDDA (DBS)') {
       //   window.open('https://internet-banking.dbs.com.sg', '_blank');
       // } else if (this.paymentMethod == 'Giro') {
@@ -552,6 +550,9 @@ export class UserContractComponent implements OnInit {
             this.datashare.usderDetailObj.sd_amount = ""
           }
           this.datashare.getUserDetails();
+          window.localStorage.clear();
+          window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
+          window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
           this.router.navigateByUrl("new-user-confirmation");
 
         }, (error: any) => {
