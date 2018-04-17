@@ -45,33 +45,28 @@ export class UserConfirmationComponent implements OnInit {
   }
   getPdf() {
     var image1 = this.giropdf.giro1Base64;
-    var image2 = this.giropdf.giro2Base64;
+    // var image2 = this.giropdf.giro2Base64;
     var docDefinition = {
       content: [
-        { image: image1, width: 550 },
-        { image: image2, width: 550 }
+        { image: image1, width: 530 }
+        // { image: image2, width: 550 }
       ],
-      pageMargins: [25, 25, 25, 25],
+      pageMargins: [30, 25, 25, 30],
       defaultStyle: {
         columnGap: 30,
         color: '#676262',
       }
     };
  
-    pdfMake.createPdf(docDefinition).download("GIRO_IIT_appln_form.pdf");
+    pdfMake.createPdf(docDefinition).download("Keppel_Electric_Giro_Application_Form_Residential");
   };
 
   confirmClicked() {
   if(this.termConditionOne && this.termConditionScnd && this.termConditionThird){
     if (navigator.onLine) {
+      
       this.spinner.show();
-     
-      if (this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
-        window.open('https://internet-banking.dbs.com.sg', '_blank');
-      } else if (this.DS.usderDetailObj.paymentMethod == 'Giro') {
-        // window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
-        this.getPdf();
-      }
+      
       var rqst_json = {
         "icNumber": this.DS.usderDetailObj.icNumber,
         "icNumberType": this.DS.usderDetailObj.icNumberType,
@@ -113,7 +108,14 @@ export class UserConfirmationComponent implements OnInit {
         "PDPA": "",
         "securityDeposit":this._usderDetailObj.sd_amount,
       }
+      if (this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
+        window.open('https://internet-banking.dbs.com.sg', '_blank');
+      } else if (this.DS.usderDetailObj.paymentMethod == 'Giro') {
+        // window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
+        this.getPdf();
+      }
       this.makeServerCall(rqst_json);
+      
 
     } else {
       alert("Please Check Internet Connection")
@@ -158,6 +160,7 @@ export class UserConfirmationComponent implements OnInit {
   }
 
   makeServerCall(rqst_json) {
+  
     // var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup"  //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
     let _url = ApiConstants.NEW_USER_SIGNUP;
     ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(

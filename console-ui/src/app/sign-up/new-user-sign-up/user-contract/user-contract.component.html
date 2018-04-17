@@ -8,10 +8,9 @@
           <div class="col-12">
             <div class="form-group StartDateGroup text-center">
               <label for="dt_ServiceStartDate">Select Start Date</label>
-              <input type="date" min="{{start != undefined ? start : minDate | date: 'yyyy-MM-dd'}}" max="{{start != undefined ? start : maxDate | date: 'yyyy-MM-dd'}}"
+              <input type="date" min="{{minDate | date: 'yyyy-MM-dd'}}" max="{{maxDate | date: 'yyyy-MM-dd'}}"
                 class="form-control normal dateInput text-center" id="dt_ServiceStartDate" formControlName="serviceStartDate"
                 (change)="dateValidation()">
-
               <div class="text-danger text-center ">
                 <div *ngIf="dateErrorSrlp">
                   * Selected date is not valid for SRLP meter, please select the date again.
