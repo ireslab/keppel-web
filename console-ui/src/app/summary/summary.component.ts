@@ -15,8 +15,11 @@ export class SummaryComponent implements OnInit {
   _planBenifit: string;
   _sd_amount:string;
   selectedRecmData;
+  planName;
   constructor(private router: Router, private datashare: DataShare) {
-    this.selectedRecmData = this.datashare.usderDetailObj.selectedPlanObj
+    this.selectedRecmData = this.datashare.usderDetailObj.selectedPlanObj;
+    this.planName = this.selectedRecmData.plan.substring(0,3);
+
    }
 
   ngOnInit() {
