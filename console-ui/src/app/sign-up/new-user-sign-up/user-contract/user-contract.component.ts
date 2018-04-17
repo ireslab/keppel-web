@@ -504,11 +504,11 @@ export class UserContractComponent implements OnInit {
       window.localStorage.clear();
       window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
       window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
-      if (this.paymentMethod == 'IDDA (DBS)') {
-        window.open('https://internet-banking.dbs.com.sg', '_blank');
-      } else if (this.paymentMethod == 'Giro') {
-        window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
-      }
+      // if (this.paymentMethod == 'IDDA (DBS)') {
+      //   window.open('https://internet-banking.dbs.com.sg', '_blank');
+      // } else if (this.paymentMethod == 'Giro') {
+      //   window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
+      // }
    
 
 
