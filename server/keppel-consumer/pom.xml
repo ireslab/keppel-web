@@ -5,10 +5,10 @@
 
 
 	<groupId>com.keppel</groupId>
-	<artifactId>keppel-consumer-test</artifactId>
+	<artifactId>keppel-consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>keppel-consumer-test</name>
+	<name>keppel-consumer</name>
 	<url>http://maven.apache.org</url>
 
 

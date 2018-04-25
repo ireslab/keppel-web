@@ -363,8 +363,13 @@ public class KeppelConsumerController {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		// OutputStream outputStream = facesContext.getResponseStream();
 		signUpData.setApplicationId(res.getMessageId());
-		new GeneratePDF().generatePDF(facesContext, outputStream, signUpData);
-		SendEmailAttachment(signUpData);
+		try {
+			new GeneratePDF().generatePDF(facesContext, outputStream, signUpData);
+			SendEmailAttachment(signUpData);
+		}catch(Exception exception){
+			exception.printStackTrace();
+		}
+		
 		logger.info("Response data =====================>" + json);
 		return json;
 	}
