@@ -30,9 +30,9 @@
         </div>
         <div class="row  ">
             <div class="col-md-3  EMALabel">Name of Electricity Retailer:</div>
-            <div class="col-md-3 ">Keppel Electric Pte Ltd</div>
+            <div class="col-md-3 ">Keppel Electric Pvt Ltd</div>
             <div class="col-md-3  EMALabel">Fact Sheet Version Date:</div>
-            <div class="col-md-3 ">{{currentDate | date: 'dd MMM yyyy'}}</div>
+            <div class="col-md-3 ">{{currentDate | date: 'dd/mm/yyyy'}}</div>
         </div>
         <div class="row   EMAHead">
             <div class="col-12">
@@ -54,12 +54,12 @@
         <div class="row ">
             <div class="col-12 subinfo">
                 Fixed price plan:
-                <span id="lbl_FixedPricePlan">_____</span> cents/kWh
+                <span id="lbl_FixedPricePlan">{{_emaFactSheetData.pdfFppAmount}}</span> cents/kWh
             </div>
         </div>
         <div class="row">
             <div class="col-12 subinfo">Discount-off regulated tariff plan:
-                <span id="lbl_DiscountPercent">__</span> % /
+                <span id="lbl_DiscountPercent">{{_emaFactSheetData.pdfDotAmount}}</span> % /
                 <span id="lbl_FixedPricePlan1">__</span> cents/kWh discount</div>
         </div>
         <div class="row ">
@@ -67,14 +67,14 @@
         </div>
         <div class="row ">
             <div class="col-12 subinfo">i.
-                <span id="lbl_FixedPricePlan2">__</span> cents/kWh for peak periods from
-                <span id="lbl_PeakPeriod">__</span>
+                <span id="lbl_FixedPricePlan2">{{_emaFactSheetData.pdfTier1Amount}}</span> cents/kWh for peak periods from
+                <span id="lbl_PeakPeriod">{{_emaFactSheetData.pdfPeakValueT1}}</span>
             </div>
         </div>
         <div class="row ">
             <div class="col-12 subinfo">ii.
-                <span id="lbl_FixedPricePlan3">__</span> cents/kWh for off-peak periods from
-                <span id="lbl_OffPeakPeriod">__</span>
+                <span id="lbl_FixedPricePlan3">{{_emaFactSheetData.pdfTier3Amount}}</span> cents/kWh for off-peak periods from
+                <span id="lbl_OffPeakPeriod">{{_emaFactSheetData.pdfPeakValueT3}}</span>
             </div>
         </div>
         <div class="row EMALabel">
@@ -95,18 +95,18 @@
             <div class="col-md-4 ">
                 <div>Free gifts, promotions, rewards or services:</div>
             </div>
-            <div class="col-md-8">[free text]</div>
+            <div class="col-md-8">{{_userDetailObj.promoCode}}</div>
         </div>
         <div class="row ">
             <div class="col-md-4 ">
                 <div>Conditional discount:</div>
             </div>
-            <div class="col-md-8 ">[free text]</div>
+            <div class="col-md-8 "></div>
         </div>
         <div class="row ">
             <div class="col-md-4  EMALabel">Contract Duration (see footnote 3):</div>
             <div class="col-md-8 ">
-                <span id="lbl_Months">{{_userDetailObj.selectedPlanObj.contractDuration}}</span> months / Not Applicable</div>
+                <span id="lbl_Months">{{_userDetailObj.selectedPlanObj.contractDuration}}</span> months</div>
         </div>
         <div class="row ">
             <div class="col-md-4  EMALabel">Contract Renewal:*</div>
@@ -115,10 +115,10 @@
             </div>
         </div>
         <div class="row ">
-            <div class="col-md-3  EMALabel">To use smart meter (see footnote 4):*</div>
-            <div class="col-md-3 ">Yes / No</div>
+            <div class="col-md-3  EMALabel">To use smart meter</div>
+            <div class="col-md-3 ">{{smartMeter}}</div>
             <div class="col-md-3  EMALabel">Retailer to bill electricity charges directly (see footnote 5):*</div>
-            <div class="col-md-3 ">Yes / No</div>
+            <div class="col-md-3 ">Yes</div>
         </div>
         <div class="row   EMAHead">
             <div class="col-12">
@@ -127,20 +127,20 @@
         </div>
         <div class="row ">
             <div class="col-md-3  EMALabel">One-time registration fee:</div>
-            <div class="col-md-3 "></div>
+            <div class="col-md-3 ">N.A.</div>
             <div class="col-md-3  EMALabel">Late payment charge:</div>
-            <div class="col-md-3 "></div>
+            <div class="col-md-3 ">1% per month on unpaid opening balances of invoice</div>
         </div>
         <div class="row ">
             <div class="col-md-3  EMALabel">Early Termination Charges:</div>
-            <div class="col-md-3 "></div>
+            <div class="col-md-3 ">Yes. Refer to Keppel Electric Residential Consumers General Terms and Conditions</div>
             <div class="col-md-3  EMALabel">Prevailing meter charge:</div>
-            <div class="col-md-3 ">$
-                <span id="lbl_MeterCharge">___</span>/meter/month</div>
+            <div class="col-md-3 ">
+                <span  *ngIf="smartMeter == 'Yes'" id="lbl_MeterCharge">$40/meter/month</span></div>
         </div>
         <div class="row ">
             <div class="col-md-3  EMALabel">Security deposit (see footnote 6):</div>
-            <div class="col-md-9 "></div>
+            <div class="col-md-9 ">{{_userDetailObj.sd_amount}}</div>
         </div>
         <div class="row  EMALabel">
             <div class="col-12">
@@ -148,7 +148,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 EMAFormFreeText">[free text]</div>
+            <div class="col-12 EMAFormFreeText"><br />
+           <div *ngIf="_userDetailObj.optionalService1"> {{_userDetailObj.optionalService1.serviceName}} : $2/Bill</div>
+           <div *ngIf="_userDetailObj.optionalService2"> {{_userDetailObj.optionalService2.serviceName}} : $40 on 1st Bill</div></div>
         </div>
         <div class="row EMAHead">
             <div class="col-12">
@@ -162,7 +164,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                Yes / No*
+               No
             </div>
         </div>
         <div class="row EMALabel">
@@ -174,7 +176,7 @@
         </div>
         <div class="row">
             <div class="col-12 EMAFormFreeText">
-                [free text]
+                
             </div>
         </div>
         <div class="row EMAHead">

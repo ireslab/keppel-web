@@ -61,11 +61,20 @@ export class DataShare {
     "spAccount": "",
     "premiseAddress": "",
     "premiseAddress2": "",
-
     "billingAddress": "",
     "billingAddress2": "",
     "premiseType": "",
     "tenantOrOwner": "",
+  }
+
+  emaFactSheetData = {
+    "pdfDotAmount" :'',
+    "pdfFppAmount" : '',
+    "pdfTier1Amount" : "",
+    "pdfPeakValueT1" : "",
+    "pdfTier3Amount" : "",
+    "pdfPeakValueT3" : "",
+    "selectedRPlan" : ""
   }
 
 

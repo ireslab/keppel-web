@@ -1,6 +1,6 @@
 export class localJSON {
     dwellingTypes = {
-        "dwelling_type": ["HDB1/2", "HDB3", "HDB4", "HDB5/EA", "CONDO", "LANDPROP", "OTHER"],
+        "dwelling_type": ["HDB1/2", "HDB3", "HDB4", "HDB5/EA", "Condominium", "Landed Property", "Others"],
         "payment_method": ["GIRO", "IDDA", "RECUR", "OTH"],
         "id_types": ["FIN", "BLUE", "BLUE-IC"]
     }//['HDB 1/2','HDB 3','HDB 4','HDB 5','Condominium','Landed Property','Others']

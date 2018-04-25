@@ -8,20 +8,15 @@ import { CommonServices } from '../../../commom_methods/common_service';
 import { ServiceCall } from '../../../network_layer/web_service_call';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { element } from 'protractor';
-// import { GiroPdf } from '../../../Utility/pdfBase64URL.service';
 import { ApiConstants } from '../../../network_layer/api_constants';
 import { Http, Response, Headers } from '@angular/http';
 
-// import { pdfMake } from '../../../../assets/js/pdfmake'
-
-
 declare var $: any
-declare var pdfMake: any
 @Component({
   selector: 'app-user-contract',
   templateUrl: './user-contract.component.html',
   styleUrls: ['./user-contract.component.css'],
-  // providers: [GiroPdf]
+
 })
 export class UserContractComponent implements OnInit {
   contractForm: FormGroup;
@@ -120,7 +115,7 @@ export class UserContractComponent implements OnInit {
   //   }
   //   console.log(this.selectedOptionalServices);
   // }
-  dateValidation(){
+  dateValidation() {
     this.dateErrorAmi = false;
     this.dateErrorSrlp = false;
   }
@@ -137,23 +132,23 @@ export class UserContractComponent implements OnInit {
         this.datashare.usderDetailObj.optionalService2 = ""
         this.meterType = "SRLP";
         this.getMinDate();
-        
-        if(this.contractForm.controls['serviceStartDate'].value != ""){
+
+        if (this.contractForm.controls['serviceStartDate'].value != "") {
           this.dateErrorSrlp = true;
           this.dateErrorAmi = false;
         }
         this.contractForm.patchValue({
           serviceStartDate: "",
         })
-        
+
       } else {
         this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo;
         this.meterType = "AMI";
         this.getMinDate();
-        
-        if(this.contractForm.controls['serviceStartDate'].value != ""){
-        this.dateErrorAmi = true;
-        this.dateErrorSrlp = false;
+
+        if (this.contractForm.controls['serviceStartDate'].value != "") {
+          this.dateErrorAmi = true;
+          this.dateErrorSrlp = false;
         }
         this.contractForm.patchValue({
           serviceStartDate: "",
@@ -208,7 +203,7 @@ export class UserContractComponent implements OnInit {
       spAccount: this.datashare.usderDetailObj.spAccount,
     })
 
-
+    
 
     $(document).ready(function () {
       $(".selectPaymentMethodButton").on("click", function () {
@@ -396,13 +391,14 @@ export class UserContractComponent implements OnInit {
   }
 
   getPicture(e) {
-    // console.log(e.target.files)
     let uploadFileName = e.target.files[0].name;
     if (uploadFileName != undefined || uploadFileName != null) {
       this.pictureName = uploadFileName;
     } else {
       this.pictureName = "Upload Past Month's Bill";
     }
+
+
 
   }
   getPromoCode() {
@@ -413,23 +409,7 @@ export class UserContractComponent implements OnInit {
   }
 
 
-  getPdf() {
-
-    // var base_image = this.giropdf.imageBase64;
-    // var docDefinition = {
-    //   background: [
-    //     { image: base_image, width: 595 }
-    //   ],
-    //   content: [
-    //   ],
-    //   pageMargins: [40, 25, 40, 25],
-    //   defaultStyle: {
-    //     columnGap: 30,
-    //     color: '#676262',
-    //   }
-    // };
-    // pdfMake.createPdf(docDefinition).download("AmmbrWallet.pdf");
-  };
+  
 
 
 
@@ -478,7 +458,7 @@ export class UserContractComponent implements OnInit {
 
 
       let postcode = this.contractForm.controls['postcode'].value
-      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + +" " + this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + " " + this.contractForm.controls['buildingName'].value + " " + " " +"#" +  " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
       // let premiseAddress2 = this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
 
       if (this.sameAddress == true) {
@@ -487,7 +467,7 @@ export class UserContractComponent implements OnInit {
         // this.billingAddress2 = premiseAddress2;
       } else {
         this.postcodeBilling = this.contractForm.controls['postcodeBill'].value;
-        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value + " " + " " + this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
+        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value + " " + " " + this.contractForm.controls['buildingNameBill'].value + " " + " " +"#" + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
         // this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
       }
 
@@ -521,13 +501,13 @@ export class UserContractComponent implements OnInit {
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
-      window.localStorage.clear();
-      window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
-      if (this.paymentMethod == 'IDDA (DBS)') {
-        window.open('https://internet-banking.dbs.com.sg', '_blank');
-      } else if (this.paymentMethod == 'Giro') {
-        window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
-      }
+     
+      // if (this.paymentMethod == 'IDDA (DBS)') {
+      //   window.open('https://internet-banking.dbs.com.sg', '_blank');
+      // } else if (this.paymentMethod == 'Giro') {
+      //   window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
+      // }
+   
 
 
       if (this.datashare.usderDetailObj.paymentMethod == 'Giro') {
@@ -570,6 +550,9 @@ export class UserContractComponent implements OnInit {
             this.datashare.usderDetailObj.sd_amount = ""
           }
           this.datashare.getUserDetails();
+          window.localStorage.clear();
+          window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
+          window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
           this.router.navigateByUrl("new-user-confirmation");
 
         }, (error: any) => {

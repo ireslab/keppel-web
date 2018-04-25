@@ -6,14 +6,10 @@
       <h5>
         <img src="assets/img/img-PlanIcon.png" /> {{_planDetailObj.plan}}</h5>
 
-      <hr>
-      <!-- <p>Estimated Monthly Bill: S$56*</p> -->
-
-      <!-- <h1>19% Less</h1> -->
-      <p class="text-center">{{_planDetailObj.details}}</p>
-      <p class="text-center" *ngFor="let benifits of _planBenifitArray">
-        {{benifits}}
-      </p>
+      <hr/>
+        <p>Estimated Monthly Bill: S${{selectedRecmData.recomPlans.estimatedBillAmount}}*</p> 
+        <div style="font-size:28px">{{selectedRecmData.recomPlans.estimatedDiscount}}% Less</div>
+        <p>than with current SP Tariff</p>
     </div>
     <button class="PanelClose-Top" type="button">
       <img src="assets/img/ico-PanelArrow.png" />
@@ -36,23 +32,26 @@
       <li>Consumption is loss adjusted</li> -->
       <li>Product Name : {{_planDetailObj.product}}</li>
       <li>Start Date : {{_planDetailObj.startDate}}</li>
-      <li>Duration :{{_planDetailObj.contractDuration}} Months</li>
       <li>Charge Type : {{_planDetailObj.chargeType}}</li>
+      <li *ngIf="planName != 'FIX'">Duration :{{_planDetailObj.contractDuration}} Months</li>
+    </ul>
+    <ul *ngIf="planName == 'FIX'">
+      <li *ngFor="let benifits of selectedRecmData.planBenifits">{{benifits}}</li>
     </ul>
   </div>
 
   <div class="kpl-summaryPanelSection">
     <h5>Products Charges</h5>
     <hr>
-    <dl>
+    <dl *ngIf="planName == 'FIX'">
       <dt>Consumption will be</dt>
       <dd>Loss Adjusted</dd>
-      <dt *ngIf="_planDetailObj.plan != 'Fixed'">t1</dt>
-      <dd *ngIf="_planDetailObj.plan != 'Fixed'">{{_planDetailObj.t1}}</dd>
-      <dt *ngIf="_planDetailObj.plan != 'Fixed'">t2</dt>
-      <dd *ngIf="_planDetailObj.plan != 'Fixed'">{{_planDetailObj.t2}}</dd>
-      <dt *ngIf="_planDetailObj.plan != 'Fixed'">t3</dt>
-      <dd *ngIf="_planDetailObj.plan != 'Fixed'">{{_planDetailObj.t3}}</dd>
+      <dt>t1</dt>
+      <dd>{{_planDetailObj.t1}}</dd>
+      <dt>t2</dt>
+      <dd>{{_planDetailObj.t2}}</dd>
+      <dt>t3</dt>
+      <dd>{{_planDetailObj.t3}}</dd>
       <dt>[Insert Pass through Cost]</dt>
       <dd>As Charged</dd>
     </dl>

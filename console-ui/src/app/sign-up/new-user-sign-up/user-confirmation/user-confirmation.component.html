@@ -15,7 +15,7 @@
     <div class="row kpl-ConfirmPageItem">
       <div class="col-lg-1"></div>
       <div class="col-lg-3 order-lg-2 PremiseSection">
-          <app-summary></app-summary>
+        <app-summary></app-summary>
         <!-- <div class="PremiseInfo">
           <div class="kpl-summaryPanelSection">
             <h5>Products Charges</h5>
@@ -71,17 +71,17 @@
             <dt>
               <h4>Premise #1 Details</h4>
             </dt>
-            <dd >
-              <button *ngIf="editDetails" type="button" class="btn-secondary btn"  routerLink="/new-user-contract">Edit Details</button>
+            <dd>
+              <button *ngIf="editDetails" type="button" class="btn-secondary btn" routerLink="/new-user-contract">Edit Details</button>
             </dd>
             <dt>Premise Address</dt>
             <dd>{{_usderDetailObj.premiseAddress}}
-             </dd>
+            </dd>
           </dl>
           <dl>
             <dt>Billing Address</dt>
             <dd>{{_usderDetailObj.billingAddress}}
-             </dd>
+            </dd>
           </dl>
           <dl>
             <dt>Ownership Type</dt>
@@ -89,7 +89,7 @@
             <dt>SP Account Number</dt>
             <dd>{{_usderDetailObj.spAccount}}</dd>
             <dt>Premise Details Attachment</dt>
-            <dd>[Attach Document]</dd>
+            <dd></dd>
             <dt>Electricity Plan Selection</dt>
             <dd>{{_usderDetailObj.selectedPlanObj.plan}}</dd>
             <dt>Contract Period</dt>
@@ -97,14 +97,17 @@
             <dt>Service Start Date</dt>
             <dd>{{_usderDetailObj.serviceStartDate | date: 'dd/MM/yyyy'}}</dd>
             <dt>Additional Services</dt>
-            <dd><span *ngIf="_usderDetailObj.optionalService1.serviceName != ''">{{_usderDetailObj.optionalService1.serviceName}}</span>
-              <br/><span *ngIf="_usderDetailObj.optionalService2.serviceName != ''">{{_usderDetailObj.optionalService2.serviceName}}</span>
-              <br/><span *ngIf="_usderDetailObj.optionalService3.serviceName != ''">{{_usderDetailObj.optionalService3.serviceName}}</span>
-              </dd>
+            <dd>
+              <span *ngIf="_usderDetailObj.optionalService1.serviceName != ''">{{_usderDetailObj.optionalService1.serviceName}}</span>
+              <br/>
+              <span *ngIf="_usderDetailObj.optionalService2.serviceName != ''">{{_usderDetailObj.optionalService2.serviceName}}</span>
+              <br/>
+              <span *ngIf="_usderDetailObj.optionalService3.serviceName != ''">{{_usderDetailObj.optionalService3.serviceName}}</span>
+            </dd>
             <dt>Payment Mode</dt>
             <dd>{{_usderDetailObj.paymentMethod}}</dd>
             <dt>Credit Terms</dt>
-            <dd>[Insert #] Days from Invoice Due</dd>
+            <dd>14 Days from Invoice Due</dd>
             <dt>Charging Period</dt>
             <dd>Monthly (As per MSSL Billing Period)</dd>
             <dt>Early Termination & Other Charges</dt>
@@ -113,7 +116,7 @@
         </div>
       </div>
     </div>
-    
+
 
   </div>
   <div class="PersonalDetails row">
@@ -124,7 +127,7 @@
           <dt>
             <h4>Personal Details</h4>
           </dt>
-          <dd >
+          <dd>
             <button *ngIf="editDetails" type="button" class="btn-secondary btn" routerLink="/new-user-contract">Edit Details</button>
           </dd>
           <dt>ID Type</dt>
@@ -140,15 +143,36 @@
         </dl>
       </div>
       <small>
-        <p>TThis Form of Acceptance is subject to the T1 General Terms and Conditions [and any Schedules thereof], copies of
+        <p class="text-justify">
+          <!-- TThis Form of Acceptance is subject to the T1 General Terms and Conditions [and any Schedules thereof], copies of
           which are available at http://www.keppelelectric.com. Unless otherwise defined, capitalised terms used in this
           Electricity Pricing Proposal shall have the meaning ascribed to them in the T1 General Terms and Conditions. Charges
-          for electricity retailed and related services provided by the Retailer will be as indicated in the Terms & Conditions.
-          </p>
+          for electricity retailed and related services provided by the Retailer will be as indicated in the Terms & Conditions. -->
+          Unless otherwise defined, capitalised terms used in this Form of Acceptance shall have the meanings ascribed to them in the
+          Residential Consumers General Terms and Conditions (a copy of which is available at <a href="http://portal.keppelelectric.com/termsandconditions" target="blank">http://portal.keppelelectric.com/termsandconditions</a>)
+          (“GT&Cs”). For each Premises specified above, a separate and distinct agreement shall be formed for the services
+          to be provided at such Premises, on the terms of the GT&Cs and the terms applicable to that Premises in this Form
+          of Acceptance. The effectiveness of each such agreement is subject to the conditions precedent set out in Clause
+          2.1 of the GT&Cs having been satisfied or waived in accordance with the provisions of the GT&Cs.
+        </p>
 
-        <p>The commencement and effectiveness of this Agreement is subject to the conditions precedent set out in Clause 2.1
+        <p>
+          Discounted-off regulated tariff plan(s) will be discounted off prevailing residential electricity tariff.
+          <!-- The commencement and effectiveness of this Agreement is subject to the conditions precedent set out in Clause 2.1
           of the T1 General Terms and Conditions having been satisfied, and the Consumer's account transfer to the Retailer,
-          through the MSSL, being successfully effected.</p>
+          through the MSSL, being successfully effected. -->
+        </p>
+        <br>
+        <address>
+          KEPPEL ELECTRIC
+          <br> 1 HARBOURFRONT AVE
+          <br> #05-05 KEPPEL BAY TOWER
+          <br> SINGAPORE 098632
+          <br> general enquiry: (65) 6803 3000
+          <br> email:
+          <a href="mailto:enquiry@keppelelectric.com">enquiry@keppelelectric.com </a>
+        </address>
+
       </small>
 
     </div>
@@ -159,7 +183,8 @@
       <small>
         <div class="form-check" style="margin-top:40px;">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC0" (click)=termConditionOne($event,1)>* I acknowledge and accept the<a href="http://portal.keppelelectric.com/termsandconditions" target="_blank">Terms and Conditions</a> as stated here
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC0" (click)=termConditionOne($event,1)>* I acknowledge and accept the Residential Consumers General Terms and Conditions as stated
+            <a href="http://portal.keppelelectric.com/termsandconditions" target="_blank">here</a>
           </label>
         </div>
         <div class="form-check">
@@ -170,12 +195,16 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2" (click)=termConditionOne($event,3)>* [Insert PDPA acknowledgement here]
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2" (click)=termConditionOne($event,3)>* I consent to the collection, use and disclosure of my personal data for the purposes specified under the Retailer’s
+            data protection policy as stated
+            <a href="http://portal.keppelelectric.com/privacystatement" target="_blank">here</a>
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC3">[Insert Marketing Acknowledgement here]
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC3">I consent to the Retailer, its business partners and agents contacting me via phone call and other phone number-based
+            messaging about products and services offered by the Retailer, its business partners and agents, regardless of
+            my registration(s) with the Do Not Call registry. Preferred mode of communication are
           </label>
         </div>
         <section style="padding-left:30px;">
