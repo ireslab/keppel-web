@@ -99,6 +99,7 @@ export class UserRecommendationComponent implements OnInit {
                 k = k+1;
             }
         }
+        console.log(this.firstTwoDwlingPlans)
         this.getBenifitArray();
     }
 
@@ -145,7 +146,6 @@ export class UserRecommendationComponent implements OnInit {
     }
 
     planSelectionBtn(index,plan) {
-
         this.selectedFirstIndex = index;
         this.selectedSecondIndex = -1;
         this.otpForm = true;

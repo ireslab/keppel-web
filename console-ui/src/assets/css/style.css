@@ -1933,7 +1933,7 @@ button.PanelClose-Top, button.PanelClose-Bottom{
     display:block;
     border-top:2px dashed #333;
     position:relative;
-    bottom:52px;
+    bottom:35px;
     margin-bottom:0px;
 }
 

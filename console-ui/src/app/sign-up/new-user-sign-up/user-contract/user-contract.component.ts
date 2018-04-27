@@ -25,7 +25,6 @@ export class UserContractComponent implements OnInit {
   coolingPeriod: number = 0;
   maxDays: number;
   minDays: number;
-  meterType: string;
   dateErrorSrlp: boolean = false;
   dateErrorAmi: boolean = false;
   pictureName: string = "Upload Past Month's Bill"
@@ -62,7 +61,6 @@ export class UserContractComponent implements OnInit {
     // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
-
     // this.optionalServices = [
     //   { "serviceName": "Paper Bill", "serviceCost": "(+$2/bill)" },
     //   { "serviceName": "Smart Meter", "serviceCost": "(+$40 one-time payment, if applicable)" },
@@ -71,7 +69,7 @@ export class UserContractComponent implements OnInit {
     this.optionalServiceOne = { "serviceName": "Paper Bill", "serviceCost": "(+$2/bill)" };
     this.optionalServiceTwo = { "serviceName": "Smart Meter", "serviceCost": "(+$40 one-time payment, if applicable)" };
     // this.optionalServiceThree = { "serviceName": "vas#3", "serviceCost": "3" };
-    this.meterType = "SRLP"
+    this.datashare.meterType = "SRLP"
     this.getMinDate();
     this.getMaxDate();
 
@@ -95,7 +93,7 @@ export class UserContractComponent implements OnInit {
       this.minDate = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
     }
 
-    if (this.meterType == "SRLP") {
+    if (this.datashare.meterType == "SRLP") {
       this.minDays = 5;
     } else {
       this.minDays = 30;
@@ -118,24 +116,31 @@ export class UserContractComponent implements OnInit {
   dateValidation() {
     this.dateErrorAmi = false;
     this.dateErrorSrlp = false;
+    var endDate = new Date(this.contractForm.controls['serviceStartDate'].value)
+    var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
+    this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0,10);
+     
   }
   selectedServices(index) {
     if (index == 1) {
       if (this.datashare.usderDetailObj.optionalService1 != "") {
         this.datashare.usderDetailObj.optionalService1 = ""
+        this.datashare.paperCost = 0;
       } else {
-        this.datashare.usderDetailObj.optionalService1 = this.optionalServiceOne
+        this.datashare.usderDetailObj.optionalService1 = this.optionalServiceOne;
+        this.datashare.paperCost = 2;
       }
     }
     else {
       if (this.datashare.usderDetailObj.optionalService2 != "") {
         this.datashare.usderDetailObj.optionalService2 = ""
-        this.meterType = "SRLP";
+        this.datashare.meterType = "SRLP";
         this.getMinDate();
 
         if (this.contractForm.controls['serviceStartDate'].value != "") {
           this.dateErrorSrlp = true;
           this.dateErrorAmi = false;
+         
         }
         this.contractForm.patchValue({
           serviceStartDate: "",
@@ -143,7 +148,7 @@ export class UserContractComponent implements OnInit {
 
       } else {
         this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo;
-        this.meterType = "AMI";
+        this.datashare.meterType = "AMI";
         this.getMinDate();
 
         if (this.contractForm.controls['serviceStartDate'].value != "") {
@@ -279,6 +284,22 @@ export class UserContractComponent implements OnInit {
   findSameAddress(e) {
     if (e.target.checked) {
       this.sameAddress = true
+      this.contractForm.controls['postcodeBill'].reset();
+      this.contractForm.controls['streetNameBill'].reset();
+      this.contractForm.controls['blockBill'].reset();
+      this.contractForm.controls['buildingNameBill'].reset();
+      this.contractForm.controls['floorLevelBill'].reset();
+      this.contractForm.controls['postcodeBill'].setValidators([]);
+      this.contractForm.controls['streetNameBill'].setValidators([]);
+      this.contractForm.controls['blockBill'].setValidators([]);
+      this.contractForm.controls['buildingNameBill'].setValidators([]);
+      this.contractForm.controls['floorLevelBill'].setValidators([]);
+      this.contractForm.controls['postcodeBill'].updateValueAndValidity();
+      this.contractForm.controls['streetNameBill'].updateValueAndValidity();
+      this.contractForm.controls['blockBill'].updateValueAndValidity();
+      this.contractForm.controls['buildingNameBill'].updateValueAndValidity();
+      this.contractForm.controls['floorLevelBill'].updateValueAndValidity();
+
     } else {
       this.sameAddress = false;
       this.contractForm.controls['postcodeBill'].reset();
