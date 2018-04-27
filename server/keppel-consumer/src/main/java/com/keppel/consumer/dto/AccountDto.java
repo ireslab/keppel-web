@@ -10,7 +10,7 @@ public class AccountDto extends ActivityAuditDto {
 	private String planType;
 	private String optionalService1;
 	private String optionalService2;
-//	private String optionalService3;
+	// private String optionalService3;
 	private String firstName;
 	private String lastName;
 	private String dob;
@@ -47,8 +47,28 @@ public class AccountDto extends ActivityAuditDto {
 	private String meterType;
 	private String securityDeposit;
 	private String messageId;
+	private String tier1Amount;
+	private String tier2Amount;
+	private String tier3Amount;
+	private String productMapKeyVal;
+	private String pdfDotAmount;
+	private String pdfFppAmount;
+	private String pdfTier1Amount;
+	private String pdfPeakValueT1;
+	private String pdfTier3Amount;
+	private String pdfPeakValueT3;
+	private String serviceEndDate;
 
 	
+	
+	public String getServiceEndDate() {
+		return serviceEndDate;
+	}
+
+	public void setServiceEndDate(String serviceEndDate) {
+		this.serviceEndDate = serviceEndDate;
+	}
+
 	public String getMessageId() {
 		return messageId;
 	}
@@ -221,13 +241,13 @@ public class AccountDto extends ActivityAuditDto {
 		this.optionalService2 = optionalService2;
 	}
 
-//	public String getOptionalService3() {
-//		return optionalService3;
-//	}
-//
-//	public void setOptionalService3(String optionalService3) {
-//		this.optionalService3 = optionalService3;
-//	}
+	// public String getOptionalService3() {
+	// return optionalService3;
+	// }
+	//
+	// public void setOptionalService3(String optionalService3) {
+	// this.optionalService3 = optionalService3;
+	// }
 
 	public String getFirstName() {
 		return firstName;
@@ -419,6 +439,86 @@ public class AccountDto extends ActivityAuditDto {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getTier1Amount() {
+		return tier1Amount;
+	}
+
+	public void setTier1Amount(String tier1Amount) {
+		this.tier1Amount = tier1Amount;
+	}
+
+	public String getTier2Amount() {
+		return tier2Amount;
+	}
+
+	public void setTier2Amount(String tier2Amount) {
+		this.tier2Amount = tier2Amount;
+	}
+
+	public String getTier3Amount() {
+		return tier3Amount;
+	}
+
+	public void setTier3Amount(String tier3Amount) {
+		this.tier3Amount = tier3Amount;
+	}
+
+	public String getProductMapKeyVal() {
+		return productMapKeyVal;
+	}
+
+	public void setProductMapKeyVal(String productMapKeyVal) {
+		this.productMapKeyVal = productMapKeyVal;
+	}
+
+	public String getPdfDotAmount() {
+		return pdfDotAmount;
+	}
+
+	public void setPdfDotAmount(String pdfDotAmount) {
+		this.pdfDotAmount = pdfDotAmount;
+	}
+
+	public String getPdfFppAmount() {
+		return pdfFppAmount;
+	}
+
+	public void setPdfFppAmount(String pdfFppAmount) {
+		this.pdfFppAmount = pdfFppAmount;
+	}
+
+	public String getPdfTier1Amount() {
+		return pdfTier1Amount;
+	}
+
+	public void setPdfTier1Amount(String pdfTier1Amount) {
+		this.pdfTier1Amount = pdfTier1Amount;
+	}
+
+	public String getPdfPeakValueT1() {
+		return pdfPeakValueT1;
+	}
+
+	public void setPdfPeakValueT1(String pdfPeakValueT1) {
+		this.pdfPeakValueT1 = pdfPeakValueT1;
+	}
+
+	public String getPdfTier3Amount() {
+		return pdfTier3Amount;
+	}
+
+	public void setPdfTier3Amount(String pdfTier3Amount) {
+		this.pdfTier3Amount = pdfTier3Amount;
+	}
+
+	public String getPdfPeakValueT3() {
+		return pdfPeakValueT3;
+	}
+
+	public void setPdfPeakValueT3(String pdfPeakValueT3) {
+		this.pdfPeakValueT3 = pdfPeakValueT3;
 	}
 
 }

@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -255,13 +256,20 @@ public class GeneratePDF {
 			table.setHorizontalAlignment(Element.ALIGN_MIDDLE);
 			String premiseAddress = mAccountDto.getPremiseAddress();
 			String billingAddress = mAccountDto.getBillingAddress();
-			String bPostalCode = mAccountDto.getBillingPostalcode();
-			String postalCodeVal = mAccountDto.getPostcode();
+			// String bPostalCode = mAccountDto.getBillingPostalcode();
+			// String postalCodeVal = mAccountDto.getPostcode();
 			String residentalVal = mAccountDto.getTenantOrOwner();
 			String getAccountNumber = mAccountDto.getEbsOrMSSLAccountNumber();
 			String plansContractDuration = mAccountDto.getContractDuration();
 			String selectedRPlan = mAccountDto.getSelectedPlan();
+
 			String servStartDateVal = mAccountDto.getServiceStartDate();
+			if (servStartDateVal != null) {
+				SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy MM dd");
+				SimpleDateFormat targetFormat = new SimpleDateFormat("dd MM yyyy");
+				CommonUtils.changeDateFormat(servStartDateVal, originalFormat, targetFormat);
+			}
+
 			String additionalServicesVas1 = mAccountDto.getOptionalService2();
 			String additionalServices = mAccountDto.getOptionalService1();
 			String paymentMethod = mAccountDto.getPaymentMethod();
@@ -271,10 +279,21 @@ public class GeneratePDF {
 			String lNameVal = mAccountDto.getLastName();
 			String emailVal = mAccountDto.geteMail();
 			String contactNoVal = mAccountDto.getContactPhoneNumber();
-			String userId = mAccountDto.getUserId();
+			// String userId = mAccountDto.getUserId();
 			String promoCodeVal = mAccountDto.getPromoCode();
 			String promoCodeDiscount = "";
 			String securityDeposit = mAccountDto.getSecurityDeposit();
+			String tier1Amount = mAccountDto.getTier1Amount();
+			String tier2Amount = mAccountDto.getTier2Amount();
+			String tier3Amount = mAccountDto.getTier3Amount();
+			String productMapKeyVal = mAccountDto.getProductMapKeyVal();
+			String pdfDotAmount = mAccountDto.getPdfDotAmount();
+			;
+			String pdfFppAmount = mAccountDto.getPdfFppAmount();
+			String pdfTier1Amount = mAccountDto.getTier1Amount();
+			String pdfPeakValueT1 = mAccountDto.getPdfPeakValueT1();
+			String pdfTier3Amount = mAccountDto.getTier3Amount();
+			String pdfPeakValueT3 = mAccountDto.getPdfPeakValueT3();
 
 			addKeppelHeader(table, "Premises Details", "");
 			// addKeppelEntry(table, "", "");
@@ -282,10 +301,10 @@ public class GeneratePDF {
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 			if (!"".equals(premiseAddress) && premiseAddress != null) {
-				addKeppelEntry(table, "Premises Address:", premiseAddress + " Singapore " + postalCodeVal);
+				addKeppelEntry(table, "Premises Address:", premiseAddress + " Singapore");
 			}
 
-			addKeppelEntry(table, "Billing Address:", billingAddress + " Singapore " + bPostalCode);
+			addKeppelEntry(table, "Billing Address:", billingAddress + " Singapore");
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 			// addKeppelEntry(table, "", "");
@@ -313,37 +332,76 @@ public class GeneratePDF {
 
 			log.info("000additionalServices--> " + additionalServices + " additionalServicesVas1--> "
 					+ additionalServicesVas1);
-
+			document.add(Chunk.NEWLINE);
+			document.add(Chunk.NEWLINE);
 			// COde Added by Indira-21-3-2018
 			// TODO Put "" check
-//
-//			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-//					&& (additionalServices != null && !additionalServices.equals("PaperBill"))) {
-//				log.info("additionalServicesVas1 eq VAS1---> " + additionalServicesVas1);
-//				addKeppelEntry(table, "Only electronic bills will be sent", "");
-//			}
-//			if (additionalServicesVas1 == null && additionalServices == null) {
-//				log.info("additionalServicesVas1 additionalServices eq null---> " + additionalServicesVas1);
-//				addKeppelEntry(table, "Only electronic bills will be sent", "");
-//			}
-//			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-//					&& (additionalServices != null && additionalServices.equals("PaperBill"))) {
-//				log.info("2222additionalServices--> " + additionalServices + " additionalServicesVas1--> "
-//						+ additionalServicesVas1);
-//				addKeppelEntry(table, "Additional Services",
-//						"Paper Bill($2/Bill), Smart Meter(One-time $40 if applicable)");
-//
-//			} else if (additionalServices != null && additionalServices.equals("PaperBill")) {
-//				log.info("3333additionalServices--> " + additionalServices + " additionalServicesVas1--> "
-//						+ additionalServicesVas1);
-//				addKeppelEntry(table, "Additional Services:", "Paper Bill($2/Bill)");
-//			} else if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))) {
-//				log.info("1111additionalServices--> " + additionalServices + " additionalServicesVas1--> "
-//						+ additionalServicesVas1);
-//				addKeppelEntry(table, "Additional Services", "Smart Meter(One-time $40 if applicable)");
-//
-//			}
-			
+			//
+			// if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
+			// && (additionalServices != null && !additionalServices.equals("PaperBill"))) {
+			// log.info("additionalServicesVas1 eq VAS1---> " + additionalServicesVas1);
+			// addKeppelEntry(table, "Only electronic bills will be sent", "");
+			// }
+			// if (additionalServicesVas1 == null && additionalServices == null) {
+			// log.info("additionalServicesVas1 additionalServices eq null---> " +
+			// additionalServicesVas1);
+			// addKeppelEntry(table, "Only electronic bills will be sent", "");
+			// }
+			// if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
+			// && (additionalServices != null && additionalServices.equals("PaperBill"))) {
+			// log.info("2222additionalServices--> " + additionalServices + "
+			// additionalServicesVas1--> "
+			// + additionalServicesVas1);
+			// addKeppelEntry(table, "Additional Services",
+			// "Paper Bill($2/Bill), Smart Meter(One-time $40 if applicable)");
+			//
+			// } else if (additionalServices != null &&
+			// additionalServices.equals("PaperBill")) {
+			// log.info("3333additionalServices--> " + additionalServices + "
+			// additionalServicesVas1--> "
+			// + additionalServicesVas1);
+			// addKeppelEntry(table, "Additional Services:", "Paper Bill($2/Bill)");
+			// } else if ((additionalServicesVas1 != null &&
+			// additionalServicesVas1.equals("Vas1"))) {
+			// log.info("1111additionalServices--> " + additionalServices + "
+			// additionalServicesVas1--> "
+			// + additionalServicesVas1);
+			// addKeppelEntry(table, "Additional Services", "Smart Meter(One-time $40 if
+			// applicable)");
+			//
+			// }
+
+			addKeppelHeader(table, "Product Charges", "");
+
+			// log.info(" :pdfDotAmount in FOA::" + pdfDotAmount);
+			// log.info(" :pdfFppAmount in FOA::" + pdfFppAmount);
+			// String tier1Amount = getRPVersion(selectedRPlan, "t1", activePlanMap);
+			// String tier2Amount = getRPVersion(selectedRPlan, "t2", activePlanMap);
+			// String tier3Amount = getRPVersion(selectedRPlan, "t3", activePlanMap);
+
+			addKeppelEntry(table, " ", "Consumption will be Loss Adjusted");
+
+			if (!"".equals(tier1Amount) && tier1Amount.equals(tier2Amount) && tier1Amount.equals(tier3Amount)) {
+				if (pdfDotAmount != null && productMapKeyVal.equals("DOT")) {
+					addKeppelEntry(table, "Energy Charges", "" + pdfDotAmount + "  % off SP Tariff");
+
+				} else if (pdfFppAmount != null && productMapKeyVal.equals("FIX")) {
+					addKeppelEntry(table, "Energy Charges", "" + pdfFppAmount + "  cents/kWh");
+				}
+			} else {
+				if (!"".equals(pdfTier1Amount) && pdfTier1Amount != null && pdfPeakValueT1 != null
+						&& !"".equals(pdfPeakValueT1)) {
+					addKeppelEntry(table, "Peak Rate", "" + pdfPeakValueT1 + " " + pdfTier1Amount);
+					log.info(" ::tier1Amount and peakValueT1 in pdf::" + pdfTier1Amount + " peakValueT1-->  "
+							+ pdfTier1Amount);
+				}
+				if (!"".equals(pdfTier3Amount) && pdfTier3Amount != null && pdfPeakValueT3 != null
+						&& !"".equals(pdfPeakValueT3)) {
+					log.info("--> peakValueT3 in pdf" + pdfPeakValueT3);
+					addKeppelEntry(table, "Off Peak Rate", "" + pdfPeakValueT3 + " " + pdfTier3Amount);
+				}
+			}
+
 			addKeppelHeader(table, "Additional Services", "");
 			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Smart Meter"))
 					&& (additionalServices != null && !additionalServices.equals("Paper Bill"))) {
@@ -371,7 +429,7 @@ public class GeneratePDF {
 				addKeppelEntry(table, "Additional Services", "Smart Meter(One-time $40 if applicable)");
 
 			}
-			
+
 			// COde Added by Indira-21-3-2018
 			if (paymentMethod.equals("GIRO")) {
 				addKeppelEntry(table, "Payment Mode:", "Giro");
@@ -406,11 +464,11 @@ public class GeneratePDF {
 			//
 			// addKeppelEntry(table, "", "");
 			// addKeppelEntry(table, "", "");
-//			addKeppelHeader(table, "Additional Services", "");
-//			if (additionalServices != null && additionalServices.equals("PaperBill"))
-//				addKeppelEntry(table, "Paper Bill", "($2/Bill)");
-//			if (additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-//				addKeppelEntry(table, "Smart Meter", "(One-time $40 if applicable)");
+			// addKeppelHeader(table, "Additional Services", "");
+			// if (additionalServices != null && additionalServices.equals("PaperBill"))
+			// addKeppelEntry(table, "Paper Bill", "($2/Bill)");
+			// if (additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
+			// addKeppelEntry(table, "Smart Meter", "(One-time $40 if applicable)");
 			// addKeppelEntry(table, "", "");
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);

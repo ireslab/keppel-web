@@ -100,7 +100,18 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetail.setCurrentMeterType(accountDto.getMeterType());
 		receiveDetail.setTC(accountDto.getTC());
 		receiveDetail.setPDPA(accountDto.getPDPA());
-
+		receiveDetail.setServiceEndDate(accountDto.getServiceEndDate());
+		receiveDetail.setSubscriptionDate(accountDto.getServiceStartDate());
+		
+		if (accountDto.getMeterType() != null && accountDto.getMeterType().equals("SRLP")) {
+			receiveDetail.setSelfReadOption("X");
+		} else {
+			receiveDetail.setSelfReadOption("");
+		}
+		if (accountDto.getMeterType() != null) {
+			receiveDetail.setCurrentMeterType(accountDto.getMeterType());
+		} 
+		
 		ReceiveData receiveData = new ReceiveData();
 		receiveData.setReceiveDetail(receiveDetail);
 
@@ -112,8 +123,9 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		m1mmctr.getReceiveDetails().addAll(receiveDetailsList);
 		M1MMCTR m1mmctrResponse = (M1MMCTR) webServiceTemplateM1MMCTR.marshalSendAndReceive(m1mmctr);
 
-		//if (accountDto.getAttachmentData() != null && accountDto.getAttachmentData().length() > 100)
-		//	submitUserImageData(accountDto);
+		// if (accountDto.getAttachmentData() != null &&
+		// accountDto.getAttachmentData().length() > 100)
+		// submitUserImageData(accountDto);
 
 		return m1mmctrResponse;
 	}
