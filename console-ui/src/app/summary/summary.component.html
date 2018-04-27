@@ -7,7 +7,7 @@
         <img src="assets/img/img-PlanIcon.png" /> {{_planDetailObj.plan}}</h5>
 
       <hr/>
-        <p>Estimated Monthly Bill: S${{selectedRecmData.recomPlans.estimatedBillAmount}}*</p> 
+        <p>Estimated Monthly Bill: S${{+selectedRecmData.recomPlans.estimatedBillAmount + datashare.paperCost}}*</p>  
         <div style="font-size:28px">{{selectedRecmData.recomPlans.estimatedDiscount}}% Less</div>
         <p>than with current SP Tariff</p>
     </div>
@@ -20,30 +20,32 @@
   </div>
 </div>
 
+
 <div class="PremiseInfo">
   <div class="kpl-summaryPanelSection" *ngIf="this.router.url == '/new-user-contract'">
     <p class="PanelScrollNotice d-block d-lg-none">Scroll down to see more information</p>
     <h6>Details:</h6>
-    <ul>
+    <p style="font-size: 13px;">{{_planDetailObj.benefits}}</p>
+    <!-- <ul> -->
       <!-- <li>24 Months</li>
       <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
       <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
       <li>All charges are absorbed</li>
       <li>Consumption is loss adjusted</li> -->
-      <li>Product Name : {{_planDetailObj.product}}</li>
+      <!-- <li>Product Name : {{_planDetailObj.product}}</li>
       <li>Start Date : {{_planDetailObj.startDate}}</li>
       <li>Charge Type : {{_planDetailObj.chargeType}}</li>
       <li *ngIf="planName != 'FIX'">Duration :{{_planDetailObj.contractDuration}} Months</li>
-    </ul>
-    <ul *ngIf="planName == 'FIX'">
+    </ul> -->
+    <!-- <ul *ngIf="planName == 'FIX'">
       <li *ngFor="let benifits of selectedRecmData.planBenifits">{{benifits}}</li>
-    </ul>
+    </ul> -->
   </div>
 
   <div class="kpl-summaryPanelSection">
     <h5>Products Charges</h5>
     <hr>
-    <dl *ngIf="planName == 'FIX'">
+    <dl *ngIf="planName != 'FIX'">
       <dt>Consumption will be</dt>
       <dd>Loss Adjusted</dd>
       <dt>t1</dt>
@@ -52,9 +54,12 @@
       <dd>{{_planDetailObj.t2}}</dd>
       <dt>t3</dt>
       <dd>{{_planDetailObj.t3}}</dd>
-      <dt>[Insert Pass through Cost]</dt>
-      <dd>As Charged</dd>
+      <!-- <dt>[Insert Pass through Cost]</dt>
+      <dd>As Charged</dd> -->
     </dl>
+    <div *ngIf="planName != 'FIX'" style="font-size: 13px;">Consumption will be Loss Adjusted</div>
+    <div *ngIf="planName != 'FIX'" style="font-size: 13px;">Energy Charges : {{selectedRecmData.recomPlans.estimatedDiscount}}% off SP Tariff</div>
+    <div *ngIf="planName == 'FIX'">NA</div>
   </div>
   <div class="kpl-summaryPanelSection">
     <h5>Additional Services</h5>

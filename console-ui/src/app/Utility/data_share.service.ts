@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class DataShare {
   // selectedPlanObj:any;
+  paperCost:any = 0;
+  meterType: string;
   usderDetailObj = {
     "selectedPlanObj": {
       "plan": "DOT12",
@@ -35,7 +37,7 @@ export class DataShare {
     },
     "sd_amount":"",
     "optionalServiceSelected": "",
-
+    "serviceEndDate" : "",
     "serviceStartDate": "",
     "optionalService1": "",
     "optionalService2": "",

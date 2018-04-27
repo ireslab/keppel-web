@@ -107,7 +107,20 @@ export class UserConfirmationComponent implements OnInit {
         "TC": "",
         "PDPA": "",
         "securityDeposit":this._usderDetailObj.sd_amount,
+        "pdfDotAmount" : this.DS.emaFactSheetData.pdfDotAmount,
+        "pdfFppAmount" : this.DS.emaFactSheetData.pdfFppAmount,
+        "pdfTier1Amount" : this.DS.emaFactSheetData.pdfTier1Amount,
+        "pdfPeakValueT1" : this.DS.emaFactSheetData.pdfPeakValueT1,
+        "pdfTier3Amount" : this.DS.emaFactSheetData.pdfTier3Amount,
+        "pdfPeakValueT3" : this.DS.emaFactSheetData.pdfPeakValueT3,
+        "meterType" : this.DS.meterType,
+        "serviceEndDate" : this.DS.usderDetailObj.serviceEndDate,
+        "tier1Amount" : this.DS.usderDetailObj.selectedPlanObj.t1,
+        "tier2Amount" : this.DS.usderDetailObj.selectedPlanObj.t2, 
+        "tier3Amount" : this.DS.usderDetailObj.selectedPlanObj.t3,
+        "productMapKeyVal" : this.DS.usderDetailObj.selectedPlanObj.plan
       }
+      console.log(rqst_json);
       if (this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
         window.open('https://internet-banking.dbs.com.sg', '_blank');
       } else if (this.DS.usderDetailObj.paymentMethod == 'Giro') {

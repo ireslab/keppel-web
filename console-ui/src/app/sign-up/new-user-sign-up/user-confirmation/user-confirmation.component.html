@@ -96,6 +96,8 @@
             <dd>{{_usderDetailObj.selectedPlanObj.contractDuration}}</dd>
             <dt>Service Start Date</dt>
             <dd>{{_usderDetailObj.serviceStartDate | date: 'dd/MM/yyyy'}}</dd>
+            <dt *ngIf="_usderDetailObj.optionalService1 == ''"></dt>
+            <dd *ngIf="_usderDetailObj.optionalService1 == ''">Only electronic bills will be sent</dd>
             <dt>Additional Services</dt>
             <dd>
               <span *ngIf="_usderDetailObj.optionalService1.serviceName != ''">{{_usderDetailObj.optionalService1.serviceName}}</span>
@@ -229,6 +231,10 @@
       </div>
 
     </div>
+  </div>
+  <div style="text-align: center">============================================================================================================================
+<br/>Disclaimer:  This message and the information contained herein is proprietary and confidential and subject to the Tech Mahindra policy statement, you may review the policy at <a href="http://www.techmahindra.com/Disclaimer.html" target="_blank">http://www.techmahindra.com/Disclaimer.html</a> externally <a href="http://tim.techmahindra.com/tim/disclaimer.html" target="_blank">http://tim.techmahindra.com/tim/disclaimer.html</a> internally within TechMahindra.<br/>
+============================================================================================================================
   </div>
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>

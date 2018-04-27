@@ -102,13 +102,13 @@
                         <button  [ngClass]="{'btn-primary': i==selectedFirstIndex}" class="btn btn-secondary selectPlanButton" type="button">Select</button>
                         <div class="PlanDetailPanel"  id="{{i}}">
                             Details:
-                            <ul>
-                                <!-- <li *ngFor="let details of dwlPlans.details">{{details}}</li> -->
+                            <!-- <ul>
                                 <li>Product Name : {{dwlPlans.product}}</li>
                                 <li>Start Date : {{dwlPlans.startDate}}</li>
                                 <li>Duration :{{dwlPlans.contractDuration}} Months</li>
                                 <li>Charge Type : {{dwlPlans.chargeType}}</li>
-                            </ul>
+                            </ul> -->
+                            <h6 style="font-size: 12px;">{{dwlPlans.benefits}}</h6>
                         </div>
                         <a (click)="showDetailClicked(i)" id="show{{i}}" class="kpl-PlanDetailShowHide">Show Details (+)</a>
                     </div>
