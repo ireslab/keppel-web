@@ -4,7 +4,6 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -27,6 +26,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.RESPONSE_CODE;
 import com.keppel.consumer.dto.ResponseDto;
@@ -52,8 +53,8 @@ public class KeppelConsumerController {
 	@Autowired
 	KeppelConsumerService keppelConsumerService;
 
-//	@Autowired
-//	ActivityAuditService activityAuditService;
+	// @Autowired
+	// ActivityAuditService activityAuditService;
 
 	@Autowired
 	Gson gson;
@@ -348,6 +349,21 @@ public class KeppelConsumerController {
 		return new ResponseEntity<>(depositResponse, HttpStatus.OK);
 	}
 
+	/*
+	 * @ApiOperation(value = "Unprotected Resource", notes =
+	 * "Example of an unprotected resource, this resource is accessible without a valid token."
+	 * )
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 200, message =
+	 * "A constant string is returned") })
+	 */
+	@RequestMapping(value = "getPromocode/{promocode}", method = RequestMethod.GET)
+	public String getPromoCode(@PathVariable String promocode) {
+		logger.info("Request info for getPromocode ");
+		JsonObject res = keppelConsumerService.getPromoCode(promocode);
+ 		return res.toString();
+	}
+
 	/**
 	 * This API gets security deposit.
 	 * 
@@ -366,10 +382,10 @@ public class KeppelConsumerController {
 		try {
 			new GeneratePDF().generatePDF(facesContext, outputStream, signUpData);
 			SendEmailAttachment(signUpData);
-		}catch(Exception exception){
+		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-		
+
 		logger.info("Response data =====================>" + json);
 		return json;
 	}

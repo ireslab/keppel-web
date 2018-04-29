@@ -264,10 +264,14 @@ public class GeneratePDF {
 			String selectedRPlan = mAccountDto.getSelectedPlan();
 
 			String servStartDateVal = mAccountDto.getServiceStartDate();
+			SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat targetFormat = new SimpleDateFormat("dd-MM-yyyy");
 			if (servStartDateVal != null) {
-				SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy MM dd");
-				SimpleDateFormat targetFormat = new SimpleDateFormat("dd MM yyyy");
-				CommonUtils.changeDateFormat(servStartDateVal, originalFormat, targetFormat);
+				try {
+					CommonUtils.changeDateFormat(servStartDateVal, originalFormat, targetFormat);
+				}catch(Exception exception) {
+					
+				}
 			}
 
 			String additionalServicesVas1 = mAccountDto.getOptionalService2();
@@ -283,17 +287,7 @@ public class GeneratePDF {
 			String promoCodeVal = mAccountDto.getPromoCode();
 			String promoCodeDiscount = "";
 			String securityDeposit = mAccountDto.getSecurityDeposit();
-			String tier1Amount = mAccountDto.getTier1Amount();
-			String tier2Amount = mAccountDto.getTier2Amount();
-			String tier3Amount = mAccountDto.getTier3Amount();
-			String productMapKeyVal = mAccountDto.getProductMapKeyVal();
-			String pdfDotAmount = mAccountDto.getPdfDotAmount();
-			;
-			String pdfFppAmount = mAccountDto.getPdfFppAmount();
-			String pdfTier1Amount = mAccountDto.getTier1Amount();
-			String pdfPeakValueT1 = mAccountDto.getPdfPeakValueT1();
-			String pdfTier3Amount = mAccountDto.getTier3Amount();
-			String pdfPeakValueT3 = mAccountDto.getPdfPeakValueT3();
+		
 
 			addKeppelHeader(table, "Premises Details", "");
 			// addKeppelEntry(table, "", "");
@@ -332,8 +326,7 @@ public class GeneratePDF {
 
 			log.info("000additionalServices--> " + additionalServices + " additionalServicesVas1--> "
 					+ additionalServicesVas1);
-			document.add(Chunk.NEWLINE);
-			document.add(Chunk.NEWLINE);
+
 			// COde Added by Indira-21-3-2018
 			// TODO Put "" check
 			//
@@ -370,38 +363,53 @@ public class GeneratePDF {
 			// applicable)");
 			//
 			// }
+			
+			try {
+				String tier1Amount = mAccountDto.getTier1Amount();
+				String tier2Amount = mAccountDto.getTier2Amount();
+				String tier3Amount = mAccountDto.getTier3Amount();
+				String productMapKeyVal = mAccountDto.getProductMapKeyVal();
+				String pdfDotAmount = mAccountDto.getPdfDotAmount();
+				String pdfFppAmount = mAccountDto.getPdfFppAmount();
+				String pdfTier1Amount = mAccountDto.getTier1Amount();
+				String pdfPeakValueT1 = mAccountDto.getPdfPeakValueT1();
+				String pdfTier3Amount = mAccountDto.getTier3Amount();
+				String pdfPeakValueT3 = mAccountDto.getPdfPeakValueT3();
 
-			addKeppelHeader(table, "Product Charges", "");
+				addKeppelHeader(table, "Product Charges", "");
 
-			// log.info(" :pdfDotAmount in FOA::" + pdfDotAmount);
-			// log.info(" :pdfFppAmount in FOA::" + pdfFppAmount);
-			// String tier1Amount = getRPVersion(selectedRPlan, "t1", activePlanMap);
-			// String tier2Amount = getRPVersion(selectedRPlan, "t2", activePlanMap);
-			// String tier3Amount = getRPVersion(selectedRPlan, "t3", activePlanMap);
+				// log.info(" :pdfDotAmount in FOA::" + pdfDotAmount);
+				// log.info(" :pdfFppAmount in FOA::" + pdfFppAmount);
+				// String tier1Amount = getRPVersion(selectedRPlan, "t1", activePlanMap);
+				// String tier2Amount = getRPVersion(selectedRPlan, "t2", activePlanMap);
+				// String tier3Amount = getRPVersion(selectedRPlan, "t3", activePlanMap);
 
-			addKeppelEntry(table, " ", "Consumption will be Loss Adjusted");
+				addKeppelEntry(table, " ", "Consumption will be Loss Adjusted");
 
-			if (!"".equals(tier1Amount) && tier1Amount.equals(tier2Amount) && tier1Amount.equals(tier3Amount)) {
-				if (pdfDotAmount != null && productMapKeyVal.equals("DOT")) {
-					addKeppelEntry(table, "Energy Charges", "" + pdfDotAmount + "  % off SP Tariff");
+				if (!"".equals(tier1Amount) && tier1Amount.equals(tier2Amount) && tier1Amount.equals(tier3Amount)) {
+					if (pdfDotAmount != null && productMapKeyVal.equals("DOT")) {
+						addKeppelEntry(table, "Energy Charges", "" + pdfDotAmount + "  % off SP Tariff");
 
-				} else if (pdfFppAmount != null && productMapKeyVal.equals("FIX")) {
-					addKeppelEntry(table, "Energy Charges", "" + pdfFppAmount + "  cents/kWh");
+					} else if (pdfFppAmount != null && productMapKeyVal.equals("FIX")) {
+						addKeppelEntry(table, "Energy Charges", "" + pdfFppAmount + "  cents/kWh");
+					}
+				} else {
+					if (!"".equals(pdfTier1Amount) && pdfTier1Amount != null && pdfPeakValueT1 != null
+							&& !"".equals(pdfPeakValueT1)) {
+						addKeppelEntry(table, "Peak Rate", "" + pdfPeakValueT1 + " " + pdfTier1Amount);
+						log.info(" ::tier1Amount and peakValueT1 in pdf::" + pdfTier1Amount + " peakValueT1-->  "
+								+ pdfTier1Amount);
+					}
+					if (!"".equals(pdfTier3Amount) && pdfTier3Amount != null && pdfPeakValueT3 != null
+							&& !"".equals(pdfPeakValueT3)) {
+						log.info("--> peakValueT3 in pdf" + pdfPeakValueT3);
+						addKeppelEntry(table, "Off Peak Rate", "" + pdfPeakValueT3 + " " + pdfTier3Amount);
+					}
 				}
-			} else {
-				if (!"".equals(pdfTier1Amount) && pdfTier1Amount != null && pdfPeakValueT1 != null
-						&& !"".equals(pdfPeakValueT1)) {
-					addKeppelEntry(table, "Peak Rate", "" + pdfPeakValueT1 + " " + pdfTier1Amount);
-					log.info(" ::tier1Amount and peakValueT1 in pdf::" + pdfTier1Amount + " peakValueT1-->  "
-							+ pdfTier1Amount);
-				}
-				if (!"".equals(pdfTier3Amount) && pdfTier3Amount != null && pdfPeakValueT3 != null
-						&& !"".equals(pdfPeakValueT3)) {
-					log.info("--> peakValueT3 in pdf" + pdfPeakValueT3);
-					addKeppelEntry(table, "Off Peak Rate", "" + pdfPeakValueT3 + " " + pdfTier3Amount);
-				}
+			}catch(Exception exception) {
+				log.info(exception.getMessage());
 			}
-
+			
 			addKeppelHeader(table, "Additional Services", "");
 			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Smart Meter"))
 					&& (additionalServices != null && !additionalServices.equals("Paper Bill"))) {

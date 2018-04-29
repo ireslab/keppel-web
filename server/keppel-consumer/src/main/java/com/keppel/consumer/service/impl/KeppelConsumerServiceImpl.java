@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+import com.google.gson.JsonObject;
 import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.SecurityDeposit;
 import com.keppel.consumer.service.KeppelConsumerService;
 import com.keppel.consumer.utils.FTPUtils;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY.Input;
+import com.keppelCMPROMO.CmPromotionCodeGenerationBS.CmPromotionCodeGenerationBS;
+import com.keppelCMPROMO.CmPromotionCodeGenerationBS.CmPromotionCodeGenerationBS.Promocoderesult;
 import com.keppelCMR.CMRECPLAN.CMRECPLAN;
 import com.keppelCMRET.CMRetSDAmt.CMRetSDAmt;
 import com.keppelM1.M1MMCTR.M1MMCTR;
@@ -102,7 +105,7 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetail.setPDPA(accountDto.getPDPA());
 		receiveDetail.setServiceEndDate(accountDto.getServiceEndDate());
 		receiveDetail.setSubscriptionDate(accountDto.getServiceStartDate());
-		
+
 		if (accountDto.getMeterType() != null && accountDto.getMeterType().equals("SRLP")) {
 			receiveDetail.setSelfReadOption("X");
 		} else {
@@ -110,8 +113,8 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		}
 		if (accountDto.getMeterType() != null) {
 			receiveDetail.setCurrentMeterType(accountDto.getMeterType());
-		} 
-		
+		}
+
 		ReceiveData receiveData = new ReceiveData();
 		receiveData.setReceiveDetail(receiveDetail);
 
@@ -192,4 +195,26 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		return depositResponse;
 	}
 
+	@Override
+	public JsonObject getPromoCode(String promocode) {
+		CmPromotionCodeGenerationBS body = new CmPromotionCodeGenerationBS();
+		body.setCmPromoCode(promocode);
+		body = (CmPromotionCodeGenerationBS) webServiceTemplateCMPROMO.marshalSendAndReceive(body);
+		JsonObject response = new JsonObject();
+
+		if (body != null && body.getIsValidPromoCode().equals("true")) {
+			List<Promocoderesult> result = body.getPromocoderesult();
+			if (result != null && result.size() > 0) {
+				response.addProperty("success", "true");
+				response.addProperty("amount", result.get(0).getCmDiscountType3() + result.get(0).getCmDiscountAmount2());
+			} else {
+				response.addProperty("success", "false");
+				response.addProperty("message", "Please enter a valid promo code");
+			}
+		} else {
+			response.addProperty("success", "false");
+			response.addProperty("message", "Please enter a valid promo code");
+		}
+		return response;
+	}
 }

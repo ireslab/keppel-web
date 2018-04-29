@@ -25,8 +25,8 @@ public class KeppelWebServiceConfig {
 		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRETPERMTY());
 		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRETPERMTY());
-		//webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CMRETPERMTY?wsdl");
-		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CMRETPERMTY?wsdl");
+		webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CMRETPERMTY?wsdl");
+		//webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CMRETPERMTY?wsdl");
 		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
 		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
 		return webServiceTemplate;
@@ -37,8 +37,8 @@ public class KeppelWebServiceConfig {
 		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 		webServiceTemplate.setMarshaller(jaxb2MarshallerM1MMCTR());
 		webServiceTemplate.setUnmarshaller(jaxb2MarshallerM1MMCTR());
-		//webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/M1MMCTR?wsdl");
-		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/M1MMCTR?wsdl");
+		webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/M1MMCTR?wsdl");
+		//webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/M1MMCTR?wsdl");
 		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
 		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
 		return webServiceTemplate;
@@ -49,8 +49,8 @@ public class KeppelWebServiceConfig {
 		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRECPLAN());
 		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRECPLAN());
-		//webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CMRECPLAN?wsdl");
-		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CMRECPLAN?wsdl");
+		webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CMRECPLAN?wsdl");
+		//webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CMRECPLAN?wsdl");
 		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
 		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
 		return webServiceTemplate;
@@ -61,8 +61,8 @@ public class KeppelWebServiceConfig {
 		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
 		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRET());
 		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRET());
-		//webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CM-RetSDAmt?wsdl");
-		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CM-RetSDAmt?wsdl");
+		webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CM-RetSDAmt?wsdl");
+		//webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/webservices/CM-RetSDAmt?wsdl");
 		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
 		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
 		return webServiceTemplate;
@@ -71,10 +71,10 @@ public class KeppelWebServiceConfig {
 	@Bean(name = "CMPROMO")
 	public WebServiceTemplate webServiceTemplateCMPROMO() throws KeyManagementException, NoSuchAlgorithmException {
 		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
-		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRET());
-		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRET());
-		//webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/CmPromotionCodeGenerationBS?wsdl");
-		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/CmPromotionCodeGenerationBS?wsdl");
+		webServiceTemplate.setMarshaller(jaxb2MarshallerCMPROMO());
+		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMPROMO());
+		webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CmPromotionCodeGenerationBS?wsdl");
+		//webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/CmPromotionCodeGenerationBS?wsdl");
 		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
 		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
 		return webServiceTemplate;
@@ -107,6 +107,13 @@ public class KeppelWebServiceConfig {
 	Jaxb2Marshaller jaxb2MarshallerCMRET() {
 		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setContextPath("com.keppelCMRET.CMRetSDAmt");
+		return jaxb2Marshaller;
+	}
+	
+	@Bean
+	Jaxb2Marshaller jaxb2MarshallerCMPROMO() {
+		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+		jaxb2Marshaller.setContextPath("com.keppelCMPROMO.CmPromotionCodeGenerationBS");
 		return jaxb2Marshaller;
 	}
 	

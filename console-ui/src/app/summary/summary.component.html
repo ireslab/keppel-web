@@ -81,7 +81,7 @@
     <dl *ngIf="_usderDetailObj.promoCode== '' ">No promocode is provided yet</dl>
     <dl>
       <dt *ngIf="_usderDetailObj.promoCode != ''">{{_usderDetailObj.promoCode}}</dt>
-      <dd *ngIf="_usderDetailObj.promoCode != ''">[Insert discount]</dd>
+      <dd *ngIf="_usderDetailObj.promocodeAmount != ''">{{_usderDetailObj.promocodeAmount}}</dd>
     </dl>
   </div>
   <div class="kpl-summaryPanelSection">

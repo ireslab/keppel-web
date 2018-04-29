@@ -1,5 +1,6 @@
 package com.keppel.consumer.service;
 
+import com.google.gson.JsonObject;
 import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.SecurityDeposit;
 import com.keppelCMR.CMRECPLAN.CMRECPLAN;
@@ -15,4 +16,6 @@ public interface KeppelConsumerService {
 	public CMRECPLAN getRecomendedPlans();
 	
 	public SecurityDeposit.SecurityDepositResponse getSecutityDeposit(SecurityDeposit deposits);
+	
+	public JsonObject getPromoCode(String promocode);
 }

@@ -45,7 +45,7 @@ export class UserContractComponent implements OnInit {
   optionalServiceOne: any;
   optionalServiceTwo: any;
   optionalServiceThree: any;
-
+ 
 
   _postcode: string = '';
   _streetName: string = '';
@@ -118,8 +118,8 @@ export class UserContractComponent implements OnInit {
     this.dateErrorSrlp = false;
     var endDate = new Date(this.contractForm.controls['serviceStartDate'].value)
     var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
-    this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0,10);
-     
+    this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0, 10);
+
   }
   selectedServices(index) {
     if (index == 1) {
@@ -140,7 +140,7 @@ export class UserContractComponent implements OnInit {
         if (this.contractForm.controls['serviceStartDate'].value != "") {
           this.dateErrorSrlp = true;
           this.dateErrorAmi = false;
-         
+
         }
         this.contractForm.patchValue({
           serviceStartDate: "",
@@ -208,7 +208,7 @@ export class UserContractComponent implements OnInit {
       spAccount: this.datashare.usderDetailObj.spAccount,
     })
 
-    
+
 
     $(document).ready(function () {
       $(".selectPaymentMethodButton").on("click", function () {
@@ -418,21 +418,29 @@ export class UserContractComponent implements OnInit {
     } else {
       this.pictureName = "Upload Past Month's Bill";
     }
-
-
-
   }
+
   getPromoCode() {
     this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
+    let _url = ApiConstants.GET_PROMO_CODE + this.datashare.usderDetailObj.promoCode;
+    console.log(_url)
+    this.serverCall.getPlans(_url).subscribe(
+      data => {
+        console.log(data);
+          if (data.success == "true"){
+           this.datashare.usderDetailObj.promocodeAmount = data.amount;
+          }else{
+            this.datashare.usderDetailObj.promocodeAmount = "0";
+          }
+      }, (error: any) => {
+        this.datashare.usderDetailObj.promocodeAmount = "0";
+      }
+    );
   }
+
   getSPaccountNumber() {
     this.datashare.usderDetailObj.spAccount = this.contractForm.controls['spAccount'].value;
   }
-
-
-  
-
-
 
   submitContractDetails() {
     this.formIsNotValid = false;
@@ -479,7 +487,7 @@ export class UserContractComponent implements OnInit {
 
 
       let postcode = this.contractForm.controls['postcode'].value
-      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + " " + this.contractForm.controls['buildingName'].value + " " + " " +"#" +  " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + " " + this.contractForm.controls['buildingName'].value + " " + " " + "#" + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
       // let premiseAddress2 = this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
 
       if (this.sameAddress == true) {
@@ -488,7 +496,7 @@ export class UserContractComponent implements OnInit {
         // this.billingAddress2 = premiseAddress2;
       } else {
         this.postcodeBilling = this.contractForm.controls['postcodeBill'].value;
-        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value + " " + " " + this.contractForm.controls['buildingNameBill'].value + " " + " " +"#" + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
+        this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value + " " + " " + this.contractForm.controls['buildingNameBill'].value + " " + " " + "#" + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
         // this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
       }
 
@@ -522,13 +530,13 @@ export class UserContractComponent implements OnInit {
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
-     
+
       // if (this.paymentMethod == 'IDDA (DBS)') {
       //   window.open('https://internet-banking.dbs.com.sg', '_blank');
       // } else if (this.paymentMethod == 'Giro') {
       //   window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
       // }
-   
+
 
 
       if (this.datashare.usderDetailObj.paymentMethod == 'Giro') {
