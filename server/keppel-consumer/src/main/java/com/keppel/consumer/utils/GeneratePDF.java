@@ -265,7 +265,7 @@ public class GeneratePDF {
 
 			String servStartDateVal = mAccountDto.getServiceStartDate();
 			SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
-			SimpleDateFormat targetFormat = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat targetFormat = new SimpleDateFormat("dd/MM/yyyy");
 			if (servStartDateVal != null) {
 				try {
 					CommonUtils.changeDateFormat(servStartDateVal, originalFormat, targetFormat);
@@ -295,10 +295,10 @@ public class GeneratePDF {
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 			if (!"".equals(premiseAddress) && premiseAddress != null) {
-				addKeppelEntry(table, "Premises Address:", premiseAddress + " Singapore");
+				addKeppelEntry(table, "Premises Address:", premiseAddress);
 			}
 
-			addKeppelEntry(table, "Billing Address:", billingAddress + " Singapore");
+			addKeppelEntry(table, "Billing Address:", billingAddress);
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 			// addKeppelEntry(table, "", "");

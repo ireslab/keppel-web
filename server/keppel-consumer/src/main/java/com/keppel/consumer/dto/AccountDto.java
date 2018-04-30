@@ -58,9 +58,17 @@ public class AccountDto extends ActivityAuditDto {
 	private String pdfTier3Amount;
 	private String pdfPeakValueT3;
 	private String serviceEndDate;
+	private String marketingConsent;
 
 	
-	
+	public String getMarketingConsent() {
+		return marketingConsent;
+	}
+
+	public void setMarketingConsent(String marketingConsent) {
+		this.marketingConsent = marketingConsent;
+	}
+
 	public String getServiceEndDate() {
 		return serviceEndDate;
 	}

@@ -61,6 +61,12 @@ export class UserConfirmationComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download("Keppel_Electric_Giro_Application_Form_Residential");
   };
 
+  marketingConsent(event){
+      this.DS.usderDetailObj.marketingConsent=event.target.checked;
+      console.log("IS MARKETING SELECTED:===>",this.DS.usderDetailObj.marketingConsent);
+      
+  }
+
   confirmClicked() {
   if(this.termConditionOne && this.termConditionScnd && this.termConditionThird){
     if (navigator.onLine) {
@@ -118,7 +124,8 @@ export class UserConfirmationComponent implements OnInit {
         "tier1Amount" : this.DS.usderDetailObj.selectedPlanObj.t1,
         "tier2Amount" : this.DS.usderDetailObj.selectedPlanObj.t2, 
         "tier3Amount" : this.DS.usderDetailObj.selectedPlanObj.t3,
-        "productMapKeyVal" : this.DS.usderDetailObj.selectedPlanObj.plan
+        "productMapKeyVal" : this.DS.usderDetailObj.selectedPlanObj.plan,
+        "marketingConsent":this.DS.usderDetailObj.marketingConsent
       }
       console.log(rqst_json);
       if (this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)') {

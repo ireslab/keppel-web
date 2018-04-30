@@ -204,7 +204,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC3">I consent to the Retailer, its business partners and agents contacting me via phone call and other phone number-based
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC3" (click)="marketingConsent($event)">I consent to the Retailer, its business partners and agents contacting me via phone call and other phone number-based
             messaging about products and services offered by the Retailer, its business partners and agents, regardless of
             my registration(s) with the Do Not Call registry. Preferred mode of communication are
           </label>
@@ -232,10 +232,8 @@
 
     </div>
   </div>
-  <div style="text-align: center">============================================================================================================================
-<br/>Disclaimer:  This message and the information contained herein is proprietary and confidential and subject to the Tech Mahindra policy statement, you may review the policy at <a href="http://www.techmahindra.com/Disclaimer.html" target="_blank">http://www.techmahindra.com/Disclaimer.html</a> externally <a href="http://tim.techmahindra.com/tim/disclaimer.html" target="_blank">http://tim.techmahindra.com/tim/disclaimer.html</a> internally within TechMahindra.<br/>
-============================================================================================================================
-  </div>
+  <div style="text-align: center">     
+   </div>
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <app-footer></app-footer>

@@ -67,7 +67,8 @@ export class DataShare {
     "billingAddress2": "",
     "premiseType": "",
     "tenantOrOwner": "",
-    "promocodeAmount":""
+    "promocodeAmount":"",
+    "marketingConsent":""
   }
 
   emaFactSheetData = {

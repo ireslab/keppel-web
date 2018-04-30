@@ -118,8 +118,10 @@ export class UserContractComponent implements OnInit {
     this.dateErrorSrlp = false;
     var endDate = new Date(this.contractForm.controls['serviceStartDate'].value)
     var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
+    endDate.setDate(endDate.getDate()-1);
     this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0, 10);
-
+    console.log("END DATE VALUE==>",this.datashare.usderDetailObj.selectedPlanObj.contractDuration);
+    console.log("END DATE==>",this.datashare.usderDetailObj.serviceEndDate);
   }
   selectedServices(index) {
     if (index == 1) {

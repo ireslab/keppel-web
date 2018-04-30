@@ -1,6 +1,8 @@
 package com.keppel.consumer.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -104,7 +106,10 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetail.setTC(accountDto.getTC());
 		receiveDetail.setPDPA(accountDto.getPDPA());
 		receiveDetail.setServiceEndDate(accountDto.getServiceEndDate());
-		receiveDetail.setSubscriptionDate(accountDto.getServiceStartDate());
+		receiveDetail.setMarketingConsent(accountDto.getMarketingConsent());
+		
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		receiveDetail.setSubscriptionDate(timeStamp);
 
 		if (accountDto.getMeterType() != null && accountDto.getMeterType().equals("SRLP")) {
 			receiveDetail.setSelfReadOption("X");
