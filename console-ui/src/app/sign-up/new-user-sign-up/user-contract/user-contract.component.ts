@@ -45,7 +45,7 @@ export class UserContractComponent implements OnInit {
   optionalServiceOne: any;
   optionalServiceTwo: any;
   optionalServiceThree: any;
- 
+
 
   _postcode: string = '';
   _streetName: string = '';
@@ -118,10 +118,10 @@ export class UserContractComponent implements OnInit {
     this.dateErrorSrlp = false;
     var endDate = new Date(this.contractForm.controls['serviceStartDate'].value)
     var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
-    endDate.setDate(endDate.getDate()-1);
+    endDate.setDate(endDate.getDate() - 1);
     this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0, 10);
-    console.log("END DATE VALUE==>",this.datashare.usderDetailObj.selectedPlanObj.contractDuration);
-    console.log("END DATE==>",this.datashare.usderDetailObj.serviceEndDate);
+    console.log("END DATE VALUE==>", this.datashare.usderDetailObj.selectedPlanObj.contractDuration);
+    console.log("END DATE==>", this.datashare.usderDetailObj.serviceEndDate);
   }
   selectedServices(index) {
     if (index == 1) {
@@ -429,11 +429,11 @@ export class UserContractComponent implements OnInit {
     this.serverCall.getPlans(_url).subscribe(
       data => {
         console.log(data);
-          if (data.success == "true"){
-           this.datashare.usderDetailObj.promocodeAmount = data.amount;
-          }else{
-            this.datashare.usderDetailObj.promocodeAmount = "0";
-          }
+        if (data.success == "true") {
+          this.datashare.usderDetailObj.promocodeAmount = data.amount;
+        } else {
+          this.datashare.usderDetailObj.promocodeAmount = "0";
+        }
       }, (error: any) => {
         this.datashare.usderDetailObj.promocodeAmount = "0";
       }
@@ -555,14 +555,17 @@ export class UserContractComponent implements OnInit {
     }
 
   }
+  
   getSecurityDeposit() {
     if (navigator.onLine) {
       this.spinnerService.show();
+
       var rqst_json = JSON.stringify({
         "idType": this.datashare.usderDetailObj.icNumberType,
         "payMethod": this._payMethodKey,
         "premiseType": this.datashare.usderDetailObj.premiseType
       })
+      
       console.log(rqst_json)
       let _url = ApiConstants.GET_SECURITY_DEPOSIT;
       ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(

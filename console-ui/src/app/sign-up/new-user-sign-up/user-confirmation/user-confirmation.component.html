@@ -204,7 +204,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC3" (click)="marketingConsent($event)">I consent to the Retailer, its business partners and agents contacting me via phone call and other phone number-based
+            <input class="form-check-input" type="checkbox" value="" id="Chk_TnC3" (click)="marketingConsent($event,'consent')">I consent to the Retailer, its business partners and agents contacting me via phone call and other phone number-based
             messaging about products and services offered by the Retailer, its business partners and agents, regardless of
             my registration(s) with the Do Not Call registry. Preferred mode of communication are
           </label>
@@ -212,12 +212,12 @@
         <section style="padding-left:30px;">
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_Email">Email
+              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_Email" (click)="marketingConsent($event,'email')" [checked]= 'email'>Email
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_SMS">SMS and Telecommunication
+              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_SMS" (click)="marketingConsent($event,'sms')" [checked]= 'sms'>SMS and Telecommunication
             </label>
           </div>
         </section>

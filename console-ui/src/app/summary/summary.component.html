@@ -45,7 +45,7 @@
   <div class="kpl-summaryPanelSection">
     <h5>Products Charges</h5>
     <hr>
-    <dl *ngIf="planName != 'FIX'">
+    <!-- <dl *ngIf="planName != 'FIX'">
       <dt>Consumption will be</dt>
       <dd>Loss Adjusted</dd>
       <dt>t1</dt>
@@ -54,12 +54,14 @@
       <dd>{{_planDetailObj.t2}}</dd>
       <dt>t3</dt>
       <dd>{{_planDetailObj.t3}}</dd>
-      <!-- <dt>[Insert Pass through Cost]</dt>
-      <dd>As Charged</dd> -->
-    </dl>
-    <div *ngIf="planName != 'FIX'" style="font-size: 13px;">Consumption will be Loss Adjusted</div>
-    <div *ngIf="planName != 'FIX'" style="font-size: 13px;">Energy Charges : {{selectedRecmData.recomPlans.estimatedDiscount}}% off SP Tariff</div>
-    <div *ngIf="planName == 'FIX'">NA</div>
+    </dl> -->
+   <div style="font-size: 13px;">Consumption will be Loss Adjusted</div>
+   <div *ngIf="productCharges.pdfTier1Amount != ''" style="font-size: 13px;">Energy Charges : {{productCharges.pdfTier1Amount}} cents/kWh for peak periods from {{productCharges.pdfPeakValueT1}}</div>
+   <div *ngIf="productCharges.pdfTier3Amount != ''" style="font-size: 13px;">Energy Charges : {{productCharges.pdfTier3Amount}} cents/kWh for peak periods from {{productCharges.pdfPeakValueT3}}</div>
+   <div *ngIf="productCharges.pdfDotAmount != ''" style="font-size: 13px;">Energy Charges : {{productCharges.pdfDotAmount}} % off SP Tariff</div>
+   <div *ngIf="productCharges.pdfFppAmount != ''" style="font-size: 13px;">Energy Charges : {{productCharges.pdfFppAmount}} % off SP Tariff</div>
+   
+   <!-- <div *ngIf="planName == 'FIX'">NA</div> -->
   </div>
   <div class="kpl-summaryPanelSection">
     <h5>Additional Services</h5>
@@ -81,7 +83,7 @@
     <dl *ngIf="_usderDetailObj.promoCode== '' ">No promocode is provided yet</dl>
     <dl>
       <dt *ngIf="_usderDetailObj.promoCode != ''">{{_usderDetailObj.promoCode}}</dt>
-      <dd *ngIf="_usderDetailObj.promocodeAmount != ''">{{_usderDetailObj.promocodeAmount}}</dd>
+      <dd *ngIf="_usderDetailObj.promocodeAmount != ''">(-$ {{_usderDetailObj.promocodeAmount}} on 1st Bill)</dd>
     </dl>
   </div>
   <div class="kpl-summaryPanelSection">

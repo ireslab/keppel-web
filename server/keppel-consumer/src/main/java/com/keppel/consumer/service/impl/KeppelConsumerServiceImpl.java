@@ -25,6 +25,7 @@ import com.keppelCMRET.CMRetSDAmt.CMRetSDAmt;
 import com.keppelM1.M1MMCTR.M1MMCTR;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails.ReceiveData;
+import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails.ReceiveData.ConsumerTransfer;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails.ReceiveData.ReceiveDetail;
 
 @Service
@@ -103,25 +104,54 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetail.setMarketingPhone(accountDto.getMarketingPhone());
 		receiveDetail.setMarketingSMS(accountDto.getMarketingSMS());
 		receiveDetail.setCurrentMeterType(accountDto.getMeterType());
-		receiveDetail.setTC(accountDto.getTC());
-		receiveDetail.setPDPA(accountDto.getPDPA());
+		receiveDetail.setTC("true");
+		receiveDetail.setPDPA("true");
+		receiveDetail.setEMA("true");
 		receiveDetail.setServiceEndDate(accountDto.getServiceEndDate());
 		receiveDetail.setMarketingConsent(accountDto.getMarketingConsent());
-		
+		receiveDetail.setContactPhoneType("M");
+		receiveDetail.setCity("Singapore");
+
 		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		receiveDetail.setSubscriptionDate(timeStamp);
 
-		if (accountDto.getMeterType() != null && accountDto.getMeterType().equals("SRLP")) {
-			receiveDetail.setSelfReadOption("X");
-		} else {
-			receiveDetail.setSelfReadOption("");
+		ConsumerTransfer consumerTransfer = new ConsumerTransfer();
+		consumerTransfer.setActionDate(accountDto.getServiceStartDate());
+		consumerTransfer.setBillingOption("RCB");
+		consumerTransfer.setConsumerName(accountDto.getFirstName() + " " + accountDto.getLastName());
+		consumerTransfer.setSendingPartyType("SE");
+		consumerTransfer.setUserId("KAR");
+
+		if (accountDto.getPaymentMethod() != null && accountDto.getPaymentMethod().equalsIgnoreCase("GIRO")) {
+			long random = (long) Math.floor(Math.random() * 9_000_000_0000L) + 1_000_000_0000L;
+			String iddaCode = Long.toString(random);
+			receiveDetail.setIDDACode(iddaCode);
 		}
-		if (accountDto.getMeterType() != null) {
-			receiveDetail.setCurrentMeterType(accountDto.getMeterType());
+
+		String paperBill = accountDto.getOptionalService1();
+		String smartMeter = accountDto.getOptionalService2();
+		if ((smartMeter != null && smartMeter.equals("Smart Meter"))
+				&& (paperBill != null && !paperBill.equals("Paper Bill"))) {
+			consumerTransfer.setMeterOption("AMI");
+			receiveDetail.setOptionalService2("SMAR");
+		} else if ((paperBill != null && paperBill.equals("Paper Bill"))
+				&& (smartMeter != null && !smartMeter.equals("Smart Meter"))) {
+			consumerTransfer.setSelfReadOption("X");
+			consumerTransfer.setMeterOption("SRLP");
+			receiveDetail.setOptionalService1("PAPE");
+		} else if ((paperBill != null && paperBill.equals("Paper Bill"))
+				&& (smartMeter != null && smartMeter.equals("Smart Meter"))) {
+			consumerTransfer.setMeterOption("AMI");
+			receiveDetail.setOptionalService1("PAPE");
+			receiveDetail.setOptionalService2("SMAR");
+		} else {
+			consumerTransfer.setSelfReadOption("X");
+			consumerTransfer.setMeterOption("SRLP");
 		}
 
 		ReceiveData receiveData = new ReceiveData();
 		receiveData.setReceiveDetail(receiveDetail);
+		receiveData.setConsumerTransfer(consumerTransfer);
 
 		ReceiveDetails receiveDetails = new ReceiveDetails();
 		receiveDetails.setReceiveData(receiveData);
@@ -211,7 +241,8 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 			List<Promocoderesult> result = body.getPromocoderesult();
 			if (result != null && result.size() > 0) {
 				response.addProperty("success", "true");
-				response.addProperty("amount", result.get(0).getCmDiscountType3() + result.get(0).getCmDiscountAmount2());
+				response.addProperty("amount",
+						result.get(0).getCmDiscountType3() + result.get(0).getCmDiscountAmount2());
 			} else {
 				response.addProperty("success", "false");
 				response.addProperty("message", "Please enter a valid promo code");

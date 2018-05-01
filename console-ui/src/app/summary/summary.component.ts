@@ -15,11 +15,13 @@ export class SummaryComponent implements OnInit {
   _planBenifit: string;
   _sd_amount:string;
   selectedRecmData;
-  planName;
+  planName:any;
+  productCharges:any;
   constructor(private router: Router, private datashare: DataShare) {
     this.selectedRecmData = this.datashare.usderDetailObj.selectedPlanObj;
+    this.productCharges = this.datashare.emaFactSheetData;
     this.planName = this.selectedRecmData.plan.substring(0,3);
-
+    //console.log("productCharges.pdfTier3Amount=====>",this.productCharges.pdfTier3Amount);
    }
 
   ngOnInit() {

@@ -24,12 +24,14 @@ export class UserConfirmationComponent implements OnInit {
   termConditionScnd:boolean = false;
   termConditionThird:boolean = false;
   editDetails:boolean = false;
+  sms:boolean=false;
+  email:boolean=false;
 
   constructor(private sbService: SidebarService, private DS: DataShare, private spinner: Ng4LoadingSpinnerService,
     private serverCall: ServiceCall, private http: Http, private commonService: CommonServices,
     private router: Router, private giropdf: GiroPdf) {
-      this.DS.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
-      this._usderDetailObj = this.DS.usderDetailObj;
+    this.DS.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
+    this._usderDetailObj = this.DS.usderDetailObj;
     this.sbService.getSidebar("newUser")
     this.commonService.gotoTopOfView();
   }
@@ -61,10 +63,21 @@ export class UserConfirmationComponent implements OnInit {
     pdfMake.createPdf(docDefinition).download("Keppel_Electric_Giro_Application_Form_Residential");
   };
 
-  marketingConsent(event){
+  marketingConsent(event,type){
+    if(type == 'consent'){
       this.DS.usderDetailObj.marketingConsent=event.target.checked;
+      this.sms = event.target.checked;
+      this.email = event.target.checked;
       console.log("IS MARKETING SELECTED:===>",this.DS.usderDetailObj.marketingConsent);
-      
+    }else if(type == 'email'){
+      this.DS.usderDetailObj.marketingEmail=event.target.checked;
+      this.email = event.target.checked;
+      console.log("Clicked===>", this.email);
+    }else if(type == 'sms'){
+      this.DS.usderDetailObj.marketingSMS=event.target.checked;
+      this.sms = event.target.checked;
+      console.log("Clicked===>", this.sms);
+    }
   }
 
   confirmClicked() {
@@ -99,7 +112,7 @@ export class UserConfirmationComponent implements OnInit {
         "serviceStartDate": this.DS.usderDetailObj.serviceStartDate,
         "tenantOrOwner": this.DS.usderDetailObj.tenantOrOwner,
         "applicationId": '',
-        "city": "",
+        "city": "Singapore",
         "remarks": "",
         "attachmentData": "",
         "attachmentName": "",
@@ -107,11 +120,11 @@ export class UserConfirmationComponent implements OnInit {
         "selectedPlan": this._usderDetailObj.selectedPlanObj.plan,
         "selectedPlanVersion": this._usderDetailObj.selectedPlanObj.version,
         "pastMonthConsumptionDetail": "",
-        "marketingEmail": "",
+        "marketingEmail": this.DS.usderDetailObj.marketingEmail,
         "marketingPhone": "",
-        "marketingSMS": "",
-        "TC": "",
-        "PDPA": "",
+        "marketingSMS": this.DS.usderDetailObj.marketingSMS,
+        "TC": "true",
+        "PDPA": "true",
         "securityDeposit":this._usderDetailObj.sd_amount,
         "pdfDotAmount" : this.DS.emaFactSheetData.pdfDotAmount,
         "pdfFppAmount" : this.DS.emaFactSheetData.pdfFppAmount,
