@@ -241,6 +241,23 @@
 							<generateDirectory>${project.build.directory}/generated-sources/xjc-CMPROMO</generateDirectory>
 						</configuration>
 					</execution>
+					
+					<execution>
+						<id>xjc-schema6</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<generatePackage>com.keppelCMRMS.CMRetMsgStatus</generatePackage>
+							<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+							<schemaIncludes>
+								<include>track_status.wsdl</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-CMRMS</generateDirectory>
+						</configuration>
+					</execution>
 
 
 					<!-- <execution> <id>xjc-schema3</id> <phase>generate-sources</phase> 

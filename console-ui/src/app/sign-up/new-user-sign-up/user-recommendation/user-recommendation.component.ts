@@ -408,14 +408,14 @@ export class UserRecommendationComponent implements OnInit {
         // String subscriptionBlockPriceDisValue = null;
         // String subscriptionMaxBlocksDisValue = null;
 
-       var tier1Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t1   //: any = null;
-       var tier2Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t2
+       var tier1Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t1; //: any = null;
+       var tier2Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t2;
        var tier3Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t1;
        var productName:any  = this.datashare.usderDetailObj.selectedPlanObj.product.substring(0,3); 
        var activePlan:boolean = Boolean(this.activeRecmPlan) //boolean.parse(this.activeRecmPlan)
 
         // New Code
-        if (activePlan) {
+       // if (activePlan) {
             // String productName = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "product", activePlanMap);
             //log.info("planName: " + this.datashare.emaFactSheetData.selectedRPlan + "::activePlanMap size: " + activePlanMap.size());
             // if (productsMap.containsKey(productName))
@@ -427,21 +427,21 @@ export class UserRecommendationComponent implements OnInit {
                 // String tier2Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t2", activePlanMap);
                 // String tier3Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t3", activePlanMap);
                 if (tier1Amount == (tier2Amount) && tier1Amount == (tier3Amount)) {
-                    var dotAmountDbl: any = tier1Amount;
+                    //var dotAmountDbl: any = tier1Amount;
                     // String dotAmount = String.valueOf(dotAmountDbl);
-                    var dotAmount: any = Math.round(dotAmountDbl);
-                   this.datashare.emaFactSheetData.pdfDotAmount = dotAmount;
-                    console.log("dotAmount in DOT--> " + dotAmount);
+                   // var dotAmount: any = Math.round(dotAmountDbl);
+                    this.datashare.emaFactSheetData.pdfDotAmount = tier1Amount;
+                    console.log("dotAmount in DOT--> " + tier1Amount);
 
                 }
                 if (tier1Amount == tier2Amount && tier2Amount != tier3Amount) {
                     var tier1AmountDbl: any = tier1Amount * 100;
                     // tier1Amount = String.valueOf(tier1AmountDbl);
-                    tier1Amount = Math.round(tier1AmountDbl);
+                    //tier1Amount = Math.round(tier1AmountDbl);
                     console.log("if t1 and t2 are equal tier1Amount DOT --> " + tier1Amount);
                     var tier3AmountDbl: any = tier3Amount * 100;
                     // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
+                    //tier3Amount = Math.round(tier3AmountDbl);
 
                     var peakValueT1: any = null;
                     var peakValueT3: any = null;
@@ -452,22 +452,22 @@ export class UserRecommendationComponent implements OnInit {
                     console.log("if t1 and t2 are equal peakValue DOT " + peakValueT1);
                     peakValueT1 = " 07:00AM To 11:00PM";
                     peakValueT3 = " 11:00PM To 07:00AM";
-                    this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
+                    this.datashare.emaFactSheetData.pdfTier1Amount = tier1AmountDbl;
                     this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
-                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
+                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3AmountDbl;
                     this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
 
                 }
                 if (tier2Amount == tier3Amount && tier1Amount != tier2Amount) {
                     var peakValueT1: any = null;
                     var peakValueT3: any = null;
-                    var tier3AmountDbl: any = tier3Amount * 100;
+                   // var tier3AmountDbl: any = tier3Amount ;//* 100;
                     // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
+                   // tier3Amount = Math.round(tier3AmountDbl);
                     console.log("if t2 and t3 are equal tier3Amount DOT--> " + tier3Amount);
-                    var tier1AmountDbl: any = tier1Amount * 100;
+                  //  var tier1AmountDbl: any = tier1Amount.// * 100;
                     // tier1Amount = String.valueOf(tier1AmountDbl);
-                    tier1Amount = Math.round(tier1AmountDbl);
+                    //tier1Amount = Math.round(tier1AmountDbl);
                     console.log("if t2 and t3 are equal tier1Amount--> " + tier1Amount);
                     //if (tiersMap.containsKey("T3"))
                     //  peakValueT3 = tiersMap.get("T3");
@@ -492,21 +492,20 @@ export class UserRecommendationComponent implements OnInit {
                 if (tier1Amount == (tier2Amount) && tier1Amount == (tier3Amount)) {
                     var dotAmountDbl: any = tier1Amount * 100;
                     // String fppAmount = String.valueOf(dotAmountDbl);
-                    var fppAmount: any = Math.round(dotAmountDbl);
-                   this.datashare.emaFactSheetData.pdfFppAmount = fppAmount;
-                    console.log("fppAmount--> " + fppAmount);
-
+                   // var fppAmount: any = Math.round(dotAmountDbl);
+                   this.datashare.emaFactSheetData.pdfFppAmount = dotAmountDbl;
+                    console.log("fppAmount--> " + dotAmountDbl);
                 }
                 if (tier1Amount == (tier2Amount) && tier2Amount != (tier3Amount)) {
                     var peakValueT1: any = null;
                     var peakValueT3: any = null;
                     var tier1AmountDbl: any = tier1Amount * 100;
                     // tier1Amount = String.valueOf(tier1AmountDbl);
-                    var tier1Amount: any = Math.round(tier1AmountDbl);
+                    //var tier1Amount: any = Math.round(tier1AmountDbl);
                     console.log("if t1 and t2 are equal in FIX tier1Amount--> " + tier1Amount);
                     var tier3AmountDbl: any = tier3Amount * 100;
                     // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
+                   // tier3Amount = Math.round(tier3AmountDbl);
                     //                  log.info("if t2 and t3 are equal FIX tier3Amount--> " + tier3Amount);
                     //                  if (tiersMap.containsKey("T1"))
                     //                      peakValueT1 = tiersMap.get("T1");
@@ -516,9 +515,9 @@ export class UserRecommendationComponent implements OnInit {
                     console.log("if t1 and t2 are equal peakValue in FIX" + peakValueT1);
                     peakValueT1 = " 07:00AM To 11:00PM";
                     peakValueT3 = " 11:00PM To 07:00AM";
-                    this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
+                    this.datashare.emaFactSheetData.pdfTier1Amount = tier1AmountDbl;
                     this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
-                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
+                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3AmountDbl;
                     this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
 
                 }
@@ -527,11 +526,11 @@ export class UserRecommendationComponent implements OnInit {
                     var peakValueT3: any = null;
                     var tier3AmountDbl: any = tier3Amount * 100;
                     // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
+                   // tier3Amount = Math.round(tier3AmountDbl);
                     console.log("if t2 and t3 are equal tier3Amount--> " + tier3Amount);
                     var tier1AmountDbl: any = tier1Amount * 100;
                     // tier1Amount = String.valueOf(tier1AmountDbl);
-                    tier1Amount = Math.round(tier1AmountDbl);
+                   // tier1Amount = Math.round(tier1AmountDbl);
                     //                  log.info("if t1 and t2 are equal tier1Amount in FPP--> " + tier1Amount);
                     //                  if (tiersMap.containsKey("T3"))
                     //                      peakValueT3 = tiersMap.get("T3");
@@ -540,15 +539,17 @@ export class UserRecommendationComponent implements OnInit {
                     console.log("if t2 and t3 are equal peakValue " + peakValueT3);
                     peakValueT1 = " 07:00AM To 11:00PM";
                     peakValueT3 = " 11:00PM To 07:00AM";
-                    this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
+                    this.datashare.emaFactSheetData.pdfTier1Amount = tier1AmountDbl;
                     this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
-                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
+                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3AmountDbl;
                     this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
 
                 }
             } else if (productName == "POOL") {
+                //non standard
                 //String adminFee = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "adminFee", activePlanMap);
             } else if (productName == ("SUB")) {
+                //non standard
                 // subscriptionBaseSizeDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBaseSize", activePlanMap);
                 // subscriptionBasePriceDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBasePrice", activePlanMap);
                 // subscriptionBlockSizeDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBlockSize", activePlanMap);
@@ -556,139 +557,139 @@ export class UserRecommendationComponent implements OnInit {
                 // subscriptionMaxBlocksDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionMaxBlocks", activePlanMap);
 
             }
-        } else {
+        // }  else {
 
-            if (productName == ("DOT")) {
-                console.log(":: Product Name:: InActive Map DOT");
-                //  String tier1Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t1", inActivePlanMap);
-                //  String tier2Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t2", inActivePlanMap);
-                //  String tier3Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t3", inActivePlanMap);
-                if (tier1Amount.equals(tier2Amount) && tier1Amount.equals(tier3Amount)) {
-                    var dotAmountDbl: any = tier1Amount;
-                    // String dotAmount = String.valueOf(dotAmountDbl);
-                    var dotAmount: any = Math.round(dotAmountDbl);
-                    console.log("dotAmount--> " + dotAmount);
-                    this.datashare.emaFactSheetData.pdfDotAmount = dotAmount;
-                }
-                if (tier1Amount == tier2Amount && !tier2Amount == tier3Amount) {
-                    var peakValueT1: any = null;
-                    var peakValueT3: any = null;
-                    var tier1AmountDbl: any = tier1Amount * 100;
-                    // tier1Amount = String.valueOf(tier1AmountDbl);
-                    tier1Amount = Math.round(tier1AmountDbl);
-                    console.log("if t1 and t2 are equal tier1Amount InActive Map DOT--> " + tier1Amount);
-                    var tier3AmountDbl: any = tier3Amount * 100;
-                    // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
-                    //                  log.info("if t2 and t3 are equal tier3Amount--> " + tier3Amount);
-                    //                  if (tiersMap.containsKey("T1"))
-                    //                      peakValueT1 = tiersMap.get("T1");
-                    //                  if (tiersMap.containsKey("T3"))
-                    //                      peakValueT3 = tiersMap.get("T3");
-                    console.log("if t1 and t2 are equal peakValue InActive Map DOT" + peakValueT1);
-                    peakValueT1 = " 07:00AM To 11:00PM";
-                    peakValueT3 = " 11:00PM To 07:00AM";
-                    this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
-                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
+        //     if (productName == ("DOT")) {
+        //         console.log(":: Product Name:: InActive Map DOT");
+        //         //  String tier1Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t1", inActivePlanMap);
+        //         //  String tier2Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t2", inActivePlanMap);
+        //         //  String tier3Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t3", inActivePlanMap);
+        //         if (tier1Amount.equals(tier2Amount) && tier1Amount.equals(tier3Amount)) {
+        //             var dotAmountDbl: any = tier1Amount;
+        //             // String dotAmount = String.valueOf(dotAmountDbl);
+        //             var dotAmount: any = Math.round(dotAmountDbl);
+        //             console.log("dotAmount--> " + dotAmount);
+        //             this.datashare.emaFactSheetData.pdfDotAmount = dotAmount;
+        //         }
+        //         if (tier1Amount == tier2Amount && !tier2Amount == tier3Amount) {
+        //             var peakValueT1: any = null;
+        //             var peakValueT3: any = null;
+        //             var tier1AmountDbl: any = tier1Amount * 100;
+        //             // tier1Amount = String.valueOf(tier1AmountDbl);
+        //             tier1Amount = Math.round(tier1AmountDbl);
+        //             console.log("if t1 and t2 are equal tier1Amount InActive Map DOT--> " + tier1Amount);
+        //             var tier3AmountDbl: any = tier3Amount * 100;
+        //             // tier3Amount = String.valueOf(tier3AmountDbl);
+        //             tier3Amount = Math.round(tier3AmountDbl);
+        //             //                  log.info("if t2 and t3 are equal tier3Amount--> " + tier3Amount);
+        //             //                  if (tiersMap.containsKey("T1"))
+        //             //                      peakValueT1 = tiersMap.get("T1");
+        //             //                  if (tiersMap.containsKey("T3"))
+        //             //                      peakValueT3 = tiersMap.get("T3");
+        //             console.log("if t1 and t2 are equal peakValue InActive Map DOT" + peakValueT1);
+        //             peakValueT1 = " 07:00AM To 11:00PM";
+        //             peakValueT3 = " 11:00PM To 07:00AM";
+        //             this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
+        //             this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
 
-                }
-                if (tier2Amount == tier3Amount && tier1Amount != tier2Amount) {
-                    var peakValueT1: any = null;
-                    var peakValueT3: any = null;
-                    var tier3AmountDbl: any = tier3Amount * 100;
-                    // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
-                    console.log("if t2 and t3 are equal tier3Amount InActive Map DOT--> " + tier3Amount);
-                    var tier1AmountDbl: any = tier1Amount * 100;
-                    // tier1Amount = String.valueOf(tier1AmountDbl);
-                    tier1Amount = Math.round(tier1AmountDbl);
-                    //                  log.info("if t1 and t2 are equal tier1Amount InActive Map DOT--> " + tier1Amount);
-                    //                  if (tiersMap.containsKey("T3"))
-                    //                      peakValueT3 = tiersMap.get("T3");
-                    //                  if (tiersMap.containsKey("T1"))
-                    //                      peakValueT1 = tiersMap.get("T1");
-                    console.log("if t2 and t3 are equal peakValue InActive Map DOT" + peakValueT3);
-                    peakValueT1 = " 07:00AM To 11:00PM";
-                    peakValueT3 = " 11:00PM To 07:00AM";
-                   this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
-                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
+        //         }
+        //         if (tier2Amount == tier3Amount && tier1Amount != tier2Amount) {
+        //             var peakValueT1: any = null;
+        //             var peakValueT3: any = null;
+        //             var tier3AmountDbl: any = tier3Amount * 100;
+        //             // tier3Amount = String.valueOf(tier3AmountDbl);
+        //             tier3Amount = Math.round(tier3AmountDbl);
+        //             console.log("if t2 and t3 are equal tier3Amount InActive Map DOT--> " + tier3Amount);
+        //             var tier1AmountDbl: any = tier1Amount * 100;
+        //             // tier1Amount = String.valueOf(tier1AmountDbl);
+        //             tier1Amount = Math.round(tier1AmountDbl);
+        //             //                  log.info("if t1 and t2 are equal tier1Amount InActive Map DOT--> " + tier1Amount);
+        //             //                  if (tiersMap.containsKey("T3"))
+        //             //                      peakValueT3 = tiersMap.get("T3");
+        //             //                  if (tiersMap.containsKey("T1"))
+        //             //                      peakValueT1 = tiersMap.get("T1");
+        //             console.log("if t2 and t3 are equal peakValue InActive Map DOT" + peakValueT3);
+        //             peakValueT1 = " 07:00AM To 11:00PM";
+        //             peakValueT3 = " 11:00PM To 07:00AM";
+        //            this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
+        //             this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
 
-                }
-            } else if (productName == "FIX") {
-                //String tier1Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t1", inActivePlanMap);
-                //String tier2Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t2", inActivePlanMap);
-                //String tier3Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t3", inActivePlanMap);
-                if (tier1Amount == tier2Amount && tier1Amount == tier3Amount) {
-                    var dotAmountDbl: any = tier1Amount * 100;
-                    // String fppAmount = String.valueOf(dotAmountDbl);
-                    var fppAmount: any = Math.round(dotAmountDbl);
-                    this.datashare.emaFactSheetData.pdfFppAmount = fppAmount;
-                    console.log("fppAmount--> " + fppAmount);
+        //         }
+        //     } else if (productName == "FIX") {
+        //         //String tier1Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t1", inActivePlanMap);
+        //         //String tier2Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t2", inActivePlanMap);
+        //         //String tier3Amount = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "t3", inActivePlanMap);
+        //         if (tier1Amount == tier2Amount && tier1Amount == tier3Amount) {
+        //             var dotAmountDbl: any = tier1Amount * 100;
+        //             // String fppAmount = String.valueOf(dotAmountDbl);
+        //             var fppAmount: any = Math.round(dotAmountDbl);
+        //             this.datashare.emaFactSheetData.pdfFppAmount = fppAmount;
+        //             console.log("fppAmount--> " + fppAmount);
 
-                }
-                if (tier1Amount == tier2Amount && !tier2Amount == tier3Amount) {
-                    var peakValueT1: any = null;
-                    var peakValueT3: any = null;
-                    var tier1AmountDbl: any = tier1Amount * 100;
-                    // tier1Amount = String.valueOf(tier1AmountDbl);
-                    tier1Amount = Math.round(tier1AmountDbl);
-                    console.log("if t1 and t2 are equal tier1Amount InActive Map FIX--> " + tier1Amount);
-                    //                  if (tiersMap.containsKey("T1"))
-                    //                      peakValueT1 = tiersMap.get("T1");
-                    var tier3AmountDbl: any = tier3Amount * 100;
-                    // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
-                    console.log("if t2 and t3 are equal tier3Amount InActive Map FIX--> " + tier3Amount);
-                    //                  if (tiersMap.containsKey("T3"))
-                    //                      peakValueT3 = tiersMap.get("T3");
-                    console.log("if t1 and t2 are equal peakValue InActive Map FIX" + peakValueT1);
-                    peakValueT1 = " 07:00AM To 11:00PM";
-                    peakValueT3 = " 11:00PM To 07:00AM";
-                   this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
-                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
+        //         }
+        //         if (tier1Amount == tier2Amount && !tier2Amount == tier3Amount) {
+        //             var peakValueT1: any = null;
+        //             var peakValueT3: any = null;
+        //             var tier1AmountDbl: any = tier1Amount * 100;
+        //             // tier1Amount = String.valueOf(tier1AmountDbl);
+        //             tier1Amount = Math.round(tier1AmountDbl);
+        //             console.log("if t1 and t2 are equal tier1Amount InActive Map FIX--> " + tier1Amount);
+        //             //                  if (tiersMap.containsKey("T1"))
+        //             //                      peakValueT1 = tiersMap.get("T1");
+        //             var tier3AmountDbl: any = tier3Amount * 100;
+        //             // tier3Amount = String.valueOf(tier3AmountDbl);
+        //             tier3Amount = Math.round(tier3AmountDbl);
+        //             console.log("if t2 and t3 are equal tier3Amount InActive Map FIX--> " + tier3Amount);
+        //             //                  if (tiersMap.containsKey("T3"))
+        //             //                      peakValueT3 = tiersMap.get("T3");
+        //             console.log("if t1 and t2 are equal peakValue InActive Map FIX" + peakValueT1);
+        //             peakValueT1 = " 07:00AM To 11:00PM";
+        //             peakValueT3 = " 11:00PM To 07:00AM";
+        //            this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
+        //             this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
 
-                }
-                if (tier2Amount == tier3Amount && tier1Amount != tier2Amount) {
-                    var peakValueT1: any = null;
-                    var peakValueT3: any = null;
-                    var tier3AmountDbl: any = tier3Amount * 100;
-                    // tier3Amount = String.valueOf(tier3AmountDbl);
-                    tier3Amount = Math.round(tier3AmountDbl);
-                    console.log("if t2 and t3 are equal tier3Amount InActive Map FIX--> " + tier3Amount);
-                    //                  if (tiersMap.containsKey("T3"))
-                    //                      peakValueT3 = tiersMap.get("T3");
-                    var tier1AmountDbl: any = tier1Amount * 100;
-                    // tier1Amount = String.valueOf(tier1AmountDbl);
-                    tier1Amount = Math.round(tier1AmountDbl);
-                    console.log("if t1 and t2 are equal tier1Amount InActive Map FIX--> " + tier1Amount);
-                    //                  if (tiersMap.containsKey("T1"))
-                    //                      peakValueT1 = tiersMap.get("T1");
-                    console.log("if t2 and t3 are equal peakValue InActive Map FIX" + peakValueT3);
-                    peakValueT1 = " 07:00AM To 11:00PM";
-                    peakValueT3 = " 11:00PM To 07:00AM";
-                   this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
-                    this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
-                    this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
+        //         }
+        //         if (tier2Amount == tier3Amount && tier1Amount != tier2Amount) {
+        //             var peakValueT1: any = null;
+        //             var peakValueT3: any = null;
+        //             var tier3AmountDbl: any = tier3Amount * 100;
+        //             // tier3Amount = String.valueOf(tier3AmountDbl);
+        //             tier3Amount = Math.round(tier3AmountDbl);
+        //             console.log("if t2 and t3 are equal tier3Amount InActive Map FIX--> " + tier3Amount);
+        //             //                  if (tiersMap.containsKey("T3"))
+        //             //                      peakValueT3 = tiersMap.get("T3");
+        //             var tier1AmountDbl: any = tier1Amount * 100;
+        //             // tier1Amount = String.valueOf(tier1AmountDbl);
+        //             tier1Amount = Math.round(tier1AmountDbl);
+        //             console.log("if t1 and t2 are equal tier1Amount InActive Map FIX--> " + tier1Amount);
+        //             //                  if (tiersMap.containsKey("T1"))
+        //             //                      peakValueT1 = tiersMap.get("T1");
+        //             console.log("if t2 and t3 are equal peakValue InActive Map FIX" + peakValueT3);
+        //             peakValueT1 = " 07:00AM To 11:00PM";
+        //             peakValueT3 = " 11:00PM To 07:00AM";
+        //            this.datashare.emaFactSheetData.pdfTier1Amount = tier1Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT1 = peakValueT1;
+        //             this.datashare.emaFactSheetData.pdfTier3Amount = tier3Amount;
+        //             this.datashare.emaFactSheetData.pdfPeakValueT3 = peakValueT3;
 
-                }
-            } else if (productName == "POOL") {
-                //String adminFee = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "adminFee", inActivePlanMap);
-            } else if (productName == "SUB") {
-                // subscriptionBaseSizeDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBaseSize", inActivePlanMap);
-                // subscriptionBasePriceDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBasePrice", inActivePlanMap);
-                // subscriptionBlockSizeDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBlockSize", inActivePlanMap);
-                // subscriptionBlockPriceDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBlockPrice", inActivePlanMap);
-                // subscriptionMaxBlocksDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionMaxBlocks", inActivePlanMap);
+        //         }
+        //     } else if (productName == "POOL") {
+        //         //String adminFee = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "adminFee", inActivePlanMap);
+        //     } else if (productName == "SUB") {
+        //         // subscriptionBaseSizeDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBaseSize", inActivePlanMap);
+        //         // subscriptionBasePriceDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBasePrice", inActivePlanMap);
+        //         // subscriptionBlockSizeDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBlockSize", inActivePlanMap);
+        //         // subscriptionBlockPriceDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionBlockPrice", inActivePlanMap);
+        //         // subscriptionMaxBlocksDisValue = getRPVersion(this.datashare.emaFactSheetData.selectedRPlan, "subscriptionMaxBlocks", inActivePlanMap);
 
-            }
-        }
+        //     }
+        // }
         console.log(this.datashare.emaFactSheetData);
         window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
     }

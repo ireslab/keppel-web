@@ -116,8 +116,8 @@
               <select name="Opt_idType" id="Opt_idType" class="form-control IDType" formControlName="icNumberType">
                 <option value="" disabled selected hidden>ID Type*</option>
                 <option value="FIN">FIN</option>
-                <option value="Blue-IC">Blue-IC</option>
-                <option value="Pink-IC">Pink-IC</option>
+                <option value="BIC">Blue-IC</option>
+                <option value="PIC">Pink-IC</option>
               </select>
               <div class="line"></div>
             </div>
@@ -242,7 +242,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevel"
+              <input [attr.disabled]="disableFloor == true ? true : null" type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevel"
                 maxlength="100">
               <!-- <div *ngIf="floorLevel.invalid && floorLevel.touched" class=" text-danger text-left">
                   <div *ngIf="floorLevel.errors?.required">
@@ -328,7 +328,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevelBill"
+                <input [attr.disabled]="disableFloor == true ? true : null" type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevelBill"
                   maxlength="100">
                 <div class="line"></div>
               </div>
@@ -377,7 +377,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
               <div class="form-group">
-                <input type="number" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number"
+                <input type="text" class="form-control SPNumber" id="txt_EBSMSSLAccountNo" aria-describedby="" placeholder="Input SP Account Number"
                   (blur)="getSPaccountNumber()" maxlength="10" formControlName="spAccount">
                 <div class="line"></div>
               </div>

@@ -10,6 +10,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { element } from 'protractor';
 import { ApiConstants } from '../../../network_layer/api_constants';
 import { Http, Response, Headers } from '@angular/http';
+import { DISABLED } from '@angular/forms/src/model';
 
 declare var $: any
 @Component({
@@ -45,7 +46,8 @@ export class UserContractComponent implements OnInit {
   optionalServiceOne: any;
   optionalServiceTwo: any;
   optionalServiceThree: any;
- 
+  disableFloor:boolean = false;
+
 
   _postcode: string = '';
   _streetName: string = '';
@@ -118,10 +120,10 @@ export class UserContractComponent implements OnInit {
     this.dateErrorSrlp = false;
     var endDate = new Date(this.contractForm.controls['serviceStartDate'].value)
     var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
-    endDate.setDate(endDate.getDate()-1);
+    endDate.setDate(endDate.getDate() - 1);
     this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0, 10);
-    console.log("END DATE VALUE==>",this.datashare.usderDetailObj.selectedPlanObj.contractDuration);
-    console.log("END DATE==>",this.datashare.usderDetailObj.serviceEndDate);
+    console.log("END DATE VALUE==>", this.datashare.usderDetailObj.selectedPlanObj.contractDuration);
+    console.log("END DATE==>", this.datashare.usderDetailObj.serviceEndDate);
   }
   selectedServices(index) {
     if (index == 1) {
@@ -206,9 +208,19 @@ export class UserContractComponent implements OnInit {
       streetNameBill: this.datashare.usderDetailObj.streetNameBill,
       blockBill: this.datashare.usderDetailObj.blockBill,
       buildingNameBill: this.datashare.usderDetailObj.buildingNameBill,
-      floorLevelBill: this.datashare.usderDetailObj.floorLevelBill,
-      spAccount: this.datashare.usderDetailObj.spAccount,
+      floorLevelBill: this.datashare.usderDetailObj.floorLevelBill, 
+      spAccount: [this.datashare.usderDetailObj.spAccount, [Validators.required, Validators.pattern('[0-9]{10}$')]],
     })
+
+
+    if(this.datashare.usderDetailObj.premiseType == 'LANDPROP')
+    {
+      this.disableFloor = true;
+      this.contractForm.controls['floorLevel'].setValidators([]);
+      this.contractForm.controls['floorLevel'].updateValueAndValidity();
+    }else{
+      this.disableFloor = false;
+    }
 
 
 
@@ -308,17 +320,25 @@ export class UserContractComponent implements OnInit {
       this.contractForm.controls['streetNameBill'].reset();
       this.contractForm.controls['blockBill'].reset();
       this.contractForm.controls['buildingNameBill'].reset();
-      this.contractForm.controls['floorLevelBill'].reset();
       this.contractForm.controls['postcodeBill'].setValidators([Validators.required]);
       this.contractForm.controls['streetNameBill'].setValidators([Validators.required]);
       this.contractForm.controls['blockBill'].setValidators([Validators.required]);
       this.contractForm.controls['buildingNameBill'].setValidators([Validators.required]);
-      this.contractForm.controls['floorLevelBill'].setValidators([Validators.required]);
+      
       this.contractForm.controls['postcodeBill'].updateValueAndValidity();
       this.contractForm.controls['streetNameBill'].updateValueAndValidity();
       this.contractForm.controls['blockBill'].updateValueAndValidity();
       this.contractForm.controls['buildingNameBill'].updateValueAndValidity();
-      this.contractForm.controls['floorLevelBill'].updateValueAndValidity();
+      if(this.datashare.usderDetailObj.premiseType == 'LANDPROP')
+      {
+        this.contractForm.controls['floorLevelBill'].reset();
+        this.contractForm.controls['floorLevelBill'].setValidators([]);
+        this.contractForm.controls['floorLevelBill'].updateValueAndValidity();
+      }else {
+        this.contractForm.controls['floorLevelBill'].reset();
+        this.contractForm.controls['floorLevelBill'].setValidators([Validators.required]);
+        this.contractForm.controls['floorLevelBill'].updateValueAndValidity();
+      }
     }
   }
 
@@ -429,13 +449,13 @@ export class UserContractComponent implements OnInit {
     this.serverCall.getPlans(_url).subscribe(
       data => {
         console.log(data);
-          if (data.success == "true"){
-           this.datashare.usderDetailObj.promocodeAmount = data.amount;
-          }else{
-            this.datashare.usderDetailObj.promocodeAmount = "0";
-          }
+        if (data.success == "true") {
+          this.datashare.usderDetailObj.promocodeAmount = data.amount;
+        } else {
+          this.datashare.usderDetailObj.promocodeAmount = "";
+        }
       }, (error: any) => {
-        this.datashare.usderDetailObj.promocodeAmount = "0";
+        this.datashare.usderDetailObj.promocodeAmount = "";
       }
     );
   }
@@ -555,14 +575,17 @@ export class UserContractComponent implements OnInit {
     }
 
   }
+  
   getSecurityDeposit() {
     if (navigator.onLine) {
       this.spinnerService.show();
+
       var rqst_json = JSON.stringify({
         "idType": this.datashare.usderDetailObj.icNumberType,
         "payMethod": this._payMethodKey,
         "premiseType": this.datashare.usderDetailObj.premiseType
       })
+      
       console.log(rqst_json)
       let _url = ApiConstants.GET_SECURITY_DEPOSIT;
       ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(

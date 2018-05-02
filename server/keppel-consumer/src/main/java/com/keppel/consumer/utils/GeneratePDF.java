@@ -264,13 +264,13 @@ public class GeneratePDF {
 			String selectedRPlan = mAccountDto.getSelectedPlan();
 
 			String servStartDateVal = mAccountDto.getServiceStartDate();
+			// 2018-05-09
 			SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat targetFormat = new SimpleDateFormat("dd/MM/yyyy");
 			if (servStartDateVal != null) {
 				try {
-					CommonUtils.changeDateFormat(servStartDateVal, originalFormat, targetFormat);
-				}catch(Exception exception) {
-					
+					servStartDateVal = CommonUtils.changeDateFormat(servStartDateVal, originalFormat, targetFormat);
+				} catch (Exception exception) {
 				}
 			}
 
@@ -287,7 +287,6 @@ public class GeneratePDF {
 			String promoCodeVal = mAccountDto.getPromoCode();
 			String promoCodeDiscount = "";
 			String securityDeposit = mAccountDto.getSecurityDeposit();
-		
 
 			addKeppelHeader(table, "Premises Details", "");
 			// addKeppelEntry(table, "", "");
@@ -363,17 +362,20 @@ public class GeneratePDF {
 			// applicable)");
 			//
 			// }
-			
+
 			try {
-				String tier1Amount = mAccountDto.getTier1Amount();
-				String tier2Amount = mAccountDto.getTier2Amount();
-				String tier3Amount = mAccountDto.getTier3Amount();
-				String productMapKeyVal = mAccountDto.getProductMapKeyVal();
+//				String tier1Amount = mAccountDto.getTier1Amount();
+//				String tier2Amount = mAccountDto.getTier2Amount();
+//				String tier3Amount = mAccountDto.getTier3Amount();
+//				String productMapKeyVal = mAccountDto.getProductMapKeyVal();
+				
 				String pdfDotAmount = mAccountDto.getPdfDotAmount();
 				String pdfFppAmount = mAccountDto.getPdfFppAmount();
-				String pdfTier1Amount = mAccountDto.getTier1Amount();
+				
+				String pdfTier1Amount = mAccountDto.getPdfTier1Amount();
 				String pdfPeakValueT1 = mAccountDto.getPdfPeakValueT1();
-				String pdfTier3Amount = mAccountDto.getTier3Amount();
+				
+				String pdfTier3Amount = mAccountDto.getPdfTier3Amount();
 				String pdfPeakValueT3 = mAccountDto.getPdfPeakValueT3();
 
 				addKeppelHeader(table, "Product Charges", "");
@@ -386,30 +388,49 @@ public class GeneratePDF {
 
 				addKeppelEntry(table, " ", "Consumption will be Loss Adjusted");
 
-				if (!"".equals(tier1Amount) && tier1Amount.equals(tier2Amount) && tier1Amount.equals(tier3Amount)) {
-					if (pdfDotAmount != null && productMapKeyVal.equals("DOT")) {
-						addKeppelEntry(table, "Energy Charges", "" + pdfDotAmount + "  % off SP Tariff");
-
-					} else if (pdfFppAmount != null && productMapKeyVal.equals("FIX")) {
-						addKeppelEntry(table, "Energy Charges", "" + pdfFppAmount + "  cents/kWh");
-					}
-				} else {
-					if (!"".equals(pdfTier1Amount) && pdfTier1Amount != null && pdfPeakValueT1 != null
-							&& !"".equals(pdfPeakValueT1)) {
-						addKeppelEntry(table, "Peak Rate", "" + pdfPeakValueT1 + " " + pdfTier1Amount);
-						log.info(" ::tier1Amount and peakValueT1 in pdf::" + pdfTier1Amount + " peakValueT1-->  "
-								+ pdfTier1Amount);
-					}
-					if (!"".equals(pdfTier3Amount) && pdfTier3Amount != null && pdfPeakValueT3 != null
-							&& !"".equals(pdfPeakValueT3)) {
-						log.info("--> peakValueT3 in pdf" + pdfPeakValueT3);
-						addKeppelEntry(table, "Off Peak Rate", "" + pdfPeakValueT3 + " " + pdfTier3Amount);
-					}
+				// if (!"".equals(tier1Amount) && tier1Amount.equals(tier2Amount) &&
+				// tier1Amount.equals(tier3Amount)) {
+				if (pdfDotAmount != null && !pdfDotAmount.equals("null") && pdfDotAmount.length() > 0) {
+					addKeppelEntry(table, "Energy Charges", "" + pdfDotAmount + "  % off SP Tariff");
 				}
-			}catch(Exception exception) {
+
+				if (pdfFppAmount != null && !pdfFppAmount.equals("null") && pdfFppAmount.length() > 0) {
+					addKeppelEntry(table, "Energy Charges", "" + pdfFppAmount + "  cents/kWh");
+				}
+
+				if ((pdfTier1Amount != null && !pdfTier1Amount.equals("null") && pdfTier1Amount.length() > 0)
+						&& (pdfPeakValueT1 != null && !pdfPeakValueT1.equals("null") && pdfPeakValueT1.length() > 0)) {
+					addKeppelEntry(table, "Peak Rate",
+							"" + pdfTier1Amount + " cents/kWh for peak periods from " + pdfPeakValueT1);
+				}
+
+				if ((pdfTier3Amount != null && !pdfTier3Amount.equals("null") && pdfTier3Amount.length() > 0)
+						&& (pdfPeakValueT3 != null && !pdfPeakValueT3.equals("null") && pdfPeakValueT3.length() > 0)) {
+					addKeppelEntry(table, "Off Peak Rate",
+							"" + pdfTier3Amount + " cents/kWh for peak periods from " + pdfPeakValueT3);
+				}
+
+				// if (!"".equals(pdfTier1Amount) && pdfTier1Amount != null && pdfPeakValueT1 !=
+				// null
+				// && !"".equals(pdfPeakValueT1)) {
+				// addKeppelEntry(table, "Peak Rate", "" + pdfPeakValueT1 + " " +
+				// pdfTier1Amount);
+				// log.info(" ::tier1Amount and peakValueT1 in pdf::" + pdfTier1Amount + "
+				// peakValueT1--> "
+				// + pdfTier1Amount);
+				// }
+				// if (!"".equals(pdfTier3Amount) && pdfTier3Amount != null && pdfPeakValueT3 !=
+				// null
+				// && !"".equals(pdfPeakValueT3)) {
+				// log.info("--> peakValueT3 in pdf" + pdfPeakValueT3);
+				// addKeppelEntry(table, "Off Peak Rate", "" + pdfPeakValueT3 + " " +
+				// pdfTier3Amount);
+				// }
+				// }
+			} catch (Exception exception) {
 				log.info(exception.getMessage());
 			}
-			
+
 			addKeppelHeader(table, "Additional Services", "");
 			if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Smart Meter"))
 					&& (additionalServices != null && !additionalServices.equals("Paper Bill"))) {
@@ -558,7 +579,7 @@ public class GeneratePDF {
 			addKeppelEntry(table, "", "");
 			addKeppelEntry(table, "", "");
 			Paragraph p1 = new Paragraph(
-					"Unless otherwise defined, capitalised terms used in this Form of Acceptance shall have the meanings ascribed to them in the Residential Consumers General Terms and Conditions (a copy of which is available at http://www.keppelelectric.com) (''GT&Cs''). For each Premises specified above, a separate and distinct agreement shall be formed for the services to be provided at such Premises, on the terms of the GT&amp;Cs and the terms applicable to that Premises in this Form of Acceptance. The effectiveness of each such agreement is subject to the conditions precedent set out in Clause 2.1 of the GT&Cs having been satisfied or waived in accordance with the provisions of the GT&Cs.",
+					"Unless otherwise defined, capitalised terms used in this Form of Acceptance shall have the meanings ascribed to them in the Residential Consumers General Terms and Conditions (a copy of which is available at http://www.keppelelectric.com) (''GT&Cs''). For each Premises specified above, a separate and distinct agreement shall be formed for the services to be provided at such Premises, on the terms of the GT&Cs and the terms applicable to that Premises in this Form of Acceptance. The effectiveness of each such agreement is subject to the conditions precedent set out in Clause 2.1 of the GT&Cs having been satisfied or waived in accordance with the provisions of the GT&Cs.",
 					FontFactory.getFont(FontFactory.HELVETICA, 9));
 
 			document.add(p1);

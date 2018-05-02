@@ -68,7 +68,9 @@ export class DataShare {
     "premiseType": "",
     "tenantOrOwner": "",
     "promocodeAmount":"",
-    "marketingConsent":""
+    "marketingConsent":"",
+    "marketingEmail":"",
+    "marketingSMS":""
   }
 
   emaFactSheetData = {
