@@ -209,7 +209,7 @@ export class UserContractComponent implements OnInit {
       blockBill: this.datashare.usderDetailObj.blockBill,
       buildingNameBill: this.datashare.usderDetailObj.buildingNameBill,
       floorLevelBill: this.datashare.usderDetailObj.floorLevelBill, 
-      spAccount: [this.datashare.usderDetailObj.spAccount, [Validators.required, Validators.pattern('[0-9]{10}$')]],
+      spAccount: [this.datashare.usderDetailObj.spAccount, [Validators.pattern('[0-9]{10}$')]],
     })
 
 
@@ -434,13 +434,28 @@ export class UserContractComponent implements OnInit {
   }
 
   getPicture(e) {
+    if(e.target.files[0].size > 5000000){
+      alert('Please select the file upto 5MB')
+      return;
+    }
     let uploadFileName = e.target.files[0].name;
+    var file = e.target.files[0];
     if (uploadFileName != undefined || uploadFileName != null) {
       this.pictureName = uploadFileName;
+      this.datashare.usderDetailObj.attachmentName = this.pictureName
+      var reader = new FileReader();
+      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
     } else {
       this.pictureName = "Upload Past Month's Bill";
     }
   }
+
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+           var base64textString= btoa(binaryString);
+           this.datashare.usderDetailObj.attachmentData = base64textString
+   }
 
   getPromoCode() {
     this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
