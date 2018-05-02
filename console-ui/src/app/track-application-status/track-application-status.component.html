@@ -34,6 +34,9 @@
               <div class="col-lg-8 offset-lg-2">
                 <div  *ngIf="trackStatus" class="form-text text-center text-danger" style="margin-bottom: 5px;">Reference Code does not exist. Try again</div>
                 <input (input)="trackIDEntered($event)" type="text" class="form-control Subject" id="txt_Subject" placeholder="Input Reference Code">
+                <div *ngIf="trackIDError" class=" text-danger text-left">
+                  Application Must be of 14 digits.
+                </div>
               </div>
             </div>
             <div class="row">
@@ -44,8 +47,6 @@
                 </div>
               </div>
             </div>
-
-
           </form>
 
           <!-- <div class="row">
