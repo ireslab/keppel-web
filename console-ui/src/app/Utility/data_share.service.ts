@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class DataShare {
   // selectedPlanObj:any;
+  trackAppNumber:any;
   paperCost:any = 0;
   meterType: string;
   usderDetailObj = {
