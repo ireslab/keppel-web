@@ -1,0 +1,124 @@
+<app-sidebar></app-sidebar>
+<!-- <div class="container-fluid oi-remove-rem sticky">
+  <button class="navbar-toggler navbar-light" type="button" onclick="openNav()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</div> -->
+
+<div class="header-section counter-modal-scrollbar"></div>
+
+<section class="the-content">
+  <div class="container-fluid max-fluid">
+    <div class="content-wrapper">
+      <div class="header-content">
+        <div class="tool-section">
+          <a href="#" class="print d-none d-lg-block">
+            <img src="assets/img/oi/print-button.png" alt="">
+          </a>
+        </div>
+        <div class="title-section">
+          <img src="assets/img/oi/track-icon.png" alt="" style="display:inline-block; padding-right: 10px;">
+          <div>
+            Track Application Status
+
+            <div class="sub-optional d-none d-lg-block">Get Information on the status of your Signup Application by submitting the information below:</div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="main-content">
+        <div class="page1 ">
+          <form class="contentForms">
+            <div class="row">
+              <div class="col-lg-8 offset-lg-2">
+                <div class="form-text text-center text-danger" style="margin-bottom: 5px;">Reference Code does not exist. Try again</div>
+                <input type="text" class="form-control Subject" id="txt_Subject" placeholder="Input Reference Code">
+              </div>
+            </div>
+            <div class="row">
+              <div class="captcha-block">
+                <re-captcha sitekey="6LeXHFIUAAAAAL1jo1HK_VKHl-DIdktPkGBqvgkR" (tokenChange)="getCapthaToken($event)"></re-captcha>
+                <div *ngIf="captchaErr" id="verified_captcha" class=" text-danger text-left">
+                  Please verify through captcha.
+                </div>
+              </div>
+            </div>
+
+
+          </form>
+
+          <!-- <div class="row">
+            <div class="col-md-12 text-center">
+              <img src="assets/img/newCaptchaAnchor.gif" class="dummyCaptcha">
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button id="track" class="btn btn-primary emphasis">TRACK</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="page2" style="display:none;">
+          <form class="contentForms">
+            <div class="row">
+              <div class="col-lg-8 offset-lg-2">
+                <div class="form-group" style="margin-top:20px;">
+                  <div class="input-group text-center">
+                    <input type="text" class="form-control text-center" value="201723456789" readonly style="padding-left: 12px">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="bulb-wrapper">
+            <div class="the-bar"></div>
+            <div class="bulb-container">
+              <div class="bulb">
+                <div class="image">
+                  <img class="img-fluid normal" src="assets/img/oi/track_1-normal.png">
+                  <img class="img-fluid active" src="assets/img/oi/track_1.png">
+                </div>
+                <div class="bulb-title">Start</div>
+              </div>
+              <div class="bulb">
+                <div class="image">
+                  <img class="img-fluid normal" src="assets/img/oi/track_2-normal.png">
+                  <img class="img-fluid active" src="assets/img/oi/track_2.png">
+                </div>
+                <div class="bulb-title">Generating Power</div>
+              </div>
+              <div class="bulb">
+                <div class="image">
+                  <img class="img-fluid normal" src="assets/img/oi/track_3-normal.png">
+                  <img class="img-fluid active" src="assets/img/oi/track_3.png">
+                </div>
+                <div class="bulb-title">Lighting Up</div>
+              </div>
+              <div class="bulb">
+                <div class="image">
+                  <img class="img-fluid normal" src="assets/img/oi/track_4-normal.png">
+                  <img class="img-fluid active" src="assets/img/oi/track_4.png">
+                </div>
+                <div class="bulb-title">Life just got brighter</div>
+              </div>
+            </div>
+
+          </div>
+          <div>
+            <button id="toggler">Toggler active</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+<ng4-loading-spinner> </ng4-loading-spinner>
+<app-footer></app-footer>

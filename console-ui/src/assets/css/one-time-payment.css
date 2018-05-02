@@ -1,0 +1,79 @@
+.payment-link {
+  display: block;
+  border: 0.625rem solid #5f5f5f;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 0;
+  color: #5f5f5f;
+  transition: all 0.3s; }
+  .payment-link .title {
+    padding-top: 10px;
+    text-decoration: none; }
+  .payment-link:hover {
+    border-color: #9e0040;
+    color: #9e0040;
+    text-decoration: none; }
+    .payment-link:hover .img-wrapper img:last-child {
+      opacity: 1; }
+    .payment-link:hover .img-wrapper img:first-child {
+      opacity: 0; }
+  .payment-link .img-container {
+    padding: 0 20px; }
+  .payment-link .img-wrapper {
+    position: relative; }
+    .payment-link .img-wrapper img:last-child {
+      position: absolute;
+      left: 0;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: all 0.3s; }
+    .payment-link .img-wrapper img:first-child {
+      transition: all 0.3s;
+      opacity: 1; }
+
+body, html {
+  font-size: 10px; }
+  @media (min-width: 600px) {
+    body, html {
+      font-size: 14px; } }
+  @media (min-width: 800px) {
+    body, html {
+      font-size: 16px; } }
+
+.modal.redborder {
+  opacity: 1; }
+  .modal.redborder .modal-content {
+    background: transparent;
+    border-color: transparent;
+    color: #000; }
+  .modal.redborder .modal-header {
+    background: url("../img/oi/modal-top.png");
+    background-size: 100%;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-position: 50% 100%; }
+  .modal.redborder .modal-body {
+    background: url("../img/oi/modal-body.png");
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: 50% 0; }
+    .modal.redborder .modal-body .close {
+      color: #9e0040;
+      font-size: 50px;
+      margin-right: 10px;
+      transform: translateY(-80%);
+      opacity: 1; }
+      @media (min-width: 430px) {
+        .modal.redborder .modal-body .close {
+          transform: translateY(-100%); } }
+  .modal.redborder .modal-footer {
+    background: url("../img/oi/modal-bottom.png");
+    background-size: 100%;
+    height: 87px;
+    background-repeat: no-repeat;
+    background-position: 50% 0; }
+
+/*# sourceMappingURL=one-time-payment.css.map */

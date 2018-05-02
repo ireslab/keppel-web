@@ -1,0 +1,14 @@
+small {
+  font-style: normal;
+}
+
+.BizTextArea label {
+  font-size: 20px;
+  text-transform: initial;
+}
+
+.captcha-block {
+  margin: 0px auto 20px;
+  /* display:inline-block;
+    margin-bottom: 20px; */
+}
