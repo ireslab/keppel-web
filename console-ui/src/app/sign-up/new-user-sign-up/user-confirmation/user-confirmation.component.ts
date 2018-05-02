@@ -108,7 +108,7 @@ export class UserConfirmationComponent implements OnInit {
         "billingAddress": this.DS.usderDetailObj.billingAddress,
         "billingAddress2": this.DS.usderDetailObj.billingAddress2,
         "billingPostalcode": this.DS.usderDetailObj.postcodeBill,
-        "ebsOrMSSLAccountNumber": '',
+        "ebsOrMSSLAccountNumber": this.DS.usderDetailObj.spAccount,
         "serviceStartDate": this.DS.usderDetailObj.serviceStartDate,
         "tenantOrOwner": this.DS.usderDetailObj.tenantOrOwner,
         "applicationId": '',
