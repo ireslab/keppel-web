@@ -234,6 +234,7 @@ export class UserRecommendationComponent implements OnInit {
 
 
     ngOnInit() {
+        document.getElementById('bg').style.backgroundColor = "#F3F3F3";
         this.signUpForm = this.fb.group({
             idNumber: ['', [Validators.required, ValidateNric]],
             mobileNumber: ['', [Validators.required, Validators.pattern('(8|9)[0-9]{7}$')]],

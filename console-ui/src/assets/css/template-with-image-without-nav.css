@@ -302,13 +302,13 @@
   left: -1px;
 }
 
-.oi-remove-rem.sticky {
+/* .oi-remove-rem.sticky {
   position: fixed;
   width: 100%;
   top: 0;
   background-color: #f3f3f3;
   z-index: 100;
-}
+} */
 
 @media only screen and (max-width: 380px) {
   .oi-remove-rem .navbar-light .navbar-toggler-icon {
