@@ -410,7 +410,13 @@ export class UserRecommendationComponent implements OnInit {
 
        var tier1Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t1; //: any = null;
        var tier2Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t2;
-       var tier3Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t1;
+       var tier3Amount:any  = this.datashare.usderDetailObj.selectedPlanObj.t3;
+
+       console.log("Tier 1 Amount===>", tier1Amount);
+       console.log("Tier 2 Amount===>", tier2Amount);
+       console.log("Tier 3 Amount===>", tier3Amount);
+
+
        var productName:any  = this.datashare.usderDetailObj.selectedPlanObj.product.substring(0,3); 
        var activePlan:boolean = Boolean(this.activeRecmPlan) //boolean.parse(this.activeRecmPlan)
 

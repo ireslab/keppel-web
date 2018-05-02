@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
-
 import com.google.gson.JsonObject;
 import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.SecurityDeposit;
@@ -22,6 +20,8 @@ import com.keppelCMPROMO.CmPromotionCodeGenerationBS.CmPromotionCodeGenerationBS
 import com.keppelCMPROMO.CmPromotionCodeGenerationBS.CmPromotionCodeGenerationBS.Promocoderesult;
 import com.keppelCMR.CMRECPLAN.CMRECPLAN;
 import com.keppelCMRET.CMRetSDAmt.CMRetSDAmt;
+import com.keppelCMRMS.CMRetMsgStatus.CMRetMsgStatus;
+import com.keppelCMRMS.CMRetMsgStatus.CMRetMsgStatus.Results;
 import com.keppelM1.M1MMCTR.M1MMCTR;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails;
 import com.keppelM1.M1MMCTR.M1MMCTR.ReceiveDetails.ReceiveData;
@@ -51,6 +51,10 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 	@Qualifier("CMPROMO")
 	@Autowired
 	private WebServiceTemplate webServiceTemplateCMPROMO;
+
+	@Qualifier("CMRMS")
+	@Autowired
+	private WebServiceTemplate webServiceTemplateCMRMS;
 
 	/*
 	 * @Qualifier("CREATEINCIDENTWS")
@@ -100,9 +104,13 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		receiveDetail.setTenantorOwner(accountDto.getTenantOrOwner());
 		receiveDetail.setRecommendedPlanVersion(accountDto.getSelectedPlanVersion());
 		receiveDetail.setPastMonthConsumptionDetails(accountDto.getPastMonthConsumptionDetail());
-		receiveDetail.setMarketingEmail(accountDto.getMarketingEmail());
-		receiveDetail.setMarketingPhone(accountDto.getMarketingPhone());
-		receiveDetail.setMarketingSMS(accountDto.getMarketingSMS());
+		// receiveDetail.setMarketingEmail(accountDto.getMarketingEmail());
+
+		if (accountDto.getMarketingSMS() != null) {
+			receiveDetail.setMarketingPhone(accountDto.getMarketingSMS());
+			receiveDetail.setMarketingSMS(accountDto.getMarketingSMS());
+		}
+
 		receiveDetail.setCurrentMeterType(accountDto.getMeterType());
 		receiveDetail.setTC("true");
 		receiveDetail.setPDPA("true");
@@ -251,6 +259,58 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 			response.addProperty("success", "false");
 			response.addProperty("message", "Please enter a valid promo code");
 		}
+		return response;
+	}
+
+	@Override
+	public JsonObject getTrackStatus(String messageid) {
+		CMRetMsgStatus body = new CMRetMsgStatus();
+		body.setMessageId(messageid);
+		body = (CMRetMsgStatus) webServiceTemplateCMRMS.marshalSendAndReceive(body);
+		JsonObject response = new JsonObject();
+
+		if (body != null) {
+			if (body.getResults() != null && body.getResults().size() > 0) {
+				Results result = body.getResults().get(0);
+				String description = result.getDescription();
+				String imageVisible = null;
+
+				if (description != null) {
+					if (description.equals("Canceled") || description.equals("Remove From Processing")
+							|| description.equals("Termination Notice Sent")) {
+						imageVisible = "I";
+					} else if (description.equals("Initilized") || description.equals("Wait Cooling Period")
+							|| description.equals("Message Sent") || description.equals("Message Created")
+							|| description.equals("MessageSend Error")
+							|| description.equals("Validation Acknowledgement Failed")
+							|| description.equals("Validation Failed") || description.equals("Wait Validation Ack")) {
+						imageVisible = "WCP";
+					} else if (description.equals("New Action Date Required")
+							|| description.equals("New Action Date Notice Sent")
+							|| description.equals("Update Action Date") || description.equals("Wait CTR Report")) {
+						imageVisible = "VF";
+					} else if (description.equals("Completed") || description.equals("CTR Report Received")) {
+						imageVisible = "C";
+					}
+					
+					response.addProperty("success", "true");
+					response.addProperty("message", result.getDescription());
+					response.addProperty("image", imageVisible);
+					
+				} else {
+					response.addProperty("success", "false");
+					response.addProperty("message", "No Application Status found.");
+				}
+			} else {
+				response.addProperty("success", "false");
+				response.addProperty("message", "No Application Status found.");
+			}
+
+		} else {
+			response.addProperty("success", "false");
+			response.addProperty("message", "No Application Status found.");
+		}
+
 		return response;
 	}
 }

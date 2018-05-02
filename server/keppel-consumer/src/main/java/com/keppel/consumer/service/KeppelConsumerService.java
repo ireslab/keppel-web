@@ -18,4 +18,6 @@ public interface KeppelConsumerService {
 	public SecurityDeposit.SecurityDepositResponse getSecutityDeposit(SecurityDeposit deposits);
 	
 	public JsonObject getPromoCode(String promocode);
+	
+	public JsonObject getTrackStatus(String messageid);
 }
