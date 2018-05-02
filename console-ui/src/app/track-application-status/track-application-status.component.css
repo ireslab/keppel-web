@@ -1,0 +1,28 @@
+
+/* .bgcolor{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height:100vh;
+  min-height: 100%;
+  background-color: red;
+} */
+
+
+small {
+  font-style: normal;
+}
+
+.BizTextArea label {
+  font-size: 20px;
+  text-transform: initial;
+}
+
+.captcha-block {
+  margin: 0px auto 20px;
+  /* display:inline-block;
+    margin-bottom: 20px; */
+}
+

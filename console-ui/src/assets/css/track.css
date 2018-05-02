@@ -1,0 +1,202 @@
+form.contentForms {
+  font-size: calc(8px + 0.5vw);
+}
+
+form.contentForms input,
+form.contentForms select,
+form.contentForms textarea {
+  padding-left: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 56px;
+  background-color: #e5e7e9;
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-size: calc(12px + 0.5vw);
+  color: #58595b;
+  margin-bottom: 25px !important;
+}
+
+form.contentForms input[readonly] {
+  background-color: #aeb0ba;
+  font-weight: bold;
+}
+
+form.contentForms textarea {
+  background-position: 15px 15px;
+  padding-top: 15px;
+}
+
+body,
+html {
+  background-position: 50%;
+  font-size: 10px;
+}
+
+@media (min-width: 600px) {
+  body,
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  body,
+  html {
+    background-color: #302c2d;
+    font-size: 16px;
+  }
+}
+
+.tool-section {
+  min-height: 55px;
+}
+
+.tool-section .title-section {
+  font-size: calc(9px + 0.5vw);
+}
+
+.header-section {
+  background-color: #302c2d;
+}
+
+@media (min-width: 992px) {
+  .header-section:before {
+    background-image: url("../img/oi/bg-track.png");
+    padding-bottom: 56.25%;
+  }
+}
+
+.content-wrapper {
+  min-height: 0;
+}
+
+.bulb-wrapper {
+  position: relative;
+}
+
+.bulb-wrapper .bulb-container {
+  display: flex;
+  border-top: 5px solid #aeb0ba;
+}
+
+.bulb-wrapper .bulb-container .bulb {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.bulb-wrapper .image {
+  position: relative;
+  top: -7px;
+}
+
+.bulb-wrapper .image>img {
+  max-width: 45px;
+}
+
+.bulb-wrapper .image .normal {
+  display: inline;
+}
+
+.bulb-wrapper .image .active {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .bulb-wrapper .image {
+    top: -9px;
+  }
+  .bulb-wrapper .image>img {
+    max-width: 60px;
+  }
+}
+
+@media (min-width: 992px) {
+  .bulb-wrapper .image {
+    top: -12px;
+  }
+  .bulb-wrapper .image>img {
+    max-width: 100%;
+  }
+}
+
+.bulb-wrapper .bulb-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #aeb0ba;
+}
+
+.bulb-wrapper .the-bar {
+  display: block;
+  height: 5px;
+  width: 0;
+  position: absolute;
+  background: #9e0040;
+  top: 0;
+}
+
+.bulb-wrapper.one .bulb:nth-child(1) .bulb-title,
+.bulb-wrapper.two .bulb:nth-child(1) .bulb-title,
+.bulb-wrapper.two .bulb:nth-child(2) .bulb-title,
+.bulb-wrapper.three .bulb:nth-child(1) .bulb-title,
+.bulb-wrapper.three .bulb:nth-child(2) .bulb-title,
+.bulb-wrapper.three .bulb:nth-child(3) .bulb-title,
+.bulb-wrapper.four .bulb:nth-child(1) .bulb-title,
+.bulb-wrapper.four .bulb:nth-child(2) .bulb-title,
+.bulb-wrapper.four .bulb:nth-child(3) .bulb-title,
+.bulb-wrapper.four .bulb:nth-child(4) .bulb-title {
+  color: #9e0040;
+}
+
+.bulb-wrapper.one .bulb:nth-child(1) .active,
+.bulb-wrapper.two .bulb:nth-child(1) .active,
+.bulb-wrapper.two .bulb:nth-child(2) .active,
+.bulb-wrapper.three .bulb:nth-child(1) .active,
+.bulb-wrapper.three .bulb:nth-child(2) .active,
+.bulb-wrapper.three .bulb:nth-child(3) .active,
+.bulb-wrapper.four .bulb:nth-child(1) .active,
+.bulb-wrapper.four .bulb:nth-child(2) .active,
+.bulb-wrapper.four .bulb:nth-child(3) .active,
+.bulb-wrapper.four .bulb:nth-child(4) .active {
+  display: inline;
+}
+
+.bulb-wrapper.one .bulb:nth-child(1) .normal,
+.bulb-wrapper.two .bulb:nth-child(1) .normal,
+.bulb-wrapper.two .bulb:nth-child(2) .normal,
+.bulb-wrapper.three .bulb:nth-child(1) .normal,
+.bulb-wrapper.three .bulb:nth-child(2) .normal,
+.bulb-wrapper.three .bulb:nth-child(3) .normal,
+.bulb-wrapper.four .bulb:nth-child(1) .normal,
+.bulb-wrapper.four .bulb:nth-child(2) .normal,
+.bulb-wrapper.four .bulb:nth-child(3) .normal,
+.bulb-wrapper.four .bulb:nth-child(4) .normal {
+  display: none;
+}
+
+.bulb-wrapper.one .the-bar {
+  width: 12.5%;
+}
+
+.bulb-wrapper.two .the-bar {
+  width: 37.5%;
+}
+
+.bulb-wrapper.three .the-bar {
+  width: 62.5%;
+}
+
+.bulb-wrapper.four .the-bar {
+  width: 100%;
+}
+
+.bulb-wrapper.remove .the-bar {
+  width: 0;
+  transition: none;
+}
+
+.bulb-wrapper.remove .bulb .bulb-title {
+  transition: none;
+}

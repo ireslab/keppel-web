@@ -1,243 +1,248 @@
-<header class="topbar kpl-topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew, 'navbar-dark':login }">
+<header class="topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login ,'kpl-topbar':!appTrack}">
+<!-- <header *ngIf="appTrack" class="topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login }"> -->
 
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  
-      <!-- new-user/business/landing-sidebar -->
-  
-      <ul *ngIf="newUser || login || business || aknowNew ">
-        <li>
-          <div>
-            <a class="kpl-MenuItem About" href="#">About Us</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Login" href="#">Login</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Products" href="#">Products</a>
-          </div>
-        </li>
-        <li>
-          <a class="kpl-MenuItem Signup" [ngClass]="{'On':(residentialLink.isActive || businesLink.isActive)}" href="javascrip:void(0)">Sign Up</a>
-          <ul>
-            <li>
-              <div routerLinkActive="active" #residentialLink="routerLinkActive">
-                <a class="kpl-MenuItem Residential" routerLink="/new-user-recommendation">Residential</a>
-              </div>
-            </li>
-            <li>
-              <div routerLinkActive="active" #businesLink="routerLinkActive">
-                <a class="kpl-MenuItem Business" routerLink="/business-details">Business</a>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Register" href="#">Register Your Interest</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Track" href="#">Track Status</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Help" href="#">Help & Support</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Contact" href="#">Contact Us</a>
-          </div>
-        </li>
-      </ul>
-  
-      <!-- existing-user-sidebar -->
-  
-      <ul *ngIf="existingUser">
-        <li>
-          <div>
-            <a class="kpl-MenuItem Logout on" href="#">Logout</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Dashboard on" href="#">Dashboard</a>
-          </div>
-        </li>
-        <li class="d-block d-lg-none">
-          <div>
-            <a class="kpl-MenuItem Bills on" href="#">Bills & Payments</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Consumption on" href="#">Consumption</a>
-          </div>
-        </li>
-        <li class="d-block d-lg-none">
-          <a class="kpl-MenuItem RewardsRef on" href="#">Rewards & Referrals</a>
-          <ul>
-            <li>
-              <div>
-                <a class="kpl-MenuItem Rewards on" href="#">Rewards</a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a class="kpl-MenuItem Referral on" href="#">Referral Code</a>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="d-block d-lg-none">
-          <div>
-            <a class="kpl-MenuItem Contract on" href="#">Contract Details</a>
-          </div>
-        </li>
-        <li class="d-block d-lg-none">
-          <div>
-            <a class="kpl-MenuItem ServiceRequest on" href="#">Service Request</a>
-          </div>
-        </li>
-        <li class="d-block d-lg-none">
-          <a class="kpl-MenuItem Renew on" href="#">Recontract / New Premises</a>
-          <ul>
-            <li>
-              <div>
-                <a class="kpl-MenuItem ReContract on" href="#">ReContract</a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a class="kpl-MenuItem NewPremises on" href="#">New Premises</a>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="d-block d-lg-none">
-          <div>
-            <a class="kpl-MenuItem Account on" href="#">Account Settings</a>
-          </div>
-        </li>
-        <li class="d-block d-lg-none">
-          <div>
-            <a class="kpl-MenuItem Notification on" href="#">Notifications</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Help on" href="#">Help & Support</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem LiveChat" href="#">Live Chat</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Contact on" href="#">Contact Us</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem Track on" href="#">Track Status</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a class="kpl-MenuItem About" href="#">About Us</a>
-          </div>
-        </li>
-      </ul>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- new-user/business/landing-sidebar -->
+
+    <ul *ngIf="newUser || login || business || aknowNew || appTrack">
+      <li>
+        <div>
+          <a class="kpl-MenuItem About" href="#">About Us</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Login" href="#">Login</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Products" href="#">Products</a>
+        </div>
+      </li>
+      <li>
+        <a class="kpl-MenuItem Signup" [ngClass]="{'On':(residentialLink.isActive || businesLink.isActive)}" href="javascrip:void(0)">Sign Up</a>
+        <ul>
+          <li>
+            <div routerLinkActive="active" #residentialLink="routerLinkActive">
+              <a class="kpl-MenuItem Residential" routerLink="/new-user-recommendation">Residential</a>
+            </div>
+          </li>
+          <li>
+            <div routerLinkActive="active" #businesLink="routerLinkActive">
+              <a class="kpl-MenuItem Business" routerLink="/business-details">Business</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Register" href="#">Register Your Interest</a>
+        </div>
+      </li>
+      <li>
+        <div routerLinkActive="active">
+          <a class="kpl-MenuItem Track" routerLink="/track-application-status">Track Status</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Help" href="#">Help & Support</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Contact" href="#">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- existing-user-sidebar -->
+
+    <ul *ngIf="existingUser">
+      <li>
+        <div>
+          <a class="kpl-MenuItem Logout on" href="#">Logout</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Dashboard on" href="#">Dashboard</a>
+        </div>
+      </li>
+      <li class="d-block d-lg-none">
+        <div>
+          <a class="kpl-MenuItem Bills on" href="#">Bills & Payments</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Consumption on" href="#">Consumption</a>
+        </div>
+      </li>
+      <li class="d-block d-lg-none">
+        <a class="kpl-MenuItem RewardsRef on" href="#">Rewards & Referrals</a>
+        <ul>
+          <li>
+            <div>
+              <a class="kpl-MenuItem Rewards on" href="#">Rewards</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <a class="kpl-MenuItem Referral on" href="#">Referral Code</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="d-block d-lg-none">
+        <div>
+          <a class="kpl-MenuItem Contract on" href="#">Contract Details</a>
+        </div>
+      </li>
+      <li class="d-block d-lg-none">
+        <div>
+          <a class="kpl-MenuItem ServiceRequest on" href="#">Service Request</a>
+        </div>
+      </li>
+      <li class="d-block d-lg-none">
+        <a class="kpl-MenuItem Renew on" href="#">Recontract / New Premises</a>
+        <ul>
+          <li>
+            <div>
+              <a class="kpl-MenuItem ReContract on" href="#">ReContract</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <a class="kpl-MenuItem NewPremises on" href="#">New Premises</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="d-block d-lg-none">
+        <div>
+          <a class="kpl-MenuItem Account on" href="#">Account Settings</a>
+        </div>
+      </li>
+      <li class="d-block d-lg-none">
+        <div>
+          <a class="kpl-MenuItem Notification on" href="#">Notifications</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Help on" href="#">Help & Support</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem LiveChat" href="#">Live Chat</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Contact on" href="#">Contact Us</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem Track on" href="#">Track Status</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="kpl-MenuItem About" href="#">About Us</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="oi-remove-rem sticky" *ngIf="appTrack" style="z-index: 0;">
+    <button class="navbar-light" [ngClass]="{'navbar-toggler':appTrack}" type="button" onclick="openNav()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="row" *ngIf="login">
+    <div class="col-2 col-md-1">
+      <button [ngClass]="{'navbar-toggler':!appTrack}" type="button" onclick="openNav()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
-  
-  
-    <div class="row" *ngIf="login">
-      <div class="col-2 col-md-1">
-        <button class="navbar-toggler" type="button" onclick="openNav()">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
+  </div>
+  <div class="row" *ngIf="newUser || existingUser || business || aknowNew ">
+    <!-- Use any element to open the sidenav -->
+    <div class="col-lg-6 clearfix">
+      <button class="navbar-toggler float-left navbar-light1"  type="button" onclick="openNav()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url === '/new-user-recommendation'">Product Recommendation</h1>
+      <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url != '/new-user-recommendation' && this.router.url != '/track-application-status'">NEW USER SIGN UP</h1>
+      <!-- <h1 class="kpl-pgTitle float-left">Product Recommendation</h1> -->
     </div>
-    <div class="row" *ngIf="newUser || existingUser || business ||aknowNew">
-      <!-- Use any element to open the sidenav -->
-      <div class="col-lg-6 clearfix">
-        <button class="navbar-toggler float-left" type="button" onclick="openNav()">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url === '/new-user-recommendation'">Product Recommendation</h1>
-        <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url != '/new-user-recommendation'">NEW USER SIGN UP</h1>
-        <!-- <h1 class="kpl-pgTitle float-left">Product Recommendation</h1> -->
-      </div>
-  
-      <!--Progress Bar New-user/Existing-User-->
-      <div class="col-lg-6 text-lg-right text-center" *ngIf="existingUser || newUser">
-        <nav>
-          <ul class="kpl-progressBar">
-            <li [ngClass]="{active:this.router.url == '/new-user-recommendation'}">
-              Step
-              <a  *ngIf="newUser">
-                <span>1</span>
-              </a>
-              <a role="button" routerLink="/existing-recommendation" *ngIf="existingUser">
-                <span>1</span>
-              </a>
-              Recommendation
-            </li>
-            <li [ngClass]="{active:this.router.url == '/new-user-contract'}">
-              Step
-              <a *ngIf="newUser">
-                <span>2</span>
-              </a>
-              <a role="button" routerLink="/existing-contract" *ngIf="existingUser">
-                <span>2</span>
-              </a>
-              Contract
-            </li>
-            <li [ngClass]="{active:this.router.url == '/new-user-confirmation'}">
-              Step
-              <a  *ngIf="newUser">
-                <span>3</span>
-              </a>
-              <a role="button" routerLink="/existing-confirmation" *ngIf="existingUser">
-                <span>3</span>
-              </a>
-              Confirmation
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <!--Progress Bar business-user-->
-      <div class="col-lg-6 text-lg-right text-center" *ngIf="business">
-        <nav>
-          <ul class="kpl-progressBar">
-            <li routerLinkActive="active">
-              Step
-              <a role="button" routerLink="/business-details">
-                <span>1</span>
-              </a>
-              Business Details
-            </li>
-            <li routerLinkActive="active">
-              Step
-              <a role="button" routerLink="/business-contact">
-                <span>2</span>
-              </a>
-              Contact Details
-            </li>
-          </ul>
-        </nav>
-      </div>
+
+    <!--Progress Bar New-user/Existing-User-->
+    <div class="col-lg-6 text-lg-right text-center" *ngIf="existingUser || newUser">
+      <nav>
+        <ul class="kpl-progressBar">
+          <li [ngClass]="{active:this.router.url == '/new-user-recommendation'}">
+            Step
+            <a *ngIf="newUser">
+              <span>1</span>
+            </a>
+            <a role="button" routerLink="/existing-recommendation" *ngIf="existingUser">
+              <span>1</span>
+            </a>
+            Recommendation
+          </li>
+          <li [ngClass]="{active:this.router.url == '/new-user-contract'}">
+            Step
+            <a *ngIf="newUser">
+              <span>2</span>
+            </a>
+            <a role="button" routerLink="/existing-contract" *ngIf="existingUser">
+              <span>2</span>
+            </a>
+            Contract
+          </li>
+          <li [ngClass]="{active:this.router.url == '/new-user-confirmation'}">
+            Step
+            <a *ngIf="newUser">
+              <span>3</span>
+            </a>
+            <a role="button" routerLink="/existing-confirmation" *ngIf="existingUser">
+              <span>3</span>
+            </a>
+            Confirmation
+          </li>
+        </ul>
+      </nav>
     </div>
-    <!-- <div class="row" *ngIf="aknowNew">
+    <!--Progress Bar business-user-->
+    <div class="col-lg-6 text-lg-right text-center" *ngIf="business">
+      <nav>
+        <ul class="kpl-progressBar">
+          <li routerLinkActive="active">
+            Step
+            <a role="button" routerLink="/business-details">
+              <span>1</span>
+            </a>
+            Business Details
+          </li>
+          <li routerLinkActive="active">
+            Step
+            <a role="button" routerLink="/business-contact">
+              <span>2</span>
+            </a>
+            Contact Details
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- <div class="row" *ngIf="aknowNew">
       <div class="col-lg-6 clearfix">
         <button class="navbar-toggler float-left" type="button" onclick="openNav()">
           <span class="navbar-toggler-icon"></span>
@@ -246,5 +251,5 @@
       </div>
   
     </div> -->
-  
-  </header>  
+
+</header>
