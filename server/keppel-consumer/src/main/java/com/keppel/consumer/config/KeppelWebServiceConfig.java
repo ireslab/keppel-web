@@ -80,6 +80,18 @@ public class KeppelWebServiceConfig {
 		return webServiceTemplate;
 	}
 	
+	@Bean(name = "CMRMS")
+	public WebServiceTemplate webServiceTemplateCMRMS() throws KeyManagementException, NoSuchAlgorithmException {
+		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+		webServiceTemplate.setMarshaller(jaxb2MarshallerCMRMS());
+		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCMRMS());
+		webServiceTemplate.setDefaultUri("https://10.21.32.10:6501/ccbsit/webservices/CM-RetMsgStatus?wsdl");
+		//webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ouaf/CM-RetMsgStatus?wsdl");
+		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
+		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
+		return webServiceTemplate;
+	}
+	
 	
 
 	@Bean
@@ -117,6 +129,12 @@ public class KeppelWebServiceConfig {
 		return jaxb2Marshaller;
 	}
 	
+	@Bean
+	Jaxb2Marshaller jaxb2MarshallerCMRMS() {
+		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+		jaxb2Marshaller.setContextPath("com.keppelCMRMS.CMRetMsgStatus");
+		return jaxb2Marshaller;
+	}
 	
 	
 	

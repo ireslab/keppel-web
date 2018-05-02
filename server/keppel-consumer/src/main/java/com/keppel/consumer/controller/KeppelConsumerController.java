@@ -364,6 +364,23 @@ public class KeppelConsumerController {
  		return res.toString();
 	}
 
+	/*
+	 * @ApiOperation(value = "Unprotected Resource", notes =
+	 * "Example of an unprotected resource, this resource is accessible without a valid token."
+	 * )
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 200, message =
+	 * "A constant string is returned") })
+	 */
+	@RequestMapping(value = "getAppStatus/{messageid}", method = RequestMethod.GET)
+	public String getTrackStatus(@PathVariable String messageid) {
+		logger.info("Request info for getPromocode ");
+		JsonObject res = keppelConsumerService.getTrackStatus(messageid);
+ 		return res.toString();
+	}
+	
+	
+	
 	/**
 	 * This API gets security deposit.
 	 * 
