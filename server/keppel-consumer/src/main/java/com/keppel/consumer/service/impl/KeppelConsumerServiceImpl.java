@@ -169,9 +169,8 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		m1mmctr.getReceiveDetails().addAll(receiveDetailsList);
 		M1MMCTR m1mmctrResponse = (M1MMCTR) webServiceTemplateM1MMCTR.marshalSendAndReceive(m1mmctr);
 
-		// if (accountDto.getAttachmentData() != null &&
-		// accountDto.getAttachmentData().length() > 100)
-		// submitUserImageData(accountDto);
+		if (accountDto.getAttachmentData() != null && accountDto.getAttachmentData().length() > 100)
+			submitUserImageData(accountDto);
 
 		return m1mmctrResponse;
 	}
@@ -292,11 +291,11 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 					} else if (description.equals("Completed") || description.equals("CTR Report Received")) {
 						imageVisible = "C";
 					}
-					
+
 					response.addProperty("success", "true");
 					response.addProperty("message", result.getDescription());
 					response.addProperty("image", imageVisible);
-					
+
 				} else {
 					response.addProperty("success", "false");
 					response.addProperty("message", "No Application Status found.");
