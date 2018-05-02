@@ -70,7 +70,9 @@ export class DataShare {
     "promocodeAmount":"",
     "marketingConsent":"",
     "marketingEmail":"",
-    "marketingSMS":""
+    "marketingSMS":"",
+    "attachmentData": "",
+    "attachmentName": ""
   }
 
   emaFactSheetData = {
