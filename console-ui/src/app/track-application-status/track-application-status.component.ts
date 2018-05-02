@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ApiConstants } from '../network_layer/api_constants';
@@ -15,11 +15,11 @@ declare var grecaptcha: any
 @Component({
   selector: 'app-track-application-status',
   templateUrl: './track-application-status.component.html',
-  styleUrls: ['./track-application-status.component.css'],
+  styleUrls: ['./track-application-status.component.css','../../assets/css/track.css'],
   providers: [recaptcha]
-
+ 
 })
-export class TrackApplicationStatusComponent implements OnInit {
+export class TrackApplicationStatusComponent implements OnInit,  OnDestroy {
 
   trackForm: FormGroup;
   trackStatus: boolean = false;
@@ -98,6 +98,8 @@ export class TrackApplicationStatusComponent implements OnInit {
   }
 
   updateTrackStatus() {
+     //document.getElementById('bg').style.display = "none";
+     document.getElementById('bg').style.backgroundColor = "#302c2d";
     var stage = ['one', 'two', 'three', 'four', 'remove'];
     var track;
     if (this.trackValue == 'I') {
@@ -133,5 +135,11 @@ export class TrackApplicationStatusComponent implements OnInit {
   }
   get trackAppNumber() { return this.trackForm.get('trackAppNumber'); }
 
+
+  ngOnDestroy() {
+    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+  }
+
+  
 
 }
