@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
   existingUser: boolean = false;
   aknowNew: boolean = false;
   business: boolean = false;
+  appTrack: boolean = false;
 
 
   constructor(private sbService: SidebarService, private router:Router) { }
@@ -31,6 +32,8 @@ export class SidebarComponent implements OnInit {
           this.existingUser = true;
         }else if (value == "business") {
           this.business = true;
+        }else if (value == "appTrack") {
+            this.appTrack = true;
         }else {
           console.log("No value found for sidebar")
         }
