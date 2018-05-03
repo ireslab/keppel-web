@@ -13,6 +13,7 @@ export class AcknowledgementComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
   }
 
 }

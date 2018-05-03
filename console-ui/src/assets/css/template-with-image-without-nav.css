@@ -143,12 +143,12 @@
 
 @media (min-width: 992px) {
   .copyright {
-    color: #fff;
+    color: #4d4d4d;
   }
   .copyright a,
   .copyright a:hover,
   .copyright a:focus {
-    color: #fff;
+    color: #4d4d4d;
   }
   .help {
     max-width: 1330px;
