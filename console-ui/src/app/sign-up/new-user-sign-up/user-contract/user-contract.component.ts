@@ -46,7 +46,7 @@ export class UserContractComponent implements OnInit {
   optionalServiceOne: any;
   optionalServiceTwo: any;
   optionalServiceThree: any;
-  disableFloor:boolean = false;
+  disableFloor: boolean = false;
 
 
   _postcode: string = '';
@@ -56,10 +56,12 @@ export class UserContractComponent implements OnInit {
   _floorLevel: string = '';
   _securityAmount;
   _payMethodKey;
+  selected_Date;
 
   constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
     private spinnerService: Ng4LoadingSpinnerService, public http: Http) {
+     
     // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
@@ -101,6 +103,8 @@ export class UserContractComponent implements OnInit {
       this.minDays = 30;
     }
     this.minDate = new Date(this.minDate.getTime() + this.minDays * 24 * 60 * 60 * 1000);
+    this.selected_Date = this.minDate
+   
   }
   getMaxDate() {
     this.maxDays = 90;
@@ -115,10 +119,43 @@ export class UserContractComponent implements OnInit {
   //   }
   //   console.log(this.selectedOptionalServices);
   // }
+
+  // formatDate(d) {
+  //   //get the month
+  //   var month = d.getMonth();
+  //   //get the day
+  //   //convert day to string
+  //   var day = d.getDate().toString();
+  //   //get the year
+  //   var year = d.getFullYear();
+  //   //pull the last two digits of the year
+  //  // year = year.toString().substr(-2);
+  //   //increment month by 1 since it is 0 indexed
+  //   //converts month to a string
+  //   month = (month + 1).toString();
+  //   //if month is 1-9 pad right with a 0 for two digits
+  //   if (month.length === 1) {
+  //     month = "0" + month;
+  //   }
+  //   //if day is between 1-9 pad right with a 0 for two digits
+  //   if (day.length === 1) {
+  //     day = "0" + day;
+  //   }
+
+  //   //return the string "MMddyy"
+  //   return day + '/' + month + '/' + year;
+  // }
   dateValidation() {
     this.dateErrorAmi = false;
     this.dateErrorSrlp = false;
-    var endDate = new Date(this.contractForm.controls['serviceStartDate'].value)
+    var clndrDate = this.contractForm.controls['serviceStartDate'].value;
+    var endDate = new Date(clndrDate)
+    if(clndrDate != ''){
+      this.selected_Date = clndrDate
+    }else{
+      this.selected_Date = this.minDate;
+    }
+    
     var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
     endDate.setDate(endDate.getDate() - 1);
     this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0, 10);
@@ -140,28 +177,28 @@ export class UserContractComponent implements OnInit {
         this.datashare.usderDetailObj.optionalService2 = ""
         this.datashare.meterType = "SRLP";
         this.getMinDate();
-
+        this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
         if (this.contractForm.controls['serviceStartDate'].value != "") {
-          this.dateErrorSrlp = true;
-          this.dateErrorAmi = false;
+          // this.dateErrorSrlp = true;
+          // this.dateErrorAmi = false;
 
         }
-        this.contractForm.patchValue({
-          serviceStartDate: "",
-        })
+        // this.contractForm.patchValue({
+        //   serviceStartDate: "",
+        // })
 
       } else {
         this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo;
         this.datashare.meterType = "AMI";
         this.getMinDate();
-
-        if (this.contractForm.controls['serviceStartDate'].value != "") {
-          this.dateErrorAmi = true;
-          this.dateErrorSrlp = false;
-        }
-        this.contractForm.patchValue({
-          serviceStartDate: "",
-        })
+        this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
+        // if (this.contractForm.controls['serviceStartDate'].value != "") {
+        //   this.dateErrorAmi = true;
+        //   this.dateErrorSrlp = false;
+        // }
+        // this.contractForm.patchValue({
+        //   serviceStartDate: "",
+        // })
       }
     }
     // else {
@@ -209,17 +246,17 @@ export class UserContractComponent implements OnInit {
       streetNameBill: this.datashare.usderDetailObj.streetNameBill,
       blockBill: this.datashare.usderDetailObj.blockBill,
       buildingNameBill: this.datashare.usderDetailObj.buildingNameBill,
-      floorLevelBill: this.datashare.usderDetailObj.floorLevelBill, 
+      floorLevelBill: this.datashare.usderDetailObj.floorLevelBill,
       spAccount: [this.datashare.usderDetailObj.spAccount, [Validators.pattern('[0-9]{10}$')]],
     })
+    this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
 
 
-    if(this.datashare.usderDetailObj.premiseType == 'LANDPROP')
-    {
+    if (this.datashare.usderDetailObj.premiseType == 'LANDPROP') {
       this.disableFloor = true;
       this.contractForm.controls['floorLevel'].setValidators([]);
       this.contractForm.controls['floorLevel'].updateValueAndValidity();
-    }else{
+    } else {
       this.disableFloor = false;
     }
 
@@ -325,17 +362,16 @@ export class UserContractComponent implements OnInit {
       this.contractForm.controls['streetNameBill'].setValidators([Validators.required]);
       this.contractForm.controls['blockBill'].setValidators([Validators.required]);
       this.contractForm.controls['buildingNameBill'].setValidators([Validators.required]);
-      
+
       this.contractForm.controls['postcodeBill'].updateValueAndValidity();
       this.contractForm.controls['streetNameBill'].updateValueAndValidity();
       this.contractForm.controls['blockBill'].updateValueAndValidity();
       this.contractForm.controls['buildingNameBill'].updateValueAndValidity();
-      if(this.datashare.usderDetailObj.premiseType == 'LANDPROP')
-      {
+      if (this.datashare.usderDetailObj.premiseType == 'LANDPROP') {
         this.contractForm.controls['floorLevelBill'].reset();
         this.contractForm.controls['floorLevelBill'].setValidators([]);
         this.contractForm.controls['floorLevelBill'].updateValueAndValidity();
-      }else {
+      } else {
         this.contractForm.controls['floorLevelBill'].reset();
         this.contractForm.controls['floorLevelBill'].setValidators([Validators.required]);
         this.contractForm.controls['floorLevelBill'].updateValueAndValidity();
@@ -345,10 +381,20 @@ export class UserContractComponent implements OnInit {
 
   getPayment(paymentMethod) {
     this.paymentMessage = false;
-    this.paymentMethod = paymentMethod
-    if (paymentMethod == 'Recurring') {
-      this.router.navigateByUrl("payPal");
+    this.paymentMethod = paymentMethod;
+    if (this.paymentMethod == 'Giro') {
+      this._payMethodKey = 'GIRO'
+    } else if (this.paymentMethod == 'IDDA (DBS)') {
+      this._payMethodKey = 'IDDA'
+    } else if (this.paymentMethod == 'Recuring') {
+      this._payMethodKey = 'RECUR'
+    } else {
+      this._payMethodKey = 'OTH'
     }
+    this.validateSecurityDepositCall();
+    // if (paymentMethod == 'Recurring') {
+    //   this.router.navigateByUrl("payPal");
+    // }
   }
 
   getOwnership(ownership) {
@@ -435,7 +481,7 @@ export class UserContractComponent implements OnInit {
   }
 
   getPicture(e) {
-    if(e.target.files[0].size > 5000000){
+    if (e.target.files[0].size > 5000000) {
       alert('Please select the file upto 5MB')
       return;
     }
@@ -445,7 +491,7 @@ export class UserContractComponent implements OnInit {
       this.pictureName = uploadFileName;
       this.datashare.usderDetailObj.attachmentName = this.pictureName
       var reader = new FileReader();
-      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
     } else {
       this.pictureName = "Upload Past Month's Bill";
@@ -454,9 +500,9 @@ export class UserContractComponent implements OnInit {
 
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
-           var base64textString= btoa(binaryString);
-           this.datashare.usderDetailObj.attachmentData = base64textString
-   }
+    var base64textString = btoa(binaryString);
+    this.datashare.usderDetailObj.attachmentData = base64textString
+  }
 
   getPromoCode() {
     this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
@@ -524,9 +570,13 @@ export class UserContractComponent implements OnInit {
       // }
 
 
-      let postcode = this.contractForm.controls['postcode'].value
-      let premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + " " + this.contractForm.controls['buildingName'].value + " " + " " + "#" + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
-      // let premiseAddress2 = this.contractForm.controls['buildingName'].value + " " + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      let postcode = this.contractForm.controls['postcode'].value;
+      let premiseAddress;
+      if (this.contractForm.controls['floorLevel'].value != '') {
+        premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + " " + this.contractForm.controls['buildingName'].value + " " + " " + "#" + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      } else {
+        premiseAddress = this.contractForm.controls['block'].value + " " + " " + this.contractForm.controls['streetName'].value + " " + " " + this.contractForm.controls['buildingName'].value + " " + this.contractForm.controls['floorLevel'].value + " " + " " + " SINGAPORE " + " " + " " + postcode;
+      }
 
       if (this.sameAddress == true) {
         this.postcodeBilling = postcode;
@@ -568,30 +618,27 @@ export class UserContractComponent implements OnInit {
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
-
-      // if (this.paymentMethod == 'IDDA (DBS)') {
-      //   window.open('https://internet-banking.dbs.com.sg', '_blank');
-      // } else if (this.paymentMethod == 'Giro') {
-      //   window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
-      // }
-
-
-
-      if (this.datashare.usderDetailObj.paymentMethod == 'Giro') {
-        this._payMethodKey = 'GIRO'
-      } else if (this.datashare.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
-        this._payMethodKey = 'IDDA'
-      } else if (this.datashare.usderDetailObj.paymentMethod == 'Recuring') {
-        this._payMethodKey = 'RECUR'
-      } else {
-        this._payMethodKey = 'OTH'
-      }
-      this.getSecurityDeposit();
-      //  this.router.navigateByUrl("new-user-confirmation");
+      window.localStorage.clear();
+      window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
+      window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
+      this.router.navigateByUrl("new-user-confirmation");
     }
 
   }
-  
+
+  idSelected() {
+    this.datashare.usderDetailObj.icNumberType = this.contractForm.controls['icNumberType'].value;
+    if (this.datashare.usderDetailObj.icNumberType != '' && this._payMethodKey != '') {
+      this.getSecurityDeposit()
+    }
+  }
+
+  validateSecurityDepositCall() {
+    if (this.datashare.usderDetailObj.icNumberType != '' && this._payMethodKey != '') {
+      this.getSecurityDeposit()
+    }
+  }
+
   getSecurityDeposit() {
     if (navigator.onLine) {
       this.spinnerService.show();
@@ -601,12 +648,11 @@ export class UserContractComponent implements OnInit {
         "payMethod": this._payMethodKey,
         "premiseType": this.datashare.usderDetailObj.premiseType
       })
-      
+
       console.log(rqst_json)
       let _url = ApiConstants.GET_SECURITY_DEPOSIT;
       ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(
         (data) => {
-          // data = JSON.parse(data)
           console.log(data)
           this.spinnerService.hide()
           if (data.success == true) {
@@ -619,11 +665,11 @@ export class UserContractComponent implements OnInit {
           } else {
             this.datashare.usderDetailObj.sd_amount = ""
           }
-          this.datashare.getUserDetails();
-          window.localStorage.clear();
-          window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
-          window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
-          this.router.navigateByUrl("new-user-confirmation");
+          // this.datashare.getUserDetails();
+          // window.localStorage.clear();
+          // window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
+          // window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
+          // this.router.navigateByUrl("new-user-confirmation");
 
         }, (error: any) => {
           console.log(error.success)

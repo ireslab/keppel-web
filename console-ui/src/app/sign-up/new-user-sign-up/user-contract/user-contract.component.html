@@ -8,9 +8,12 @@
           <div class="col-12">
             <div class="form-group StartDateGroup text-center">
               <label for="dt_ServiceStartDate">Select Start Date</label>
+             <div style="position: relative;text-align: center;">
               <input type="date" min="{{minDate | date: 'yyyy-MM-dd'}}" max="{{maxDate | date: 'yyyy-MM-dd'}}"
                 class="form-control normal dateInput text-center" id="dt_ServiceStartDate" formControlName="serviceStartDate"
                 (change)="dateValidation()">
+                <div class="customDate">{{selected_Date | date: 'dd/MM/yyyy'}}</div>
+              </div>
               <div class="text-danger text-center ">
                 <div *ngIf="dateErrorSrlp">
                   * Selected date is not valid for SRLP meter, please select the date again.
@@ -113,9 +116,9 @@
         <div class="row" style="margin-top:50px;">
           <div class="col-md-6">
             <div class="form-group">
-              <select name="Opt_idType" id="Opt_idType" class="form-control IDType" formControlName="icNumberType">
+              <select (change)="idSelected()" name="Opt_idType" id="Opt_idType" class="form-control IDType" formControlName="icNumberType">
                 <option value="" disabled selected hidden>ID Type*</option>
-                <option value="FIN">FIN</option>
+                <option  value="FIN">FIN</option>
                 <option value="BIC">Blue-IC</option>
                 <option value="PIC">Pink-IC</option>
               </select>
@@ -328,7 +331,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <input [attr.disabled]="disableFloor == true ? true : null" type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevelBill"
+                <input type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevelBill"
                   maxlength="100">
                 <div class="line"></div>
               </div>

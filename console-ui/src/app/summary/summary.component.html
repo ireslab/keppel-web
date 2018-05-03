@@ -83,7 +83,7 @@
     <dl *ngIf="_usderDetailObj.promoCode== '' ">No promocode is provided yet</dl>
     <dl>
       <dt *ngIf="_usderDetailObj.promoCode != ''">{{_usderDetailObj.promoCode}}</dt>
-      <dd *ngIf="_usderDetailObj.promocodeAmount != ''">(-$ {{_usderDetailObj.promocodeAmount}} on 1st Bill)</dd>
+      <dd *ngIf="_usderDetailObj.promocodeAmount != ''">(-{{_usderDetailObj.promocodeAmount}} on 1st Bill)</dd>
     </dl>
   </div>
   <div class="kpl-summaryPanelSection">
@@ -91,7 +91,7 @@
     <hr>
     <dl>
       <dt>Security Deposit</dt>
-      <dd>{{_sd_amount}}</dd>
+      <dd>{{datashare.usderDetailObj.sd_amount}}</dd>
       <!-- <dt>[Insert other Misc.]</dt>
       <dd>[Insert Charge]</dd> -->
     </dl>
