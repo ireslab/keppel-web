@@ -30,13 +30,19 @@
       </div>
       <div class="main-content">
         <div class="page1 ">
-          <form class="contentForms">
+          <form [formGroup]="trackForm" class="contentForms">
             <div class="row">
-              <div class="col-lg-8 offset-lg-2">
-                <div  *ngIf="trackStatus" class="form-text text-center text-danger" style="margin-bottom: 5px;">Reference Code does not exist. Try again</div>
-                <input (input)="trackIDEntered($event)" type="text" class="form-control Subject" id="txt_Subject" placeholder="Input Reference Code">
-                <div *ngIf="trackIDError" class=" text-danger text-left">
-                  Application Must be of 14 digits.
+              <div class="col-lg-8 offset-lg-2" style="margin-bottom: 25px">
+                <div *ngIf="trackStatus" class="form-text text-center text-danger" style="margin-bottom: 5px;">Reference Code does not exist. Try again</div>
+                <input (input)="trackIDEntered($event)" type="text" class="form-control Subject" id="txt_Subject" formControlName="trackAppNumber"
+                  placeholder="Input Reference Code" maxlength="14">
+                <div *ngIf="trackAppNumber.invalid && trackAppNumber.touched" class=" text-danger text-left">
+                  <div *ngIf="trackAppNumber.errors?.required">
+                    ID number is required.
+                  </div>
+                  <div *ngIf="trackAppNumber.errors?.pattern && !trackAppNumber.errors?.required">
+                    Please provide a valid 14 digits reference code.
+                  </div>
                 </div>
               </div>
             </div>
@@ -57,7 +63,7 @@
           </div> -->
           <div class="row">
             <div class="col-md-12 text-center">
-              <button (click)= "trackClicked()" id="track" class="btn btn-primary emphasis">TRACK</button>
+              <button (click)="trackClicked()" id="track" class="btn btn-primary emphasis">TRACK</button>
             </div>
           </div>
         </div>
@@ -69,6 +75,7 @@
                 <div class="form-group" style="margin-top:20px;">
                   <div class="input-group text-center">
                     <input type="text" class="form-control text-center" value={{dataShare.trackAppNumber}} readonly style="padding-left: 12px">
+
                   </div>
                 </div>
               </div>

@@ -14,6 +14,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('bg').style.backgroundColor = "#000";
     $(document).ready(function () {
         $("#SignupButton").on("click", function () {
             $(".DeskTopButtons").animate({ opacity: 0 }, 500);

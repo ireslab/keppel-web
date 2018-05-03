@@ -189,6 +189,7 @@ export class UserContractComponent implements OnInit {
 
 
   ngOnInit() {
+    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
     this.showSelectedOptService();
 
     this.contractForm = this.fb.group({
