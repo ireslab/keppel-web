@@ -24,8 +24,7 @@ export class UserConfirmationComponent implements OnInit {
   termConditionScnd:boolean = false;
   termConditionThird:boolean = false;
   editDetails:boolean = false;
-  sms:boolean=false;
-  email:boolean=false;
+   
 
   constructor(private sbService: SidebarService, private DS: DataShare, private spinner: Ng4LoadingSpinnerService,
     private serverCall: ServiceCall, private http: Http, private commonService: CommonServices,
@@ -66,17 +65,13 @@ export class UserConfirmationComponent implements OnInit {
   marketingConsent(event,type){
     if(type == 'consent'){
       this.DS.usderDetailObj.marketingConsent=event.target.checked;
-      this.sms = event.target.checked;
-      this.email = event.target.checked;
+      this.DS.usderDetailObj.marketingEmail = event.target.checked;
+      this.DS.usderDetailObj.marketingSMS = event.target.checked;
       console.log("IS MARKETING SELECTED:===>",this.DS.usderDetailObj.marketingConsent);
     }else if(type == 'email'){
       this.DS.usderDetailObj.marketingEmail=event.target.checked;
-      this.email = event.target.checked;
-      console.log("Clicked===>", this.email);
     }else if(type == 'sms'){
       this.DS.usderDetailObj.marketingSMS=event.target.checked;
-      this.sms = event.target.checked;
-      console.log("Clicked===>", this.sms);
     }
   }
 
