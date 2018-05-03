@@ -74,7 +74,6 @@ export class UserContractComponent implements OnInit {
     this.datashare.meterType = "SRLP"
     this.getMinDate();
     this.getMaxDate();
-
   }
   getMinDate() {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
