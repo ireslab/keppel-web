@@ -59,7 +59,6 @@ export class TrackApplicationStatusComponent implements OnInit {
         this.trackForm.get(control).invalid;
         this.trackForm.get(control).updateValueAndValidity();
       }
-      console.error("form is not valid")
       this.trackIDError = true
       return;
     }
@@ -91,7 +90,7 @@ export class TrackApplicationStatusComponent implements OnInit {
 
         }, (error: any) => {
           this.spinner.hide();
-          alert("error")
+          alert(error.message)
         }
       );
     }
