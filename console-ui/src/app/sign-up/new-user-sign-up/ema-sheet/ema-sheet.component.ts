@@ -39,6 +39,7 @@ export class EmaSheetComponent implements OnInit {
    }
 
   ngOnInit() {
+    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
     // this.datashare.userDetails.subscribe(
     //   (value) => {
     //     console.log("value")

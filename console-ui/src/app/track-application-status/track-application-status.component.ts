@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ApiConstants } from '../network_layer/api_constants';
@@ -15,24 +15,24 @@ declare var grecaptcha: any
 @Component({
   selector: 'app-track-application-status',
   templateUrl: './track-application-status.component.html',
-  styleUrls: ['./track-application-status.component.css','../../assets/css/track.css'],
+  styleUrls: ['./track-application-status.component.css', '../../assets/css/track.css'],
   providers: [recaptcha]
- 
+
 })
-export class TrackApplicationStatusComponent implements OnInit,  OnDestroy {
+export class TrackApplicationStatusComponent implements OnInit {
 
   trackForm: FormGroup;
   trackStatus: boolean = false;
   trackValue;
   captchaErr: boolean = false;
   isValidCaptcha: boolean = false;
-  trackIDError:boolean = false;
+  trackIDError: boolean = false;
   captcha: any;
   appNumber = '';
 
   constructor(private sbService: SidebarService, private spinner: Ng4LoadingSpinnerService,
     private http: Http, private dataShare: DataShare, private serverCall: ServiceCall,
-    private formBuilder: FormBuilder,private _recaptcha: recaptcha) {
+    private formBuilder: FormBuilder, private _recaptcha: recaptcha) {
     this.sbService.getSidebar("appTrack")
   }
 
@@ -52,54 +52,55 @@ export class TrackApplicationStatusComponent implements OnInit,  OnDestroy {
   }
 
   trackClicked() {
-  //   if (this.trackForm.invalid) {
-  //     for (let control in this.trackForm.controls) {
-  //         this.trackForm.get(control).markAsTouched();
-  //         this.trackForm.get(control).invalid;
-  //         this.trackForm.get(control).updateValueAndValidity();
-  //     }
-  //     console.error("form is not valid")
-  //     this.trackIDError = true
-  //     return;
-  // }
-    if(this.appNumber.length != 14 || this.appNumber == 'undefined'){
-       this.trackIDError = true
-       return;
+    if (this.trackForm.invalid) {
+      for (let control in this.trackForm.controls) {
+        this.trackForm.get(control).markAsTouched();
+        this.trackForm.get(control).invalid;
+        this.trackForm.get(control).updateValueAndValidity();
+      }
+      console.error("form is not valid")
+      this.trackIDError = true
+      return;
     }
-    if (this.isValidCaptcha == false) {
+    // if(this.appNumber.length != 14 || this.appNumber == 'undefined'){
+    //    this.trackIDError = true
+    //    return;
+    // }
+    else if (this.isValidCaptcha == false) {
       this.captchaErr = true;
       return;
-  }else{
-    this.spinner.show()
-    this.resetCaptcha();
-    // var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup"  //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
-    let _url = ApiConstants.GET_APP_STATUS + this.dataShare.trackAppNumber;
-    this.serverCall.getPlans(_url).subscribe(
-      data => {
-        if (data.success == 'true') {
-          this.trackValue = data.image
-          $('.page1').css('display', 'none');
-          $('.page2').removeAttr('style');
-          this.trackStatus = false
-          this.updateTrackStatus();
-        }
-        else {
-          this.trackStatus = true
-        }
-        this.spinner.hide()
+    } else {
+      this.spinner.show()
+      this.resetCaptcha();
+      // var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup"  //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
+      let _url = ApiConstants.GET_APP_STATUS + this.dataShare.trackAppNumber;
+      this.serverCall.getPlans(_url).subscribe(
+        data => {
+          if (data.success == 'true') {
+            this.trackValue = data.image
+            $('.page1').css('display', 'none');
+            $('.page2').removeAttr('style');
+            this.trackStatus = false
+            this.updateTrackStatus();
+          }
+          else {
+            this.trackStatus = true
+          }
+          this.spinner.hide()
 
-      }, (error: any) => {
-        this.spinner.hide();
-        alert("error")
-      }
-    );}
+        }, (error: any) => {
+          this.spinner.hide();
+          alert("error")
+        }
+      );
+    }
 
 
   }
 
   updateTrackStatus() {
-     //document.getElementById('bg').style.display = "none";
-     document.getElementById('bg').style.backgroundColor = "#302c2d";
+    //document.getElementById('bg').style.display = "none";
+    document.getElementById('bg').style.backgroundColor = "#302c2d";
     var stage = ['one', 'two', 'three', 'four', 'remove'];
     var track;
     if (this.trackValue == 'I') {
@@ -128,18 +129,13 @@ export class TrackApplicationStatusComponent implements OnInit,  OnDestroy {
     this.isValidCaptcha = true;
     this.captcha = event.token;
   }
+
   resetCaptcha() {
     this.isValidCaptcha = false;
     this.captchaErr = false;
     grecaptcha.reset()
   }
+
   get trackAppNumber() { return this.trackForm.get('trackAppNumber'); }
-
-
-  ngOnDestroy() {
-    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
-  }
-
-  
 
 }

@@ -15,7 +15,7 @@ form.contentForms textarea {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   font-size: calc(12px + 0.5vw);
   color: #58595b;
-  margin-bottom: 25px !important;
+  /* margin-bottom: 25px !important; */
 }
 
 form.contentForms input[readonly] {
