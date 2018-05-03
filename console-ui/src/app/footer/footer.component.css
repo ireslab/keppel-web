@@ -1,0 +1,20 @@
+@media (min-width: 992px) {
+    .copyTrack {
+      color: #fff !important;
+    }
+    .copyTrack a,
+    .copyTrack a:hover,
+    .copyTrack a:focus {
+      color: #fff !important;
+    }
+
+    
+  }
+  .copyLogin {
+    color: #5f5f5f;
+  }
+  .copyLogin a,
+  .copyLogin a:hover,
+  .copyLogin a:focus {
+    color: #5f5f5f;
+  }
