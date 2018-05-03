@@ -323,7 +323,7 @@ export class UserRecommendationComponent implements OnInit {
             this.captchaErr = true;
             return;
         } else {
-            this.datashare.usderDetailObj.icNumberType = "NRIC";
+            // this.datashare.usderDetailObj.icNumberType = "NRIC";
             this.datashare.usderDetailObj.icNumber = this.signUpForm.controls['idNumber'].value;
             this.datashare.usderDetailObj.mobileNumber = '+65' + this.signUpForm.controls['mobileNumber'].value;
 

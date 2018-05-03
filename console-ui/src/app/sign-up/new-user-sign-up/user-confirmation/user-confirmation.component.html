@@ -151,11 +151,12 @@
           Electricity Pricing Proposal shall have the meaning ascribed to them in the T1 General Terms and Conditions. Charges
           for electricity retailed and related services provided by the Retailer will be as indicated in the Terms & Conditions. -->
           Unless otherwise defined, capitalised terms used in this Form of Acceptance shall have the meanings ascribed to them in the
-          Residential Consumers General Terms and Conditions (a copy of which is available at <a href="http://portal.keppelelectric.com/termsandconditions" target="blank">http://portal.keppelelectric.com/termsandconditions</a>)
-          (“GT&Cs”). For each Premises specified above, a separate and distinct agreement shall be formed for the services
-          to be provided at such Premises, on the terms of the GT&Cs and the terms applicable to that Premises in this Form
-          of Acceptance. The effectiveness of each such agreement is subject to the conditions precedent set out in Clause
-          2.1 of the GT&Cs having been satisfied or waived in accordance with the provisions of the GT&Cs.
+          Residential Consumers General Terms and Conditions (a copy of which is available at
+          <a href="http://portal.keppelelectric.com/termsandconditions" target="blank">http://portal.keppelelectric.com/termsandconditions</a>) (“GT&Cs”). For each Premises specified above, a separate
+          and distinct agreement shall be formed for the services to be provided at such Premises, on the terms of the GT&Cs
+          and the terms applicable to that Premises in this Form of Acceptance. The effectiveness of each such agreement
+          is subject to the conditions precedent set out in Clause 2.1 of the GT&Cs having been satisfied or waived in accordance
+          with the provisions of the GT&Cs.
         </p>
 
         <p>
@@ -212,12 +213,20 @@
         <section style="padding-left:30px;">
           <div class="form-check">
             <label class="form-check-label">
+<<<<<<< .mine
+              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_Email" (click)="marketingConsent($event,'email')" [checked]='email'>Email
+=======
               <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_Email" (click)="marketingConsent($event,'email')" [checked]= '_usderDetailObj.marketingEmail'>Email
+>>>>>>> .theirs
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
+<<<<<<< .mine
+              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_SMS" (click)="marketingConsent($event,'sms')" [checked]='sms'>SMS and Telecommunication
+=======
               <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_SMS" (click)="marketingConsent($event,'sms')" [checked]= '_usderDetailObj.marketingSMS'>SMS and Telecommunication
+>>>>>>> .theirs
             </label>
           </div>
         </section>
@@ -232,8 +241,27 @@
 
     </div>
   </div>
-  <div style="text-align: center">     
-   </div>
+  <div style="text-align: center">
+  </div>
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <app-footer></app-footer>
+
+
+<!-- Modal -->
+<div class="modal fade" id="downLoadRedirect" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <p *ngIf="this.DS.usderDetailObj.paymentMethod == 'Giro'">Do you want to download Giro form</p>
+        <p *ngIf="this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)'">We are redirecting you to DBS bank's website</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" (click)="downloadRedirect()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

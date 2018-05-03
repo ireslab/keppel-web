@@ -38,6 +38,7 @@ export class TrackApplicationStatusComponent implements OnInit {
 
 
   ngOnInit() {
+    document.getElementById('bg').style.backgroundColor = "#302c2d";
     this.trackForm = this.formBuilder.group({
       trackAppNumber: ['', [Validators.required, Validators.pattern('[0-9]{14}$')]]
     })

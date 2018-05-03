@@ -137,12 +137,7 @@ export class UserConfirmationComponent implements OnInit {
         "marketingConsent":this.DS.usderDetailObj.marketingConsent
       }
       console.log(rqst_json);
-      if (this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
-        window.open('https://internet-banking.dbs.com.sg', '_blank');
-      } else if (this.DS.usderDetailObj.paymentMethod == 'Giro') {
-        // window.open('https://www.iras.gov.sg/irashome/uploadedFiles/IRASHome/Quick_Links/GIRO_IIT_appln_form.pdf', '_blank');
-        this.getPdf();
-      }
+      
       this.makeServerCall(rqst_json);
       
 
@@ -196,7 +191,8 @@ export class UserConfirmationComponent implements OnInit {
       (data) => {
         console.log(data[0].messageId)
         if (data[0].messageId != '') {
-          this.router.navigateByUrl("aknowledgement");
+          $('#downLoadRedirect').modal('show');
+          
           this.spinner.hide()
         } else {
           alert("Something went wrong");
@@ -208,4 +204,14 @@ export class UserConfirmationComponent implements OnInit {
       })
   }
   // S5416486F
+
+
+  downloadRedirect(){
+    this.router.navigateByUrl("aknowledgement");
+    if (this.DS.usderDetailObj.paymentMethod == 'IDDA (DBS)') {
+      window.open('https://internet-banking.dbs.com.sg', '_blank');
+    } else if (this.DS.usderDetailObj.paymentMethod == 'Giro') {
+      this.getPdf();
+    }
+  }
 }
