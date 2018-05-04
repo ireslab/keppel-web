@@ -57,6 +57,7 @@ export class UserContractComponent implements OnInit {
   _securityAmount;
   _payMethodKey;
   selected_Date;
+  dateShow:boolean = true;
 
   constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
@@ -102,7 +103,7 @@ export class UserContractComponent implements OnInit {
       this.minDays = 30;
     }
     this.minDate = new Date(this.minDate.getTime() + this.minDays * 24 * 60 * 60 * 1000);
-    this.selected_Date = this.minDate
+   // this.selected_Date = this.minDate
    
   }
   getMaxDate() {
@@ -150,9 +151,11 @@ export class UserContractComponent implements OnInit {
     var clndrDate = this.contractForm.controls['serviceStartDate'].value;
     var endDate = new Date(clndrDate)
     if(clndrDate != ''){
-      this.selected_Date = clndrDate
+      this.selected_Date = clndrDate;
+      this.dateShow = false;
     }else{
       this.selected_Date = this.minDate;
+      this.dateShow = true;
     }
     
     var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
@@ -176,28 +179,29 @@ export class UserContractComponent implements OnInit {
         this.datashare.usderDetailObj.optionalService2 = ""
         this.datashare.meterType = "SRLP";
         this.getMinDate();
-        this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
+        //this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
         if (this.contractForm.controls['serviceStartDate'].value != "") {
-          // this.dateErrorSrlp = true;
-          // this.dateErrorAmi = false;
-
+          this.dateErrorSrlp = true;
+          this.dateErrorAmi = false;
+          this.dateShow = true;
         }
-        // this.contractForm.patchValue({
-        //   serviceStartDate: "",
-        // })
+        this.contractForm.patchValue({
+          serviceStartDate: "",
+        })
 
       } else {
         this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo;
         this.datashare.meterType = "AMI";
         this.getMinDate();
-        this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
-        // if (this.contractForm.controls['serviceStartDate'].value != "") {
-        //   this.dateErrorAmi = true;
-        //   this.dateErrorSrlp = false;
-        // }
-        // this.contractForm.patchValue({
-        //   serviceStartDate: "",
-        // })
+       // this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
+        if (this.contractForm.controls['serviceStartDate'].value != "") {
+          this.dateErrorAmi = true;
+          this.dateErrorSrlp = false;
+          this.dateShow = true;
+        }
+        this.contractForm.patchValue({
+          serviceStartDate: "",
+        })
       }
     }
     // else {

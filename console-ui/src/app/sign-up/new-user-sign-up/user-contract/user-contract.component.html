@@ -13,6 +13,7 @@
                 class="form-control normal dateInput text-center" id="dt_ServiceStartDate" formControlName="serviceStartDate"
                 (change)="dateValidation()">
                 <div class="customDate">{{selected_Date | date: 'dd/MM/yyyy'}}</div>
+                <div *ngIf="dateShow" class="customDate">dd/mm/yyyy</div>
               </div>
               <div class="text-danger text-center ">
                 <div *ngIf="dateErrorSrlp">
@@ -348,7 +349,7 @@
             <div class="col-md-8">
               <div class="form-group StartCamera">
                 <label class="custom-file">
-                  <input type="file" accept="image/*" id="file_RecentBill" capture="camera" class="custom-file-input" placeholder="">
+                  <input type="file" accept="image/*" id="file_RecentBill" capture="camera" class="custom-file-input" placeholder="" (change)="getPicture($event)">
                   <span class="custom-file-control" id="SelectedFile">Take a photo of past month's bill</span>
                 </label>
                 <div class="line"></div>
