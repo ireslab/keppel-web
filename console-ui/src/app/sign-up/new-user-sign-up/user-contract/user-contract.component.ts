@@ -180,6 +180,7 @@ export class UserContractComponent implements OnInit {
         this.datashare.meterType = "SRLP";
         this.getMinDate();
         //this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
+        console.log(this.contractForm.controls['serviceStartDate'].value)
         if (this.contractForm.controls['serviceStartDate'].value != "") {
           this.dateErrorSrlp = true;
           this.dateErrorAmi = false;
@@ -194,6 +195,7 @@ export class UserContractComponent implements OnInit {
         this.datashare.meterType = "AMI";
         this.getMinDate();
        // this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
+       console.log(this.contractForm.controls['serviceStartDate'].value)
         if (this.contractForm.controls['serviceStartDate'].value != "") {
           this.dateErrorAmi = true;
           this.dateErrorSrlp = false;
@@ -252,7 +254,7 @@ export class UserContractComponent implements OnInit {
       floorLevelBill: this.datashare.usderDetailObj.floorLevelBill,
       spAccount: [this.datashare.usderDetailObj.spAccount, [Validators.pattern('[0-9]{10}$')]],
     })
-    this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
+   // this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
 
 
     if (this.datashare.usderDetailObj.premiseType == 'LANDPROP') {
