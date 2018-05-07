@@ -34,15 +34,25 @@ export class LandingPageComponent implements OnInit,AfterViewInit {
         $(".closeBtn").click();
     });
 
-    this.AdjustHeight();
+     this.AdjustHeight();
   }
 
   AdjustHeight(){
+
     if ($(window).width() > 991) {
         var totalHeight = $('.innerBody').outerHeight();
         var JumbotronHeight = $('.Jumbotron').outerHeight();
         JumbotronHeight = JumbotronHeight - (totalHeight - $(window).outerHeight());
+        // alert('height'    + JumbotronHeight)
+        let isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent)
+        if(!isIEOrEdge)
         $('.Jumbotron img').height(JumbotronHeight + 150);
+        else{
+          JumbotronHeight = 372.609
+          $('.Jumbotron img').height(JumbotronHeight);
+        }
+        // alert(JumbotronHeight)
+        
     }
       
     return;

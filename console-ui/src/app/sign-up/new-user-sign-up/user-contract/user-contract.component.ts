@@ -484,8 +484,8 @@ export class UserContractComponent implements OnInit {
       );
     }
   }
-
-  getPicture(e) {
+  cameraImage;
+  getPicture(e,source) {
     if (e.target.files[0].size > 5000000) {
       alert('Please select the file upto 5MB')
       return;
@@ -493,20 +493,56 @@ export class UserContractComponent implements OnInit {
     let uploadFileName = e.target.files[0].name;
     var file = e.target.files[0];
     if (uploadFileName != undefined || uploadFileName != null) {
-      this.pictureName = uploadFileName;
+      if(source == 'camera'){
+        this.cameraImage = uploadFileName;
+      }else{
+        this.pictureName = uploadFileName;
+      }      
       this.datashare.usderDetailObj.attachmentName = this.pictureName
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
     } else {
-      this.pictureName = "Upload Past Month's Bill";
+      if(source == 'camera'){
+        this.cameraImage = "Take a photo of past month's bill";
+      }else{
+        this.pictureName = "Upload Past Month's Bill";
+      }  
+      
     }
   }
 
+  // open camera only for mobile browser
+  // capturedImageName = null;
+  // // cameraImage;
+  // onFileSelected(event)
+  // {
+  //   if (event.target.files[0].size > 5000000) {
+  //     alert('Please select the file upto 5MB')
+  //     return;
+  //   }
+  //   this.capturedImageName = event.target.files[0].name;
+  //   console.log(this.capturedImageName)
+  //   // alert(this.capturedImageName)
+  //   var file = event.target.files[0];
+  //   if (this.capturedImageName != undefined || this.capturedImageName != null) {
+  //     // alert('1')
+  //     this.cameraImage = this.capturedImageName;
+  //     this.datashare.usderDetailObj.attachmentName = this.cameraImage
+  //     var reader = new FileReader();
+  //     reader.onload = this._handleReaderLoaded.bind(this);
+  //     reader.readAsBinaryString(file);
+  //   } else {
+  //     this.cameraImage = "Take a photo of past month's bill";
+  //   }
+  // }
+
   _handleReaderLoaded(readerEvt) {
+    // alert('2')
     var binaryString = readerEvt.target.result;
     var base64textString = btoa(binaryString);
     this.datashare.usderDetailObj.attachmentData = base64textString
+    // alert(base64textString)
   }
 
   getPromoCode() {
@@ -686,7 +722,6 @@ export class UserContractComponent implements OnInit {
       alert("Please Check Internet Connection")
     }
   }
-
 
 
 

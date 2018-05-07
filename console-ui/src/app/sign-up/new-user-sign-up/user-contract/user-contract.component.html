@@ -349,8 +349,8 @@
             <div class="col-md-8">
               <div class="form-group StartCamera">
                 <label class="custom-file">
-                  <input type="file" accept="image/*" id="file_RecentBill" capture="camera" class="custom-file-input" placeholder="" (change)="getPicture($event)">
-                  <span class="custom-file-control" id="SelectedFile">Take a photo of past month's bill</span>
+                  <input type="file" accept="image/*" id="file_RecentBill" capture="camera" class="custom-file-input" placeholder="" (change)="getPicture($event,'camera')">
+                  <span class="custom-file-control" id="SelectedFile">{{cameraImage}}</span>
                 </label>
                 <div class="line"></div>
               </div>
@@ -365,7 +365,7 @@
             <div class="col-md-8">
               <div class="form-group FileUpload">
                 <label class="custom-file">
-                  <input type="file" accept=".png, .jpg, .jpeg, .pdf" id="file_RecentBill" class="custom-file-input" placeholder="" (change)="getPicture($event)">
+                  <input type="file" accept=".png, .jpg, .jpeg, .pdf" id="file_RecentBill" class="custom-file-input" placeholder="" (change)="getPicture($event,'')">
                   <span class="custom-file-control" id="SelectedFile" style="text-overflow: ellipsis ; width: 100%">{{pictureName}}</span>
                   <!-- <span class="custom-file-control" id="SelectedFile">{{Upload Past Month's Bill}}</span> -->
                 </label>
