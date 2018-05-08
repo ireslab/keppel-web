@@ -62,8 +62,10 @@ export class UserRecommendationComponent implements OnInit {
 
     constructor(private sbService: SidebarService, private httpClient: HttpClient, private service: ServiceCall,
         public localJson: localJSON, private spinnerService: Ng4LoadingSpinnerService, private _recaptcha: recaptcha, private fb: FormBuilder, private router: Router, private datashare: DataShare) {
+        window.localStorage.clear();
         this.sbService.getSidebar("newUser")
         document.documentElement.scrollTop = 0;
+        console.log("Constructor=======>");
         // // this.dwlTypePlans = this.localJson.dwlTypePlans;
         this.dwellingTypes = this.localJson.dwellingTypes.dwelling_type;
         // this.localPlans = this.localJson.dwlTypePlans;
@@ -321,7 +323,7 @@ export class UserRecommendationComponent implements OnInit {
             this.captchaErr = true;
             return;
         } else {
-            this.datashare.usderDetailObj.icNumberType = "NRIC";
+            // this.datashare.usderDetailObj.icNumberType = "NRIC";
             this.datashare.usderDetailObj.icNumber = this.signUpForm.controls['idNumber'].value;
             this.datashare.usderDetailObj.mobileNumber = '+65' + this.signUpForm.controls['mobileNumber'].value;
 
@@ -429,6 +431,7 @@ export class UserRecommendationComponent implements OnInit {
                 // String dotAmount = String.valueOf(dotAmountDbl);
                 // var dotAmount: any = Math.round(dotAmountDbl);
                 this.datashare.emaFactSheetData.pdfDotAmount = tier1Amount;
+                this.datashare.emaFactSheetData.pdfFppAmount = "";
                 console.log("dotAmount in DOT--> " + tier1Amount);
 
             }
@@ -492,6 +495,7 @@ export class UserRecommendationComponent implements OnInit {
                 // String fppAmount = String.valueOf(dotAmountDbl);
                 // var fppAmount: any = Math.round(dotAmountDbl);
                 this.datashare.emaFactSheetData.pdfFppAmount = dotAmountDbl;
+                this.datashare.emaFactSheetData.pdfDotAmount="";
                 console.log("fppAmount--> " + dotAmountDbl);
             }
             if (tier1Amount == (tier2Amount) && tier2Amount != (tier3Amount)) {
