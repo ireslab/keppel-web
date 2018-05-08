@@ -1,10 +1,7 @@
 <header class="topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login ,'kpl-topbar':!appTrack}">
-<!-- <header *ngIf="appTrack" class="topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login }"> -->
 
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-    <!-- new-user/business/landing-sidebar -->
 
     <ul *ngIf="newUser || login || business || aknowNew || appTrack">
       <li>
@@ -175,12 +172,11 @@
   <div class="row" *ngIf="newUser || existingUser || business || aknowNew ">
     <!-- Use any element to open the sidenav -->
     <div class="col-lg-6 clearfix">
-      <button class="navbar-toggler float-left navbar-light1"  type="button" onclick="openNav()">
+      <button class="navbar-toggler float-left navbar-light1" type="button" onclick="openNav()">
         <span class="navbar-toggler-icon"></span>
       </button>
       <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url === '/new-user-recommendation'">Product Recommendation</h1>
       <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url != '/new-user-recommendation' && this.router.url != '/track-application-status'">NEW USER SIGN UP</h1>
-      <!-- <h1 class="kpl-pgTitle float-left">Product Recommendation</h1> -->
     </div>
 
     <!--Progress Bar New-user/Existing-User-->
@@ -242,14 +238,5 @@
       </nav>
     </div>
   </div>
-  <!-- <div class="row" *ngIf="aknowNew">
-      <div class="col-lg-6 clearfix">
-        <button class="navbar-toggler float-left" type="button" onclick="openNav()">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <h1 class="kpl-pgTitle float-left">New User Sign Up</h1>
-      </div>
-  
-    </div> -->
 
 </header>

@@ -37,21 +37,12 @@ export class UserConfirmationComponent implements OnInit {
 
   ngOnInit() {
     document.getElementById('bg').style.backgroundColor = "#F3F3F3";
-    // this.DS.userDetails.subscribe(
-    //   (value) => {
-    //     this._usderDetailObj = value
-    //     console.log(JSON.stringify(value))
-    //     console.log(this._usderDetailObj.selectedPlanObj.plan)
-    //   }
-    // )
   }
   getPdf() {
     var image1 = this.giropdf.giro1Base64;
-    // var image2 = this.giropdf.giro2Base64;
     var docDefinition = {
       content: [
         { image: image1, width: 530 }
-        // { image: image2, width: 550 }
       ],
       pageMargins: [30, 25, 25, 30],
       defaultStyle: {
@@ -87,11 +78,11 @@ export class UserConfirmationComponent implements OnInit {
         "icNumberType": this.DS.usderDetailObj.icNumberType,
         "paymentMethod": this.DS.usderDetailObj.paymentMethod,
         "premiseType": this.DS.usderDetailObj.premiseType,
-        "contractDuration": this._usderDetailObj.selectedPlanObj.contractDuration,//this.DS.usderDetailObj.selectedPlanObj,
+        "contractDuration": this._usderDetailObj.selectedPlanObj.contractDuration,
         "planType": '',
-        "optionalService1": this._usderDetailObj.optionalService1.serviceName,//this.DS.usderDetailObj.optionalService1,
-        "optionalService2": this._usderDetailObj.optionalService2.serviceName,//this.DS.usderDetailObj.optionalService2,
-        "optionalService3": this._usderDetailObj.optionalService3.serviceName,//this.DS.usderDetailObj.optionalService3,
+        "optionalService1": this._usderDetailObj.optionalService1.serviceName,
+        "optionalService2": this._usderDetailObj.optionalService2.serviceName,
+        "optionalService3": this._usderDetailObj.optionalService3.serviceName,
         "firstName": this.DS.usderDetailObj.firstName,
         "lastName": this.DS.usderDetailObj.lastName,
         "dob": '',
@@ -185,7 +176,7 @@ export class UserConfirmationComponent implements OnInit {
 
   makeServerCall(rqst_json) {
   
-    // var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup"  //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
+   
     let _url = ApiConstants.NEW_USER_SIGNUP;
     ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(
       (data) => {
@@ -203,7 +194,7 @@ export class UserConfirmationComponent implements OnInit {
         this.spinner.hide()
       })
   }
-  // S5416486F
+
 
 
   downloadRedirect(){

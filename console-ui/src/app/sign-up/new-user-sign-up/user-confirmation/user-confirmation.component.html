@@ -16,54 +16,6 @@
       <div class="col-lg-1"></div>
       <div class="col-lg-3 order-lg-2 PremiseSection">
         <app-summary></app-summary>
-        <!-- <div class="PremiseInfo">
-          <div class="kpl-summaryPanelSection">
-            <h5>Products Charges</h5>
-            <hr>
-            <dl>
-              <dt>Consumption will be</dt>
-              <dd>Loss Adjusted</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Energy Type]</dt>
-              <dd>[Insert Rate]</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-              <dt>[Insert Pass through Cost]</dt>
-              <dd>As Charged</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Additional Services</h5>
-            <hr>
-            <dl>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-              <dt>[Insert VAS]</dt>
-              <dd>[Insert Cost/unit]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Promotion</h5>
-            <hr>
-            <dl>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-              <dt>[Insert Promo]</dt>
-              <dd>[Insert discount]</dd>
-            </dl>
-          </div>
-          <div class="kpl-summaryPanelSection">
-            <h5>Miscellaneous</h5>
-            <hr>
-            <dl>
-              <dt>Security Deposit</dt>
-              <dd>[Insert SD]</dd>
-              <dt>[Insert other Misc.]</dt>
-              <dd>[Insert Charge]</dd>
-            </dl>
-          </div>
-        </div> -->
       </div>
       <div class="col-lg-8 order-lg-1 ConfirmSection">
         <div class="kpl-SummaryPageSection">
@@ -146,10 +98,6 @@
       </div>
       <small>
         <p class="text-justify">
-          <!-- TThis Form of Acceptance is subject to the T1 General Terms and Conditions [and any Schedules thereof], copies of
-          which are available at http://www.keppelelectric.com. Unless otherwise defined, capitalised terms used in this
-          Electricity Pricing Proposal shall have the meaning ascribed to them in the T1 General Terms and Conditions. Charges
-          for electricity retailed and related services provided by the Retailer will be as indicated in the Terms & Conditions. -->
           Unless otherwise defined, capitalised terms used in this Form of Acceptance shall have the meanings ascribed to them in the
           Residential Consumers General Terms and Conditions (a copy of which is available at
           <a href="http://portal.keppelelectric.com/termsandconditions" target="blank">http://portal.keppelelectric.com/termsandconditions</a>) (“GT&Cs”). For each Premises specified above, a separate
@@ -161,9 +109,6 @@
 
         <p>
           Discounted-off regulated tariff plan(s) will be discounted off prevailing residential electricity tariff.
-          <!-- The commencement and effectiveness of this Agreement is subject to the conditions precedent set out in Clause 2.1
-          of the T1 General Terms and Conditions having been satisfied, and the Consumer's account transfer to the Retailer,
-          through the MSSL, being successfully effected. -->
         </p>
         <br>
         <address>
@@ -213,20 +158,12 @@
         <section style="padding-left:30px;">
           <div class="form-check">
             <label class="form-check-label">
-<<<<<<< .mine
-              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_Email" (click)="marketingConsent($event,'email')" [checked]='email'>Email
-=======
               <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_Email" (click)="marketingConsent($event,'email')" [checked]= '_usderDetailObj.marketingEmail'>Email
->>>>>>> .theirs
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-<<<<<<< .mine
-              <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_SMS" (click)="marketingConsent($event,'sms')" [checked]='sms'>SMS and Telecommunication
-=======
               <input class="form-check-input" type="checkbox" value="" id="Chk_TnC2_SMS" (click)="marketingConsent($event,'sms')" [checked]= '_usderDetailObj.marketingSMS'>SMS and Telecommunication
->>>>>>> .theirs
             </label>
           </div>
         </section>
