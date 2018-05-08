@@ -26,7 +26,7 @@ export class UserConfirmationComponent implements OnInit {
   editDetails:boolean = false;
    
 
-  constructor(private sbService: SidebarService, private DS: DataShare, private spinner: Ng4LoadingSpinnerService,
+  constructor(public sbService: SidebarService, public DS: DataShare, private spinner: Ng4LoadingSpinnerService,
     private serverCall: ServiceCall, private http: Http, private commonService: CommonServices,
     private router: Router, private giropdf: GiroPdf) {
     this.DS.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));

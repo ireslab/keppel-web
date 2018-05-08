@@ -137,27 +137,6 @@ public class KeppelWebServiceConfig {
 	}
 	
 	
-	
-/*	@Bean(name = "CREATEINCIDENTWS")
-	public WebServiceTemplate webServiceTemplateCreateIncident() throws KeyManagementException, NoSuchAlgorithmException {
-		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
-		webServiceTemplate.setMarshaller(jaxb2MarshallerCREATEINCIDENTWS());
-		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCREATEINCIDENTWS());
-//		http://xmlns.oracle.com/Keppel/ServiceCxCreateIncident/CreateIncident
-		webServiceTemplate.setDefaultUri("https://10.21.32.1:6501/ServiceCxCreateIncident/CreateIncident");
-		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
-		webServiceTemplate.setInterceptors(new ClientInterceptor[] { securityInterceptor() });
-		return webServiceTemplate;
-	}
-	
-	@Bean
-	Jaxb2Marshaller jaxb2MarshallerCREATEINCIDENTWS() {
-		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
-		jaxb2Marshaller.setContextPath("com.keppelCI.CreateIncident");
-
-		return jaxb2Marshaller;
-	}*/
-
 	@Bean
 	public Wss4jSecurityInterceptor securityInterceptor() {
 		Wss4jSecurityInterceptor wss4jSecurityInterceptor = new Wss4jSecurityInterceptor();

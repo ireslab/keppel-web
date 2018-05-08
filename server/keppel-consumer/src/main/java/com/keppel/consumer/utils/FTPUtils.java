@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 
 import javax.xml.bind.DatatypeConverter;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -31,17 +30,10 @@ public class FTPUtils {
 		ftp.enterLocalPassiveMode();
 	}
 
-	public void uploadFile(String fileName, String hostDir, String filedata)
-			throws Exception {
-		//boolean flag = Base64.isBase64(filedata);
+	public void uploadFile(String fileName, String hostDir, String filedata) throws Exception {
 		byte[] imageByte = DatatypeConverter.parseBase64Binary(filedata);
 		ByteArrayInputStream base = new ByteArrayInputStream(imageByte);
-		// ByteArrayInputStream base = new
-		// ByteArrayInputStream(Base64.decodeBase64(filedata));
-		//System.out.println("filedata-" + filedata);
 		try {
-			// (InputStream input = new FileInputStream(new
-			// File(localFileFullName)))
 			this.ftp.storeFile(hostDir + fileName, base);
 		} catch (Exception exception) {
 			exception.printStackTrace();

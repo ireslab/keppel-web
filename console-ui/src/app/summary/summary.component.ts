@@ -17,7 +17,7 @@ export class SummaryComponent implements OnInit {
   selectedRecmData;
   planName:any;
   productCharges:any;
-  constructor(private router: Router, private datashare: DataShare) {
+  constructor(public router: Router, public datashare: DataShare) {
     this.selectedRecmData = this.datashare.usderDetailObj.selectedPlanObj;
     this.productCharges = this.datashare.emaFactSheetData;
     this.planName = this.selectedRecmData.plan.substring(0,3);

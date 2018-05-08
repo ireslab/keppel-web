@@ -325,49 +325,9 @@ public class GeneratePDF {
 
 			log.info("000additionalServices--> " + additionalServices + " additionalServicesVas1--> "
 					+ additionalServicesVas1);
-
-			// COde Added by Indira-21-3-2018
-			// TODO Put "" check
-			//
-			// if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-			// && (additionalServices != null && !additionalServices.equals("PaperBill"))) {
-			// log.info("additionalServicesVas1 eq VAS1---> " + additionalServicesVas1);
-			// addKeppelEntry(table, "Only electronic bills will be sent", "");
-			// }
-			// if (additionalServicesVas1 == null && additionalServices == null) {
-			// log.info("additionalServicesVas1 additionalServices eq null---> " +
-			// additionalServicesVas1);
-			// addKeppelEntry(table, "Only electronic bills will be sent", "");
-			// }
-			// if ((additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-			// && (additionalServices != null && additionalServices.equals("PaperBill"))) {
-			// log.info("2222additionalServices--> " + additionalServices + "
-			// additionalServicesVas1--> "
-			// + additionalServicesVas1);
-			// addKeppelEntry(table, "Additional Services",
-			// "Paper Bill($2/Bill), Smart Meter(One-time $40 if applicable)");
-			//
-			// } else if (additionalServices != null &&
-			// additionalServices.equals("PaperBill")) {
-			// log.info("3333additionalServices--> " + additionalServices + "
-			// additionalServicesVas1--> "
-			// + additionalServicesVas1);
-			// addKeppelEntry(table, "Additional Services:", "Paper Bill($2/Bill)");
-			// } else if ((additionalServicesVas1 != null &&
-			// additionalServicesVas1.equals("Vas1"))) {
-			// log.info("1111additionalServices--> " + additionalServices + "
-			// additionalServicesVas1--> "
-			// + additionalServicesVas1);
-			// addKeppelEntry(table, "Additional Services", "Smart Meter(One-time $40 if
-			// applicable)");
-			//
-			// }
+ 
 
 			try {
-//				String tier1Amount = mAccountDto.getTier1Amount();
-//				String tier2Amount = mAccountDto.getTier2Amount();
-//				String tier3Amount = mAccountDto.getTier3Amount();
-//				String productMapKeyVal = mAccountDto.getProductMapKeyVal();
 				
 				String pdfDotAmount = mAccountDto.getPdfDotAmount();
 				String pdfFppAmount = mAccountDto.getPdfFppAmount();
@@ -380,16 +340,10 @@ public class GeneratePDF {
 
 				addKeppelHeader(table, "Product Charges", "");
 
-				// log.info(" :pdfDotAmount in FOA::" + pdfDotAmount);
-				// log.info(" :pdfFppAmount in FOA::" + pdfFppAmount);
-				// String tier1Amount = getRPVersion(selectedRPlan, "t1", activePlanMap);
-				// String tier2Amount = getRPVersion(selectedRPlan, "t2", activePlanMap);
-				// String tier3Amount = getRPVersion(selectedRPlan, "t3", activePlanMap);
 
 				addKeppelEntry(table, " ", "Consumption will be Loss Adjusted");
 
-				// if (!"".equals(tier1Amount) && tier1Amount.equals(tier2Amount) &&
-				// tier1Amount.equals(tier3Amount)) {
+				
 				if (pdfDotAmount != null && !pdfDotAmount.equals("null") && pdfDotAmount.length() > 0) {
 					addKeppelEntry(table, "Energy Charges", "" + pdfDotAmount + "  % off SP Tariff");
 				}
@@ -410,23 +364,7 @@ public class GeneratePDF {
 							"" + pdfTier3Amount + " cents/kWh for peak periods from " + pdfPeakValueT3);
 				}
 
-				// if (!"".equals(pdfTier1Amount) && pdfTier1Amount != null && pdfPeakValueT1 !=
-				// null
-				// && !"".equals(pdfPeakValueT1)) {
-				// addKeppelEntry(table, "Peak Rate", "" + pdfPeakValueT1 + " " +
-				// pdfTier1Amount);
-				// log.info(" ::tier1Amount and peakValueT1 in pdf::" + pdfTier1Amount + "
-				// peakValueT1--> "
-				// + pdfTier1Amount);
-				// }
-				// if (!"".equals(pdfTier3Amount) && pdfTier3Amount != null && pdfPeakValueT3 !=
-				// null
-				// && !"".equals(pdfPeakValueT3)) {
-				// log.info("--> peakValueT3 in pdf" + pdfPeakValueT3);
-				// addKeppelEntry(table, "Off Peak Rate", "" + pdfPeakValueT3 + " " +
-				// pdfTier3Amount);
-				// }
-				// }
+				
 			} catch (Exception exception) {
 				log.info(exception.getMessage());
 			}
@@ -459,7 +397,7 @@ public class GeneratePDF {
 
 			}
 
-			// COde Added by Indira-21-3-2018
+			
 			if (paymentMethod.equals("GIRO")) {
 				addKeppelEntry(table, "Payment Mode:", "Giro");
 
@@ -479,34 +417,14 @@ public class GeneratePDF {
 			addKeppelEntry(table, "Charging Period:", "Monthly (As per MSSL Billing Period)");
 
 			addKeppelEntry(table, "Early Termination & Other Charges:", "As stated in Terms & Conditions");
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
+		
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
-			// document.add(Chunk.NEWLINE);
-			// document.add(Chunk.NEWLINE);
-
-			// addKeppelHeader(table, "Product Charges", "");
-			//
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
-			// addKeppelHeader(table, "Additional Services", "");
-			// if (additionalServices != null && additionalServices.equals("PaperBill"))
-			// addKeppelEntry(table, "Paper Bill", "($2/Bill)");
-			// if (additionalServicesVas1 != null && additionalServicesVas1.equals("Vas1"))
-			// addKeppelEntry(table, "Smart Meter", "(One-time $40 if applicable)");
-			// addKeppelEntry(table, "", "");
+			
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
-			// if (!userId.equals("CHAN") && promoCodeVal != null) {
-			// addKeppelHeader(table, "Promotion", "");
-			// addKeppelEntry(table, "Promo - " + promoCodeVal + ":", "(-$ " +
-			// promoCodeDiscount + "on 1st Bill)");
-			//
-			// }
+			
 
 			if (promoCodeVal != null && promoCodeVal.length() > 0 && promoCodeDiscount != null
 					&& promoCodeDiscount.length() > 0) {
@@ -514,8 +432,7 @@ public class GeneratePDF {
 				addKeppelEntry(table, "Promo - " + promoCodeVal + ":", "(-$ " + promoCodeDiscount + "on 1st Bill)");
 			}
 
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
+			
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 
@@ -523,16 +440,14 @@ public class GeneratePDF {
 			if (securityDeposit != null && securityDeposit.length() > 0) {
 				addKeppelEntry(table, "Security Deposit:", "S$ " + securityDeposit);
 			}
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
+			
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 
 			lineImage.scaleAbsolute(500, 4);
 
 			document.add(lineImage);
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
+			
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 			addKeppelHeader(table, "Personal Details", "");
@@ -566,10 +481,7 @@ public class GeneratePDF {
 			} catch (DocumentException e) {
 				e.printStackTrace();
 			}
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
-			// addKeppelEntry(table, "", "");
+		
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
@@ -588,30 +500,7 @@ public class GeneratePDF {
 					FontFactory.getFont(FontFactory.HELVETICA, 9));
 			document.add(p2);
 
-			// Paragraph p4 = new Paragraph("formed for the services to be provided at such
-			// Premises, on the terms of the GT&Cs and the terms applicable to that
-			// Premises",FontFactory.getFont(FontFactory.HELVETICA, 9));
-			//
-			// document.add(p4);
-
-			// document.add(new Paragraph("Unless otherwise defined, capitalised terms used
-			// in this Form of Acceptance shall have the meanings",
-			// FontFactory.getFont(FontFactory.HELVETICA, 9)));
-			// document.add(new Paragraph("ascribed to them in the Residential Consumers
-			// General Terms and Conditions (a copy of which is available at",
-			// FontFactory.getFont(FontFactory.HELVETICA, 9)));
-			// document.add(new Paragraph("in this Form of Acceptance. The effectiveness of
-			// each such agreement is subject to the conditions precedent set out in Clause
-			// 2.1 of the GT&Cs having been satisfied or waived in accordance with the
-			// provisions of the GT&Cs.",
-			// FontFactory.getFont(FontFactory.HELVETICA, 9)));
-			// document.add(new Paragraph("in this Form of Acceptance. The effectiveness of
-			// each such agreement is subject to the conditions precedent set out in Clause
-			// 2.1 of the GT&Cs having been satisfied or waived in accordance with the
-			// provisions of the GT&Cs.",
-			// FontFactory.getFont(FontFactory.HELVETICA, 9)));
-
-			// document.add(new Phrase("\n"));
+		
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);
 			document.add(Chunk.NEWLINE);

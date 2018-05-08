@@ -14,10 +14,10 @@ public interface KeppelConsumerService {
 	public void getDwellingTypes();
 
 	public CMRECPLAN getRecomendedPlans();
-	
+
 	public SecurityDeposit.SecurityDepositResponse getSecutityDeposit(SecurityDeposit deposits);
-	
+
 	public JsonObject getPromoCode(String promocode);
-	
+
 	public JsonObject getTrackStatus(String messageid);
 }
