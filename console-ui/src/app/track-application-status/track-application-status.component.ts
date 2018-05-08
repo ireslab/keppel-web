@@ -62,17 +62,14 @@ export class TrackApplicationStatusComponent implements OnInit {
       this.trackIDError = true
       return;
     }
-    // if(this.appNumber.length != 14 || this.appNumber == 'undefined'){
-    //    this.trackIDError = true
-    //    return;
-    // }
+ 
     else if (this.isValidCaptcha == false) {
       this.captchaErr = true;
       return;
     } else {
       this.spinner.show()
       this.resetCaptcha();
-      // var localURL = "http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup"  //"http://192.168.0.4:7001/keppelconsumer_2"//"http://192.168.0.4:7001/keppelconsumer/v1/newResiSignup";
+     
       let _url = ApiConstants.GET_APP_STATUS + this.dataShare.trackAppNumber;
       this.serverCall.getPlans(_url).subscribe(
         data => {
@@ -99,7 +96,6 @@ export class TrackApplicationStatusComponent implements OnInit {
   }
 
   updateTrackStatus() {
-    //document.getElementById('bg').style.display = "none";
     document.getElementById('bg').style.backgroundColor = "#302c2d";
     var stage = ['one', 'two', 'three', 'four', 'remove'];
     var track;

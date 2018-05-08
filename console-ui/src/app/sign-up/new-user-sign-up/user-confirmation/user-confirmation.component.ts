@@ -59,7 +59,6 @@ export class UserConfirmationComponent implements OnInit {
       this.DS.usderDetailObj.marketingConsent=event.target.checked;
       this.DS.usderDetailObj.marketingEmail = event.target.checked;
       this.DS.usderDetailObj.marketingSMS = event.target.checked;
-      console.log("IS MARKETING SELECTED:===>",this.DS.usderDetailObj.marketingConsent);
     }else if(type == 'email'){
       this.DS.usderDetailObj.marketingEmail=event.target.checked;
     }else if(type == 'sms'){
@@ -127,7 +126,6 @@ export class UserConfirmationComponent implements OnInit {
         "productMapKeyVal" : this.DS.usderDetailObj.selectedPlanObj.plan,
         "marketingConsent":this.DS.usderDetailObj.marketingConsent
       }
-      console.log(rqst_json);
       
       this.makeServerCall(rqst_json);
       
@@ -180,7 +178,6 @@ export class UserConfirmationComponent implements OnInit {
     let _url = ApiConstants.NEW_USER_SIGNUP;
     ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(
       (data) => {
-        console.log(data[0].messageId)
         if (data[0].messageId != '') {
           $('#downLoadRedirect').modal('show');
           

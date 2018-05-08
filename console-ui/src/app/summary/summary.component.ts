@@ -21,7 +21,6 @@ export class SummaryComponent implements OnInit {
     this.selectedRecmData = this.datashare.usderDetailObj.selectedPlanObj;
     this.productCharges = this.datashare.emaFactSheetData;
     this.planName = this.selectedRecmData.plan.substring(0,3);
-    //console.log("productCharges.pdfTier3Amount=====>",this.productCharges.pdfTier3Amount);
    }
 
   ngOnInit() {
