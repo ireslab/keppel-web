@@ -63,17 +63,11 @@ export class UserContractComponent implements OnInit {
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
     private spinnerService: Ng4LoadingSpinnerService, public http: Http) {
      
-    // this.datashare.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
+    
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
-    // this.optionalServices = [
-    //   { "serviceName": "Paper Bill", "serviceCost": "(+$2/bill)" },
-    //   { "serviceName": "Smart Meter", "serviceCost": "(+$40 one-time payment, if applicable)" },
-    //   // { "serviceName": "vas#3", "serviceCost": "3" },
-    // ]
     this.optionalServiceOne = { "serviceName": "Paper Bill", "serviceCost": "(+$2/bill)" };
     this.optionalServiceTwo = { "serviceName": "Smart Meter", "serviceCost": "(+$40 one-time payment, if applicable)" };
-    // this.optionalServiceThree = { "serviceName": "vas#3", "serviceCost": "3" };
     this.datashare.meterType = "SRLP"
     this.getMinDate();
     this.getMaxDate();
@@ -103,7 +97,6 @@ export class UserContractComponent implements OnInit {
       this.minDays = 30;
     }
     this.minDate = new Date(this.minDate.getTime() + this.minDays * 24 * 60 * 60 * 1000);
-   // this.selected_Date = this.minDate
    
   }
   getMaxDate() {
@@ -111,40 +104,7 @@ export class UserContractComponent implements OnInit {
     this.maxDate = new Date(Date.now() + this.maxDays * 24 * 60 * 60 * 1000);
   }
 
-  // selectedServices(optService) {
-  //   if (this.selectedOptionalServices.indexOf(optService) == -1) {
-  //     this.selectedOptionalServices.push(optService)
-  //   } else {
-  //     this.selectedOptionalServices.splice(this.selectedOptionalServices.indexOf(optService), 1);
-  //   }
-  //   console.log(this.selectedOptionalServices);
-  // }
-
-  // formatDate(d) {
-  //   //get the month
-  //   var month = d.getMonth();
-  //   //get the day
-  //   //convert day to string
-  //   var day = d.getDate().toString();
-  //   //get the year
-  //   var year = d.getFullYear();
-  //   //pull the last two digits of the year
-  //  // year = year.toString().substr(-2);
-  //   //increment month by 1 since it is 0 indexed
-  //   //converts month to a string
-  //   month = (month + 1).toString();
-  //   //if month is 1-9 pad right with a 0 for two digits
-  //   if (month.length === 1) {
-  //     month = "0" + month;
-  //   }
-  //   //if day is between 1-9 pad right with a 0 for two digits
-  //   if (day.length === 1) {
-  //     day = "0" + day;
-  //   }
-
-  //   //return the string "MMddyy"
-  //   return day + '/' + month + '/' + year;
-  // }
+  
   dateValidation() {
     this.dateErrorAmi = false;
     this.dateErrorSrlp = false;
@@ -161,8 +121,7 @@ export class UserContractComponent implements OnInit {
     var month = endDate.setMonth(endDate.getMonth() + (+this.datashare.usderDetailObj.selectedPlanObj.contractDuration))
     endDate.setDate(endDate.getDate() - 1);
     this.datashare.usderDetailObj.serviceEndDate = endDate.toISOString().slice(0, 10);
-    console.log("END DATE VALUE==>", this.datashare.usderDetailObj.selectedPlanObj.contractDuration);
-    console.log("END DATE==>", this.datashare.usderDetailObj.serviceEndDate);
+  
   }
   selectedServices(index) {
     if (index == 1) {
@@ -179,8 +138,8 @@ export class UserContractComponent implements OnInit {
         this.datashare.usderDetailObj.optionalService2 = ""
         this.datashare.meterType = "SRLP";
         this.getMinDate();
-        //this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
-        console.log(this.contractForm.controls['serviceStartDate'].value)
+
+  
         if (this.contractForm.controls['serviceStartDate'].value != "") {
           this.dateErrorSrlp = true;
           this.dateErrorAmi = false;
@@ -194,8 +153,8 @@ export class UserContractComponent implements OnInit {
         this.datashare.usderDetailObj.optionalService2 = this.optionalServiceTwo;
         this.datashare.meterType = "AMI";
         this.getMinDate();
-       // this.contractForm.controls['serviceStartDate'].setValue(this.selected_Date)
-       console.log(this.contractForm.controls['serviceStartDate'].value)
+ 
+     
         if (this.contractForm.controls['serviceStartDate'].value != "") {
           this.dateErrorAmi = true;
           this.dateErrorSrlp = false;
@@ -206,13 +165,7 @@ export class UserContractComponent implements OnInit {
         })
       }
     }
-    // else {
-    //   if (this.datashare.usderDetailObj.optionalService3 != "") {
-    //     this.datashare.usderDetailObj.optionalService3 = ""
-    //   } else {
-    //     this.datashare.usderDetailObj.optionalService3 = this.optionalServiceThree
-    //   }
-    // }
+
 
   }
   showSelectedOptService() {
@@ -222,10 +175,7 @@ export class UserContractComponent implements OnInit {
     if (this.datashare.usderDetailObj.optionalService2 != "") {
       document.getElementById("btnTwo").className = 'btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option selected';
     }
-    // if(this.datashare.usderDetailObj.optionalService3 != ""){
-    //   document.getElementById("btnThree").className = 'btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option selected';
-    // }
-
+ 
   }
 
 
@@ -288,9 +238,7 @@ export class UserContractComponent implements OnInit {
       });
 
       $("#bool_isSameBillingAddress").change(function () {
-        /*var ischecked = $(this).is(':checked');
-        if (!ischecked)
-            alert('uncheckd ' + $(this).val());*/
+       
         $("#BillingAddress").toggle();
       });
 
@@ -317,7 +265,6 @@ export class UserContractComponent implements OnInit {
           var PanelHeight = $('.kpl-SummaryCallout').outerHeight() + $('.PremiseInfo').outerHeight();
           var endPos = mainContentTopMargin + PanelHeight;
           var triggerPosFixed = endPos - $(window).height();
-          console.log(triggerPosFixed);
 
           if (pageYOffset >= triggerPosFixed) {
             $(".PremiseSection").css("position", "fixed");
@@ -397,9 +344,6 @@ export class UserContractComponent implements OnInit {
       this._payMethodKey = 'OTH'
     }
     this.validateSecurityDepositCall();
-    // if (paymentMethod == 'Recurring') {
-    //   this.router.navigateByUrl("payPal");
-    // }
   }
 
   getOwnership(ownership) {
@@ -415,7 +359,6 @@ export class UserContractComponent implements OnInit {
     } else {
       this.spinnerService.show();
       let _url = "https://developers.onemap.sg/commonapi/search?searchVal=" + _postCode + "&returnGeom=N&getAddrDetails=Y&pageNum=1";
-      console.log(_url)
       this.serverCall.getPlans(_url).subscribe(
         data => {
           this.spinnerService.hide()
@@ -453,7 +396,7 @@ export class UserContractComponent implements OnInit {
     } else {
       this.spinnerService.show();
       let _url = "https://developers.onemap.sg/commonapi/search?searchVal=" + _postCode + "&returnGeom=N&getAddrDetails=Y&pageNum=1";
-      console.log(_url)
+ 
       this.serverCall.getPlans(_url).subscribe(
         data => {
           this.spinnerService.hide();
@@ -512,46 +455,19 @@ export class UserContractComponent implements OnInit {
     }
   }
 
-  // open camera only for mobile browser
-  // capturedImageName = null;
-  // // cameraImage;
-  // onFileSelected(event)
-  // {
-  //   if (event.target.files[0].size > 5000000) {
-  //     alert('Please select the file upto 5MB')
-  //     return;
-  //   }
-  //   this.capturedImageName = event.target.files[0].name;
-  //   console.log(this.capturedImageName)
-  //   // alert(this.capturedImageName)
-  //   var file = event.target.files[0];
-  //   if (this.capturedImageName != undefined || this.capturedImageName != null) {
-  //     // alert('1')
-  //     this.cameraImage = this.capturedImageName;
-  //     this.datashare.usderDetailObj.attachmentName = this.cameraImage
-  //     var reader = new FileReader();
-  //     reader.onload = this._handleReaderLoaded.bind(this);
-  //     reader.readAsBinaryString(file);
-  //   } else {
-  //     this.cameraImage = "Take a photo of past month's bill";
-  //   }
-  // }
-
+  
   _handleReaderLoaded(readerEvt) {
-    // alert('2')
     var binaryString = readerEvt.target.result;
     var base64textString = btoa(binaryString);
     this.datashare.usderDetailObj.attachmentData = base64textString
-    // alert(base64textString)
   }
 
   getPromoCode() {
     this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
     let _url = ApiConstants.GET_PROMO_CODE + this.datashare.usderDetailObj.promoCode;
-    console.log(_url)
+
     this.serverCall.getPlans(_url).subscribe(
       data => {
-        console.log(data);
         if (data.success == "true") {
           this.datashare.usderDetailObj.promocodeAmount = data.amount;
         } else {
@@ -579,13 +495,7 @@ export class UserContractComponent implements OnInit {
       console.error("form is not valid")
       return;
     }
-    //else if (this.datashare.usderDetailObj.optionalService2 != "") {
-    //   this.meterType = "AMI";
-    //   this.datashare.usderDetailObj.serviceStartDate = "";
-    //   this.getMinDate();
-    //   this.dateError = true;
-    //   return;
-    // }
+  
     else if (this.paymentMethod == "") {
       this.paymentMessage = true;
       return;
@@ -593,23 +503,7 @@ export class UserContractComponent implements OnInit {
       this.ownershipMessage = true;
       return;
     } else {
-      // let optionalService1 = "";
-      // let optionalService2 = "";
-      // let optionalService3 = "";
-
-      // if (this.selectedOptionalServices.length > 0) {
-      //   for (let i = 0; i < this.selectedOptionalServices.length; i++) {
-      //     if (i == 0) {
-      //       optionalService1 = this.selectedOptionalServices[i]
-      //     } else if (i == 1) {
-      //       optionalService2 = this.selectedOptionalServices[i]
-      //     } else {
-      //       optionalService3 = this.selectedOptionalServices[i]
-      //     }
-      //   }
-
-      // }
-
+     
 
       let postcode = this.contractForm.controls['postcode'].value;
       let premiseAddress;
@@ -622,17 +516,14 @@ export class UserContractComponent implements OnInit {
       if (this.sameAddress == true) {
         this.postcodeBilling = postcode;
         this.billingAddress = premiseAddress;
-        // this.billingAddress2 = premiseAddress2;
       } else {
         this.postcodeBilling = this.contractForm.controls['postcodeBill'].value;
         this.billingAddress = this.contractForm.controls['blockBill'].value + " " + " " + this.contractForm.controls['streetNameBill'].value + " " + " " + this.contractForm.controls['buildingNameBill'].value + " " + " " + "#" + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
-        // this.billingAddress2 = this.contractForm.controls['buildingNameBill'].value + " " + " " + this.contractForm.controls['floorLevelBill'].value + " " + " " + " SINGAPORE " + " " + " " + this.postcodeBilling;
+        
       }
 
       this.datashare.usderDetailObj.serviceStartDate = this.contractForm.controls['serviceStartDate'].value;
-      // this.datashare.usderDetailObj.optionalService1 = optionalService1;
-      // this.datashare.usderDetailObj.optionalService2 = optionalService2;
-      // this.datashare.usderDetailObj.optionalService3 = optionalService3;
+      
       this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
       this.datashare.usderDetailObj.paymentMethod = this.paymentMethod;
       this.datashare.usderDetailObj.icNumberType = this.contractForm.controls['icNumberType'].value;
@@ -652,10 +543,8 @@ export class UserContractComponent implements OnInit {
       this.datashare.usderDetailObj.floorLevelBill = this.contractForm.controls['floorLevelBill'].value;
 
       this.datashare.usderDetailObj.premiseAddress = premiseAddress;
-      // this.datashare.usderDetailObj.premiseAddress2 = premiseAddress2;
 
       this.datashare.usderDetailObj.billingAddress = this.billingAddress;
-      // this.datashare.usderDetailObj.billingAddress2 = this.billingAddress2;
 
       this.datashare.usderDetailObj.tenantOrOwner = this.tenantOrOwner;
       this.datashare.getUserDetails();
@@ -690,11 +579,9 @@ export class UserContractComponent implements OnInit {
         "premiseType": this.datashare.usderDetailObj.premiseType
       })
 
-      console.log(rqst_json)
       let _url = ApiConstants.GET_SECURITY_DEPOSIT;
       ServiceCall.httpPostCall(rqst_json, _url, this.http).subscribe(
         (data) => {
-          console.log(data)
           this.spinnerService.hide()
           if (data.success == true) {
             if (data.sd_amount != null) {
@@ -706,12 +593,7 @@ export class UserContractComponent implements OnInit {
           } else {
             this.datashare.usderDetailObj.sd_amount = ""
           }
-          // this.datashare.getUserDetails();
-          // window.localStorage.clear();
-          // window.localStorage.setItem('newUserData', JSON.stringify(this.datashare.usderDetailObj));
-          // window.localStorage.setItem('emaFactData', JSON.stringify(this.datashare.emaFactSheetData))
-          // this.router.navigateByUrl("new-user-confirmation");
-
+          
         }, (error: any) => {
           console.log(error.success)
           this.datashare.usderDetailObj.sd_amount = error.sd_amount;

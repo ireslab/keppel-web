@@ -1,25 +1,22 @@
 <header class="topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login ,'kpl-topbar':!appTrack}">
-<!-- <header *ngIf="appTrack" class="topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login }"> -->
 
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-    <!-- new-user/business/landing-sidebar -->
-
     <ul *ngIf="newUser || login || business || aknowNew || appTrack">
       <li>
         <div>
-          <a class="kpl-MenuItem About" href="#">About Us</a>
+          <a class="kpl-MenuItem About" role="button" href="javascript:void(0)">About Us</a>
         </div>
       </li>
       <li>
         <div>
-          <a class="kpl-MenuItem Login" href="#">Login</a>
+          <a class="kpl-MenuItem Login" role="button" routerLink="/keppel">Login</a>
         </div>
       </li>
       <li>
         <div>
-          <a class="kpl-MenuItem Products" href="#">Products</a>
+          <a class="kpl-MenuItem Products" role="button" href="https://www.keppelelectric.com/Home/Products" target="_blank">Products</a>
         </div>
       </li>
       <li>
@@ -32,14 +29,14 @@
           </li>
           <li>
             <div routerLinkActive="active" #businesLink="routerLinkActive">
-              <a class="kpl-MenuItem Business" routerLink="/business-details">Business</a>
+              <a class="kpl-MenuItem Business" href="javascript:void(0)">Business</a>
             </div>
           </li>
         </ul>
       </li>
       <li>
         <div>
-          <a class="kpl-MenuItem Register" href="#">Register Your Interest</a>
+          <a class="kpl-MenuItem Register" role="button" href="javascript:void(0)">Register Your Interest</a>
         </div>
       </li>
       <li>
@@ -49,12 +46,12 @@
       </li>
       <li>
         <div>
-          <a class="kpl-MenuItem Help" href="#">Help & Support</a>
+          <a class="kpl-MenuItem Help" role="button" href="javascript:void(0)">Help & Support</a>
         </div>
       </li>
       <li>
         <div>
-          <a class="kpl-MenuItem Contact" href="#">Contact Us</a>
+          <a class="kpl-MenuItem Contact" role="button" href="javascript:void(0)">Contact Us</a>
         </div>
       </li>
     </ul>
@@ -175,12 +172,11 @@
   <div class="row" *ngIf="newUser || existingUser || business || aknowNew ">
     <!-- Use any element to open the sidenav -->
     <div class="col-lg-6 clearfix">
-      <button class="navbar-toggler float-left navbar-light1"  type="button" onclick="openNav()">
+      <button class="navbar-toggler float-left navbar-light1" type="button" onclick="openNav()">
         <span class="navbar-toggler-icon"></span>
       </button>
       <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url === '/new-user-recommendation'">Product Recommendation</h1>
       <h1 class="kpl-pgTitle float-left" *ngIf="this.router.url != '/new-user-recommendation' && this.router.url != '/track-application-status'">NEW USER SIGN UP</h1>
-      <!-- <h1 class="kpl-pgTitle float-left">Product Recommendation</h1> -->
     </div>
 
     <!--Progress Bar New-user/Existing-User-->
@@ -242,14 +238,5 @@
       </nav>
     </div>
   </div>
-  <!-- <div class="row" *ngIf="aknowNew">
-      <div class="col-lg-6 clearfix">
-        <button class="navbar-toggler float-left" type="button" onclick="openNav()">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <h1 class="kpl-pgTitle float-left">New User Sign Up</h1>
-      </div>
-  
-    </div> -->
 
 </header>

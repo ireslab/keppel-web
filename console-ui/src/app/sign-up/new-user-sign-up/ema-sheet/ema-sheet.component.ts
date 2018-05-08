@@ -19,34 +19,25 @@ export class EmaSheetComponent implements OnInit {
     this._userDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this._emaFactSheetData = JSON.parse(window.localStorage.getItem('emaFactData'));
     var planName = this._userDetailObj.selectedPlanObj.plan.substring(0, 3);
-      if(planName == "FIX" || planName == "DOT")
-      {
-        this.planType = "Standard"
-      }else {
-        this.planType = "Non Standard"
-      }
-      if(this._userDetailObj.optionalService2 != '')
-      {
-        this.smartMeter = 'Yes'
-      }else {
-        this.smartMeter = 'No'
-      }
-      if(this._userDetailObj.optionalService1 != ''){
-        this.optionalService1 = this._userDetailObj.optionalService1.serviceName
-      } else if (this._userDetailObj.optionalService2 != ''){
-        this.optionalService2 = this._userDetailObj.optionalService2.serviceName
-      }
-   }
+    if (planName == "FIX" || planName == "DOT") {
+      this.planType = "Standard"
+    } else {
+      this.planType = "Non Standard"
+    }
+    if (this._userDetailObj.optionalService2 != '') {
+      this.smartMeter = 'Yes'
+    } else {
+      this.smartMeter = 'No'
+    }
+    if (this._userDetailObj.optionalService1 != '') {
+      this.optionalService1 = this._userDetailObj.optionalService1.serviceName
+    } else if (this._userDetailObj.optionalService2 != '') {
+      this.optionalService2 = this._userDetailObj.optionalService2.serviceName
+    }
+  }
 
   ngOnInit() {
     document.getElementById('bg').style.backgroundColor = "#F3F3F3";
-    // this.datashare.userDetails.subscribe(
-    //   (value) => {
-    //     console.log("value")
-    //     console.log(value)
-    //     this._userDetailObj = value;
-    //   }
-    // );
   }
 
 }

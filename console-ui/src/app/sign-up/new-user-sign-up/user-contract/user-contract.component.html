@@ -1,6 +1,5 @@
 <app-sidebar></app-sidebar>
 <div class="container mainContent">
-  <!-- <form> -->
   <div class="row">
     <div class="col-xl-9  kpl-inputForm">
       <form [formGroup]="contractForm">
@@ -27,17 +26,11 @@
           </div>
           <div class="col-12 text-center form-group">
             <label>Select Optional Services (if required)</label>
-            <!-- <small>Click here to see the cost of optional services</small> -->
             <small>Smart meter service requires 31 days advance notice</small>
           </div>
           <div class="form-group col-12 vasGroup">
             <div class="row no-gutters">
-              <!-- <div class="col-4" *ngFor="let optService of optionalServices ; let i = index">
-                <button class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(optService)"
-                  style="padding-top:15px;" type="button">{{optService.serviceName}}
-                  <small>(+${{optService.serviceCost}}/bill)</small>
-                </button>
-              </div> -->
+             
               <div class="col-2"></div>
               <div class="col-4">
                 <button id="btnOne" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(1)"
@@ -51,12 +44,7 @@
                   <small>{{optionalServiceTwo.serviceCost}}</small>
                 </button>
               </div>
-              <!-- <div class="col-4">
-                      <button id="btnThree" class="btn btn-lg btn-block btn-secondary selectOptionalSvcsButton btn-Option" (click)="selectedServices(3)"
-                        style="padding-top:15px;" type="button">{{optionalServiceThree.serviceName}}
-                        <small>(+${{optionalServiceThree.serviceCost}}/bill)</small>
-                      </button>
-                    </div> -->
+             
             </div>
           </div>
         </div>
@@ -130,9 +118,7 @@
             <div class="form-group">
               <input type="text" class="form-control IDNumber" id="txt_IDNumber" placeholder="ID Number*" formControlName="icNumber" maxlength="9">
               <div *ngIf="icNumber.invalid && icNumber.touched" class=" text-danger text-left">
-                <!-- <div *ngIf="icNumber.errors?.required">
-                  ID number is required.
-                </div> -->
+              
                 <div *ngIf="icNumber.errors?.validNric && !icNumber.errors?.required">
                   Invalid ID number.
                 </div>
@@ -147,9 +133,7 @@
               <input type="text" class="form-control Name" id="txt_firstName" aria-describedby="txt_firstName" placeholder="First Name*"
                 formControlName="firstName" maxlength="50">
               <div *ngIf="firstName.invalid && firstName.touched" class=" text-danger text-left">
-                <!-- <div *ngIf="firstName.errors?.required">
-                  First Name is required.
-                </div> -->
+             
                 <div *ngIf="firstName.errors?.pattern && !firstName.errors?.required">
                   Accepts alphabets only.
                 </div>
@@ -162,9 +146,7 @@
               <input type="text" class="form-control Name" id="txt_LastName" aria-describedby="txt_LastName" placeholder="Last Name*" formControlName="lastName"
                 maxlength="50">
               <div *ngIf="lastName.invalid && lastName.touched" class=" text-danger text-left">
-                <!-- <div *ngIf="lastName.errors?.required">
-                  Last Name is required.
-                </div> -->
+            
                 <div *ngIf="lastName.errors?.pattern && !lastName.errors?.required">
                   Accepts alphabets only.
                 </div>
@@ -179,9 +161,7 @@
               <input type="text" class="form-control Email" id="txt_UserEmail" aria-describedby="txt_UserEmail" placeholder="Email*" formControlName="eMail"
                 maxlength="50">
               <div *ngIf="eMail.invalid && eMail.touched" class=" text-danger text-left">
-                <!-- <div *ngIf="eMail.errors?.required">
-                  Email is required.
-                </div> -->
+               
                 <div *ngIf="eMail.errors?.pattern && !eMail.errors?.required">
                   Accepts valid email only.
                 </div>
@@ -197,9 +177,7 @@
                 Postal code is invalid.
               </div>
               <div *ngIf="postcode.invalid && postcode.touched" class=" text-danger text-left">
-                <!-- <div *ngIf="postcode.errors?.required">
-                  Postal code is required.
-                </div> -->
+               
                 <div *ngIf="postcode.errors?.pattern && !postcode.errors?.required">
                   Accepts numbers only.
                 </div>
@@ -215,11 +193,7 @@
             <div class="form-group">
               <input type="text" class="form-control Street" id="txt_StreetName" aria-describedby="" placeholder="Street Name* is required"
                 formControlName="streetName" maxlength="100">
-              <!-- <div *ngIf="streetName.invalid && streetName.touched" class=" text-danger text-left">
-                <div *ngIf="streetName.errors?.required">
-                  Postal code is required.
-                </div>
-              </div> -->
+           
               <div class="line"></div>
             </div>
           </div>
@@ -227,11 +201,7 @@
             <div class="form-group">
               <input type="text" class="form-control BlockNumber" id="int_StreetNumber" aria-describedby="" placeholder="Block / Street No*"
                 formControlName="block" maxlength="100">
-              <!-- <div *ngIf="block.invalid && block.touched" class=" text-danger text-left">
-                  <div *ngIf="block.errors?.required">
-                    Postal code is required.
-                  </div>
-                </div> -->
+            
               <div class="line"></div>
             </div>
           </div>
@@ -248,11 +218,7 @@
             <div class="form-group">
               <input [attr.disabled]="disableFloor == true ? true : null" type="text" class="form-control Floor" id="int_Level" aria-describedby="" placeholder="Floor Level / Unit No*" formControlName="floorLevel"
                 maxlength="100">
-              <!-- <div *ngIf="floorLevel.invalid && floorLevel.touched" class=" text-danger text-left">
-                  <div *ngIf="floorLevel.errors?.required">
-                    Postal code is required.
-                  </div>
-                </div> -->
+             
               <div class="line"></div>
             </div>
           </div>
@@ -295,9 +261,7 @@
                   Postal code is invalid.
                 </div>
                 <div *ngIf="postcodeBill.invalid && postcodeBill.touched" class=" text-danger text-left">
-                  <!-- <div *ngIf="postcodeBill.errors?.required">
-                      Postal code is required.
-                    </div> -->
+                  
                   <div *ngIf="postcodeBill.errors?.pattern && !postcodeBill.errors?.required">
                     Accepts numbers only.
                   </div>
@@ -367,7 +331,7 @@
                 <label class="custom-file">
                   <input type="file" accept=".png, .jpg, .jpeg, .pdf" id="file_RecentBill" class="custom-file-input" placeholder="" (change)="getPicture($event,'')">
                   <span class="custom-file-control" id="SelectedFile" style="text-overflow: ellipsis ; width: 100%">{{pictureName}}</span>
-                  <!-- <span class="custom-file-control" id="SelectedFile">{{Upload Past Month's Bill}}</span> -->
+                 
                 </label>
                 <div class="line"></div>
               </div>
@@ -404,12 +368,7 @@
         </div>
         <div class="row CTArow">
           <div class="col-md-4 col-4"></div>
-          <!-- <div class="col-md-5 col-8">
-            <div class="form-group">
-              <button type="button" class="btn btn-secondary btn-block" id="btn_AddNewPremise" data-toggle="modal" data-target="#AddNewPremiseModal"
-                onclick="">+ Add Another Premise</button>
-            </div>
-          </div> -->
+         
           <div class="col-md-4 col-4">
             <div class="form-group">
               <button type="button" class="btn btn-primary btn-block" (click)="submitContractDetails()">Checkout</button>
@@ -420,97 +379,12 @@
       </form>
     </div>
     <div class="col-10 col-md-5 col-sm-6 col-xl-3 PremiseSection">
-      <!-- <button class="PanelRevealButton" type="button">Selection Summary</button>
-      <div class="kpl-SummaryCallout">
-        <h4>Selection Summary</h4>
-        <div class="kpl-premise">
-          <h5>
-            <img src="assets/img/img-PlanIcon.png" /> Clean</h5>
-          <hr>
-          <p>Estimated Monthly Bill: S$56*</p>
-          <h1>19% Less</h1>
-          <p>
-            than current SP Tariff
-          </p>
-        </div>
-        <button class="PanelClose-Top" type="button">
-          <img src="assets/img/ico-PanelArrow.png" />
-        </button>
-        <button class="PanelClose-Bottom" type="button">
-          <img src="assets/img/ico-PanelArrow.png" />
-        </button>
-      </div>
-      <div class="PremiseInfo">
-        <div class="kpl-summaryPanelSection">
-          <p class="PanelScrollNotice d-block d-lg-none">Scroll down to see more information</p>
-          <h6>Details:</h6>
-          <ul>
-            <li>24 Months</li>
-            <li>Peak Rate (7am to 11pm): $0.1/kwh</li>
-            <li>Off Peak Rate(11pm to 7am): $0.01/kwh</li>
-            <li>All charges are absorbed</li>
-            <li>Consumption is loss adjusted</li>
-          </ul>
-        </div>
-
-        <div class="kpl-summaryPanelSection">
-          <h5>Products Charges</h5>
-          <hr>
-          <dl>
-            <dt>Consumption will be</dt>
-            <dd>Loss Adjusted</dd>
-            <dt>[Insert Energy Type]</dt>
-            <dd>[Insert Rate]</dd>
-            <dt>[Insert Energy Type]</dt>
-            <dd>[Insert Rate]</dd>
-            <dt>[Insert Pass through Cost]</dt>
-            <dd>As Charged</dd>
-            <dt>[Insert Pass through Cost]</dt>
-            <dd>As Charged</dd>
-          </dl>
-        </div>
-        <div class="kpl-summaryPanelSection">
-          <h5>Additional Services</h5>
-          <hr>
-          <dl>
-            <dt>[Insert VAS]</dt>
-            <dd>[Insert Cost/unit]</dd>
-            <dt>[Insert VAS]</dt>
-            <dd>[Insert Cost/unit]</dd>
-          </dl>
-        </div>
-        <div class="kpl-summaryPanelSection">
-          <h5>Promotion</h5>
-          <hr>
-          <dl>
-            <dt>[Insert Promo]</dt>
-            <dd>[Insert discount]</dd>
-            <dt>[Insert Promo]</dt>
-            <dd>[Insert discount]</dd>
-          </dl>
-        </div>
-        <div class="kpl-summaryPanelSection">
-          <h5>Miscellaneous</h5>
-          <hr>
-          <dl>
-            <dt>Security Deposit</dt>
-            <dd>[Insert SD]</dd>
-            <dt>[Insert other Misc.]</dt>
-            <dd>[Insert Charge]</dd>
-          </dl>
-        </div>
-        <div class="kpl-summaryPanelSection">
-          <hr>
-          <dl>
-            <dt style="width:100%;">*Based on average dwelling type consumption</dt>
-          </dl>
-        </div>
-      </div> -->
+     
       <app-summary></app-summary>
     </div>
   </div>
 
-  <!-- </form> -->
+ 
 </div>
 
 <!-- Modal for Add New Premise-->

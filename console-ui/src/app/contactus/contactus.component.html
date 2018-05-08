@@ -1,143 +1,120 @@
 <app-sidebar></app-sidebar>
 <div style="background-image: url('assets/img/bkg-ContactUsMain.png')">
-    <div class="container mainContent">
-        <div class="row">
-            <div class="col-md-11 clearfix PageHeader">
-                <h1 class="allCaps headerIcon">Contact Us</h1>
-            </div>
-            <div class="col-md-1 d-none d-md-flex">
-                <a href="#">
-                    <img id="imgPrint" src="assets/img/ico-Print-Button.png" />
-                </a>
-            </div>
-        </div>
-        <form class="contentForms">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Compose</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 allCaps" style="margin-bottom:25px;">
-                    To:
-                    <a href="#">customerservice@kepinfra.com</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <input type="text" class="form-control Subject" id="txt_Subject" placeholder="Subject*">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <select name="Opt_idType" id="Opt_idType" class="form-control Inquiry" value="">
-                            <option value="" disabled selected hidden>Inquiry Type:*</option>
-                            <option>General</option>
-                            <option>Bills & Payments</option>
-                            <option>Help & Support</option>
-                            <option>Service Request</option>
-                        </select>
-                        <div class="line"></div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control Name" id="txt_Name" placeholder="Name*">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="text" class="form-control Email" id="txt_Email" placeholder="Email*">
-                </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control ContactNumber" id="txt_Contact" placeholder="Contact Number*">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <textarea class="form-control Message" rows="7" id="inputMessage" placeholder="Message"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center" style="margin-bottom:25px;">
-                    Information sent through the query form or to the email addresses above will be dealt with as described in our
-                    <a href="#">Data Protection Statement</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <img src="assets/img/newCaptchaAnchor.gif" class="dummyCaptcha" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center" style="margin-bottom:50px;">
-                    <button type="button" class="btn-lg btn btn-primary emphasis" onclick="location.href='ContactUs.Received.html'">Submit</button>
-                </div>
-            </div>
-        </form>
-        <div class="row">
-            <div class="col-12">
-                <h3>Contact Info</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 allCaps">
-                <h5>Keppel Electric</h5>
-                <p>
-                    1 HarbourFront Ave
-                    <br />#05-05 Keppel Bay Tower
-                    <br />Singapore 098632
-                    <br />
-                    <br />General Inquiry: (65) 6803 1800
-                    <br />Sales Inquiry: (65) 6803 3000
-                    <br />Email:
-                    <a href="#">customerservice@kepinfra.com</a>
-                </p>
-            </div>
-        </div>
+  <div class="container mainContent">
+    <div class="row">
+      <div class="col-md-11 clearfix PageHeader">
+        <h1 class="allCaps headerIcon">Contact Us</h1>
+      </div>
+      <div class="col-md-1 d-none d-md-flex">
+        <a href="#">
+          <img id="imgPrint" src="assets/img/ico-Print-Button.png" />
+        </a>
+      </div>
     </div>
-    <!--Chat Trigger (hidden)-->
-    <button class="btn btn-secondary" id="kpl-ContactUsChat" type="button" data-toggle="modal" data-target="#ChatModal">Chat</button>
-    <!--Modal for Chatbot-->
-    <div class="modal fade" id="ChatModal" tabindex="-1" role="dialog" aria-labelledby="ChatModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>
-                        <span class="ModalTitleIcon">
-                            ?
-                        </span>Help
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    [Placeholder for Chat]
-                </div>
-            </div>
+    <form class="contentForms">
+      <div class="row">
+        <div class="col-12">
+          <h3>Compose</h3>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-12 allCaps" style="margin-bottom:25px;">
+          To:
+          <a href="#">customerservice@kepinfra.com</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <input type="text" class="form-control Subject" id="txt_Subject" placeholder="Subject*">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group">
+            <select name="Opt_idType" id="Opt_idType" class="form-control Inquiry" value="">
+              <option value="" disabled selected hidden>Inquiry Type:*</option>
+              <option>General</option>
+              <option>Bills & Payments</option>
+              <option>Help & Support</option>
+              <option>Service Request</option>
+            </select>
+            <div class="line"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <input type="text" class="form-control Name" id="txt_Name" placeholder="Name*">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="form-control Email" id="txt_Email" placeholder="Email*">
+        </div>
+        <div class="col-md-6">
+          <input type="text" class="form-control ContactNumber" id="txt_Contact" placeholder="Contact Number*">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea class="form-control Message" rows="7" id="inputMessage" placeholder="Message"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center" style="margin-bottom:25px;">
+          Information sent through the query form or to the email addresses above will be dealt with as described in our
+          <a href="#">Data Protection Statement</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <img src="assets/img/newCaptchaAnchor.gif" class="dummyCaptcha" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center" style="margin-bottom:50px;">
+          <button type="button" class="btn-lg btn btn-primary emphasis" onclick="location.href='ContactUs.Received.html'">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-12">
+        <h3>Contact Info</h3>
+      </div>
     </div>
-    <app-footer></app-footer>
-    <!-- Footer-->
-    <!-- <footer class="container-fluid clearfix">
-        <div class="copyright small text-center">
-            <a href="#">Terms of Use</a> |
-            <a href="#">Privacy Statement</a> |
-            <a href="#">Sitemap</a>
-            <Br/>Copyright © 2018 Keppel Electric. All rights reserved</div>
-        <div class="help">
-            <a href="">
-                <img src="assets/img/ico-VA.png" />
-            </a>
+    <div class="row">
+      <div class="col-12 allCaps">
+        <h5>Keppel Electric</h5>
+        <p>
+          1 HarbourFront Ave
+          <br />#05-05 Keppel Bay Tower
+          <br />Singapore 098632
+          <br />
+          <br />General Inquiry: (65) 6803 1800
+          <br />Sales Inquiry: (65) 6803 3000
+          <br />Email:
+          <a href="#">customerservice@kepinfra.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--Chat Trigger (hidden)-->
+  <button class="btn btn-secondary" id="kpl-ContactUsChat" type="button" data-toggle="modal" data-target="#ChatModal">Chat</button>
+  <!--Modal for Chatbot-->
+  <div class="modal fade" id="ChatModal" tabindex="-1" role="dialog" aria-labelledby="ChatModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>
+            <span class="ModalTitleIcon">
+              ?
+            </span>Help
+          </h5>
         </div>
-    </footer> -->
-    <!-- External Libraries -->
-    <!-- <script src="libraries/jQuery/jquery-3.2.1.min.js"></script>
-    <script src="libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="libraries/basictable/jquery.basictable.min.js"></script>
-    <script src="js/menu.js"></script>
-    <script>
-        $(document).ready(function () {
-            //Script on Page Load
-            $("#kpl-ContactUsChat").click();
-        });
-    </script> -->
+        <div class="modal-body">
+          [Placeholder for Chat]
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+
 </div>
