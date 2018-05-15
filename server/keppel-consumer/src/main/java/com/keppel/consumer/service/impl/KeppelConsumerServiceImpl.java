@@ -12,8 +12,11 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 import com.google.gson.JsonObject;
 import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.SecurityDeposit;
+import com.keppel.consumer.model.ContactUs;
 import com.keppel.consumer.service.KeppelConsumerService;
 import com.keppel.consumer.utils.FTPUtils;
+import com.keppelCI.CreateIncident.ProcessResponse;
+import com.keppelCI.CreateIncident.Process;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY;
 import com.keppelCM.CMRETPERMTY.CMRETPERMTY.Input;
 import com.keppelCMPROMO.CmPromotionCodeGenerationBS.CmPromotionCodeGenerationBS;
@@ -55,6 +58,10 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 	@Qualifier("CMRMS")
 	@Autowired
 	private WebServiceTemplate webServiceTemplateCMRMS;
+	
+	@Qualifier("CI")
+	@Autowired
+	private WebServiceTemplate webServiceTemplateCI;
 
 	/*
 	 * @Qualifier("CREATEINCIDENTWS")
@@ -311,5 +318,22 @@ public class KeppelConsumerServiceImpl implements KeppelConsumerService {
 		}
 
 		return response;
+	}
+
+	@Override
+	public ProcessResponse sendContactUs(ContactUs contactUs) {
+		Process body = new Process();
+		body.setCallBackDate(contactUs.getCallBackDate());
+		body.setCallBackDateTime(contactUs.getCallBackDateTime());
+		body.setFirstName(contactUs.getFirstName());
+		body.setLastName(contactUs.getLastName());
+		body.setEmail(contactUs.getEmail());
+		body.setStatus(contactUs.getStatus());
+		body.setIncidentState(contactUs.getIncidentState());
+		body.setRemarks(contactUs.getRemarks());
+		body.setContactNumber(contactUs.getContactNumber());
+		 
+		ProcessResponse respone = (ProcessResponse) webServiceTemplateCI.marshalSendAndReceive(body);
+		return respone;
 	}
 }

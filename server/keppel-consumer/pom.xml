@@ -76,7 +76,7 @@
 			<version>2.8.1</version>
 		</dependency>
 
-		
+
 
 		<dependency>
 			<groupId>commons-net</groupId>
@@ -241,7 +241,7 @@
 							<generateDirectory>${project.build.directory}/generated-sources/xjc-CMPROMO</generateDirectory>
 						</configuration>
 					</execution>
-					
+
 					<execution>
 						<id>xjc-schema6</id>
 						<phase>generate-sources</phase>
@@ -258,7 +258,22 @@
 							<generateDirectory>${project.build.directory}/generated-sources/xjc-CMRMS</generateDirectory>
 						</configuration>
 					</execution>
-
+					<execution>
+						<id>xjc-schema7</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<generatePackage>com.keppelCI.CreateIncident</generatePackage>
+							<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+							<schemaIncludes>
+								<include>createincident_client_ep.wsdl</include>
+							</schemaIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-CI</generateDirectory>
+						</configuration>
+					</execution>
 
 					<!-- <execution> <id>xjc-schema3</id> <phase>generate-sources</phase> 
 						<goals> <goal>generate</goal> </goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> 
@@ -271,6 +286,32 @@
 
 			<!--Copy the static web resources to the webapp directory for weblogic 
 				deployment -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<attachClasses>true</attachClasses>
+					<archive>
+						<manifestEntries>
+							<Weblogic-Application-Version>${project.version}</Weblogic-Application-Version>
+						</manifestEntries>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addClasspath>lib/</addClasspath>
+						</manifest>
+					</archive>
+					<webResources>
+						<resource>
+							<directory>${project.basedir}/src/main/resources/static</directory>
+						</resource>
+						<resource>
+							<directory>${project.basedir}/src/main/webapp</directory>
+						</resource>
+					</webResources>
+					<warName>${project.artifactId}</warName>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
