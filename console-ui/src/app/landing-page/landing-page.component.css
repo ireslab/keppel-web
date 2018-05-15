@@ -1,3 +1,4 @@
+@import './../../assets/css/LoginPages.css';
 
 .Buttons {
   position: relative;
@@ -13,7 +14,4 @@
   }
 }
 
-footer {
-  position: static;
-  margin-left: 0px;
-}
+

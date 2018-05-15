@@ -28,7 +28,7 @@ form.contentForms textarea {
   padding-top: 15px;
 }
 
-body,
+/* body,
 html {
   background-position: 50%;
   font-size: 10px;
@@ -47,7 +47,7 @@ html {
     background-color: #302c2d;
     font-size: 16px;
   }
-}
+} */
 
 .tool-section {
   min-height: 55px;

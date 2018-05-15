@@ -1,265 +1,286 @@
-body{
-    background-size:100% auto;
-    background-color: #302c2d;
-    background-repeat: no-repeat;
-    background-position:top center;
+/* body {
+  background-size: 100% auto;
+  background-color: #302c2d;
+  background-repeat: no-repeat;
+  background-position: top center;
+} */
+
+.mainContent {
+  margin-top: 30vh;
+  border-radius: 30px;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0px 0px 80px 1px rgba(248, 153, 16, 0.7);
+  -moz-box-shadow: 0px 0px 80px 1px rgba(248, 153, 16, 0.7);
+  box-shadow: 0px 0px 80px 1px rgba(248, 153, 16, 0.7);
+  position: relative;
+  padding: 20px 70px 60px 70px !important;
 }
 
-.mainContent{
-    margin-top:30vh;
-    border-radius: 30px;
-    width:80%;
-    background-color: rgba(255,255,255,0.9);
-    -webkit-box-shadow: 0px 0px 80px 1px rgba(248,153,16,0.7);
-    -moz-box-shadow: 0px 0px 80px 1px rgba(248,153,16,0.7);
-    box-shadow: 0px 0px 80px 1px rgba(248,153,16,0.7);
-    position: relative;
-    padding:20px 70px 60px 70px!important;
+.PageHeader {
+  display: flex;
+  margin-bottom: 60px;
 }
 
-.PageHeader{
-    display: flex;
-    margin-bottom:60px;
+.PageHeader h1 {
+  line-height: 70px;
+  margin-bottom: 0px;
+  top: 0px;
+  right: 0px;
 }
 
-.PageHeader h1{
-    line-height: 70px;
+h1.headerIcon {
+  padding-left: 70px;
+  background-repeat: no-repeat;
+  background-position: 0px center;
+  background-size: auto 70%;
+}
+
+/* @media only screen and (max-width: 991px) {
+  .PageHeader {
     margin-bottom: 0px;
-}
-
-h1.headerIcon{
-    padding-left:70px;
-    background-repeat: no-repeat;
-    background-position: 0px center;
+  }
+  .PageHeader h1 {
+    line-height: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    top: 4px;
+    right: 26px;
+  }
+  h1.headerIcon {
+    padding-left: 35px;
     background-size: auto 70%;
+  }
+} */
+
+.allCaps {
+  text-transform: uppercase;
 }
 
-.allCaps{
-    text-transform: uppercase;
+a {
+  color: #45a5f3;
 }
 
-a{
-    color:#45a5f3;
+h1 {
+  font-size: calc(14px + 0.5vw);
+  font-weight: bold;
 }
 
-h1{
-    font-size:calc(14px + 0.5vw);
-    font-weight:bold;
+h3 {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 25px;
+  padding-left: calc(59px + 0.5vw);
+  padding-right: 30px;
+  position: relative;
+  left: calc(-59px - 0.5vw);
+  display: inline-block;
+  border-bottom: 3px solid #a63553;
 }
 
-h3{
-    font-size:20px;
-    text-transform: uppercase;
-    font-weight:bold;
-    margin-bottom:25px;
-    padding-left:calc(59px + 0.5vw);
-    padding-right:30px;
-    position: relative;
-    left:calc(-59px - 0.5vw);
-    display:inline-block;
-    border-bottom:3px solid #a63553;
+#imgPrint {
+  height: 25px;
+  position: relative;
+  right: -70px;
+  top: 20px;
 }
 
-#imgPrint{
-    height:25px;
-    position: relative;
-    right:-70px;
-    top:20px;
+form.contentForms {
+  font-size: calc(8px + 0.5vw);
 }
 
-
-form.contentForms{
-    font-size:calc(8px + 0.5vw);
+form.contentForms input,
+form.contentForms select,
+form.contentForms textarea {
+  padding-left: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 56px;
+  background-color: #e5e7e9;
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-size: calc(12px + 0.5vw);
+  color: #58595b;
+  margin-bottom: 25px !important;
 }
 
-form.contentForms input, form.contentForms select, form.contentForms textarea{
-    padding-left:70px;
-    background-repeat:no-repeat;
-    background-position:15px center;
-    min-height:56px;
-    background-color:#e5e7e9;
-    -moz-box-shadow:    inset 0 1px 3px rgba(0,0,0,0.5);
-   -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-   box-shadow:         inset 0 1px 3px rgba(0,0,0,0.5);
-   font-size:calc(12px + 0.5vw);
-   color:#58595b;
-   margin-bottom: 25px!important;
-} 
-
-form.contentForms textarea{
-    background-position:15px 15px;
-    padding-top:15px;
+form.contentForms textarea {
+  background-position: 15px 15px;
+  padding-top: 15px;
 }
 
-footer .copyright{
-    color:#f5f5f5;
+footer .copyright {
+  color: #f5f5f5;
 }
 
-.help{
-    right:10%;
-    bottom:80px;
+.help {
+  right: 10%;
+  bottom: 80px;
 }
 
 /*Modal Dialog Override*/
+
 .kpl-modal-title {
-    margin: 20px auto 0px auto;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-bottom: 10px;
-    width: 80%;
-    text-align: center;
+  margin: 20px auto 0px auto;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  width: 80%;
+  text-align: center;
 }
+
 .kpl-modal-title-glow {
-    margin: 20px auto 0px auto;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-bottom: 10px;
-    text-align: center;
-    font-size: calc(12px + 0.5vw);
-    text-shadow: 0px 0px 5px white;
-    width: 50px
+  margin: 20px auto 0px auto;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: calc(12px + 0.5vw);
+  text-shadow: 0px 0px 5px white;
+  width: 50px
 }
 
-
-.modal-header{
-    background-color: #302c2d;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    padding:20px 0px 10px 0px;
+.modal-header {
+  background-color: #302c2d;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding: 20px 0px 10px 0px;
 }
 
-.modal-header .ModalTitleIcon{
-    font-size: 55px;
-    text-shadow: 0px 0px 5px white;
-    position: absolute;
-    left:40px;
-    top:-7px;
-    font-weight: bold;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.modal-header .ModalTitleIcon {
+  font-size: 55px;
+  text-shadow: 0px 0px 5px white;
+  position: absolute;
+  left: 40px;
+  top: -7px;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.modal-header h5{
-    margin-bottom:0px;
-    text-align: center;
-    margin:0 auto;
-    font-weight: normal;
+.modal-header h5 {
+  margin-bottom: 0px;
+  text-align: center;
+  margin: 0 auto;
+  font-weight: normal;
 }
 
-.modal-content{
-    background:transparent;
-    border: none;
-    opacity:1;
-    box-shadow: 0px 8px 32px 0px rgba(0,0,0,0.25);
+.modal-content {
+  background: transparent;
+  border: none;
+  opacity: 1;
+  box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.25);
 }
 
-.modal-body{
-    background-color: #fff;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    min-height:300px;
+.modal-body {
+  background-color: #fff;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  min-height: 300px;
 }
 
-.modal-dialog{
-    margin-top:65px;
+.modal-dialog {
+  margin-top: 65px;
 }
 
 /*On Mobile*/
-@media screen and (max-width: 767px) {
-    body{
-        background-image: none!important;
-        background-color: #f3f3f3;
-    }
-    .mainContent{
-        width:80%;
-        background:transparent;
-        padding:0px calc(5px + 0.5vw) 0px calc(5px + 0.5vw)!important;
-        max-width:unset;
-        box-shadow: none;
-        margin-top:80px!important;
-    }
-    .navbar-dark .navbar-toggler-icon{
-        background-image: url('../img/ico-Hamburger.png');
-    }
-    .navbar-dark{
-        background-color:#f5f5f5;
-    }
-    footer .copyright{
-        color:#4d4d4d;
-    }
-    .help{
-        right:10px;
-        bottom:20px;
-    }
-    .PageHeader{
-        display: flex;
-        /* max-resolution:  */
-        bottom: 30px;
-    }
-}
 
+@media screen and (max-width: 767px) {
+  /* body {
+    background-image: none !important;
+    background-color: #f3f3f3;
+  } */
+  .mainContent {
+    width: 80%;
+    background: transparent;
+    padding: 0px calc(5px + 0.5vw) 0px calc(5px + 0.5vw) !important;
+    max-width: unset;
+    box-shadow: none;
+    margin-top: 80px !important;
+  }
+  .navbar-dark .navbar-toggler-icon {
+    background-image: url('../img/ico-Hamburger.png');
+  }
+  .navbar-dark {
+    background-color: #f5f5f5;
+  }
+  footer .copyright {
+    color: #4d4d4d;
+  }
+  .help {
+    right: 10px;
+    bottom: 20px;
+  }
+  .PageHeader {
+    display: flex;
+    max-resolution: bottom 30px;
+  }
+}
 
 /*Help and Support*/
-.FAQtop5Section{
-    margin-bottom:50px;
-    margin-top:25px;
+
+.FAQtop5Section {
+  margin-bottom: 50px;
+  margin-top: 25px;
 }
 
-.FAQtop5Section img{
-    width:65%;
-    margin-bottom: 25px;
-    max-width: 320px;
+.FAQtop5Section img {
+  width: 65%;
+  margin-bottom: 25px;
+  max-width: 320px;
 }
 
-.FAQAccordion{
-    margin-bottom:50px;
+.FAQAccordion {
+  margin-bottom: 50px;
 }
 
-.FAQAccordion a{
-    font-size:calc(14px + 0.5vw); 
-    display: block;
-    text-decoration: none;
-    color:#302c2d;  
-    display:flex;
+.FAQAccordion a {
+  font-size: calc(14px + 0.5vw);
+  display: block;
+  text-decoration: none;
+  color: #302c2d;
+  display: flex;
 }
 
-.FAQAccordion a span{
-    display:block;
-    padding:0px 10px 5px 10px;
+.FAQAccordion a span {
+  display: block;
+  padding: 0px 10px 5px 10px;
 }
 
-.FAQAccordion a img{
-    height:calc(20px + 0.5vw);
+.FAQAccordion a img {
+  height: calc(20px + 0.5vw);
 }
 
-.FAQAccordion .row{
-    margin-bottom:25px;
+.FAQAccordion .row {
+  margin-bottom: 25px;
 }
 
-.FAQAccordion .card-body{
-    padding-bottom:30px;
-    border-bottom:2px dashed #302c2d;
-    font-size:calc(14px + 0.5vw); 
+.FAQAccordion .card-body {
+  padding-bottom: 30px;
+  border-bottom: 2px dashed #302c2d;
+  font-size: calc(14px + 0.5vw);
 }
 
-.FAQSearch button{
-    border:none;
-    outline:none!important;
-    height:56px;
-    background-color:#a63553!important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-    position:relative;
+.FAQSearch button {
+  border: none;
+  outline: none !important;
+  height: 56px;
+  background-color: #a63553 !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
-.FAQSearch button:active{
-    border: none;
-    outline:none;
+.FAQSearch button:active {
+  border: none;
+  outline: none;
 }
 
-.FAQSearch input{
-    border:none;
-    padding:10px 10px 10px 20px!important;
-    text-transform: uppercase;
-    font-size:calc(10px + 0.5vw)!important;
+.FAQSearch input {
+  border: none;
+  padding: 10px 10px 10px 20px !important;
+  text-transform: uppercase;
+  font-size: calc(10px + 0.5vw) !important;
 }

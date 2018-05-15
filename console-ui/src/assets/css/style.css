@@ -1,29 +1,28 @@
-.form-control.ng-invalid.ng-touched{
-    border-left: 2px solid red;
-    border-top-left-radius: 1px;
-    border-bottom-left-radius: 1px;
+@font-face{
+    font-family: 'Helvetica';
+    src: url('Helvetica.otf');
 }
 
-.has-error .control-label {
-    color:red;
+@font-face{
+    font-family: 'Helvetica Neue';
+    src: url('HelveticaNeue.ttf');
 }
-/* #Grp-Package,
-#Grp_IDOTP {
-    display: none;
-} */
 
-
+@font-face{
+    font-family: 'Helvetica-Bold';
+    src: url('Helvetica-Bold.otf');
+}
 
 header {
     margin-bottom:20px;
 }
 
-body {
+/* body {
     padding-bottom:20px;
     background-color: #f3f3f3;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica';
     color:#5f5f5f;
-}
+} */
 
 /*Gutter Override for Bootstrap*/
 
@@ -67,7 +66,7 @@ button.emphasis{
 }
 
 .navbar-light .navbar-toggler-icon{
-    background-image: url('./assets/img/ico-Hamburger.png');
+    background-image: url('../img/ico-Hamburger.png');
     background-size:100%;
     background-position: top center;
     width:30px;
@@ -119,9 +118,7 @@ h2 img{
     height:6vmin;
 }
 
-footer{
-    margin-top:30px;
-}
+
 
 small{
     display:block;
@@ -260,8 +257,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .selectOptionalSvcsButton{
-    
-    padding:20px 10px 20px 10px;
+    padding:20px 0px 20px 0px;
 }
 
 .IDType {
@@ -295,7 +291,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-image: url('../img/ico-BlockNumber.png');
 }
 .ContactUs {
-    /* background-image: url('../img/ico-Phone.png'); */
+    background-image: url('../img/ico-Phone.png');
 }
 .Email{
     background-image:url('../img/ico-email.png');
@@ -393,7 +389,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btn-secondary{
-    white-space: normal;
     background-color:#878787;
     border:1px solid #878787;
 }
@@ -499,6 +494,7 @@ nav{
     line-height: 38px;
     margin-left:1em;
     margin-top:10px;
+  
 }
 
 h1.kpl-pgTitle{
@@ -663,14 +659,13 @@ ul.kpl-progressBar li a{
     height:40px;
     margin:5px auto 5px auto;
     background-color: #b5b5b5;
-    color:#fff;
+    color:#fff !important;
     border-radius: 20px;
     border:2px solid #b5b5b5;
 }
 
 ul.kpl-progressBar li.active a span{
     border: 5px solid #a63553;
-    color:#fff
 }
 
 ul.kpl-progressBar li a span{
@@ -1061,7 +1056,8 @@ select:invalid {
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+    border: 0px solid #999999; border-radius: 20px;
+        box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.7);
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -1075,12 +1071,13 @@ select:invalid {
 .onoffswitch-inner:before {
     content: "$";
     padding-left: 10px;
-    background-color: #0099FF; color: #FFFFFF;
+    background-color: #a63553; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
-    content: "kWH";
+    content: "kWh";
     padding-right: 10px;
-    background-color: #0099FF; color: #FFFFFF;
+    background-color: #d4d4d4; color: #FFFFFF;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5); 
     text-align: right;
 }
 .onoffswitch-switch {
@@ -1096,6 +1093,27 @@ select:invalid {
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
+}
+
+@media only screen and (max-width: 991px) {
+    .onoffswitch{
+        width:50px;
+        position: absolute;
+        right:0;
+        z-index:90;
+    }
+    .onoffswitch-switch{
+        right:29px;
+        margin:3px;
+        width:14px;
+        height:14px;
+
+    }
+    .onoffswitch-inner:before, .onoffswitch-inner:after{
+        height:20px;
+        font-size:8px;
+        line-height: 22px;
+    }
 }
 
 /*End Switch Element*/
@@ -1471,6 +1489,9 @@ select:invalid {
 footer{
     position: relative;
     bottom:0px;
+}
+footer{
+    margin-top:30px;
 }
 
 .copyright{
@@ -1933,7 +1954,7 @@ button.PanelClose-Top, button.PanelClose-Bottom{
     display:block;
     border-top:2px dashed #333;
     position:relative;
-    bottom:35px;
+    bottom:52px;
     margin-bottom:0px;
 }
 
@@ -2158,3 +2179,705 @@ button.PanelClose-Top, button.PanelClose-Bottom{
     background-color: #f3f3f3;
 }
 
+/*Bills, Dashboard*/
+.dashboard.main-content{
+    padding:0px;
+}
+
+.dashboard-graphic{
+    border-radius: 30px;
+    background-color: #fff;
+    position: relative;
+    z-index: 3;
+    min-height:306px;
+}
+
+.dropShadow{
+    background-image: url("../img/img-Dashboard-Shadow.png");
+    content:" ";
+    width:100%;
+    background-size: 100% 100%;
+    display: block;
+    position:absolute;
+    bottom:-40px;
+    height:40%;
+    max-width:544px;
+    max-height:100px;
+}
+
+.dropShadow.full{
+    max-width:970px;
+    position:absolute;
+    height:100px;
+    bottom:-40px;
+}
+
+.dashboard-graphic-billing{
+    position: relative;
+}
+
+.dashboard-graphic p{
+    text-align: center;
+}
+
+.dashboard-graphic h2{
+    font-size:calc(15px + 0.7vw);
+    background-color: #832942;
+    color:#fff;
+    text-align: center;
+    padding:5px 20px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    margin-bottom:10px;
+}
+
+.dashboard-graphic h2:before{
+    content: " ";
+    background-image:url("../img/ico-Dashboard-Bills-Header.png");
+    display:block;
+    height:77px;
+    width:77px;
+    border-radius:38px;
+    background-color:#aa3555;
+    background-repeat: no-repeat;
+    background-position:center center;
+    position:absolute;
+    top:-20px;
+}
+
+.dashboard-graphic h2.Rewards:before{
+    content: " ";
+    background-image:url("../img/ico-Dashboard-Rewards-Header.png");
+    display:block;
+    height:77px;
+    width:77px;
+    border-radius:38px;
+    background-color:#aa3555;
+    background-repeat: no-repeat;
+    background-position:center center;
+    position:absolute;
+    top:-20px;
+}
+
+.dashboard-graphic h2.Rewards:after{
+    display: none;
+}
+
+.dashboard-graphic h2:after{
+    content:" ";
+    display: block;
+    position:absolute;
+    background-image: url("../img/ico-Dashboard-CableIcon.png");
+    height:75px;
+    width:155px;
+    bottom: 54px;
+    left: 37%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+
+.dashboard-graphic-billing .graphic{
+    margin-bottom:30px;
+    width:115px;
+}
+
+.dashboard-graphic-billing button,.dashboard-graphic-rewards button, .dashboard-referrals button{
+    padding:2px 30px;
+    margin-bottom:30px;
+    font-weight:normal;
+}
+
+.dashboard-referrals button.refCode{
+    margin-top:40px;
+}
+
+.dashboard-graphic-billing .outstanding-amount{
+    font-size:1.25rem;/*20px*/
+    line-height: 25px;
+    width:calc(55px + 5vw);
+    height:calc(55px + 5vw);
+    background-color: #9194a2;
+    border-radius:calc((55px + 5vw) / 2);
+    padding:30px 0px;
+    color:#fff;
+    text-align: center;
+    margin:0 auto 10px auto;
+    position:relative;
+    top:-15px;
+}
+
+.dashboard-graphic-billing .outstanding-amount:after{
+    content:" ";
+    height:1.5rem;
+    width:1px;
+    display:block;
+    position: absolute;
+    bottom:-1.7rem;
+    left:50%;
+    border-left:2px dashed #333;
+}
+
+.dashboard-graphic-billing .outstanding-amount .amount{
+    font-size:35px; /*43px;*/
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.dashboard-graphic-billing .dueON{
+    text-align: center;
+}
+
+.dashboard-graphic-billing .dueON:before{
+    content:" ";
+    display:block;
+}
+
+.duedate{
+    color:#a63553;
+    font-weight:bold;
+    text-transform: uppercase;
+    font-size:18px;
+}
+
+.dashboard-graphic-rewards{
+    background-image:url("../img/ico-Dashboard-Rewards.png");
+    background-position: center 55px;
+    background-repeat: no-repeat;
+    background-size: 60% auto; 
+}
+
+.dashboard-graphic-content{
+    position: relative;
+}
+
+.dashboard-graphic-content .points{
+    position: absolute;
+    font-size:35px; /*56px;*/
+    color:#a63553;
+    right:30px;
+    top:44px;
+    font-weight:bold;
+    line-height:27px;
+}
+
+.dashboard-graphic-content .points .pointsText{
+    font-size:1.25rem;/*27px;*/
+    font-weight:normal;
+}
+
+.btn-redeem{
+    position:absolute;
+    top:167px;
+    left:30px;
+}
+
+.dashboard-referrals{
+    margin-top:calc(25px + 1vw);
+    background-color:#fff;
+    border-radius:30px;
+    position:relative;
+    z-index: 1;
+    padding:20px;
+}
+
+.dashboard-referrals h2{
+    color:#a63553;
+    font-size:calc(10px + 1vw); 
+    margin-bottom:5px;
+}
+
+.dashboard-referrals .completedReferrals img{
+    position:relative;
+    max-width:100%;
+  }
+
+.dashboard-referrals .completedReferrals span{
+    color:#a63553;
+    font-size:2.5rem; /*calc(25px + 3vw);*/
+    line-height:27px;
+    font-weight: bold;
+    float:left;
+    display:block;
+    padding:5px;
+}
+
+.dashboard-referrals .completedReferrals .ref-label{
+    float:left;
+    padding:5px;
+}
+
+
+.dashboard-referrals .completedReferrals{
+    font-size:calc(7px + 0.6vw);
+    margin-top:2rem;
+}
+
+@media only screen and (max-width: 991px){
+    .dashboard-referrals .completedReferrals span{
+        font-size:calc(10px + 2.5vw);
+    }
+    .dashboard-referrals button.refCode{
+     margin-top:5px;
+    }
+    .dashboard-graphic-billing .outstanding-amount:after{
+        display:none;
+    }
+}
+
+/*Dashboard, Mobile*/
+.mobile .dashboard-graphic h2:before, .mobile .dashboard-graphic h2.Rewards:before{
+    background-size:50%;
+    width:calc(25px + 1.5vw);
+    height:calc(25px + 1.5vw);
+    top:-4px;
+    left:9px;
+}
+
+.mobile .dashboard-graphic h2{
+    font-size:calc(4px + 1.5vw);
+    text-align: center;
+    padding-left:25%;
+    margin-bottom:15px;
+    border-top-left-radius: calc(10px + 0.5vw);
+    border-top-right-radius: calc(10px + 0.5vw);
+}
+
+/*.mobile .dashboard-graphic h2.Rewards{
+    text-align:right;
+    padding-right:15%;
+    padding-left:0;
+}*/
+
+.mobile .dashboard-graphic{
+    min-height:0px;
+    padding:0px;
+    border-radius:calc(10px + 0.5vw);
+}
+
+.mobile .dashboard-graphic-billing{
+    padding:calc(1px + 0.5vw);
+}
+
+.mobile .dashboard-graphic-billing button,.mobile .dashboard-graphic-rewards button{
+    padding:1px 10px 1px;
+    border-radius:5px;
+    margin-bottom:10px;
+    margin-top:10px;
+    font-weight:normal;
+    font-size:calc(4px + 1.5vw);
+}
+
+.mobile .dashboard-graphic p{
+    font-size:calc(4px + 1.5vw);
+    text-align:right;
+    padding-right:5px;
+    margin-bottom:calc(5px + 1vw);
+}
+
+.mobile .dashboard-graphic-billing .outstanding-amount{
+    font-size: calc(7px + 1vw);
+    line-height: calc(12px + 1vw);
+    padding: calc(5px + 0.5vw);
+    padding-top: calc(10px + 1.5vw);
+    width: calc(38px + 10vw);
+    height: calc(38px + 10vw);
+    border-radius: calc((48px + 10vw) / 2);
+    top: -7px;
+}
+
+.mobile .dashboard-graphic-billing .outstanding-amount .amount{
+    font-size:calc(15px + 1vw);
+    margin-top:3px;
+}
+
+.mobile .dashboard-graphic h2:after{
+    display:none;
+}
+
+.mobile .dashboard-graphic-billing .graphic{
+    width:calc(70px + 4vw);
+    margin-bottom:10px;
+    max-width:70%;
+}
+
+.mobile .dashboard-graphic-billing .dueON{
+    margin-bottom: 0px;
+    font-size:calc(7px + 0.5vw);
+}
+
+.mobile .dashboard-graphic-billing .dueON:before{
+    content:" ";
+    display:block;
+}
+
+.mobile .duedate{
+    color:#a63553;
+    font-weight:bold;
+    text-transform: uppercase;
+    font-size:calc(9px + 0.5vw);
+}
+
+.mobile .dashboard-graphic-content .points{
+    font-size:calc(10px + 2.5vw);
+    line-height: calc(20px + 2.5vw);
+    position: relative;
+    top:0px;
+    right:0px;
+}
+
+.mobile .dashboard-graphic-content .points .pointsText{
+    font-size:calc(10px + 0.5vw);
+    position: relative;
+    top:0px;
+    right:0px;
+    line-height:calc(10px + 0.5vw);
+}
+
+.mobile .dashboard-graphic-rewards{
+    background-image:none;
+}
+
+.mobile .dashboard-graphic-billing button, .mobile .dashboard-graphic-rewards button{
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+.mobile .rewards-mobile{
+    max-width:100%;
+    position: relative;
+    left:calc(7px + 0.5vw);
+}
+
+.mobile .dashboard-graphic-content.rewards{
+    position:relative;
+}
+
+.dashboard-referrals{
+    position: relative;
+}
+
+@media only screen and (max-width: 991px) {
+      .dashboard-referrals button{
+        padding: 1px 10px 1px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        font-weight: normal;
+        font-size: calc(4px + 1.5vw);
+      }
+      .dashboard-referrals h2{
+          font-size:calc(5px + 1.0vw);
+      }
+      .dashboard-referrals p{
+          font-size:calc(7px + 1vw);
+          margin-bottom:0px;
+      }
+      .dashboard-referrals{
+          padding:calc(10px + 0.5vw);
+          border-radius:calc(10px + 0.5vw);
+      }
+      .l2{
+            top:2px;
+        }
+      .dropShadow.full{
+          bottom:-45px;
+      }
+      .dashboard-referrals .completedReferrals{
+          margin-top:10px;
+      }
+}
+
+.referral-legend{
+    position:relative;
+    bottom:0px;
+    font-size:calc(6px + 0.5vw);
+    margin-top:20px;
+}
+
+.l1:before{
+    content:" ";
+    background-color:#c4c3c1;
+    display:inline-block;
+    width:15%;
+    height:10px;
+    margin-right:2px;
+}
+
+.l2:before{
+    content:" ";
+    background-color:#01aef0;
+    display:inline-block;
+    width:15%;
+    height:3px;
+    margin-right:2px;
+    position:relative;
+    bottom:2px;
+}
+
+.l3:before{
+    content:" ";
+    background-color:#a63553;
+    display:inline-block;
+    width:15%;
+    height:10px;
+    margin-right:2px;
+}
+
+/*Service Request*/
+table.ServiceRequest td,table.ServiceRequest th{
+    text-align: center;
+}
+
+table.ServiceRequest tbody{
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
+    background-color: #d8d8db;
+}
+
+table.ServiceRequest tr:nth-of-type(2n+2) td, table tr td{
+    background-color:transparent;
+    border-bottom:1px solid #bcbcbf;
+    border-left:1px solid #bcbcbf;
+}
+
+table.ServiceRequest thead{
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.25);
+}
+
+/*Contract Details*/
+.ContractTitleRow{
+    background-color: #a63553;
+    color: #fff;
+    padding:1.5rem;
+}
+
+.ContractTitleRow h4{
+    font-weight:bold;
+    font-family:"Helvetica-Bold";
+}
+
+.ContractDetailRow a{
+    text-decoration: none;
+}
+
+.ContractDetailRow dt{
+    color:#a63553;
+    margin:1.5rem 0 0.8rem 0;
+}
+
+.ContractDetailRow dt, .ContractDetailRow dd, .ContractDetailRow h5{
+    font-size:1rem;
+    position: relative;
+}
+
+.ContractDetailRow h5{
+    margin:0.8rem 0 0.8rem 0;
+    text-decoration: underline;
+    text-transform: initial;
+}
+
+.ContractDetailRow .col-6:first-child{
+    border-right:2px solid #e5e5e5;
+}
+
+.ContractDetailRow .dataCol{
+    padding:0 3rem;
+}
+
+.ContractDetailRow .dataCol img{
+    max-height:2.9rem;
+    margin-left:3px;
+}
+
+.ContractDetailRow button{
+    text-transform: uppercase;
+    font-size:0.8rem;
+    margin-bottom:0.7rem;
+    margin-left:0.5rem;
+}
+
+.ContractDetailRow span{
+    width:8rem;
+    display: inline-block;
+}
+
+.ContractDetailRow .detailIcon{
+    position: absolute;
+    top:-50%;
+}
+
+.hideRow{
+    border-top:10px solid #a63553;
+    background-image: url('../img/img-ContractDetailsButton.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    position:relative;
+    top:-2px;
+}
+
+#ShowHideButton{
+    color:#fff;
+    text-transform: uppercase;
+    font-size:0.8rem;
+    position: relative;
+    top:-0.3rem;
+    cursor: pointer;
+}
+
+.contractDetailShadow{
+    position:relative;
+    top:-1px;
+    height:0.5rem;
+    background-image:url('../img/img-Dashboard-Shadow-Contract.png');
+    background-position:-10% center;
+}
+
+#InputAddressModal h6{
+    color:#a63553;
+    text-transform: uppercase;
+    font-size:1.2rem;
+    font-weight: bold;
+}
+
+#InputAddressModal h6 img{
+    max-height:2rem;
+    position: relative;
+    top:-0.3rem;
+}
+
+#InputAddressModal .modal-body{
+    padding-top:0px;
+}
+
+#InputAddressModal .close{
+    margin-top:2rem;
+    margin-right:0.5rem;
+}
+
+#InputAddressModal input{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 0px center;
+    border-radius: 0;
+    border: none;
+    padding: 10px 20px 10px 60px;
+    height: 46px !important;
+    font-size: calc(12px + 0.5vw);
+}
+
+#InputAddressModal .line{
+    height: 4px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 2px 5px 2px #d6d9dc;
+    -moz-box-shadow: 0px 2px 2px 2px #d6d9dc;
+    box-shadow: 0px 2px 5px 2px #d6d9dc;
+    margin-top: 7px;
+}
+
+@media only screen and (max-width: 991px) {
+    .ContractDetailRow .dataCol{
+        padding:0 2rem;
+    }
+    .ContractDetailRow dt, .ContractDetailRow dd,  .ContractDetailRow h5{
+        font-size:0.75rem;
+    }
+    .ContractDetailRow h5{
+        margin:0.5rem 0 0.5rem 0;
+    }
+    .ContractDetailRow .dataCol img{
+        max-height:2rem;
+        margin-left:3px;
+    }
+    .ContractDetailRow span{
+        width:6rem;
+        display: inline-block;
+    }
+    .contractDetailShadow{
+        background-position:40% 0;
+    }
+}
+
+/*Rewards Page*/
+.RewardsGraphicsRow img{
+    max-width:100%;
+}
+
+.RewardsGraphicsRow small{
+    color:#a63553;
+    font-style:oblique;
+}
+
+.RewardsGraphicsRow .RewardsPointsBox{
+    margin:0 auto;
+    width:80%;
+    height:12rem;
+    background-image:url("../img/img-Rewards-Container.png");
+    background-repeat: no-repeat;
+    background-size:100% auto;
+    background-position:center center;
+    color:#fff;
+    text-align:center;
+    padding-top:3rem;
+    font-size:1.5rem;
+}
+
+.RewardsGraphicsRow .RewardsPointsBox>div{
+    font-size:3.7rem;
+    font-weight:bold;
+    line-height:4rem;
+}
+
+.RewardDeals div.Details img{
+    width:100%;
+}
+.RewardDeals div.Details{
+    background-color:#d7d7d7;
+    padding:1.5rem;
+    text-align:center;
+    position: relative;
+    margin-bottom: 1rem;
+}
+.RewardDeals div.Details h4{
+    font-family: "Helvetica-Bold";
+    font-size:1rem;
+    color:#a63553;
+    font-weight:bold;
+    margin-top:1rem;
+}
+
+.RewardDeals div.Details p{
+    font-size:1rem;
+    font-family: "Helvetica Neue";
+}
+
+.RewardDeals div.Details small{
+    font-style:oblique;
+}
+
+.RewardDeals div.Details h4, .RewardDeals div.Details p, .RewardDeals div.Details small{
+    padding-right:9rem;
+}
+
+.RewardDeals div.Details .redeemButton{
+    position: absolute;
+    width:10rem;
+    height:10rem;
+    display:block;
+    background-image:url('../img/img-BtnRedeem.png');
+    background-repeat: no-repeat;
+    background-size:auto 100%;
+    right:0rem;
+    bottom:2rem;
+    outline:none
+}
+
+#RewardsModal strong{
+    color:#a63553;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+#btnRedeemProceed{
+    display: none;
+}

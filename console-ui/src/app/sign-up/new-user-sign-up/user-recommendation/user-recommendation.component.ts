@@ -209,7 +209,13 @@ export class UserRecommendationComponent implements OnInit {
     }
 
     ngOnInit() {
-        document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+        $("#myBody").removeAttr('class');
+        $("#myBody").addClass('signupBg');
+        // $("#footer").removeAttr('class');
+        // $("#footer").addClass('mainFooter');
+        // let ft = document.getElementById("footer");
+        // ft.classList.add("mainFooter");
+        // document.getElementById('bg').style.backgroundColor = "#F3F3F3";
         this.signUpForm = this.fb.group({
             idNumber: ['', [Validators.required, ValidateNric]],
             mobileNumber: ['', [Validators.required, Validators.pattern('(8|9)[0-9]{7}$')]],

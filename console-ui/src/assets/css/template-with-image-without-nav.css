@@ -1,19 +1,19 @@
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   body {
     background-color: #000;
     background-size: contain;
   }
-}
+} */
 
-.navbar-light .navbar-toggler-icon {
-  background-image: url(../img/ico-Hamburger.png);
+/* .navbar-light .navbar-toggler-icon {
+  background-image: url(../img/ico-Hamburger-Dark.png);
 }
 
 @media (min-width: 992px) {
   .navbar-light .navbar-toggler-icon {
-    background-image: url(../img/ico-Hamburger-Dark.png);
+    background-image: url(../img/ico-Hamburger.png);
   }
-}
+} */
 
 .max-fluid {
   max-width: 1330px;
@@ -142,14 +142,10 @@
 }
 
 @media (min-width: 992px) {
-  .copyright {
-    color: #4d4d4d;
-  }
-  .copyright a,
-  .copyright a:hover,
-  .copyright a:focus {
-    color: #4d4d4d;
-  }
+  /* .copyright {
+    color: #fff; }
+    .copyright a, .copyright a:hover, .copyright a:focus {
+      color: #fff; } */
   .help {
     max-width: 1330px;
     left: 50%;
@@ -310,17 +306,17 @@
   z-index: 100;
 } */
 
-@media only screen and (max-width: 380px) {
+/* @media only screen and (max-width: 380px) {
   .oi-remove-rem .navbar-light .navbar-toggler-icon {
     width: 30px;
     height: 23px;
   }
-}
+} */
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .oi-remove-rem.sticky {
     position: absolute;
     width: auto;
     background-color: transparent;
   }
-}
+} */

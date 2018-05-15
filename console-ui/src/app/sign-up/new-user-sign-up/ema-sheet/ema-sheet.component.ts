@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataShare } from '../../../Utility/data_share.service';
 
+declare var $:any;
 
 @Component({
   selector: 'app-ema-sheet',
@@ -37,7 +38,9 @@ export class EmaSheetComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+    // document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+    $("#myBody").removeAttr('class');
+    $("#myBody").addClass('signupBg');
   }
 
 }

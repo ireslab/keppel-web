@@ -1,8 +1,15 @@
-.headerIcon {
-    /* background-image: url('assets/img/ico-Phone.png'); */
-}
+@import './../../assets/css/contentPages.css';
+/* @import './../../assets/css/aboutus.css'; */
 
+/* .body {
+    background-image: url('../../assets/img/bkg-ContactUsMain.png');
+} */
+
+.headerIcon {
+    background-image: url('../../assets/img/ico-Phone.png');
+}
 
 #kpl-ContactUsChat {
     display: none;
 }
+

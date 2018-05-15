@@ -34,6 +34,7 @@ import { SummaryComponent } from './summary/summary.component';
 import { EmaSheetComponent } from './sign-up/new-user-sign-up/ema-sheet/ema-sheet.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { TrackApplicationStatusComponent } from './track-application-status/track-application-status.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
   { path: 'business-contact', component: BusinessContactDetailsComponent },
   { path: 'payPal', component: PayPalComponent },
   { path: 'emaSheet', component: EmaSheetComponent },
+  { path: 'aboutUs', component: AboutUsComponent },
   { path: 'contactUs', component: ContactusComponent },
   { path: 'track-application-status', component: TrackApplicationStatusComponent },
  
@@ -82,7 +84,8 @@ const appRoutes: Routes = [
     SummaryComponent,
     EmaSheetComponent,
     ContactusComponent,
-    TrackApplicationStatusComponent
+    TrackApplicationStatusComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,FormsModule,

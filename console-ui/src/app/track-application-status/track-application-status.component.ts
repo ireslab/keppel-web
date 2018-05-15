@@ -15,7 +15,7 @@ declare var grecaptcha: any
 @Component({
   selector: 'app-track-application-status',
   templateUrl: './track-application-status.component.html',
-  styleUrls: ['./track-application-status.component.css', '../../assets/css/track.css'],
+  styleUrls: ['./track-application-status.component.css'],
   providers: [recaptcha]
 
 })
@@ -38,7 +38,11 @@ export class TrackApplicationStatusComponent implements OnInit {
 
 
   ngOnInit() {
-    document.getElementById('bg').style.backgroundColor = "#302c2d";
+    $("#myBody").removeAttr('class'); 
+    $("#myBody").addClass('trackBg');
+    $("#footer").removeClass('mainFooter'); 
+    $("#footer").addClass('trackFooter');
+    // document.getElementById('bg').style.backgroundColor = "#302c2d";
     this.trackForm = this.formBuilder.group({
       trackAppNumber: ['', [Validators.required, Validators.pattern('[0-9]{14}$')]]
     })

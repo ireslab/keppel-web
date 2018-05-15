@@ -1,4 +1,4 @@
-<header class="topbar container-fluid" [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login ,'kpl-topbar':!appTrack}">
+<header class="topbar container-fluid " [ngClass]="{'navbar-light':newUser || existingUser || business || aknowNew , 'navbar-dark':login ,'kpl-topbar':!appTrack}">
 
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -6,7 +6,7 @@
     <ul *ngIf="newUser || login || business || aknowNew || appTrack">
       <li>
         <div>
-          <a class="kpl-MenuItem About" role="button" href="javascript:void(0)">About Us</a>
+          <a class="kpl-MenuItem About" role="button" routerLink="/aboutUs">About Us</a>
         </div>
       </li>
       <li>
@@ -51,7 +51,7 @@
       </li>
       <li>
         <div>
-          <a class="kpl-MenuItem Contact" role="button" href="javascript:void(0)">Contact Us</a>
+          <a class="kpl-MenuItem Contact" role="button" role="button" routerLink="/contactUs">Contact Us</a>
         </div>
       </li>
     </ul>
@@ -157,9 +157,9 @@
     </ul>
   </div>
 
-  <div class="oi-remove-rem sticky" *ngIf="appTrack" style="z-index: 0;">
-    <button class="navbar-light" [ngClass]="{'navbar-toggler':appTrack}" type="button" onclick="openNav()">
-      <span class="navbar-toggler-icon"></span>
+  <div class="oi-remove-rem sticky" *ngIf="appTrack" >
+    <button class="navbar-light navbar-toggler" type="button" onclick="openNav()">
+      <span class="navbar-toggler-icon" ></span>
     </button>
   </div>
   <div class="row" *ngIf="login">

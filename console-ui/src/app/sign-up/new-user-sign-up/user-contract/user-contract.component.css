@@ -2,32 +2,17 @@ small {
   font-size: 16px;
 }
 
-::placeholder {
-  color: #58595b;
-  opacity: 1;
-  /* Firefox */
-}
-
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #58595b;
-}
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #58595b;
-}
-
 input[type=date]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   display: none;
 }
-.customDate{
+
+.customDate {
   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: #e5e7e9!important;
-    font-size: calc(12px + 0.5vw);
-    width: 170px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e5e7e9 !important;
+  font-size: calc(12px + 0.5vw);
+  width: 170px;
 }

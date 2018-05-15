@@ -31,12 +31,14 @@ export class UserConfirmationComponent implements OnInit {
     private router: Router, private giropdf: GiroPdf) {
     this.DS.usderDetailObj = JSON.parse(window.localStorage.getItem('newUserData'));
     this._usderDetailObj = this.DS.usderDetailObj;
-    this.sbService.getSidebar("newUser")
+    this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
   }
 
   ngOnInit() {
-    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+    // document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+    $("#myBody").removeAttr('class');
+    $("#myBody").addClass('signupBg');
   }
   getPdf() {
     var image1 = this.giropdf.giro1Base64;

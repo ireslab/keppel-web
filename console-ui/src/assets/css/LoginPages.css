@@ -1,300 +1,295 @@
-body{
-    background-color: #000 !important;
-    padding-bottom:0px;
-    position: relative;
+/* body{
+  background-color: #000;
+  padding-bottom: 0px;
+  position: relative;
+} */
+
+/* footer {
+  width: 100vw;
+  position: absolute;
+  bottom: 21px;
+  margin-left: -50vw;
+  margin-top: 15px;
+  margin-bottom: 15px;
+} */
+
+.contentForms {
+  position: relative;
 }
 
-footer{
-    width:100vw;
-    position: absolute;
-    bottom:21px;
-    left:50%;
-    margin-left:-50vw;
-    margin-top:15px;
-    margin-bottom:15px;
+.mainContent {
+  margin-top: 0px;
 }
 
-.contentForms{
-    position: relative;
+.Login.mainContent {
+  margin-top: 30px;
 }
 
-.mainContent{
-    margin-top:0px;
+.Jumbotron img {
+  max-width: 80%;
 }
 
-.Login.mainContent{
-    margin-top:30px;
+.DeskTopButtons {
+  padding-left: 15% !important;
+  padding-right: 15% !important;
 }
 
-.Jumbotron img{
-    max-width:80%;
+.DeskTopButtons img {
+  max-width: 200px;
 }
 
-.DeskTopButtons{
-    padding-left:15%!important;
-    padding-right:15%!important;
+h2 {
+  font-size: calc(0.75em + 1vw);
+  color: #3d3d3d;
 }
 
-.DeskTopButtons img{
-    max-width:200px;
-}
-
-h2{
-    font-size:calc(0.75em + 1vw);
-    color:#3d3d3d;
-}
-
-.SignupOpenClick{
-    position: fixed;
-    background-color: transparent;
-    top:0;
-    right:0;
-    width:100%;
-    height:100%;
-    z-index:1;
-    display:none;
+.SignupOpenClick {
+  position: fixed;
+  background-color: transparent;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: none;
 }
 
 .SignupPopup {
-    margin:0 auto;
-    width:400px;
-    position: relative;
-    background-color: rgba(30,30,30,0.9);
-    -webkit-box-shadow: 0px 0px 20px 3px rgba(248,244,227,0.5);
-    -moz-box-shadow: 0px 0px 20px 3px rgba(248,244,227,0.5);
-    box-shadow: 0px 0px 20px 3px rgba(248,244,227,0.5);
-    border-radius:30px;
-    overflow: auto;
-    padding:20px;
-    display:block;
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top:-7px;
-    left: 50%;
-    margin-left: -200px;
-    z-index:2;
+  margin: 0 auto;
+  width: 400px;
+  position: relative;
+  background-color: rgba(30, 30, 30, 0.9);
+  -webkit-box-shadow: 0px 0px 20px 3px rgba(248, 244, 227, 0.5);
+  -moz-box-shadow: 0px 0px 20px 3px rgba(248, 244, 227, 0.5);
+  box-shadow: 0px 0px 20px 3px rgba(248, 244, 227, 0.5);
+  border-radius: 30px;
+  overflow: auto;
+  padding: 20px;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  margin-left: -200px;
+  z-index: 2;
 }
 
-.SignupPopup img{
-    margin-bottom:10px;
+.SignupPopup img {
+  margin-bottom: 10px;
 }
 
-.SignupPopup a{
-    text-align: center;
-    display: block;
-    width:50%;
-    float: left;
-    text-align: center;
-    padding: 15px;
-    text-decoration: none;
-    color:#fff;
+.SignupPopup a {
+  text-align: center;
+  display: block;
+  width: 50%;
+  float: left;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.SignupPopup a:first-child {
+  position: relative;
+  top: 15px;
+}
+
+.SignupPopup a:nth-child(2) {
+  border-left: 1px solid #555;
+}
+
+.SignupPopup a.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #fff;
+  font-size: 30px;
+  width: auto;
+  padding: 0px;
+}
+
+.LoginUser {
+  background-image: url('../img/ico-Name-White.png');
+}
+
+.LoginPassword {
+  background-image: url('../img/ico-Logout.png');
+}
+
+.LoginDate {
+  background-image: url('../img/ico-Login-Date.png');
+}
+
+.LoginGender {
+  background-image: url('../img/ico-Login-Gender.png');
+}
+
+.LoginEmail {
+  background-image: url('../img/ico-Login-Email.png');
+}
+
+.CustomerLogin {
+  margin-top: 160px;
+}
+
+.CustomerLogin h3 {
+  font-size: calc(15px + 0.5vw);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 30px 0px 30px 0px;
+}
+
+.CustomerLogin .TopSection {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.CustomerLogin .TopSection h2 {
+  margin-bottom: 0px;
+}
+
+.CustomerLogin .TopSection p {
+  font-size: calc(8px + 0.4vw);
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.CustomerLogin>div {
+  background-color: #dcdcdc;
+  padding: 3px;
+}
+
+.CustomerLogin .ContentSection {
+  padding: 30px 30px 0px 30px;
+}
+
+.ContentSection.kpl-inputForm p {
+  margin-bottom: 20px;
+}
+
+.CustomerLogin .ContentSection input,
+.CustomerLogin .ContentSection select {
+  background-color: transparent !important;
+  text-transform: none;
+  padding-bottom: 0px;
+}
+
+.CustomerLogin .ContentSection .line {
+  height: 2px;
+}
+
+.linkSection {
+  margin-top: 25px;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.linkSection a {
+  font-size: calc(10px + 0.2vw);
+  display: block;
+  float: left;
+  font-style: oblique;
+  text-decoration: none;
+}
+
+.linkSection a:last-child {
+  float: right;
+}
+
+.kpl-inputForm .btn-lg {
+  height: auto !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .mainContent {
+    margin-top: 70px !important;
+  }
+  .DeskTopButtons img {
+    max-width: 100%;
+  }
+  .DeskTopButtons {
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+  }
+  .CustomerLogin {
+    margin-top: 0px !important;
+  }
+  /* body {
+    height: auto !important;
+  } */
+  /* footer {
+    position: static;
+    margin-left: 0px !important;
+  } */
+  .CustomerLogin h3 {
+    font-size: calc(15px + 0.5vw);
     text-transform: uppercase;
-    font-weight:bold;
+    font-weight: bold;
+    margin: 5px 0px 5px 0px;
+  }
+  .CustomerLogin h4 {
+    font-size: 20px;
+  }
+  .CustomerLogin p {
+    font-size: calc(10px + 0.5vw);
+    margin: 5px 0px 5px 0px;
+  }
 }
-
-.SignupPopup a:first-child{
-    position: relative;
-    top:15px;
-}
-
-.SignupPopup a:nth-child(2){
-    border-left:1px solid #555;
-}
-
-.SignupPopup a.closeBtn{
-    position: absolute;
-    top:10px;
-    right:20px;
-    color:#fff;
-    font-size:30px;
-    width: auto;
-    padding: 0px;
-}
-
-.LoginUser{
-    background-image: url('../img/ico-Name-White.png');
-}
-
-.LoginPassword{
-    background-image: url('../img/ico-Logout.png');
-}
-
-.LoginDate{
-    background-image: url('../img/ico-Login-Date.png');
-}
-
-.LoginGender{
-    background-image: url('../img/ico-Login-Gender.png');    
-}
-
-.LoginEmail{
-    background-image: url('../img/ico-Login-Email.png');    
-}
-
-.CustomerLogin{
-    margin-top:160px;
-}
-
-.CustomerLogin h3{
-    font-size:calc(15px + 0.5vw);
-    text-transform: uppercase;
-    font-weight:bold;
-    margin:30px 0px 30px 0px;
-}
-
-.CustomerLogin .TopSection{
-    background-color: #fff;
-    padding:10px;
-}
-
-.CustomerLogin .TopSection h2{
-    margin-bottom:0px;
-}
-
-.CustomerLogin .TopSection p{
-    font-size:calc(8px + 0.4vw);
-    margin-bottom: 0px;
-    margin-top:5px;
-}
-
-.CustomerLogin>div{
-    background-color: #dcdcdc;
-    padding:3px;
-}
-
-.CustomerLogin .ContentSection{
-    padding:30px 30px 0px 30px;
-}
-
-.ContentSection.kpl-inputForm p{
-    margin-bottom:20px;
-}
-
-.CustomerLogin .ContentSection input, .CustomerLogin .ContentSection select{
-    background-color:transparent!important;
-    text-transform: none;
-    padding-bottom:0px;
-}
-
-.CustomerLogin .ContentSection .line{
-    height:2px;
-}
-
-.linkSection{
-    margin-top:25px;
-    overflow: auto;
-    margin-bottom:10px;
-}
-
-.linkSection a{
-    font-size:calc(10px + 0.2vw);
-    display: block;
-    float:left;
-    font-style: oblique;
-    text-decoration: none;
-}
-
-.linkSection a:last-child{
-    float:right;
-}
-
-.kpl-inputForm .btn-lg{
-    height:auto!important;
-}
-
-@media only screen and (max-width: 991px){
-    .mainContent {
-        margin-top: 70px!important;
-    }
-    .DeskTopButtons img{
-        max-width:100%;
-    }
-    .DeskTopButtons{
-        padding-left:10%!important;
-        padding-right:10%!important;
-    }
-    .CustomerLogin{
-        margin-top:0px!important;
-    }
-    body{
-        height:auto!important;
-    }
-    footer{
-        position:static;
-        margin-left:0px!important;
-    }
-    .CustomerLogin h3{
-        font-size:calc(15px + 0.5vw);
-        text-transform: uppercase;
-        font-weight:bold;
-        margin:5px 0px 5px 0px;
-    }
-
-    .CustomerLogin h4{
-        font-size:20px;
-    }
-
-    .CustomerLogin p{
-        font-size:calc(10px + 0.5vw);
-        margin:5px 0px 5px 0px;
-    }
-}
-
 
 @media screen and (max-width: 767px) {
-    body{
-        background-color: #000;
-    }
-    .DeskTopButtons img{
-        max-width:100%;
-    }
-    .mainContent{
-        width:90%;
-    }
-    .SignupPopup {
-        width: 260px;
-        margin-left:-140px;
-        top:-20px;
-    }
-    .SignupPopup a:first-child{
-        position: relative;
-        top:10px;
-    }
-    .SignupPopup a{
-        font-size:11px;
-    }
-
-    .SignupPopup a.closeBtn{
-        font-size:12px;
-    }
-
-    .SignupPopup img{
-        max-width:100%;
-    }
-    .DeskTopButtons{
-        padding-left:5%!important;
-        padding-right:5%!important;
-    }
-    .CustomerLogin{
-        margin-top:0px!important;
-    }
-    .CustomerLogin .ContentSection{
-        padding:10px;
-    }
-    .CustomerLogin .ContentSection .form-group{
-        margin-bottom:10px;
-    }
-    .kpl-inputForm .btn-lg{
-        margin-top:10px!important;
-        margin-bottom:10px!important;
-    }
-    .linkSection{
-        margin-top:10px;
-        margin-bottom:0px;
-    }
-    footer{
-        position:static;
-        margin-left:0px!important;
-    }
+  /* body {
+    background-color: #000;
+  } */
+  .DeskTopButtons img {
+    max-width: 100%;
+  }
+  .mainContent {
+    width: 90%;
+  }
+  .SignupPopup {
+    width: 260px;
+    margin-left: -140px;
+    top: -20px;
+  }
+  .SignupPopup a:first-child {
+    position: relative;
+    top: 10px;
+  }
+  .SignupPopup a {
+    font-size: 11px;
+  }
+  .SignupPopup a.closeBtn {
+    font-size: 12px;
+  }
+  .SignupPopup img {
+    max-width: 100%;
+  }
+  .DeskTopButtons {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+  .CustomerLogin {
+    margin-top: 0px !important;
+  }
+  .CustomerLogin .ContentSection {
+    padding: 10px;
+  }
+  .CustomerLogin .ContentSection .form-group {
+    margin-bottom: 10px;
+  }
+  .kpl-inputForm .btn-lg {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .linkSection {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+  /* footer {
+    position: static;
+    margin-left: 0px !important;
+  } */
 }

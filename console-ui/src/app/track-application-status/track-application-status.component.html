@@ -24,8 +24,8 @@
       <div class="main-content">
         <div class="page1 ">
           <form [formGroup]="trackForm" class="contentForms">
-            <div class="row">
-              <div class="col-lg-8 offset-lg-2" style="margin-bottom: 25px">
+            <div class="row" style="margin-bottom: 25px;">
+              <div class="col-lg-8 offset-lg-2" >
                 <div *ngIf="trackStatus" class="form-text text-center text-danger" style="margin-bottom: 5px;">Reference Code does not exist. Try again</div>
                 <input (input)="trackIDEntered($event)" type="text" class="form-control Subject" id="txt_Subject" formControlName="trackAppNumber"
                   placeholder="Input Reference Code" maxlength="14">
