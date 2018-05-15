@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+     name="CreateIncident"
+     targetNamespace="http://xmlns.oracle.com/Keppel/ServiceCxCreateIncident/CreateIncident"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:client="http://xmlns.oracle.com/Keppel/ServiceCxCreateIncident/CreateIncident"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>http://10.21.32.5:8001/soa-infra/services/default/ServiceCxCreateIncident!1.0/WSDLs/CreateIncident.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="CreateIncident">
+        <plnk:role name="CreateIncidentProvider" portType="client:CreateIncident"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/Keppel/ServiceCxCreateIncident/CreateIncident"
+                 schemaLocation="http://10.21.32.5:8001/soa-infra/services/default/ServiceCxCreateIncident/createincident_client_ep?XSD=../Schemas/CreateIncident.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="CreateIncidentRequestMessage">
+        <wsdl:part name="payload" element="client:process"/>
+    </wsdl:message>
+    <wsdl:message name="CreateIncidentResponseMessage">
+        <wsdl:part name="payload" element="client:processResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="CreateIncident">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:CreateIncidentRequestMessage"/>
+            <wsdl:output message="client:CreateIncidentResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CreateIncidentBinding" type="client:CreateIncident">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="createincident_client_ep">
+        <wsdl:port name="CreateIncident_pt" binding="client:CreateIncidentBinding">
+            <soap:address location="http://10.21.32.5:8001/soa-infra/services/default/ServiceCxCreateIncident/createincident_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

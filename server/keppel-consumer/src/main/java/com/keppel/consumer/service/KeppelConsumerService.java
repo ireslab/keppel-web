@@ -3,6 +3,8 @@ package com.keppel.consumer.service;
 import com.google.gson.JsonObject;
 import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.SecurityDeposit;
+import com.keppel.consumer.model.ContactUs;
+import com.keppelCI.CreateIncident.ProcessResponse;
 import com.keppelCMR.CMRECPLAN.CMRECPLAN;
 import com.keppelM1.M1MMCTR.M1MMCTR;
 
@@ -20,4 +22,6 @@ public interface KeppelConsumerService {
 	public JsonObject getPromoCode(String promocode);
 
 	public JsonObject getTrackStatus(String messageid);
+	
+	public ProcessResponse sendContactUs(ContactUs accountDto);
 }

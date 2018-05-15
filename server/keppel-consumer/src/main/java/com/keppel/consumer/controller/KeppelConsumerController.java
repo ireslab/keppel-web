@@ -1,9 +1,15 @@
 package com.keppel.consumer.controller;
 
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.TimeZone;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -37,8 +43,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.keppel.consumer.dto.AccountDto;
 import com.keppel.consumer.dto.SecurityDeposit;
+import com.keppel.consumer.model.ContactUs;
 import com.keppel.consumer.service.KeppelConsumerService;
 import com.keppel.consumer.utils.GeneratePDF;
+import com.keppelCI.CreateIncident.ProcessResponse;
 import com.keppelCMR.CMRECPLAN.CMRECPLAN;
 import com.keppelM1.M1MMCTR.M1MMCTR;
 
@@ -123,6 +131,34 @@ public class KeppelConsumerController {
 
 		SecurityDeposit.SecurityDepositResponse depositResponse = keppelConsumerService.getSecutityDeposit(deposits);
 		return new ResponseEntity<>(depositResponse, HttpStatus.OK);
+	}
+
+	/**
+	 * This API sends contact us details.
+	 * 
+	 * @return
+	 * @throws JsonProcessingException
+	 */
+	@RequestMapping(value = "contactUsDetails", method = RequestMethod.POST)
+	public String contactUsDetails(@RequestBody ContactUs contactUs) {
+		contactUs.setIncidentState("26");
+		contactUs.setStatus("Open Call Back");
+		LocalDateTime ldt = LocalDateTime.now();
+		contactUs.setCallBackDateTime(ldt.toString());
+		contactUs.setCallBackDate(ldt.toString());
+		ProcessResponse processResponse = keppelConsumerService.sendContactUs(contactUs);
+		
+		JsonObject response = new JsonObject();
+		if(processResponse!=null) {
+			response.addProperty("success", "true");
+			response.addProperty("contactId", processResponse.getContactId());
+			response.addProperty("incidentId", processResponse.getIncidentId());
+			response.addProperty("referenceNo", processResponse.getReferenceNo());
+		}else {
+			response.addProperty("success", "false");
+		}
+	
+		return response.toString();
 	}
 
 	/*

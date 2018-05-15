@@ -92,6 +92,20 @@ public class KeppelWebServiceConfig {
 		return webServiceTemplate;
 	}
 	
+	@Bean(name = "CI")
+	public WebServiceTemplate webServiceTemplateCI() throws KeyManagementException, NoSuchAlgorithmException {
+		WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+		webServiceTemplate.setMarshaller(jaxb2MarshallerCI());
+		webServiceTemplate.setUnmarshaller(jaxb2MarshallerCI());
+		webServiceTemplate.setDefaultUri("http://10.21.32.5:8001/soa-infra/services/default/ServiceCxCreateIncident/createincident_client_ep?wsdl");
+		webServiceTemplate.setMessageSender(httpsUrlConnectionMessageSender());
+		Wss4jSecurityInterceptor wss4jSecurityInterceptor = new Wss4jSecurityInterceptor();
+		wss4jSecurityInterceptor.setValidateRequest(false);
+		wss4jSecurityInterceptor.setValidateResponse(false);
+		webServiceTemplate.setInterceptors(new ClientInterceptor[] { wss4jSecurityInterceptor });
+		return webServiceTemplate;
+	}
+	
 	
 
 	@Bean
@@ -133,6 +147,13 @@ public class KeppelWebServiceConfig {
 	Jaxb2Marshaller jaxb2MarshallerCMRMS() {
 		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
 		jaxb2Marshaller.setContextPath("com.keppelCMRMS.CMRetMsgStatus");
+		return jaxb2Marshaller;
+	}
+	
+	@Bean
+	Jaxb2Marshaller jaxb2MarshallerCI() {
+		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+		jaxb2Marshaller.setContextPath("com.keppelCI.CreateIncident");
 		return jaxb2Marshaller;
 	}
 	
