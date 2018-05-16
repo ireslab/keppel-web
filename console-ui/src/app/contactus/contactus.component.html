@@ -10,7 +10,7 @@
             </a>
         </div>
     </div>
-    <form class="contentForms">
+    <form [formGroup]="contactUsForm" class="contentForms">
         <div class="row">
             <div class="col-12">
                 <h3>Compose</h3>
@@ -24,13 +24,14 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <input type="text" class="form-control Subject" id="txt_Subject" placeholder="Subject*">
+                <input type="text" class="form-control Subject" id="txt_Subject" placeholder="Subject*" formControlName="contactUs_Subject"
+                    maxlength="20">
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="input-group">
-                    <select name="Opt_idType" id="Opt_idType" class="form-control Inquiry" value="">
+                    <select name="Opt_idType" id="Opt_idType" class="form-control Inquiry" value="" formControlName="contactUs_InquiryType">
                         <option value="" disabled selected hidden>Inquiry Type:*</option>
                         <option>General</option>
                         <option>Bills & Payments</option>
@@ -41,20 +42,27 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control Name" id="txt_Name" placeholder="Name*">
+                <input type="text" class="form-control Name" id="txt_Name" placeholder="Name*" formControlName="contactUs_Name">
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <input type="text" class="form-control Email" id="txt_Email" placeholder="Email*">
+                <input type="text" class="form-control Email" id="txt_Email" placeholder="Email*" formControlName="contactUs_Email">
+                <div *ngIf="contactUs_Email.invalid && contactUs_Email.touched" style="margin-top: -20px;" class=" text-danger text-left">
+
+                    <div *ngIf="contactUs_Email.errors?.pattern && !contactUs_Email.errors?.required">
+                        Accepts valid email only.
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control ContactNumber" id="txt_Contact" placeholder="Contact Number*">
+                <input type="text" class="form-control ContactNumber" id="txt_Contact" placeholder="Contact Number*" formControlName="contactUs_Number"
+                    maxlength="8">
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea class="form-control Message" rows="7" id="inputMessage" placeholder="Message"></textarea>
+                <textarea class="form-control Message" rows="7" id="inputMessage" placeholder="Message" formControlName="contactUs_Msg" maxlength="500"></textarea>
             </div>
         </div>
         <div class="row">
@@ -64,13 +72,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 text-center">
-                <img src="assets/img/newCaptchaAnchor.gif" class="dummyCaptcha" />
+            <div class="captcha-block">
+                <re-captcha sitekey="6LeXHFIUAAAAAL1jo1HK_VKHl-DIdktPkGBqvgkR" (tokenChange)="getCapthaToken($event)"></re-captcha>
+                <div *ngIf="captchaErr" id="verified_captcha" class=" text-danger text-left">
+                    Please verify through captcha.
+                </div>
             </div>
         </div>
+        <div class="row form-group">
+            <div class="col-md-12 text-danger text-center">
+                <div *ngIf="formIsNotValid">
+                    * Please fill all required fields to proceed.
+                </div>
+            </div>
+        </div>
+
+
         <div class="row">
             <div class="col-md-12 text-center" style="margin-bottom:50px;">
-                <button type="button" class="btn-lg btn btn-primary emphasis" onclick="location.href='ContactUs.Received.html'">Submit</button>
+                <button type="button" class="btn-lg btn btn-primary emphasis" (click)="submitContactUs()">Submit</button>
             </div>
         </div>
     </form>
@@ -94,11 +114,29 @@
             </p>
         </div>
     </div>
+    <div class="modal fade" id="downLoadRedirect" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class=" modal-content modalSucess">
+                <div class=" innerSucess  text-center">
+                    <p class="form-group">Thanks, we have received your query. Your reference number is {{refrenceNo}}.</p>
+
+                </div>
+
+                <div class="modal-footer popupbtn">
+                    <button type="button" class="btn btn-default" (click)="redirectToHome()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
 <!--Chat Trigger (hidden)-->
-<button class="btn btn-secondary" id="kpl-ContactUsChat" type="button" data-toggle="modal" data-target="#ChatModal">Chat</button>
+<!-- <button class="btn btn-secondary" id="kpl-ContactUsChat" type="button" data-toggle="modal" data-target="#ChatModal">Chat</button> -->
 <!--Modal for Chatbot-->
-<div class="modal fade" id="ChatModal" tabindex="-1" role="dialog" aria-labelledby="ChatModalLabel">
+<!-- <div class="modal fade" id="ChatModal" tabindex="-1" role="dialog" aria-labelledby="ChatModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,6 +151,22 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> -->
+<ng4-loading-spinner> </ng4-loading-spinner>
 <app-footer></app-footer>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="downLoadRedirect" role="dialog">
+    <div class="modal-dialog">  
+      <div class="modal-content" style="background: lightgrey;">
+        <div class="modal-body text-center" style="    color: #000;
+        font-size: 18px;min-height: 0px">
+          <p>Thanks, we have received your query. Your reference number is {{refrenceNo}}.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" style="    background: #a63553;
+          color: white;" (click)="redirectToHome()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div> -->

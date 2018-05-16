@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.form-control.ng-invalid.ng-touched{
+  border-left: 2px solid red;
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
 
+.has-error .control-label {
+  color:red;
+}
 @font-face {
   font-family: 'Helvetica';
   src: url('assets/css/Helvetica.otf');

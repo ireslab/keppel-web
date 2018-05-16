@@ -8,4 +8,5 @@ export class ApiConstants {
     public static get GET_SECURITY_DEPOSIT(): string { return this.HOME_URL + "getSecutityDeposit" }
     public static get GET_PROMO_CODE(): string { return this.HOME_URL + "getPromocode/" }
     public static get GET_APP_STATUS(): string { return this.HOME_URL + "getAppStatus/" }
+    public static get GET_CONTACTUS(): string {return this.HOME_URL + "contactUsDetails"}
 }

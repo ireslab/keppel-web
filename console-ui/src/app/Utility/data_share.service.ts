@@ -85,6 +85,16 @@ export class DataShare {
     "pdfPeakValueT3" : "",
     "selectedRPlan" : ""
   }
+  contactUSData = {
+    "subject" : "",
+    "inquiryType" : "",
+    "userName" : "",
+    "eMail" : "",
+    "mobileNumber" : "",
+    "message" : "",
+    "firstName" : "",
+    "lastName" : ""
+  }
 
 
   contractDetails = new BehaviorSubject<any>(this.usderDetailObj, );
