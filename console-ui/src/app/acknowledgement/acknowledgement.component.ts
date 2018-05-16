@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 
+declare var $: any
 @Component({
   selector: 'app-acknowledgement',
   templateUrl: './acknowledgement.component.html',
@@ -13,7 +14,9 @@ export class AcknowledgementComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+    // document.getElementById('bg').style.backgroundColor = "#F3F3F3";
+    $("#myBody").removeAttr('class');
+        $("#myBody").addClass('signupBg');
   }
 
 }

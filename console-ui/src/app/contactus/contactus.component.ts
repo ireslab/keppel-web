@@ -84,8 +84,14 @@ export class ContactusComponent implements OnInit {
       let fullName = this.contactUsForm.controls['contactUs_Name'].value;
       fullName = fullName.trim();
       let index = fullName.indexOf(" ");
-      this.datashare.contactUSData.firstName = fullName.substring(0,index);
-      this.datashare.contactUSData.lastName = (fullName.substring(index)).trim();
+      if(index != -1){
+        this.datashare.contactUSData.firstName = fullName.substring(0,index);
+        this.datashare.contactUSData.lastName = (fullName.substring(index)).trim();
+      }else{
+        this.datashare.contactUSData.firstName = fullName;
+        this.datashare.contactUSData.lastName = ''
+      }
+      
       this.resetCaptcha();
       this.contactUsServerHit();
     }
@@ -100,7 +106,7 @@ export class ContactusComponent implements OnInit {
         "lastName": this.datashare.contactUSData.lastName,
         "email": this.contactUsForm.controls['contactUs_Email'].value,
         "contactNumber": this.contactUsForm.controls['contactUs_Number'].value,
-        "remarks": this.contactUsForm.controls['contactUs_Msg'].value
+        "remarks": this.contactUsForm.controls['contactUs_Subject'].value +" "+ this.contactUsForm.controls['contactUs_Msg'].value
       })
 
       let _url = ApiConstants.GET_CONTACTUS;
