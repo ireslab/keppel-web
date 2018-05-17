@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
+import { DataShare } from '../Utility/data_share.service';
 
 declare var $: any
 @Component({
@@ -10,9 +11,9 @@ declare var $: any
 })
 export class LandingPageComponent implements OnInit, AfterViewInit {
 
-  constructor(private sbService: SidebarService) {
+  constructor(private sbService: SidebarService ,private dataShare:DataShare) {
     this.sbService.getSidebar("login")
-   
+   this.dataShare.usderDetailObj = this.test();
   }
 
   ngAfterViewInit() {
@@ -71,7 +72,75 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     // document.getElementById('bg').style.backgroundColor = "#000";
   }
 
-
+test(){
+  return {
+    "selectedPlanObj": {
+      "version": "",
+      "plan": "",
+      "product": "",
+      "startDate": "",
+      "contractDuration": '',
+      "benefits": "",
+      "details": "",
+      "chargeType": "",
+      "t1": "",
+      "t2": "",
+      "t3": "",
+      "mssBillingCollection": "",
+      "mssBasicCharges": "",
+      "mssMeterReadingDataManagement": "",
+      "marketDevelopmentSystemCharge": "",
+      "retailSettlementUplift": "",
+      "ami1Phase": "",
+      "ami3Phase": "",
+      "emcAdminFinal": "",
+      "posAdminFinal": "",
+      "monthlyEnergyUpliftChargeFinal": "",
+      "allocatedRegulationChargeFinal": "",
+      "usep": "",
+      "heuc": "",
+      "vestingCharge": "",
+    },
+    "sd_amount":"",
+    "optionalServiceSelected": "",
+    "serviceEndDate" : "",
+    "serviceStartDate": "",
+    "optionalService1": "",
+    "optionalService2": "",
+    "optionalService3": "",
+    "promoCode": "",
+    "paymentMethod": "",
+    "icNumberType": "",
+    "icNumber": "",
+    "mobileNumber": "",
+    "firstName": "",
+    "lastName": "",
+    "eMail": "",
+    "postcode": "",
+    "streetName": "",
+    "block": "",
+    "buildingName": "",
+    "floorLevel": "",
+    "postcodeBill": "",
+    "streetNameBill": "",
+    "blockBill": "",
+    "buildingNameBill": "",
+    "floorLevelBill": "",
+    "spAccount": "",
+    "premiseAddress": "",
+    "premiseAddress2": "",
+    "billingAddress": "",
+    "billingAddress2": "",
+    "premiseType": "",
+    "tenantOrOwner": "",
+    "promocodeAmount":"",
+    "marketingConsent":"",
+    "marketingEmail":"",
+    "marketingSMS":"",
+    "attachmentData": "",
+    "attachmentName": ""
+  }
+}
 
 
 

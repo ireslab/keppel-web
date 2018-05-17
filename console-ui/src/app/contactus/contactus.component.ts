@@ -114,10 +114,9 @@ export class ContactusComponent implements OnInit {
         (data) => {
           this.spinnerService.hide()
           this.refrenceNo = data.referenceNo
-          $('#downLoadRedirect').modal('show');
-          
+         $('#downLoadRedirect').modal('show');
         }, (error: any) => {
-          console.log(error.success)
+          alert('Service Failed')
           this.spinnerService.hide()
         })
     }
@@ -126,7 +125,6 @@ export class ContactusComponent implements OnInit {
     }
   }
   redirectToHome(){
-    // alert("test")
     this.router.navigateByUrl("keppel");
   }
 

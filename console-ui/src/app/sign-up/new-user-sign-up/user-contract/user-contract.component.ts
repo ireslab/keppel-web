@@ -62,7 +62,7 @@ export class UserContractComponent implements OnInit {
   constructor(private sbService: SidebarService, public datashare: DataShare, private fb: FormBuilder,
     private router: Router, private commonService: CommonServices, private serverCall: ServiceCall,
     private spinnerService: Ng4LoadingSpinnerService, public http: Http) {
-     
+     console.log(this.datashare.usderDetailObj);
     
     this.sbService.getSidebar("newUser");
     this.commonService.gotoTopOfView();
@@ -529,7 +529,6 @@ export class UserContractComponent implements OnInit {
       }
 
       this.datashare.usderDetailObj.serviceStartDate = this.contractForm.controls['serviceStartDate'].value;
-      
       this.datashare.usderDetailObj.promoCode = this.contractForm.controls['promoCode'].value;
       this.datashare.usderDetailObj.paymentMethod = this.paymentMethod;
       this.datashare.usderDetailObj.icNumberType = this.contractForm.controls['icNumberType'].value;
